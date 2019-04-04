@@ -1,0 +1,25 @@
+#!/bin/bash
+
+sudo killall -r '.*'
+sudo service apache2 reload
+
+sudo /etc/init.d/apache2 stop
+sudo /etc/init.d/mysql stop
+
+sudo service apache2 stop
+sudo service mysql stop
+
+sudo pkill -f mysql
+sudo pkill -f mysqld
+sudo pkill -f httpd
+sudo pkill -f apache2
+
+sudo killall mysql
+sudo killall mysqld
+sudo killall httpd
+sudo killall apache2
+
+sudo killall -u mysql
+sudo killall -u www-data
+
+sudo usermod -d /var/lib/mysql mysql
