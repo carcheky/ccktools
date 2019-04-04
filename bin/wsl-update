@@ -1,7 +1,6 @@
 #!/bin/bash
 sudo dpkg --configure -a
 
-
 if [[ -d ~/ccktools ]]; then
   cd ~/ccktools/
   if git pull
@@ -12,13 +11,23 @@ if [[ -d ~/ccktools ]]; then
   fi
 fi
 
-
 if [[ ! -d ~/ccktools ]]; then
-    git clone https://github.com/carcheky/ccktools.git
-    ln -s ~/ccktools/bin ~/bin
-    sudo cp ~/ccktools/config/wsl.conf /etc/
-    echo "bash ~/ccktools/bin/wsl-update" >> ~/.bashrc
-    echo "source ~/ccktools/.ccktools" >> ~/.bashrc
+  git clone https://github.com/carcheky/ccktools.git
+  if [[ ! -d ~/bin ]]; then
+      ln -s ~/ccktools/bin ~/bin
+  fi
+fi
+
+if [[ ! -f ~/ccktools/config/wsl.conf ]]; then
+    sudo ln -s ~/ccktools/config/wsl.conf /etc/
+fi
+
+if ! grep -q "bash ~/ccktools/bin/wsl-update" ~/.bashrc ; then
+  echo "bash ~/ccktools/bin/wsl-update" >> ~/.bashrc
+fi
+
+if ! grep -q "source ~/ccktools/.ccktools" ~/.bashrc ; then
+  echo "source ~/ccktools/.ccktools" >> ~/.bashrc
 fi
 
 find ~/ccktools/bin/ -type f -exec chmod +x {} \;
