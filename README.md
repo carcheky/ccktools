@@ -10,5 +10,5 @@ WSL Tools. Only for me.
 6.   Add ```user ALL=(ALL) NOPASSWD:ALL``` & save
 7.   run:
 ```
-cd ~ ; wget https://github.com/carcheky/ubuntu-tools-wsl/raw/master/bin/wsl-update ; chmod +x ~/wsl-update ; ~/./wsl-update; exit;
+cd ~ ; wget https://github.com/carcheky/ccktools/raw/master/bin/wsl-update ; chmod +x ~/wsl-update ; ~/./wsl-update; exit;
 ```
