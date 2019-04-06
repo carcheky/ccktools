@@ -1,7 +1,10 @@
 #!/bin/bash
+source ~/ccktools/.ccktools
+
 sudo apt install zsh zsh-doc git -y
 
 if [ $1 == '--delete' ]; then
+    echo "with delete"
     sudo rm -fr ~/.z* ~/.oh-*
 fi
 
