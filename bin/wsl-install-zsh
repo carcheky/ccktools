@@ -4,23 +4,20 @@ source ~/ccktools/.ccktools
 sudo apt install zsh zsh-doc git -y
 
 if [ $1 == '--delete' ]; then
-    echo "with delete"
+    kecho "with delete"
     sudo rm -fr ~/.z* ~/.oh-*
 fi
 
-if ! grep -q "bash -c -l zsh" ~/.bashrc ; then
-  echo "bash -c -l zsh" >> ~/.bashrc
-fi
+wsl-replace-string-in-file "bash -c -l zsh" ~/.bashrc
 
 if [ ! -d /c/fonts ]; then
-cd /c
-git clone https://github.com/powerline/fonts.git
-cd /c/fonts
-powershell.exe -File install.ps1
-cd
+    cd /c
+    git clone https://github.com/powerline/fonts.git
+    cd /c/fonts
+    powershell.exe -File install.ps1
+    cd
 fi
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-# mv ~/.zshrc ~/.zshrc.backup
-# ln -s ~/ubuntu-tools-wsl/config/.zshrc ~/.zshrc
+wsl-replace-string-in-file "ZSH_THEME=\"agnoster\"" ~/.zshrc
