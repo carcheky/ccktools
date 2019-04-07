@@ -2,3 +2,25 @@
 
 alias ll="ls -la"
 alias cckinstall="cd ~ ; rm -fr ~/bin ~/ccktools/ ~/.wget-hsts ; wget https://github.com/carcheky/ccktools/raw/master/bin/wsl-update ; chmod +x ~/wsl-update ; ~/./wsl-update;"
+alias wsl-powerup-php="sed -i 's/post_max_size = 8M/post_max_size = 8G/g' ~/ubuntu-tools-wsl/config/php*.ini; sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' ~/ubuntu-tools-wsl/config/php*.ini; sed -i 's/memory_limit = 128M/memory_limit = 2G/g' ~/ubuntu-tools-wsl/config/php*.ini"
+alias change-repo="cd; git config --global user.name \"carcheky\"; git config --global user.email \"carcheky@gmail.com\"; ssh-keygen -t rsa -b 4096 -C \"carcheky@gmail.com\"; cd ubuntu-tools-wsl; git remote set-url origin git@github.com:carcheky/ubuntu-tools-wsl.git; git remote -v;"
+
+# alias docker=docker.exe
+# alias docker-compose=docker-compose.exe
+# alias ll='ls -la'
+# alias cca='drush cc all';
+# alias ccron='cca;  drush cron'
+# alias draim='drush l10n-update-refresh; drush l10n-update'
+# alias dr='drush'
+# alias drwsdel='clear; drush -y watchdog-delete all; drush ws --tail --full'
+# alias drws='clear; drush ws --tail --full'
+# alias drbasicmodules='dr -y en module_filter fpa admin_menu adminimal_admin_menu adminimal_theme backup_migrate coffee l10n_update; ccron'
+# alias drdevelmodules='dr -y en devel masquerade admin_views schema db_maintenance module_missing_message_fixer unused_modules; ccron'
+# alias drfordevs='dl module_filter fpa admin_menu adminimal_admin_menu adminimal_theme backup_migrate coffee l10n_update devel masquerade admin_views schema db_maintenance module_missing_message_fixer unused_modules views_bulk_operations --destination=sites/default/modules/fordevs -y'
+# alias drimport='drush sql-drop -y; drush sql-cli < database.sql -v'
+# alias drexport='drush sql-dump > database.sql -v'
+# alias drup='dr up -y; dr updb -y; drush cu;'
+# alias bashrc='source ~/.bash_aliases'
+# alias goht='cd ${DEVDIR}'
+# alias mountdesadrupal="sudo mount -t drvfs '\\\\desadrupal\\html' /desadrupal"
+# alias restart="lamp-restart"
