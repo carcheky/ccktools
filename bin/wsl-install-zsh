@@ -3,7 +3,7 @@ source ~/ccktools/.ccktools
 
 sudo apt install zsh zsh-doc git -y
 
-if [ $1 == '--delete' ]; then
+if [ $1 = '--delete' ]; then
     kecho "with delete"
     sudo rm -fr ~/.z* ~/.oh-*
 fi
