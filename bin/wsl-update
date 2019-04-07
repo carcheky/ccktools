@@ -30,6 +30,10 @@ if ! grep -q "source ~/ccktools/.ccktools" ~/.bashrc ; then
   echo "source ~/ccktools/.ccktools" >> ~/.bashrc
 fi
 
+if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
+  echo "source ~/ccktools/.ccktools" >> ~/.zshrc
+fi
+
 find ~/ccktools/bin/ -type f -exec chmod +x {} \;
 
 if [[ -f ~/wsl-update ]]; then
