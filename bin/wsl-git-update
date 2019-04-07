@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#source /home/user/ccktools/.ccktools
+source ~/.bashrc
+
+CCKTOOLS_PATH="/home/user/ccktools/"
+
+cd $CCKTOOLS_PATH
+FILE=$CCKTOOLS_PATH
+
+if [ $1 ]; then
+  FILE=$CCKTOOLS_PATH$1
+fi
+
+ECHO "EDITANDO $FILE"
+#vim $FILE
+find . -name $1 -exec vim {} \;
+
+git status
+
+echo "Escriba el mensaje del commit:"
+[ -z "$2" ] &&  read COMMIT_MSG || COMMIT_MSG=$2
+
+git commit -a -m "${COMMIT_MSG}"
+git push
+

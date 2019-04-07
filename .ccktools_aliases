@@ -1,7 +1,7 @@
 #!/bin/bash
 
 alias ll="ls -la"
-alias cckinstall="cd ~ ; rm -fr ~/bin ~/ccktools/ ~/.wget-hsts ~/.z* ; wget https://github.com/carcheky/ccktools/raw/master/bin/wsl-update ; chmod +x ~/wsl-update ; ~/./wsl-update;"
+alias cckinstall="cd ~ ; rm -fr ~/bin ~/ccktools/ ~/.wget-hsts ~/.z* ~/.z* ; ls -la ; bash -c \"$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-update)\""
 alias wsl-powerup-php="sed -i 's/post_max_size = 8M/post_max_size = 8G/g' ~/ubuntu-tools-wsl/config/php*.ini; sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' ~/ubuntu-tools-wsl/config/php*.ini; sed -i 's/memory_limit = 128M/memory_limit = 2G/g' ~/ubuntu-tools-wsl/config/php*.ini"
 alias change-repo="cd; git config --global user.name \"carcheky\"; git config --global user.email \"carcheky@gmail.com\"; ssh-keygen -t rsa -b 4096 -C \"carcheky@gmail.com\"; cd ubuntu-tools-wsl; git remote set-url origin git@github.com:carcheky/ubuntu-tools-wsl.git; git remote -v;"
 
