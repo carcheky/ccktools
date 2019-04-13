@@ -1,5 +1,5 @@
 #!/bin/bash
-shopt -s expand_aliases
+# shopt -s expand_aliases
 source ~/ccktools/.ccktools
 
 if [[ -d ~/bin ]]; then

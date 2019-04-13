@@ -9,4 +9,5 @@ WSL Tools. Only for me.
 6.   run:
 ```
 sudo apt update && sudo apt upgrade -y && bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-update)"
+sudo apt update && sudo apt upgrade -y && bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup)"
 ```

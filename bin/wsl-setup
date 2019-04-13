@@ -1,0 +1,40 @@
+#!/bin/bash
+
+########
+# INFO #
+########
+
+
+##########
+# CONFIG #
+##########
+
+
+#############
+# FUNCTIONS #
+#############
+
+set_wslconf() {
+  if [[ ! -f /etc/wsl.conf ]]; then
+    wget https://raw.githubusercontent.com/carcheky/ccktools/master/config/wsl.conf
+    sudo mv wsl.conf /etc/
+  fi
+  exit 1
+}
+
+set_dirs() {
+  if [[ ! -f /c/wsla/ ]]; then
+    mkdir /c/wsla/
+    mkdir /c/wsla/user
+    mkdir /c/wsla/sites
+  fi
+}
+
+
+################
+# MAIN PROGRAM #
+################
+
+  
+set_wslconf
+set_dirs

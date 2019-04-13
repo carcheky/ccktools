@@ -2,6 +2,7 @@
 sudo dpkg --configure -a
 
 if [[ -d /c/wsl/user ]]; then
+  BASE_PATH=/c/wsl/user
   if [[ ! -d /c/wsl/user/ccktools ]]; then
     sudo mv ~/ccktools /c/wsl/user/
     sudo ln -s /c/wsl/user/ccktools ~/
