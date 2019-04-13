@@ -1,6 +1,22 @@
 #!/bin/bash
 sudo dpkg --configure -a
 
+if [[ -d /c/wsl/user ]]; then
+  if [[ ! -d /c/wsl/user/ccktools ]]; then
+    sudo mv ~/ccktools /c/wsl/user/
+    sudo ln -s /c/wsl/user/ccktools ~/
+    rm ~/bin
+    sudo ln -s /c/wsl/user/ccktools/bin ~/
+  fi
+  if [[ ! -f /c/wsl/user/.bashrc ]]; then
+    sudo mv ~/.bashrc /c/wsl/user/
+    sudo ln -s /c/wsl/user/.bashrc ~/
+  fi
+  if [[ ! -f /c/wsl/user/.gitconfig ]]; then
+    sudo mv ~/.gitconfig /c/wsl/user/
+    sudo ln -s /c/wsl/user/.gitconfig ~/
+  fi
+fi
 
 if [[ ! -d ~/ccktools ]]; then
   git clone https://github.com/carcheky/ccktools.git
@@ -31,11 +47,11 @@ if [[ -d ~/ccktools ]]; then
     echo "source ~/ccktools/.ccktools" >> ~/.bashrc
   fi
 
-  if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
-    echo "source ~/ccktools/.ccktools" >> ~/.zshrc
+  if ! sudo grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
+    sudo echo "source ~/ccktools/.ccktools" >> ~/.zshrc
   fi
 
-  find ~/ccktools/bin/ -type f -exec chmod +x {} \;
+  find ~/bin/ -type f -exec chmod +x {} \;
 
   if [[ -f ~/wsl-update ]]; then
       rm ~/wsl-update

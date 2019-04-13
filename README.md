@@ -8,5 +8,5 @@ WSL Tools. Only for me.
 5.   Run ```sudo visudo``` & add ```user ALL=(ALL) NOPASSWD:ALL``` & save
 6.   run:
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-update)"
+sudo apt update && sudo apt upgrade -y && bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-update)"
 ```
