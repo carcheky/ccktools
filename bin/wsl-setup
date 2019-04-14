@@ -82,6 +82,9 @@ create_links() {
       fi
     fi
 
+    sudo ln -s /c/wsl/user/ccktools/bin  ~
+    sudo ln -s /c/wsl/user/ccktools  ~
+
     sudo apt install dos2unix -y
     
     find ~/bin/ -type f -exec chmod +x {} \;
