@@ -36,7 +36,8 @@ set_dirs() {
     sudo mkdir '/c/wsl/'
     sudo mkdir '/c/wsl/user'
     sudo mkdir '/c/wsl/sites'
-    cd /c/wsl/user
+    sudo chown -R user:user '/c/wsl/'
+    cd '/c/wsl/user'
     git clone https://github.com/carcheky/ccktools.git
   fi
 }
