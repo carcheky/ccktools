@@ -15,7 +15,12 @@
 #############
 
 set_wslconf() {
+  if [[ -f /etc/wsl.conf ]]; then
+    echo "==> wsl encontrado"
+    return
+  fi
   if [[ ! -f /etc/wsl.conf ]]; then
+    echo "==> Copiando configuración y saliendo"
     wget https://raw.githubusercontent.com/carcheky/ccktools/master/config/wsl.conf
     sudo mv wsl.conf /etc/
   fi
@@ -23,10 +28,16 @@ set_wslconf() {
 }
 
 set_dirs() {
-  if [[ ! -f /c/wsla/ ]]; then
-    mkdir /c/wsla/
-    mkdir /c/wsla/user
-    mkdir /c/wsla/sites
+  if [[ -d /c/wsl/ ]]; then
+    echo "==> Existe la ruta /c/wsl"
+    return
+  fi
+  if [[ ! -d /c/wsl/ ]]; then
+    sudo mkdir '/c/wsl/'
+    sudo mkdir '/c/wsl/user'
+    sudo mkdir '/c/wsl/sites'
+    cd /c/wsl/user
+    git clone https://github.com/carcheky/ccktools.git
   fi
 }
 
@@ -38,3 +49,6 @@ set_dirs() {
   
 set_wslconf
 set_dirs
+
+
+
