@@ -16,13 +16,16 @@
 
 set_wslconf() {
   if [[ -f /etc/wsl.conf ]]; then
-    echo "==> wsl encontrado"
+    echo "==> /etc/wsl.conf encontrado"
     return
   fi
   if [[ ! -f /etc/wsl.conf ]]; then
-    echo "==> Copiando configuración y saliendo"
+    echo "==> Creando /etc/wsl.conf y saliendo"
     wget https://raw.githubusercontent.com/carcheky/ccktools/master/config/wsl.conf
-    sudo mv wsl.conf /etc/
+    sudo mv -f wsl.conf /etc/
+
+    echo "==> La consola se cerrará, ábrala y vuelva a ejecutar la misma operación"
+    read a
   fi
   exit 1
 }
