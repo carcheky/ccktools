@@ -5,3 +5,24 @@ sudo apt install -y apache2 php
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
 sudo apt install -y mysql-server
+
+
+sudo chmod -R /var/cache/debconf
+
+sudo APP_PASS="root"
+sudo ROOT_PASS="root"
+sudo APP_DB_PASS="root"
+
+sudo echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
+sudo echo "phpmyadmin phpmyadmin/app-password-confirm password $APP_PASS" | debconf-set-selections
+sudo echo "phpmyadmin phpmyadmin/mysql/admin-pass password $ROOT_PASS" | debconf-set-selections
+sudo echo "phpmyadmin phpmyadmin/mysql/app-pass password $APP_DB_PASS" | debconf-set-selections
+sudo echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections
+
+sudo apt install -y phpmyadmin
+# sudo dpkg-reconfigure -plow phpmyadmin
+
+sudo apt clean
+sudo apt autoclean
+sudo dpkg --configure -a
+sudo apt autoremove
