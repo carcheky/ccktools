@@ -8,6 +8,7 @@ sudo apt install -y mysql-server
 
 sudo service apache2 stop & sudo service mysql stop
 
+
 sudo chmod -R /var/cache/debconf
 
 sudo APP_PASS="root"
