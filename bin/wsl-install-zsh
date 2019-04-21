@@ -1,24 +1,66 @@
 #!/bin/bash
 source ~/ccktools/.ccktools
 
-sudo apt install zsh zsh-doc git -y
+########
+# INFO #
+########
 
-if [ $1 = '--delete' ]; then
-    kecho "with delete"
-    sudo rm -fr ~/.z* ~/.oh-*
+
+##########
+# CONFIG #
+##########
+
+
+#############
+# FUNCTIONS #
+#############
+
+zsh_remove(){
+    echo "with remove"
+    sudo apt remove zsh zsh-doc zsh-common -y
+    sudo rm -fr ~/.zcompdump ~/.oh-my-zsh ~/.zshrc
+    sudo apt autoremove -y
+    ls -la ~
+    exit 1
+}
+
+zsh_install(){
+    sudo apt update
+    sudo apt install git -y
+    sudo apt install npm -y
+    sudo apt install zsh zsh-doc zsh-common -y
+    
+    sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+    # sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/g' ~/.zshrc ;
+
+    # cat ~/.zshrc | grep ZSH_THEME=\" ;
+
+    if ! grep -q "bash -c -l zsh" ~/.bashrc ; then
+        echo "bash -c -l zsh" >> ~/.bashrc 
+    fi
+}
+
+
+
+################
+# MAIN PROGRAM #
+################
+
+echo $1
+
+if [ ! $1 ]; then
+    echo "use wsl-install-zsh [remove/install] "
+    exit 1
 fi
 
-wsl-replace-string-in-file "bash -c -l zsh" ~/.bashrc
-
-if [ ! -d /c/fonts ]; then
-    cd /c
-    git clone https://github.com/powerline/fonts.git
-    cd /c/fonts
-    powershell.exe -File install.ps1
-    cd
+if [ $1 = 'remove' ]; then
+    zsh_remove ;
+    exit 1
 fi
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+if [ $1 = 'install' ]; then
+    zsh_install ;
+    exit 1
+fi
 
-sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/g' ~/.zshrc ;
-cat ~/.zshrc | grep ZSH_THEME=\"

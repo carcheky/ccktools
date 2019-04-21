@@ -1,0 +1,104 @@
+#!/bin/bash
+
+########
+# INFO #
+########
+
+
+##########
+# CONFIG #
+##########
+
+
+#############
+# FUNCTIONS #
+#############
+
+set_wslconf() {
+  if [[ -f /etc/wsl.conf ]]; then
+    echo "==> /etc/wsl.conf encontrado"
+    return
+  fi
+  if [[ ! -f /etc/wsl.conf ]]; then
+    echo "==> Creando /etc/wsl.conf y saliendo"
+    wget https://raw.githubusercontent.com/carcheky/ccktools/master/config/wsl.conf
+    sudo mv -f wsl.conf /etc/
+
+    echo "==> La consola se cerrará, ábrala y vuelva a ejecutar la misma operación"
+    read a
+  fi
+  exit 1
+}
+
+set_dirs() {
+  if [[ -d /c/wsl/ ]]; then
+    echo "==> Existe la ruta /c/wsl"
+    return
+  fi
+  if [[ ! -d /c/wsl/ ]]; then
+    sudo mkdir '/c/wsl/'
+    sudo mkdir '/c/wsl/user'
+    sudo mkdir '/c/wsl/sites'
+    sudo chown -R user:user '/c/wsl/'
+    cd '/c/wsl/user'
+    git clone https://github.com/carcheky/ccktools.git
+  fi
+}
+update_repo() {
+  if [[ -d /c/wsl/user/ccktools ]]; then
+    cd /c/wsl/user/ccktools/
+    if git pull
+      then
+        echo "ccktools updated"
+      else
+        echo "ccktools update failed"
+    fi
+  fi
+}
+
+create_links() {
+  if [[ -d /c/wsl/user/ccktools ]]; then
+      cd /c/wsl/user/ccktools/
+
+    if ! grep -q "bash -c /c/wsl/user/ccktools/bin/wsl-update" ~/.bashrc ; then
+      echo "bash -c /c/wsl/user/ccktools/bin/wsl-update" >> ~/.bashrc
+    fi
+
+    if ! grep -q "source /c/wsl/user/ccktools/.ccktools" ~/.bashrc ; then
+      echo "source /c/wsl/user/ccktools/.ccktools" >> ~/.bashrc
+    fi
+    
+    if ! grep -q "source /c/wsl/user/ccktools/.ccktools_aliases" ~/.bashrc ; then
+      echo "source /c/wsl/user/ccktools/.ccktools_aliases" >> ~/.bashrc
+    fi
+
+    if [[ -f ~/.zshrc  ]]; then
+      if ! grep -q "source /c/wsl/user/ccktools/.ccktools" ~/.zshrc ; then
+        echo "source /c/wsl/user/ccktools/.ccktools" >> ~/.zshrc
+      fi
+      
+      if ! grep -q "source /c/wsl/user/ccktools/.ccktools_aliases" ~/.zshrc ; then
+        echo "source /c/wsl/user/ccktools/.ccktools_aliases" >> ~/.zshrc
+      fi
+    fi
+
+    sudo ln -s /c/wsl/user/ccktools/bin  ~
+    sudo ln -s /c/wsl/user/ccktools  ~
+
+    sudo apt install dos2unix -y
+    
+    find ~/bin/ -type f -exec chmod +x {} \;
+    find ~/bin/ -type f -exec dos2unix {} \;
+  fi
+}
+
+################
+# MAIN PROGRAM #
+################
+
+  
+set_wslconf
+set_dirs
+
+
+
