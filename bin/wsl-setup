@@ -84,6 +84,10 @@ create_links() {
   fi
 }
 
+install_server(){
+  echo "=> in work"
+}
+
 ################
 # MAIN PROGRAM #
 ################
