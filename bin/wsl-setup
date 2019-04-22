@@ -87,7 +87,7 @@ create_links() {
 ################
 # MAIN PROGRAM #
 ################
-
+rm -fr .wget-hsts
 echo "=> actualizando fuentes..." 
 sudo apt update 2>dev/null
 
