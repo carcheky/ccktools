@@ -37,16 +37,16 @@ set_dirs() {
   fi
   if [[ ! -d /c/wsl/ ]]; then
     sudo mkdir '/c/wsl/'
-    sudo mkdir '/c/wsl/user'
+    sudo mkdir '~'
     sudo mkdir '/c/wsl/sites'
     sudo chown -R user:user '/c/wsl/'
-    cd '/c/wsl/user'
+    cd '~'
     git clone https://github.com/carcheky/ccktools.git
   fi
 }
 update_repo() {
-  if [[ -d /c/wsl/user/ccktools ]]; then
-    cd /c/wsl/user/ccktools/
+  if [[ -d ~/ccktools ]]; then
+    cd ~/ccktools/
     if git pull
       then
         echo "ccktools updated"
@@ -57,33 +57,33 @@ update_repo() {
 }
 
 create_links() {
-  if [[ -d /c/wsl/user/ccktools ]]; then
-      cd /c/wsl/user/ccktools/
+  if [[ -d ~/ccktools ]]; then
+      cd ~/ccktools/
 
-    if ! grep -q "bash -c /c/wsl/user/ccktools/bin/wsl-update" ~/.bashrc ; then
-      echo "bash -c /c/wsl/user/ccktools/bin/wsl-update" >> ~/.bashrc
+    if ! grep -q "bash -c ~/ccktools/bin/wsl-update" ~/.bashrc ; then
+      echo "bash -c ~/ccktools/bin/wsl-update" >> ~/.bashrc
     fi
 
-    if ! grep -q "source /c/wsl/user/ccktools/.ccktools" ~/.bashrc ; then
-      echo "source /c/wsl/user/ccktools/.ccktools" >> ~/.bashrc
+    if ! grep -q "source ~/ccktools/.ccktools" ~/.bashrc ; then
+      echo "source ~/ccktools/.ccktools" >> ~/.bashrc
     fi
     
-    if ! grep -q "source /c/wsl/user/ccktools/.ccktools_aliases" ~/.bashrc ; then
-      echo "source /c/wsl/user/ccktools/.ccktools_aliases" >> ~/.bashrc
+    if ! grep -q "source ~/ccktools/.ccktools_aliases" ~/.bashrc ; then
+      echo "source ~/ccktools/.ccktools_aliases" >> ~/.bashrc
     fi
 
     if [[ -f ~/.zshrc  ]]; then
-      if ! grep -q "source /c/wsl/user/ccktools/.ccktools" ~/.zshrc ; then
-        echo "source /c/wsl/user/ccktools/.ccktools" >> ~/.zshrc
+      if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
+        echo "source ~/ccktools/.ccktools" >> ~/.zshrc
       fi
       
-      if ! grep -q "source /c/wsl/user/ccktools/.ccktools_aliases" ~/.zshrc ; then
-        echo "source /c/wsl/user/ccktools/.ccktools_aliases" >> ~/.zshrc
+      if ! grep -q "source ~/ccktools/.ccktools_aliases" ~/.zshrc ; then
+        echo "source ~/ccktools/.ccktools_aliases" >> ~/.zshrc
       fi
     fi
 
-    sudo ln -s /c/wsl/user/ccktools/bin  ~
-    sudo ln -s /c/wsl/user/ccktools  ~
+    sudo ln -s ~/ccktools/bin  ~
+    sudo ln -s ~/ccktools  ~
 
     sudo apt install dos2unix -y
     
