@@ -96,9 +96,6 @@ create_links() {
 # MAIN PROGRAM #
 ################
 
-  
 set_wslconf
 set_dirs
-
-
-
+create_links
