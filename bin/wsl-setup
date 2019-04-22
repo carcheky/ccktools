@@ -88,11 +88,12 @@ create_links() {
 # MAIN PROGRAM #
 ################
 rm -fr .wget-hsts
+sudo dpkg -configure -a
 echo "=> actualizando fuentes..." 
 sudo apt update 2>/dev/null
 
 echo "=> actualizando paquetes..." 
-sudo apt upgrade 2>/dev/null
+sudo apt upgrade -y 2>/dev/null
 
 set_wslconf
 set_dirs
