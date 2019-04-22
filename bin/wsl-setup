@@ -89,10 +89,10 @@ create_links() {
 ################
 rm -fr .wget-hsts
 echo "=> actualizando fuentes..." 
-sudo apt update 2>dev/null
+sudo apt update 2>/dev/null
 
 echo "=> actualizando paquetes..." 
-sudo apt upgrade 2>dev/null
+sudo apt upgrade 2>/dev/null
 
 set_wslconf
 set_dirs
