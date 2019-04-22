@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source ~/ccktools/.ccktools_aliases
+
+update_ccktools(){
+    echo "actualizando..." & ( cd ~/ccktools && git pull && cd )
+
+    if [[ -d ~/ccktools/bin ]]; then
+        find ~/ccktools/bin -type f -exec chmod +x {} \;
+        find ~/ccktools/bin -type f -exec dos2unix {} \;
+    fi
+}
+
+update_ccktools
