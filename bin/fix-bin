@@ -1,8 +1,6 @@
 #!/bin/bash
-# shopt -s expand_aliases
-source ~/ccktools/.ccktools
 
-if [[ -d ~/bin ]]; then
-    find ~/bin/ -type f -exec chmod +x {} \;
-    find ~/bin/ -type f -exec dos2unix {} \;
+if [[ -d ~/ccktools ]]; then
+    find ~/ccktools/ -type f -exec chmod +x {} \;
+    find ~/ccktools/ -type f -exec dos2unix {} \;
 fi
