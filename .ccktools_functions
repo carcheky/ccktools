@@ -11,4 +11,3 @@ update_ccktools(){
     fi
 }
 
-update_ccktools

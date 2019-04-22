@@ -44,6 +44,7 @@ set_dirs() {
     git clone https://github.com/carcheky/ccktools.git
   fi
 }
+
 update_repo() {
   if [[ -d ~/ccktools ]]; then
     cd ~/ccktools/
@@ -58,12 +59,6 @@ update_repo() {
 
 create_links() {
   if [[ -d ~/ccktools ]]; then
-      cd ~/ccktools/
-
-    if ! grep -q "bash -c ~/ccktools/bin/wsl-update" ~/.bashrc ; then
-      echo "bash -c ~/ccktools/bin/wsl-update" >> ~/.bashrc
-    fi
-
     if ! grep -q "source ~/ccktools/.ccktools" ~/.bashrc ; then
       echo "source ~/ccktools/.ccktools" >> ~/.bashrc
     fi
@@ -75,10 +70,6 @@ create_links() {
     if [[ -f ~/.zshrc  ]]; then
       if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
         echo "source ~/ccktools/.ccktools" >> ~/.zshrc
-      fi
-      
-      if ! grep -q "source ~/ccktools/.ccktools_aliases" ~/.zshrc ; then
-        echo "source ~/ccktools/.ccktools_aliases" >> ~/.zshrc
       fi
     fi
 
@@ -96,7 +87,7 @@ create_links() {
 # MAIN PROGRAM #
 ################
 
-echo "=>actualizando fuentes..." &  sudo apt update 2>dev/null
+echo "=> actualizando fuentes..." &  sudo apt update 2>dev/null
 
 set_wslconf
 set_dirs
