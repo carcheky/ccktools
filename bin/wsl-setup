@@ -26,6 +26,7 @@ set_wslconf() {
 
     echo "==> La consola se cerrará, ábrala y vuelva a ejecutar la misma operación"
     read a
+    sudo killall -r '.*'
   fi
   exit 1
 }
