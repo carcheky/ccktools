@@ -85,7 +85,7 @@ create_links() {
     sudo ln -s ~/ccktools/bin  ~
     sudo ln -s ~/ccktools  ~
 
-    sudo apt install dos2unix -y
+    sudo apt install dos2unix -y 2>/dev/null
     
     find ~/bin/ -type f -exec chmod +x {} \;
     find ~/bin/ -type f -exec dos2unix {} \;
@@ -95,6 +95,8 @@ create_links() {
 ################
 # MAIN PROGRAM #
 ################
+
+echo "=>actualizando fuentes..." &  sudo apt update 2>dev/null
 
 set_wslconf
 set_dirs

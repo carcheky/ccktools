@@ -1,60 +1,9 @@
 #!/bin/bash
 sudo dpkg --configure -a
 
-if [[ -d /c/wsl/user ]]; then
-  BASE_PATH=/c/wsl/user
-  if [[ ! -d /c/wsl/user/ccktools ]]; then
-    sudo mv ~/ccktools /c/wsl/user/
-    sudo ln -s /c/wsl/user/ccktools ~/
-    rm ~/bin
-    sudo ln -s /c/wsl/user/ccktools/bin ~/
-  fi
-  if [[ ! -f /c/wsl/user/.bashrc ]]; then
-    sudo mv ~/.bashrc /c/wsl/user/
-    sudo ln -s /c/wsl/user/.bashrc ~/
-  fi
-  if [[ ! -f /c/wsl/user/.gitconfig ]]; then
-    sudo mv ~/.gitconfig /c/wsl/user/
-    sudo ln -s /c/wsl/user/.gitconfig ~/
-  fi
-fi
-
 if [[ ! -d ~/ccktools ]]; then
   git clone https://github.com/carcheky/ccktools.git
   if [[ ! -d ~/bin ]]; then
       ln -s ~/ccktools/bin ~/bin
-  fi
-fi
-
-if [[ -d ~/ccktools ]]; then
-  cd ~/ccktools/
-  
-  if git pull
-    then
-      echo "ccktools updated"
-    else
-      echo "ccktools update failed"
-  fi
-
-  if [[ ! -f /etc/wsl.conf ]]; then
-    sudo ln -s ~/ccktools/config/wsl.conf /etc/
-  fi
-
-  if ! grep -q "bash ~/ccktools/bin/wsl-update" ~/.bashrc ; then
-    echo "bash ~/ccktools/bin/wsl-update" >> ~/.bashrc
-  fi
-
-  if ! grep -q "source ~/ccktools/.ccktools" ~/.bashrc ; then
-    echo "source ~/ccktools/.ccktools" >> ~/.bashrc
-  fi
-
-  if ! sudo grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
-    sudo echo "source ~/ccktools/.ccktools" >> ~/.zshrc
-  fi
-
-  find ~/bin/ -type f -exec chmod +x {} \;
-
-  if [[ -f ~/wsl-update ]]; then
-      rm ~/wsl-update
   fi
 fi
