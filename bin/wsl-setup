@@ -38,10 +38,10 @@ set_dirs() {
   fi
   if [[ ! -d /c/wsl/ ]]; then
     sudo mkdir '/c/wsl/'
-    sudo mkdir '~'
     sudo mkdir '/c/wsl/sites'
+    sudo mkdir '/c/wsl/user'
     sudo chown -R user:user '/c/wsl/'
-    cd '~'
+    cd '/c/wsl/user'
     git clone https://github.com/carcheky/ccktools.git
   fi
 }
@@ -63,10 +63,6 @@ create_links() {
     if ! grep -q "source ~/ccktools/.ccktools" ~/.bashrc ; then
       echo "source ~/ccktools/.ccktools" >> ~/.bashrc
     fi
-    
-    if ! grep -q "source ~/ccktools/.ccktools_aliases" ~/.bashrc ; then
-      echo "source ~/ccktools/.ccktools_aliases" >> ~/.bashrc
-    fi
 
     if [[ -f ~/.zshrc  ]]; then
       if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
@@ -74,8 +70,8 @@ create_links() {
       fi
     fi
 
-    sudo ln -s ~/ccktools/bin  ~
-    sudo ln -s ~/ccktools  ~
+    sudo ln -s /c/wsl/user/ccktools/bin  ~
+    sudo ln -s /c/wsl/user/ccktools  ~
 
     sudo apt install dos2unix -y 2>/dev/null
     
