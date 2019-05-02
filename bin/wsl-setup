@@ -24,9 +24,9 @@ set_wslconf() {
     wget https://raw.githubusercontent.com/carcheky/ccktools/master/config/wsl.conf
     sudo mv -f wsl.conf /etc/
     
-    # echo "==> La consola se cerrará, ábrala y vuelva a ejecutar la misma operación"
-    # read a
-    # sudo killall -r '.*'
+    echo "==> La consola se cerrará, ábrala y vuelva a ejecutar la misma operación"
+    read a
+    sudo killall -r '.*'
   fi
 }
 
