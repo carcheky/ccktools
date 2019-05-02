@@ -28,6 +28,8 @@ set_wslconf() {
     read a
     sudo killall -r '.*'
   fi
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup)"
+
   exit 1
 }
 
@@ -97,5 +99,5 @@ echo "=> actualizando paquetes..."
 sudo apt upgrade -y 2>/dev/null
 
 set_wslconf
-bash -c set_dirs
+set_dirs
 create_links
