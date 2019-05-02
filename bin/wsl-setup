@@ -23,8 +23,9 @@ set_wslconf() {
     echo "==> Creando /etc/wsl.conf y saliendo"
     wget https://raw.githubusercontent.com/carcheky/ccktools/master/config/wsl.conf
     sudo mv -f wsl.conf /etc/
-  bash
-  sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup)"
+    
+    bash
+    sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup)"
 
     echo "==> La consola se cerrará, ábrala y vuelva a ejecutar la misma operación"
     read a
@@ -91,11 +92,11 @@ install_server(){
 
 rm -fr .wget-hsts
 sudo dpkg --configure -a
-echo "=> actualizando fuentes..." 
-sudo apt update 2>/dev/null
+# echo "=> actualizando fuentes..." 
+# sudo apt update 2>/dev/null
 
-echo "=> actualizando paquetes..." 
-sudo apt upgrade -y 2>/dev/null
+# echo "=> actualizando paquetes..." 
+# sudo apt upgrade -y 2>/dev/null
 
 set_wslconf
 set_dirs
