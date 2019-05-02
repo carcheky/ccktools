@@ -97,5 +97,5 @@ echo "=> actualizando paquetes..."
 sudo apt upgrade -y 2>/dev/null
 
 set_wslconf
-bash set_dirs
+bash -c set_dirs
 create_links
