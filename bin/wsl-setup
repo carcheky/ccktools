@@ -97,6 +97,5 @@ sudo dpkg --configure -a
 # sudo apt upgrade -y 2>/dev/null
 
 set_wslconf
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup)"
 set_dirs
 create_links
