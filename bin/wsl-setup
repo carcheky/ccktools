@@ -23,7 +23,6 @@ set_wslconf() {
     echo "==> Creando /etc/wsl.conf y saliendo"
     wget https://raw.githubusercontent.com/carcheky/ccktools/master/config/wsl.conf
     sudo mv -f wsl.conf /etc/
-    
     echo "==> La consola se cerrará, ábrala y vuelva a ejecutar la misma operación"
     read a
     sudo killall -r '.*'
@@ -58,19 +57,18 @@ update_repo() {
 }
 
 create_links() {
-  if [[ -d ~/ccktools ]]; then
+  if [[ -d /c/wsl/user/ccktools ]]; then
+    
+    sudo ln -s /c/wsl/user/ccktools/bin  ~
+    sudo ln -s /c/wsl/user/ccktools  ~
+
     if ! grep -q "source ~/ccktools/.ccktools" ~/.bashrc ; then
       echo "source ~/ccktools/.ccktools" >> ~/.bashrc
     fi
 
-    if [[ -f ~/.zshrc  ]]; then
-      if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
-        echo "source ~/ccktools/.ccktools" >> ~/.zshrc
-      fi
+    if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
+      echo "source ~/ccktools/.ccktools" >> ~/.zshrc
     fi
-
-    sudo ln -s /c/wsl/user/ccktools/bin  ~
-    sudo ln -s /c/wsl/user/ccktools  ~
 
     sudo apt install dos2unix -y 2>/dev/null
     
