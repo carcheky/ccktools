@@ -24,12 +24,9 @@ set_wslconf() {
     wget https://raw.githubusercontent.com/carcheky/ccktools/master/config/wsl.conf
     sudo mv -f wsl.conf /etc/
     
-    bash
-    sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup)"
-
-    echo "==> La consola se cerrará, ábrala y vuelva a ejecutar la misma operación"
-    read a
-    sudo killall -r '.*'
+    # echo "==> La consola se cerrará, ábrala y vuelva a ejecutar la misma operación"
+    # read a
+    # sudo killall -r '.*'
   fi
 }
 
@@ -100,5 +97,6 @@ sudo dpkg --configure -a
 # sudo apt upgrade -y 2>/dev/null
 
 set_wslconf
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup)"
 set_dirs
 create_links
