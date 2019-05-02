@@ -23,15 +23,13 @@ set_wslconf() {
     echo "==> Creando /etc/wsl.conf y saliendo"
     wget https://raw.githubusercontent.com/carcheky/ccktools/master/config/wsl.conf
     sudo mv -f wsl.conf /etc/
+  bash
+  sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup)"
 
     echo "==> La consola se cerrará, ábrala y vuelva a ejecutar la misma operación"
     read a
     sudo killall -r '.*'
   fi
-  bash
-  sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup)"
-
-  exit 1
 }
 
 set_dirs() {
