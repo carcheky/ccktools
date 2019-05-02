@@ -23,7 +23,6 @@ set_wslconf() {
     echo "==> Creando /etc/wsl.conf y saliendo"
     wget https://raw.githubusercontent.com/carcheky/ccktools/master/config/wsl.conf
     sudo mv -f wsl.conf /etc/
-    
     echo "==> La consola se cerrará, ábrala y vuelva a ejecutar la misma operación"
     read a
     sudo killall -r '.*'
@@ -58,19 +57,18 @@ update_repo() {
 }
 
 create_links() {
-  if [[ -d ~/ccktools ]]; then
+  if [[ -d /c/wsl/user/ccktools ]]; then
+    
+    sudo ln -s /c/wsl/user/ccktools/bin  ~
+    sudo ln -s /c/wsl/user/ccktools  ~
+
     if ! grep -q "source ~/ccktools/.ccktools" ~/.bashrc ; then
       echo "source ~/ccktools/.ccktools" >> ~/.bashrc
     fi
 
-    if [[ -f ~/.zshrc  ]]; then
-      if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
-        echo "source ~/ccktools/.ccktools" >> ~/.zshrc
-      fi
+    if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
+      echo "source ~/ccktools/.ccktools" >> ~/.zshrc
     fi
-
-    sudo ln -s /c/wsl/user/ccktools/bin  ~
-    sudo ln -s /c/wsl/user/ccktools  ~
 
     sudo apt install dos2unix -y 2>/dev/null
     
@@ -81,6 +79,35 @@ create_links() {
 
 install_server(){
   echo "=> in work"
+    
+  sudo apt install -y apache2 php
+  sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
+  sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
+  sudo apt install -y mysql-server
+
+  sudo service apache2 stop & sudo service mysql stop
+
+
+  sudo chmod -R /var/cache/debconf
+
+  sudo APP_PASS="root"
+  sudo ROOT_PASS="root"
+  sudo APP_DB_PASS="root"
+
+  sudo echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
+  sudo echo "phpmyadmin phpmyadmin/app-password-confirm password $APP_PASS" | debconf-set-selections
+  sudo echo "phpmyadmin phpmyadmin/mysql/admin-pass password $ROOT_PASS" | debconf-set-selections
+  sudo echo "phpmyadmin phpmyadmin/mysql/app-pass password $APP_DB_PASS" | debconf-set-selections
+  sudo echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections
+
+  sudo apt install -y phpmyadmin
+  # sudo dpkg-reconfigure -plow phpmyadmin
+
+  sudo apt clean
+  sudo apt autoclean
+  sudo dpkg --configure -a
+  sudo apt autoremove
+
 }
 
 ################
@@ -99,3 +126,5 @@ sudo dpkg --configure -a
 set_wslconf
 set_dirs
 create_links
+
+install_server
