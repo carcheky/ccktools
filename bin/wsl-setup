@@ -77,7 +77,24 @@ create_links() {
   fi
 }
 
-install_server(){
+zsh_install(){
+    sudo apt update
+    sudo apt install git -y
+    sudo apt install npm -y
+    sudo apt install zsh zsh-doc zsh-common -y
+    
+    sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+    # sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/g' ~/.zshrc ;
+
+    # cat ~/.zshrc | grep ZSH_THEME=\" ;
+
+    if ! grep -q "bash -c -l zsh" ~/.bashrc ; then
+        echo "bash -c -l zsh" >> ~/.bashrc 
+    fi
+}
+
+lamp_install(){
   echo "=> in work"
     
   sudo apt install -y apache2 php
@@ -127,4 +144,4 @@ set_wslconf
 set_dirs
 create_links
 
-install_server
+lamp_install
