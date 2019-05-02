@@ -28,7 +28,8 @@ set_wslconf() {
     read a
     sudo killall -r '.*'
   fi
-  bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup)"
+  bash
+  sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup)"
 
   exit 1
 }
