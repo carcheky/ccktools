@@ -139,9 +139,13 @@ echo "==> quieres reiniciar todo? (y/n)"
 read WSL_RESET
 if [ "$WSL_RESET" = "y" ]; then
   echo "==> wsl RESET"
-  sudo rm -fr /etc/wsl.conf /c/wsl
-  sudo rm -fr bin ccktools
+  sudo rm -fr /etc/wsl.conf 
+  sudo rm -fr /c/wsl
+  sudo rm -fr ~/bin 
+  sudo rm -fr ~/ccktools
   sudo rm -fr .config/
+  sudo rm -fr ~/.z*
+  sudo rm -fr ~/.oh*
   vim ~/.bashrc
   echo "==> la consola se cerrará ahora"
   read a
