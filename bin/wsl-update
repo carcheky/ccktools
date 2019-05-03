@@ -1,9 +1,7 @@
 #!/bin/bash
 sudo dpkg --configure -a
 
-if [[ ! -d ~/ccktools ]]; then
-  git clone https://github.com/carcheky/ccktools.git
-  if [[ ! -d ~/bin ]]; then
-      ln -s ~/ccktools/bin ~/bin
-  fi
+if [[ -d /c/wsl/user/ccktools ]]; then
+  cd /c/wsl/user/ccktools
+  git pull
 fi
