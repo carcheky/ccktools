@@ -2,3 +2,7 @@
 
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
+
+if [ -t 1 ]; then
+exec zsh
+fi
