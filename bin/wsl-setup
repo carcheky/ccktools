@@ -164,7 +164,7 @@ set_wslconf
 if [ "$WSL_IS_CONFIG" = true ];
 then
 
-  echo "quieres instalar los scripts personalizados? (y/n)"
+  echo "=> quieres instalar los scripts personalizados? (y/n)"
   read WSL_SETDIRS
   if [ "$WSL_SETDIRS" = "y" ];
   then
@@ -173,14 +173,14 @@ then
     create_links
   fi
 
-  echo "quieres instalar zsh? (y/n)"
+  echo "=> quieres instalar zsh? (y/n)"
   read WSL_ZSH
   if [ "$WSL_ZSH" = "y" ];
   then
     zsh_install
   fi
 
-  echo "quieres instalar lamp? (y/n)"
+  echo "=> quieres instalar lamp? (y/n)"
   read WSL_LAMP
   if [ "$WSL_LAMP" = "y" ];
   then
