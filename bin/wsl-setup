@@ -14,6 +14,9 @@
 # FUNCTIONS #
 #############
 
+wsl_stop(){
+  sudo killall -r '.*'
+}
 set_wslconf() {
   if [ -f /etc/wsl.conf ]; then
     echo "==> /etc/wsl.conf encontrado"
@@ -26,7 +29,7 @@ set_wslconf() {
     sudo mv -f wsl.conf /etc/
     echo "==> La consola se cerrará, ábrala y vuelva a ejecutar la misma operación"
     read a
-    sudo killall -r '.*'
+    wsl_stop
   fi
 }
 
@@ -142,7 +145,9 @@ sudo dpkg --configure -a
     sudo rm -fr bin ccktools
     sudo rm -fr .config/
     vim ~/.bashrc
-    exit
+    echo "=> la consola se cerrará ahora"
+    read a
+    wsl_stop
   fi
 
 
