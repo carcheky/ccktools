@@ -4,7 +4,7 @@
 # INFO #
 ########
 
-echo "VERSIÓN 1.2"
+echo "VERSIÓN 1.3"
 
 ##########
 # CONFIG #
@@ -96,7 +96,8 @@ zsh_install(){
     # cat ~/.zshrc | grep ZSH_THEME=\" ;
 
     sudo chown -R user:user ~
-    sudo chmod -R 777 ~/.oh* ~/.z*
+    sudo chown -R root:root ~/.oh-my-zsh
+    sudo chmod -R 777 ~/.z*
     compaudit | xargs chmod g-w,o-w
 
     if ! grep -q "bash -c -l zsh" ~/.bashrc ; then
