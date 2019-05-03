@@ -97,7 +97,8 @@ zsh_install(){
 
     sudo chown -R user:user ~
     sudo chmod -R 777 ~/.oh* ~/.z*
-
+    compaudit | xargs chmod g-w,o-w
+    
     if ! grep -q "bash -c -l zsh" ~/.bashrc ; then
         echo "bash -c -l zsh" >> ~/.bashrc 
     fi
