@@ -19,12 +19,12 @@ wsl_stop(){
 }
 
 set_wslconf() {
-  if [ -f /etc/wsl.conf ]; then
+  if [[ -f /etc/wsl.conf ]]; then
     echo "==> /etc/wsl.conf encontrado"
     WSL_IS_CONFIG = true
     return
   fi
-  if [ [ ! -f /etc/wsl.conf ] ]; then
+  if [[ [ ! -f /etc/wsl.conf ] ]]; then
     echo "==> Creando /etc/wsl.conf y saliendo"
     wget https://raw.githubusercontent.com/carcheky/ccktools/master/config/wsl.conf
     sudo mv -f wsl.conf /etc/
@@ -35,11 +35,11 @@ set_wslconf() {
 }
 
 set_dirs() {
-  if [ -d /c/wsl/ ]; then
+  if [[ -d /c/wsl/ ]]; then
     echo "==> Existe la ruta /c/wsl"
     return
   fi
-  if [ ! -d /c/wsl/ ]; then
+  if [[ ! -d /c/wsl/ ]]; then
     sudo mkdir '/c/wsl/'
     sudo mkdir '/c/wsl/sites'
     sudo mkdir '/c/wsl/user'
@@ -62,7 +62,7 @@ update_repo() {
 }
 
 create_links() {
-  if [ -d /c/wsl/user/ccktools ]; then
+  if [[ -d /c/wsl/user/ccktools ]]; then
     
     sudo ln -s /c/wsl/user/ccktools/bin  ~
     sudo ln -s /c/wsl/user/ccktools  ~
@@ -139,7 +139,7 @@ sudo dpkg --configure -a
 
   echo "quieres reiniciar todo? (y/n)"
   read WSL_RESET
-  if [ $WSL_RESET = 'y' ] ;
+  if [[ $WSL_RESET = 'y' ]];
   then
     echo "=> wsl RESET"
     sudo rm -fr /etc/wsl.conf /c/wsl
@@ -161,12 +161,12 @@ sudo dpkg --configure -a
 
 set_wslconf
 
-if [ $WSL_IS_CONFIG = true ] ;
+if [[ $WSL_IS_CONFIG = true ]];
 then
 
   echo "quieres instalar los scripts personalizados? (y/n)"
   read WSL_SETDIRS
-  if [ $WSL_SETDIRS = 'y' ] ;
+  if [[ $WSL_SETDIRS = 'y' ]];
   then
     echo "=> wsl setdirs"
     set_dirs
@@ -175,14 +175,14 @@ then
 
   echo "quieres instalar zsh? (y/n)"
   read WSL_ZSH
-  if [ $WSL_ZSH = 'y' ] ;
+  if [[ $WSL_ZSH = 'y' ]];
   then
     zsh_install
   fi
 
   echo "quieres instalar lamp? (y/n)"
   read WSL_LAMP
-  if [ $WSL_LAMP = 'y' ] ;
+  if [[ $WSL_LAMP = 'y' ]];
   then
     lamp_install
   fi   
