@@ -24,7 +24,7 @@ set_wslconf() {
     WSL_IS_CONFIG = true
     return
   fi
-  if [[ [ ! -f /etc/wsl.conf ] ]]; then
+  if [[ ! -f /etc/wsl.conf ]]; then
     echo "==> Creando /etc/wsl.conf y saliendo"
     wget https://raw.githubusercontent.com/carcheky/ccktools/master/config/wsl.conf
     sudo mv -f wsl.conf /etc/
