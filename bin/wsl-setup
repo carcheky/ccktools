@@ -15,7 +15,7 @@
 #############
 
 set_wslconf() {
-  if [ [ -f /etc/wsl.conf ] ]; then
+  if [ -f /etc/wsl.conf ]; then
     echo "==> /etc/wsl.conf encontrado"
     WSL_IS_CONFIG = true
     return
@@ -31,11 +31,11 @@ set_wslconf() {
 }
 
 set_dirs() {
-  if [ [ -d /c/wsl/ ] ]; then
+  if [ -d /c/wsl/ ]; then
     echo "==> Existe la ruta /c/wsl"
     return
   fi
-  if [ [ ! -d /c/wsl/ ] ]; then
+  if [ ! -d /c/wsl/ ]; then
     sudo mkdir '/c/wsl/'
     sudo mkdir '/c/wsl/sites'
     sudo mkdir '/c/wsl/user'
@@ -46,7 +46,7 @@ set_dirs() {
 }
 
 update_repo() {
-  if [ [ -d ~/ccktools ]]; then
+  if [ -d ~/ccktools ]; then
     cd ~/ccktools/
     if git pull
       then
@@ -58,7 +58,7 @@ update_repo() {
 }
 
 create_links() {
-  if [ [ -d /c/wsl/user/ccktools ]]; then
+  if [ -d /c/wsl/user/ccktools ]; then
     
     sudo ln -s /c/wsl/user/ccktools/bin  ~
     sudo ln -s /c/wsl/user/ccktools  ~
