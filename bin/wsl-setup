@@ -127,8 +127,25 @@ lamp_install(){
 # MAIN PROGRAM #
 ################
 
+
+
 rm -fr .wget-hsts
 sudo dpkg --configure -a
+
+
+  echo "quieres reiniciar todo? (y/n)"
+  read WSL_RESET
+  if [ $WSL_RESET = 'y' ] 
+  then
+    echo "=> wsl RESET"
+    sudo rm -fr /etc/wsl.conf /c/wsl
+    sudo rm -fr bin ccktools
+    sudo rm -fr .config/
+    vim ~/.bashrc
+    exit
+  fi
+
+
 
 # echo "=> actualizando fuentes..." 
 # sudo apt update 2>/dev/null
