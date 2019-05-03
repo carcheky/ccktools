@@ -54,9 +54,9 @@ update_repo() {
     cd ~/ccktools/
     if git pull
       then
-        echo "ccktools updated"
+        echo "==> ccktools updated"
       else
-        echo "ccktools update failed"
+        echo "==> ccktools update failed"
     fi
   fi
 }
@@ -103,7 +103,6 @@ zsh_install(){
 }
 
 lamp_install(){
-  echo "=> in work"
     
   sudo apt install -y apache2 php
   sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
@@ -111,7 +110,6 @@ lamp_install(){
   sudo apt install -y mysql-server
 
   sudo service apache2 stop & sudo service mysql stop
-
 
   sudo chmod -R /var/cache/debconf
 
@@ -124,7 +122,7 @@ lamp_install(){
   sudo dpkg --configure -a
   sudo apt autoremove
 
-  echo "install heidisql to mysql gui"
+  echo "==> install heidisql to mysql gui"
 }
 
 ################
@@ -137,45 +135,45 @@ rm -fr .wget-hsts
 sudo dpkg --configure -a
 
 
-echo "quieres reiniciar todo? (y/n)"
+echo "==> quieres reiniciar todo? (y/n)"
 read WSL_RESET
 if [ "$WSL_RESET" = "y" ]; then
-  echo "=> wsl RESET"
+  echo "==> wsl RESET"
   sudo rm -fr /etc/wsl.conf /c/wsl
   sudo rm -fr bin ccktools
   sudo rm -fr .config/
   vim ~/.bashrc
-  echo "=> la consola se cerrará ahora"
+  echo "==> la consola se cerrará ahora"
   read a
   wsl_stop
 fi
 
 
 
-# echo "=> actualizando fuentes..." 
+# echo "==> actualizando fuentes..." 
 # sudo apt update 2>/dev/null
 
-# echo "=> actualizando paquetes..." 
+# echo "==> actualizando paquetes..." 
 # sudo apt upgrade -y 2>/dev/null
 
 set_wslconf
 
 
-echo "=> quieres instalar los scripts personalizados? (y/n)"
+echo "==> quieres instalar los scripts personalizados? (y/n)"
 read WSL_SETDIRS
 if [ ${WSL_SETDIRS} = "y" ]; then
-  echo "=> wsl setdirs"
+  echo "==> wsl setdirs"
   set_dirs
   create_links
 fi
 
-echo "=> quieres instalar zsh? (y/n)"
+echo "==> quieres instalar zsh? (y/n)"
 read WSL_ZSH
 if [ ${WSL_ZSH} = "y" ]; then
   zsh_install
 fi
 
-echo "=> quieres instalar lamp? (y/n)"
+echo "==> quieres instalar lamp? (y/n)"
 read WSL_LAMP
 if [ ${WSL_LAMP} = "y" ]; then
   lamp_install
