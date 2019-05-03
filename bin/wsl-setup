@@ -144,8 +144,11 @@ if [ "$WSL_RESET" = "y" ]; then
   sudo rm -fr ~/bin 
   sudo rm -fr ~/ccktools
   sudo rm -fr .config/
+  echo "==> borranzo zsh"
+  sudo apt remove zsh -y
   sudo rm -fr ~/.z*
   sudo rm -fr ~/.oh*
+  sudo apt autoremove
   vim ~/.bashrc
   echo "==> la consola se cerrará ahora"
   read a
