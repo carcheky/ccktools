@@ -4,7 +4,7 @@
 # INFO #
 ########
 
-echo "VERSIÓN 1.8"
+echo "==> VERSIÓN 1.8"
 
 ##########
 # CONFIG #
@@ -91,14 +91,10 @@ zsh_install(){
     
     sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-    # sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/g' ~/.zshrc ;
-
-    # cat ~/.zshrc | grep ZSH_THEME=\" ;
-
-    sudo chown -R user:user ~
-    sudo chown -R root:root ~/.oh-my-zsh
-    sudo chmod -R 777 ~/.z*
-    compaudit | xargs chmod g-w,o-w
+    # sudo chown -R user:user ~
+    # sudo chown -R root:root ~/.oh-my-zsh
+    # sudo chmod -R 777 ~/.z*
+    # compaudit | xargs chmod g-w,o-w
 
     if ! grep -q "bash -c -l zsh" ~/.bashrc ; then
         echo "bash -c -l zsh" >> ~/.bashrc 
