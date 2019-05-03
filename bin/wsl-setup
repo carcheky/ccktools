@@ -141,7 +141,7 @@ lamp_install(){
 rm -fr .wget-hsts
 sudo dpkg --configure -a
 
-
+wsl_install_reset(){
 echo "==> quieres reiniciar todo? (y/n)"
 read WSL_RESET
 if [ "$WSL_RESET" = "y" ]; then
@@ -161,8 +161,9 @@ if [ "$WSL_RESET" = "y" ]; then
   read a
   wsl_stop
 fi
+}
 
-
+wsl_install_reset
 
 echo "==> actualizando fuentes..." 
 sudo apt update 2>/dev/null
