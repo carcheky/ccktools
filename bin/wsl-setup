@@ -118,7 +118,7 @@ lamp_install(){
   sudo echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections
 
   sudo apt install -y phpmyadmin
-  # sudo dpkg-reconfigure -plow phpmyadmin
+  sudo dpkg-reconfigure -plow phpmyadmin
 
   sudo apt clean
   sudo apt autoclean
