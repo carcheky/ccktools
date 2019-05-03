@@ -4,7 +4,7 @@
 # INFO #
 ########
 
-echo "VERSIÓN 1.4"
+echo "VERSIÓN 1.5"
 
 ##########
 # CONFIG #
@@ -142,25 +142,25 @@ rm -fr .wget-hsts
 sudo dpkg --configure -a
 
 wsl_install_reset(){
-echo "==> quieres reiniciar todo? (y/n)"
-read WSL_RESET
-if [ "$WSL_RESET" = "y" ]; then
-  echo "==> wsl RESET"
-  sudo rm -fr /etc/wsl.conf 
-  sudo rm -fr /c/wsl
-  sudo rm -fr ~/bin 
-  sudo rm -fr ~/ccktools
-  sudo rm -fr .config/
-  echo "==> borranzo zsh"
-  sudo apt remove zsh -y
-  rm -fr ~/.z*
-  rm -fr ~/.oh*
-  sudo apt autoremove
-  vim ~/.bashrc
-  echo "==> la consola se cerrará ahora"
-  read a
-  wsl_stop
-fi
+  echo "==> quieres reiniciar todo? (y/n)"
+  read WSL_RESET
+  if [ "$WSL_RESET" = "y" ]; then
+    echo "==> wsl RESET"
+    sudo rm -fr /etc/wsl.conf 
+    sudo rm -fr /c/wsl
+    sudo rm -fr ~/bin 
+    sudo rm -fr ~/ccktools
+    sudo rm -fr .config/
+    echo "==> borranzo zsh"
+    sudo apt remove zsh -y
+    rm -fr ~/.z*
+    rm -fr ~/.oh*
+    sudo apt autoremove
+    vim ~/.bashrc
+    echo "==> la consola se cerrará ahora"
+    read a
+    wsl_stop
+  fi
 }
 
 wsl_install_reset
