@@ -98,7 +98,7 @@ zsh_install(){
     sudo chown -R user:user ~
     sudo chmod -R 777 ~/.oh* ~/.z*
     compaudit | xargs chmod g-w,o-w
-    
+
     if ! grep -q "bash -c -l zsh" ~/.bashrc ; then
         echo "bash -c -l zsh" >> ~/.bashrc 
     fi
@@ -124,9 +124,9 @@ lamp_install(){
   sudo dpkg --configure -a
   sudo apt autoremove
 
-  sed -i 's/post_max_size = 8M/post_max_size = 8G/g' /etc/php/**/php*.ini
-  sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' /etc/php/**/php*.ini
-  sed -i 's/memory_limit = 128M/memory_limit = 2G/g' /etc/php/**/php*.ini
+  sed -i 's/post_max_size = 8M/post_max_size = 8G/g' /etc/php/**/php.ini
+  sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' /etc/php/**/php.ini
+  sed -i 's/memory_limit = 128M/memory_limit = 2G/g' /etc/php/**/php.ini
 
 
   echo "==> install heidisql to mysql gui"
