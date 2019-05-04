@@ -5,7 +5,6 @@ wsl_update(){
 if [[ -d /c/wsl/user/ccktools ]]; then
   cd /c/wsl/user/ccktools
   git pull
-  wsl-setup
 fi
 }
 
