@@ -20,6 +20,14 @@ wsl_stop(){
   sudo killall -r '.*'
 }
 
+wsl_update(){
+  if [[ -d /c/wsl/user/ccktools ]]; then
+    cd /c/wsl/user/ccktools
+    git pull
+    wsl-setup
+  fi
+}
+
 set_wslconf() {
   if [ -f /etc/wsl.conf ]; then
     echo "==> /etc/wsl.conf encontrado"
@@ -85,9 +93,9 @@ create_links() {
 }
 
 zsh_install(){
-    sudo apt update
     sudo apt install git -y
     sudo apt install npm -y
+    rm -fr ~/.oh*
     sudo apt install zsh zsh-doc zsh-common -y
     
     sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -160,6 +168,10 @@ wsl_install_reset(){
     wsl_stop
   fi
 }
+
+
+wsl_update
+
 
 wsl_install_reset
 
