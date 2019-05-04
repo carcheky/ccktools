@@ -186,7 +186,7 @@ wsl_update
 echo "==> ubuntu_update ? (y/n)"
 read WSL_UPDATE_UBUNTU
 if [ ${WSL_UPDATE_UBUNTU} = "y" ]; then
-  echo "==> wsl setdirs"
+  echo "==> wsl ubuntu_update"
   ubuntu_update
 fi
 
