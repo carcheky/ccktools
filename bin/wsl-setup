@@ -138,14 +138,6 @@ lamp_install(){
   echo "==> install heidisql to mysql gui"
 }
 
-################
-# MAIN PROGRAM #
-################
-
-
-
-rm -fr .wget-hsts
-sudo dpkg --configure -a
 
 wsl_install_reset(){
   echo "==> quieres reiniciar todo? (y/n)"
@@ -169,18 +161,36 @@ wsl_install_reset(){
   fi
 }
 
+ubuntu_update(){
+  echo "==> actualizando fuentes..." 
+  sudo apt update 2>/dev/null
+
+  echo "==> actualizando paquetes..." 
+  sudo apt upgrade -y 2>/dev/null
+}
+
+################
+# MAIN PROGRAM #
+################
+
+
+
+rm -fr .wget-hsts
+sudo dpkg --configure -a
+
+
 
 wsl_update
 
 
+echo "==> ubuntu_update ? (y/n)"
+read WSL_UPDATE_UBUNTU
+if [ ${WSL_UPDATE_UBUNTU} = "y" ]; then
+  echo "==> wsl setdirs"
+  ubuntu_update
+fi
+
 wsl_install_reset
-
-echo "==> actualizando fuentes..." 
-sudo apt update 2>/dev/null
-
-echo "==> actualizando paquetes..." 
-sudo apt upgrade -y 2>/dev/null
-
 set_wslconf
 
 
