@@ -152,7 +152,13 @@ wsl_install_reset(){
     sudo rm -fr /c/wsl
     sudo rm -fr ~/bin 
     sudo rm -fr ~/ccktools
-    sudo rm -fr .config/
+    sudo rm -fr ~/.config/
+    sudo rm -fr ~/.oh-my-zsh
+    sudo rm -fr ~/.profile
+    sudo rm -fr ~/.sudo_as_admin_successful
+    sudo rm -fr ~/.viminfo
+    sudo rm -fr ~/.zsh_history
+    sudo rm -fr ~/.zshrc
     echo "==> borranzo zsh"
     sudo apt remove zsh -y
     rm -fr ~/.z*
