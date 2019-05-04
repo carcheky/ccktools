@@ -108,6 +108,11 @@ zsh_install(){
     if ! grep -q "bash -c -l zsh" ~/.bashrc ; then
         echo "bash -c -l zsh" >> ~/.bashrc 
     fi
+    
+    if ! grep -q "export PATH=~/bin:\$PATH" ~/.zshrc ; then
+      echo "export PATH=~/bin:\$PATH" >> ~/.zshrc
+    fi
+
 }
 
 lamp_install(){
