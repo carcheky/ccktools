@@ -1,7 +1,18 @@
 #!/bin/bash
 
+
+wsl_update(){
+if [[ -d /c/wsl/user/ccktools ]]; then
+  cd /c/wsl/user/ccktools
+  git pull
+fi
+}
+
+wsl_update
+
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
+
 
 if [ -t 1 ]; then
 exec zsh
