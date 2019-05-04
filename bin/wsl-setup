@@ -179,14 +179,10 @@ ubuntu_update(){
 ################
 
 
-
+set_wslconf
 rm -fr .wget-hsts
 sudo dpkg --configure -a
-
-
-
 wsl_update
-
 
 echo "==> ubuntu_update ? (y/n)"
 read WSL_UPDATE_UBUNTU
@@ -196,8 +192,6 @@ if [ ${WSL_UPDATE_UBUNTU} = "y" ]; then
 fi
 
 wsl_install_reset
-set_wslconf
-
 
 echo "==> quieres instalar los scripts personalizados? (y/n)"
 read WSL_SETDIRS
