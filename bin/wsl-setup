@@ -31,7 +31,6 @@ wsl_update(){
 set_wslconf() {
   if [ -f /etc/wsl.conf ]; then
     echo "==> /etc/wsl.conf encontrado"
-    WSL_IS_SET = true
     return
   fi
   if [ ! -f /etc/wsl.conf ]; then
