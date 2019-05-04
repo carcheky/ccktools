@@ -130,10 +130,10 @@ lamp_install(){
   sudo ROOT_PASS="root"
   sudo APP_DB_PASS="root"
 
-  sudo apt clean
-  sudo apt autoclean
+  sudo apt clean -y
+  sudo apt autoclean -y
   sudo dpkg --configure -a
-  sudo apt autoremove
+  sudo apt autoremove -y
  
   sudo find /etc/php/ -name php.ini -exec sed -i 's/post_max_size = 8M/post_max_size = 8G/g' {} \;
   sudo find /etc/php/ -name php.ini -exec sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' {} \;
@@ -158,7 +158,7 @@ wsl_install_reset(){
     sudo apt remove zsh -y
     rm -fr ~/.z*
     rm -fr ~/.oh*
-    sudo apt autoremove
+    sudo apt autoremove -y
     vim ~/.bashrc
     echo "==> la consola se cerrará ahora"
     read a
