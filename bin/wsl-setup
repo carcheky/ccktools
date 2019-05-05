@@ -4,7 +4,7 @@
 # INFO #
 ########
 
-echo "==> VERSIÓN 2.01"
+echo "==> VERSIÓN 2.02"
 
 ##########
 # CONFIG #
@@ -183,9 +183,10 @@ wsl_install_reset(){
     sudo rm -fr /home/user/.viminfo
     sudo rm -fr /home/user/.zsh_history
     sudo rm -fr /home/user/.zshrc
-    echo "==> borranzo zsh"
-    sudo apt autoremove -y
-    vim ~/.bashrc
+    sudo apt clean -y
+    sudo apt autoclean -y
+    sudo dpkg --configure -a
+    sudo apt autoremove -y    vim ~/.bashrc
     echo "==> la consola se cerrará ahora"
     read a
     wsl_stop
@@ -226,3 +227,4 @@ zsh_install 2>>/c/error-ccktools.log
 
 lamp_install 2>>/c/error-ccktools.log
    
+wsl_stop 2>>/c/error-ccktools.log
