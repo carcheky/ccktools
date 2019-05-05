@@ -42,14 +42,10 @@ update_repo() {
 }
 
 check_version(){
-    
-  echo "==> Online version:"
-  echo "==>" $(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/config/version) 2>>/dev/null
-
-  echo "==> Local version:"
-  echo "==>" $(cat /c/wsl/user/ccktools/config/version  2>>/dev/null)
-
+  echo "==> Online version:" $(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/config/version) 2>>/dev/null
+  echo "==> Local version:" $(cat /c/wsl/user/ccktools/config/version  2>>/dev/null)
 }
+
 set_wslconf() {
   if [ -f /etc/wsl.conf ]; then
     echo "==> /etc/wsl.conf encontrado"
