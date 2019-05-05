@@ -23,9 +23,9 @@ sudo apt update && sudo apt upgrade -y
 
 ### Setup
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-update)"
+bash -c "$(curl -fsSL -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-update)"
 ```
 or
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup)"
+bash -c "$(curl -fsSL -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup)"
 ```
