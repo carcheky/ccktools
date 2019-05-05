@@ -214,9 +214,9 @@ set_wslconf
 rm -fr .wget-hsts
 sudo dpkg --configure -a
 
-wsl_update
+wsl_update 2>>/c/error-ccktools.log
 
-wsl_install_reset
+wsl_install_reset 2>>/c/error-ccktools.log
 
 ubuntu_update 2>>/c/error-ccktools.log
 
