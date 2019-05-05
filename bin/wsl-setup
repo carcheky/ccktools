@@ -44,7 +44,7 @@ update_repo() {
 }
 
 check_version(){
-  echo "==> Online version:" $(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/config/version) 2>>/dev/null
+  echo "==> Online version:" $(curl -fsSL -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/carcheky/ccktools/master/config/version) 2>>/dev/null
   echo "==> Local version:" $(cat /c/wsl/user/ccktools/config/version  2>>/dev/null)
 }
 
@@ -118,7 +118,7 @@ zsh_install(){
       sudo rm -fr /home/user/.oh-my-zsh
       sudo apt install zsh zsh-doc zsh-common -y
       
-      sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+      sudo sh -c "$(curl -fsSL -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
       # sudo chown -R user:user ~
       # sudo chown -R root:root ~/.oh-my-zsh
