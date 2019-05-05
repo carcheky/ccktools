@@ -4,7 +4,7 @@
 # INFO #
 ########
 
-echo "==> VERSIÓN 2.02"
+echo "==> VERSIÓN 2.03"
 
 ##########
 # CONFIG #
@@ -183,6 +183,11 @@ wsl_install_reset(){
     sudo rm -fr /home/user/.viminfo
     sudo rm -fr /home/user/.zsh_history
     sudo rm -fr /home/user/.zshrc
+    sudo rm -fr /home/user/.zshrc.pre-oh-my-zsh
+    sudo rm -fr /home/user/.zcompdump
+    sudo rm -fr /home/user/.zcompdump*
+    sudo rm -fr /home/user/.z
+    sudo rm -fr /home/user/.wget-hsts
     sudo apt clean -y
     sudo apt autoclean -y
     sudo dpkg --configure -a
