@@ -27,6 +27,7 @@ wsl_update(){
     git pull
     cd
   fi
+  check_version
 }
 
 update_repo() {
@@ -38,6 +39,7 @@ update_repo() {
       else
         echo "==> ccktools update failed"
     fi
+    check_version
   fi
 }
 
