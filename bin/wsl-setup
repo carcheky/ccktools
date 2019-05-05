@@ -28,6 +28,18 @@ wsl_update(){
   fi
 }
 
+update_repo() {
+  if [ -d ~/ccktools ]; then
+    cd ~/ccktools/
+    if git pull
+      then
+        echo "==> ccktools updated"
+      else
+        echo "==> ccktools update failed"
+    fi
+  fi
+}
+
 set_wslconf() {
   if [ -f /etc/wsl.conf ]; then
     echo "==> /etc/wsl.conf encontrado"
@@ -43,6 +55,16 @@ set_wslconf() {
   fi
 }
 
+launcher_dirs(){
+  echo "==> quieres instalar los scripts personalizados? (y/n)"
+  read WSL_SETDIRS
+  if [ ${WSL_SETDIRS} = "y" ]; then
+    echo "==> wsl setdirs"
+    set_dirs 
+    create_links
+  fi
+}
+
 set_dirs() {
   if [ -d /c/wsl/ ]; then
     echo "==> Existe la ruta /c/wsl"
@@ -55,18 +77,6 @@ set_dirs() {
     sudo chown -R user:user '/c/wsl/'
     cd '/c/wsl/user'
     git clone https://github.com/carcheky/ccktools.git
-  fi
-}
-
-update_repo() {
-  if [ -d ~/ccktools ]; then
-    cd ~/ccktools/
-    if git pull
-      then
-        echo "==> ccktools updated"
-      else
-        echo "==> ccktools update failed"
-    fi
   fi
 }
 
@@ -92,54 +102,61 @@ create_links() {
 }
 
 zsh_install(){
-    sudo apt install git -y
-    sudo apt install npm -y
-    rm -fr ~/.oh*
-    sudo apt install zsh zsh-doc zsh-common -y
-    
-    sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  echo "==> quieres instalar zsh? (y/n)"
+  read WSL_ZSH
+  if [ ${WSL_ZSH} = "y" ]; then
+      sudo apt install git -y
+      sudo apt install npm -y
+      rm -fr ~/.oh*
+      sudo apt install zsh zsh-doc zsh-common -y
+      
+      sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-    # sudo chown -R user:user ~
-    # sudo chown -R root:root ~/.oh-my-zsh
-    # sudo chmod -R 777 ~/.z*
-    # compaudit | xargs chmod g-w,o-w
+      # sudo chown -R user:user ~
+      # sudo chown -R root:root ~/.oh-my-zsh
+      # sudo chmod -R 777 ~/.z*
+      # compaudit | xargs chmod g-w,o-w
 
-    if ! grep -q "bash -c -l zsh" ~/.bashrc ; then
-        echo "bash -c -l zsh" >> ~/.bashrc 
-    fi
-    
-    if ! grep -q "export PATH=~/bin:\$PATH" ~/.zshrc ; then
-      echo "export PATH=~/bin:\$PATH" >> ~/.zshrc
-    fi
-
+      if ! grep -q "bash -c -l zsh" ~/.bashrc ; then
+          echo "bash -c -l zsh" >> ~/.bashrc 
+      fi
+      
+      if ! grep -q "export PATH=~/bin:\$PATH" ~/.zshrc ; then
+        echo "export PATH=~/bin:\$PATH" >> ~/.zshrc
+      fi
+  fi
 }
 
 lamp_install(){
-    
-  sudo apt install -y apache2 php
-  sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-  sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-  sudo apt install -y mysql-server
+  echo "==> quieres instalar lamp? (y/n)"
+  read WSL_LAMP
+  if [ ${WSL_LAMP} = "y" ]; then
+    sudo apt install -y apache2 php
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
+    sudo apt install -y mysql-server
 
-  sudo service apache2 stop & sudo service mysql stop
+    sudo service apache2 stop & sudo service mysql stop
 
-  sudo chmod -R /var/cache/debconf
+    sudo chmod -R /var/cache/debconf
 
-  sudo APP_PASS="root"
-  sudo ROOT_PASS="root"
-  sudo APP_DB_PASS="root"
+    sudo APP_PASS="root"
+    sudo ROOT_PASS="root"
+    sudo APP_DB_PASS="root"
 
-  sudo apt clean -y
-  sudo apt autoclean -y
-  sudo dpkg --configure -a
-  sudo apt autoremove -y
- 
-  sudo find /etc/php/ -name php.ini -exec sed -i 's/post_max_size = 8M/post_max_size = 8G/g' {} \;
-  sudo find /etc/php/ -name php.ini -exec sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' {} \;
-  sudo find /etc/php/ -name php.ini -exec sed -i 's/memory_limit = 128M/memory_limit = 2G/g' {} \;
+    sudo apt clean -y
+    sudo apt autoclean -y
+    sudo dpkg --configure -a
+    sudo apt autoremove -y
+  
+    sudo find /etc/php/ -name php.ini -exec sed -i 's/post_max_size = 8M/post_max_size = 8G/g' {} \;
+    sudo find /etc/php/ -name php.ini -exec sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' {} \;
+    sudo find /etc/php/ -name php.ini -exec sed -i 's/memory_limit = 128M/memory_limit = 2G/g' {} \;
 
-  sudo echo "AcceptFilter https none" >> /etc/apache2/apache2.conf
-  echo "==> install heidisql to mysql gui"
+    sudo chmod 777 /etc/apache2/apache2.conf
+    sudo echo "AcceptFilter https none" >> /etc/apache2/apache2.conf
+    echo "==> install heidisql to mysql gui"
+  fi
 }
 
 
@@ -148,8 +165,10 @@ wsl_install_reset(){
   read WSL_RESET
   if [ "$WSL_RESET" = "y" ]; then
     echo "==> wsl RESET"
-    sudo apt remove zsh -y
+    sudo apt remove zsh apache2 php mysql-server -y
     sudo rm -fr /etc/wsl.conf 
+    sudo rm -fr /etc/php
+    sudo rm -fr /etc/apache2
     sudo rm -fr /c/wsl
     sudo rm -fr /home/user/bin 
     sudo rm -fr /home/user/ccktools
@@ -170,11 +189,16 @@ wsl_install_reset(){
 }
 
 ubuntu_update(){
-  echo "==> actualizando fuentes..." 
-  sudo apt update 2>/dev/null
+  echo "==> ubuntu_update ? (y/n)"
+  read WSL_UPDATE_UBUNTU
+  if [ ${WSL_UPDATE_UBUNTU} = "y" ]; then
+    echo "==> wsl ubuntu_update"
+    echo "==> actualizando fuentes..." 
+    sudo apt update 2>/dev/null
 
-  echo "==> actualizando paquetes..." 
-  sudo apt upgrade -y 2>/dev/null
+    echo "==> actualizando paquetes..." 
+    sudo apt upgrade -y 2>/dev/null
+  fi
 }
 
 ################
@@ -185,33 +209,16 @@ ubuntu_update(){
 set_wslconf
 rm -fr .wget-hsts
 sudo dpkg --configure -a
-wsl_update
 
-echo "==> ubuntu_update ? (y/n)"
-read WSL_UPDATE_UBUNTU
-if [ ${WSL_UPDATE_UBUNTU} = "y" ]; then
-  echo "==> wsl ubuntu_update"
-  ubuntu_update
-fi
+wsl_update
 
 wsl_install_reset
 
-echo "==> quieres instalar los scripts personalizados? (y/n)"
-read WSL_SETDIRS
-if [ ${WSL_SETDIRS} = "y" ]; then
-  echo "==> wsl setdirs"
-  set_dirs
-  create_links
-fi
+ubuntu_update 2>>/c/error-ccktools.log
 
-echo "==> quieres instalar zsh? (y/n)"
-read WSL_ZSH
-if [ ${WSL_ZSH} = "y" ]; then
-  zsh_install
-fi
+launcher_dirs 2>>/c/error-ccktools.log
 
-echo "==> quieres instalar lamp? (y/n)"
-read WSL_LAMP
-if [ ${WSL_LAMP} = "y" ]; then
-  lamp_install
-fi   
+zsh_install 2>>/c/error-ccktools.log
+
+lamp_install 2>>/c/error-ccktools.log
+   
