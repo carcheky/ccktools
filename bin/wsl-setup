@@ -9,7 +9,7 @@
 # CONFIG #
 ##########
 
-DATE_SETUP =  $(echo $(date +%s) )
+var DATE_SETUP =  $(echo $(date +%s) )
 
 
 #############
