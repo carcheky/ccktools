@@ -4,7 +4,7 @@
 # INFO #
 ########
 
-echo "==> VERSIÓN 2.03"
+echo "==> VERSIÓN 2.04"
 
 ##########
 # CONFIG #
@@ -220,16 +220,17 @@ set_wslconf
 rm -fr .wget-hsts
 sudo dpkg --configure -a
 
-wsl_update 2>>/c/error-ccktools.log
 
-wsl_install_reset 2>>/c/error-ccktools.log
+wsl_update 2>>/c/error/error-ccktools.log
 
-ubuntu_update 2>>/c/error-ccktools.log
+wsl_install_reset 2>>/c/error/error-ccktools.log
 
-launcher_dirs 2>>/c/error-ccktools.log
+ubuntu_update 2>>/c/error/error-ccktools.log
 
-zsh_install 2>>/c/error-ccktools.log
+launcher_dirs 2>>/c/error/error-ccktools.log
 
-lamp_install 2>>/c/error-ccktools.log
+zsh_install 2>>/c/error/error-ccktools.log
+
+lamp_install 2>>/c/error/error-ccktools.log
    
-wsl_stop 2>>/c/error-ccktools.log
+wsl_stop 2>>/c/error/error-ccktools.log
