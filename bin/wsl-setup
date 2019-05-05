@@ -137,8 +137,7 @@ zsh_install(){
 
       if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
         sudo echo "source ~/ccktools/.ccktools" >> ~/.zshrc
-        sed -i 's/source ~\/ccktools\/.ccktools/# source ~\/ccktools\/.ccktools/g' ~/.zshrc
-        sudo find ~ -name .zshrc -exec sed -i 's/source ~\/ccktools\/.ccktools//g' {} \;
+        sudo find ~ -name .bashrc -exec sed -i 's/source ~\/ccktools\/.ccktools/# source ~\/ccktools\/.ccktools/g' {} \;
       fi
   fi
 }
