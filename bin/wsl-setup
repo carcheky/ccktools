@@ -147,13 +147,14 @@ lamp_install(){
   read WSL_LAMP
   if [ ${WSL_LAMP} = "y" ]; then
     sudo apt install -y apache2 php
+    
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
     sudo apt install -y mysql-server
 
     sudo service apache2 stop & sudo service mysql stop
 
-    sudo chmod -R /var/cache/debconf
+    sudo chmod 777 -R /var/cache/debconf
 
     sudo APP_PASS="root"
     sudo ROOT_PASS="root"
@@ -169,8 +170,14 @@ lamp_install(){
     sudo find /etc/php/ -name php.ini -exec sed -i 's/memory_limit = 128M/memory_limit = 2G/g' {} \;
 
     sudo chmod 777 /etc/apache2/apache2.conf
-    sudo echo "AcceptFilter https none" >> /etc/apache2/apache2.conf
-    echo "==> install heidisql to mysql gui"
+
+    if ! grep -q "AcceptFilter https none" /etc/apache2/apache2.conf ; then
+      sudo echo "AcceptFilter https none" >> /etc/apache2/apache2.conf
+    fi
+    echo "==> Usa HeidiSQL para gestionar las bases de datos https://www.heidisql.com/"
+    echo "==> Server:     localhost "
+    echo "==> User:       root"
+    echo "==> Password:   root"
   fi
 }
 
