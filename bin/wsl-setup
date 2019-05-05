@@ -118,15 +118,15 @@ zsh_install(){
       # compaudit | xargs chmod g-w,o-w
 
       if ! grep -q "bash -c -l zsh" ~/.bashrc ; then
-          echo "bash -c -l zsh" >> ~/.bashrc 
+        sudo echo "bash -c -l zsh" >> ~/.bashrc 
       fi
       
       if ! grep -q "export PATH=~/bin:\$PATH" ~/.zshrc ; then
-        echo "export PATH=~/bin:\$PATH" >> ~/.zshrc
+        sudo echo "export PATH=~/bin:\$PATH" >> ~/.zshrc
       fi
 
       if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
-        echo "source ~/ccktools/.ccktools" >> ~/.zshrc
+        sudo echo "source ~/ccktools/.ccktools" >> ~/.zshrc
       fi
   fi
 }
@@ -221,16 +221,22 @@ rm -fr .wget-hsts
 sudo dpkg --configure -a
 
 
+echo "==> wsl_update" >>/c/error/error-ccktools.log
 wsl_update 2>>/c/error/error-ccktools.log
 
+echo "==> wsl_install_reset" >>/c/error/error-ccktools.log
 wsl_install_reset 2>>/c/error/error-ccktools.log
 
+echo "==> ubuntu_update" >>/c/error/error-ccktools.log
 ubuntu_update 2>>/c/error/error-ccktools.log
 
+echo "==> launcher_dirs" >>/c/error/error-ccktools.log
 launcher_dirs 2>>/c/error/error-ccktools.log
 
+echo "==> zsh_install" >>/c/error/error-ccktools.log
 zsh_install 2>>/c/error/error-ccktools.log
 
+echo "==> lamp_install" >>/c/error/error-ccktools.log
 lamp_install 2>>/c/error/error-ccktools.log
    
-wsl_stop 2>>/c/error/error-ccktools.log
+wsl_stop 
