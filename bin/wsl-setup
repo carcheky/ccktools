@@ -107,7 +107,7 @@ zsh_install(){
   if [ ${WSL_ZSH} = "y" ]; then
       sudo apt install git -y
       sudo apt install npm -y
-      rm -fr ~/.oh*
+      sudo rm -fr /home/user/.oh-my-zsh
       sudo apt install zsh zsh-doc zsh-common -y
       
       sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
