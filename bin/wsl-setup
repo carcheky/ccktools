@@ -124,6 +124,10 @@ zsh_install(){
       if ! grep -q "export PATH=~/bin:\$PATH" ~/.zshrc ; then
         echo "export PATH=~/bin:\$PATH" >> ~/.zshrc
       fi
+
+      if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
+        echo "source ~/ccktools/.ccktools" >> ~/.zshrc
+      fi
   fi
 }
 
