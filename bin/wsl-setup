@@ -120,6 +120,8 @@ zsh_install(){
       if ! grep -q "bash -c -l zsh" ~/.bashrc ; then
         sudo echo "bash -c -l zsh" >> ~/.bashrc 
       fi
+
+      sudo chmod 666 ~/.zshrc
       
       if ! grep -q "export PATH=~/bin:\$PATH" ~/.zshrc ; then
         sudo echo "export PATH=~/bin:\$PATH" >> ~/.zshrc
