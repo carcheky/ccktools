@@ -210,7 +210,8 @@ wsl_install_reset(){
     sudo apt clean -y
     sudo apt autoclean -y
     sudo dpkg --configure -a
-    sudo apt autoremove -y    vim ~/.bashrc
+    sudo apt autoremove -y    
+    vim ~/.bashrc
     echo "==> la consola se cerrará ahora"
     read a
     wsl_stop
