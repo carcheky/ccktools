@@ -241,6 +241,8 @@ sudo dpkg --configure -a
 check_version
 
 echo "======================">/c/error/error-ccktools.log
+echo "$(date +%s)">/c/error/error-ccktools.log
+echo "======================">/c/error/error-ccktools.log
 echo "==> wsl_update" >>/c/error/error-ccktools.log
 wsl_update 2>>/c/error/error-ccktools.log
 
