@@ -4,7 +4,7 @@
 # INFO #
 ########
 
-echo "==> VERSIÓN 2.04"
+echo "==> VERSIÓN 2.05"
 
 ##########
 # CONFIG #
@@ -17,6 +17,8 @@ echo "==> VERSIÓN 2.04"
 #############
 
 wsl_stop(){
+  echo "==> la consola va a cerrarse"
+  read a
   sudo killall -r '.*'
 }
 
