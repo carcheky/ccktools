@@ -4,7 +4,6 @@
 # INFO #
 ########
 
-echo "==> VERSIÓN 2.05"
 
 ##########
 # CONFIG #
@@ -42,6 +41,15 @@ update_repo() {
   fi
 }
 
+check_version(){
+    
+  echo "==> Online version:"
+  echo "==>" $(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/config/version) 2>>/dev/null
+
+  echo "==> Local version:"
+  echo "==>" $(cat /c/wsl/user/ccktools/config/version  2>>/dev/null)
+
+}
 set_wslconf() {
   if [ -f /etc/wsl.conf ]; then
     echo "==> /etc/wsl.conf encontrado"
@@ -224,7 +232,7 @@ set_wslconf
 rm -fr .wget-hsts
 sudo dpkg --configure -a
 
-
+check_version
 echo "==> wsl_update" >>/c/error/error-ccktools.log
 wsl_update 2>>/c/error/error-ccktools.log
 
