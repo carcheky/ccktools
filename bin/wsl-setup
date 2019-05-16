@@ -91,22 +91,22 @@ set_dirs() {
 create_links() {
   if [ -d /c/wsl/user/ccktools ]; then
 
-    sudo ln -s /c/wsl/user/ccktools/bin  ~
-    sudo ln -s /c/wsl/user/ccktools  ~
+    sudo ln -s /c/wsl/user/ccktools/bin  $HOME
+    sudo ln -s /c/wsl/user/ccktools  $HOME
 
-    if ! grep -q "source ~/ccktools/.ccktools" ~/.bashrc ; then
-      echo "source ~/ccktools/.ccktools" >> ~/.bashrc
+    if ! grep -q "source $HOME/ccktools/.ccktools" $HOME/.bashrc ; then
+      echo "source $HOME/ccktools/.ccktools" >> $HOME/.bashrc
     fi
 
     if -f "$HOME/.zshrc" ; then
-      if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
-        echo "source ~/ccktools/.ccktools" >> ~/.zshrc
+      if ! grep -q "source $HOME/ccktools/.ccktools" $HOME/.zshrc ; then
+        echo "source $HOME/ccktools/.ccktools" >> $HOME/.zshrc
       fi
     fi
     sudo apt install dos2unix -y 2>/dev/null
 
-    find ~/bin/ -type f -exec chmod +x {} \;
-    find ~/bin/ -type f -exec dos2unix {} \;
+    find $HOME/bin/ -type f -exec chmod +x {} \;
+    find $HOME/bin/ -type f -exec dos2unix {} \;
   fi
 }
 
