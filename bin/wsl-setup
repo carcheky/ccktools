@@ -103,10 +103,12 @@ create_links() {
       echo "source ~/ccktools/.ccktools" >> ~/.bashrc
     fi
 
-    if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
-      echo "source ~/ccktools/.ccktools" >> ~/.zshrc
+    if [ -f $HOME/.zshrc ]
+      if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
+        echo "source ~/ccktools/.ccktools" >> ~/.zshrc
+      fi
     fi
-
+      
     sudo apt install dos2unix -y 2>/dev/null
 
     find ~/bin/ -type f -exec chmod +x {} \;
