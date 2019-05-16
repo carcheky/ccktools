@@ -77,7 +77,7 @@ set_dirs() {
     echo "==> Existe la ruta /c/wsl"
     return
   fi
-  if [ ! -d /c/wsl/ ]; then
+  if [ ! -d /c/wsl/user ]; then
     sudo mkdir '/c/wsl/'
     sudo mkdir '/c/wsl/sites'
     sudo mkdir '/c/wsl/user'
