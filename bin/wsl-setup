@@ -186,6 +186,9 @@ lamp_install(){
     fi
 
     sudo a2enmod rewrite
+    sudo phpenmod mcrypt
+    sudo phpenmod mbstring
+
     sudo service apache2 stop & sudo service mysql stop
     sudo service apache2 start & sudo service mysql start
 
