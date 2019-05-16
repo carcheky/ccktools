@@ -6,6 +6,7 @@ if [[ -d /c/wsl/user/ccktools ]]; then
   cd /c/wsl/user/ccktools
   git pull
   cd ${CURRENT_DIR}
+  source ~/ccktools/.ccktools
 fi
 }
 wsl_self_update
