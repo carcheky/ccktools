@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# LOAD SOURCES
+
 if [[ -d "$HOME/bin" ]]; then
     export PATH="~/bin:$PATH"
 fi
@@ -9,6 +11,10 @@ if [[ -d "$HOME/.config/composer/vendor/bin" ]]; then
 fi
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
+
+
+
+# FUNCTIONS
 
 ssh_laucher(){
   SERVICE="ssh-agent"
@@ -32,6 +38,10 @@ lamp_laucher(){
       lamp start
   fi
 }
+
+
+
+# LOGIC
 
 ssh_laucher &>/dev/null
 lamp_laucher
