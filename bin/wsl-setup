@@ -206,6 +206,7 @@ lamp_install(){
 
     composer global require hirak/prestissimo
     composer global require drush/drush:^8
+    drush init -n
 
     # if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" ~/.bashrc ; then
     #   echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> ~/.bashrc
