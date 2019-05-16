@@ -1,13 +1,15 @@
 #!/bin/bash
 
 wsl_self_update(){
-if [[ -d /c/wsl/user/ccktools ]]; then
   CURRENT_DIR="$(pwd)"
-  cd /c/wsl/user/ccktools
-  git pull
-  cd ${CURRENT_DIR}
+
+  if [[ -d /c/wsl/user/ccktools ]]; then
+    cd /c/wsl/user/ccktools
+    git pull
+    cd ${CURRENT_DIR}
+  fi
+
   source ~/ccktools/.ccktools
-fi
 }
 wsl_self_update
 
