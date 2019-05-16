@@ -1,11 +1,10 @@
 #!/bin/bash
 
+cd /c/wsl/sites
 CURRENT_DIR="$(pwd)"
-if [[ -d /c/wsl/user/ccktools ]]; then
-  cd /c/wsl/user/ccktools
-  git pull
-  cd $CURRENT_DIR
-fi
+cd /c/wsl/user/ccktools
+git pull
+cd $CURRENT_DIR
 
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
