@@ -6,6 +6,7 @@ wsl_stop(){
   read a
   sudo killall -r '.*'
 }
+
 wsl_update_check(){
   CURRENT_DIR="$(pwd)"
   cd '/c/wsl/user/ccktools'
@@ -16,7 +17,7 @@ wsl_update_check(){
   BASE=$(git merge-base @ "$UPSTREAM")
 
   if [ $LOCAL = $REMOTE ]; then
-      echo "Up-to-date"
+      echo "Up to date"
   elif [ $LOCAL = $BASE ]; then
       echo "Need to pull"
       git pull
