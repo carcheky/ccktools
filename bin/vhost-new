@@ -35,6 +35,7 @@ else
   echo "==> Creating...."
   sudo mkdir -p ${CONF_SITE_FOLDER}
   sudo mkdir -p ${CONF_LOG_FOLDER}
+  touch ${CONF_LOG_FOLDER}/alumnice.log
 fi
 
 if [ -f ${CONF_SITES_ENABLED} ]; then
