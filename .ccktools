@@ -51,7 +51,7 @@ lamp_laucher(){
 # LOGIC
 
 # ssh_laucher &>/dev/null
-# lamp_laucher
+lamp_laucher
 
 
 # if mount | grep /desadrupal > /dev/null; then
@@ -61,4 +61,4 @@ lamp_laucher(){
 # fi
 
 
-# gosi al
+gosi
