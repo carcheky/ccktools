@@ -2,13 +2,15 @@
 sudo dpkg --configure -a
 
 wsl_update(){
+  CURRENT_DIR="$(pwd)"
+
   if [[ -d /c/wsl/user/ccktools ]]; then
-    CURRENT_DIR="$(pwd)"
     cd /c/wsl/user/ccktools
     git pull
     cd ${CURRENT_DIR}
-    source ~/ccktools/.ccktools
   fi
+
+  source ~/ccktools/.ccktools
 }
 
 wsl_update
