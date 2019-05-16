@@ -10,7 +10,7 @@ wsl_update(){
     cd ${CURRENT_DIR}
     cat ~/ccktools/config/version
   fi
-
+  wsl-stop
   source ~/ccktools/.ccktools_aliases
   source ~/ccktools/.ccktools_functions
 }
