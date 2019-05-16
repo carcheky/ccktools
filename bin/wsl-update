@@ -14,7 +14,6 @@ wsl_update(){
     git pull origin master
     find ~/ccktools/bin -type f -exec chmod +x {} \;
     find ~/ccktools/bin -type f -exec dos2unix {} \;
-    exit 1
 }
 
 wsl_update
