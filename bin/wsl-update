@@ -4,7 +4,8 @@ wsl_stop(){
   echo "
   ==> la consola va a cerrarse
   "
-  read a
+  # read a
+  sleep 1
   sudo killall -r '.*'
 }
 
