@@ -1,8 +1,7 @@
 #!/bin/bash
 
-cd /c
 
-wsl_update(){
+wsl_self_update(){
 if [[ -d /c/wsl/user/ccktools ]]; then
   dir = $(pwd)
   cd /c/wsl/user/ccktools
@@ -11,9 +10,9 @@ if [[ -d /c/wsl/user/ccktools ]]; then
 fi
 }
 
-wsl_update
 
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
-
+cd /c
+wsl_self_update
 mountdesadrupal
