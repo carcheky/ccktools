@@ -9,7 +9,6 @@ wsl_self_update(){
     cd $CURRENT_DIR
   fi
 
-  source ~/ccktools/.ccktools
 }
 echo "gotoupdate"
 wsl_self_update
