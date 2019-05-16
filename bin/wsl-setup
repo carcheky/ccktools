@@ -285,8 +285,8 @@ echo "======================">>/c/error/error-ccktools.log
 echo "==> wsl_update" >>/c/error/error-ccktools.log
 wsl_update 2>>/c/error/error-ccktools.log
 
-echo "==> wsl_install_reset" >>/c/error/error-ccktools.log
-wsl_install_reset 2>>/c/error/error-ccktools.log
+# echo "==> wsl_install_reset" >>/c/error/error-ccktools.log
+# wsl_install_reset 2>>/c/error/error-ccktools.log
 
 echo "==> ubuntu_update" >>/c/error/error-ccktools.log
 ubuntu_update 2>>/c/error/error-ccktools.log
