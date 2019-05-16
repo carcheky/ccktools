@@ -258,8 +258,8 @@ wsl_install_reset(){
 }
 
 ubuntu_update(){
-  echo "==> ubuntu_update ? (y/n)"
-  read WSL_UPDATE_UBUNTU
+  # echo "==> ubuntu_update ? (y/n)"
+  # read WSL_UPDATE_UBUNTU
   # if [ ${WSL_UPDATE_UBUNTU} = "y" ]; then
     echo "==> wsl ubuntu_update"
     echo "==> actualizando fuentes..."
