@@ -108,7 +108,6 @@ create_links() {
         echo "source ~/ccktools/.ccktools" >> ~/.zshrc
       fi
     fi
-
     sudo apt install dos2unix -y 2>/dev/null
 
     find ~/bin/ -type f -exec chmod +x {} \;
