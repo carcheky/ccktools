@@ -189,6 +189,8 @@ lamp_install(){
     sudo service apache2 stop & sudo service mysql stop
     sudo service apache2 start & sudo service mysql start
 
+    sudo apt install composer -y
+
     echo "==> Usa HeidiSQL para gestionar las bases de datos https://www.heidisql.com/"
     echo "==> Server:     localhost "
     echo "==> User:       root"
