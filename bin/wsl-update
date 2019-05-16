@@ -4,8 +4,8 @@ sudo dpkg --configure -a
 wsl_update(){
   CURRENT_DIR="$(pwd)"
 
-  if [[ -d /c/wsl/user/ccktools ]]; then
-    cd /c/wsl/user/ccktools
+  if [ -d /c/wsl/user/ccktools ]; then
+    cd '/c/wsl/user/ccktools'
     git pull
     cd ${CURRENT_DIR}
   fi
