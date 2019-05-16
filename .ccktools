@@ -9,10 +9,10 @@ if [[ -d /c/wsl/user/ccktools ]]; then
   cd ${CURRENT_DIR}
 fi
 }
+wsl_self_update
 
 
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
 cd /c
-wsl_self_update
 mountdesadrupal
