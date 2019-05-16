@@ -85,6 +85,12 @@ set_dirs() {
     cd '/c/wsl/user'
     git clone https://github.com/carcheky/ccktools.git
   fi
+  if [ ! -d /desadrupal ]; then
+    mkdir /desadrupal
+  fi
+  if [ ! -d /desadrupal8 ]; then
+    mkdir /desadrupal8
+  fi
 }
 
 create_links() {
