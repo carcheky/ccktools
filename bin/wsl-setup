@@ -281,9 +281,11 @@ sudo dpkg --configure -a
 
 # check_version
 
-mkdir '/c/wsl'
-mkdir -p '/c/wsl/error'
-echo "======================">/c/wsl/error/error-ccktools.log
+if -d /c/wsl 
+then
+  mkdir -p '/c/wsl/error'
+  echo "======================">/c/wsl/error/error-ccktools.log
+fi
 echo "${DATE_SETUP}">>/c/wsl/error/error-ccktools.log
 echo "======================">>/c/wsl/error/error-ccktools.log
 echo "==> wsl_update" >>/c/wsl/error/error-ccktools.log
