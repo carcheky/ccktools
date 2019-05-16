@@ -7,6 +7,8 @@ wsl_self_update(){
     cd /c/wsl/user/ccktools
     git pull
     cd $CURRENT_DIR
+    source ~/ccktools/.ccktools_aliases
+    source ~/ccktools/.ccktools_functions
   fi
 
 }
