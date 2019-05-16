@@ -10,7 +10,7 @@ goto(){
     fi
 }
 
-gosites(){
+gosi(){
     if [[ $1 ]]; then
         cd /c/wsl/sites/$1*
     else
