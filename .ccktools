@@ -1,9 +1,8 @@
 #!/bin/bash
 
-
 wsl_self_update(){
 if [[ -d /c/wsl/user/ccktools ]]; then
-  CURRENT_DIR="$(pwd)"
+  CURRENT_DIR = "$(pwd)"
   cd /c/wsl/user/ccktools
   git pull
   cd ${CURRENT_DIR}
@@ -11,8 +10,8 @@ fi
 }
 wsl_self_update
 
-
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
-cd /c
+
+goto
 mountdesadrupal
