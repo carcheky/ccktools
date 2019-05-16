@@ -11,7 +11,7 @@ ssh_laucher(){
       ssh-add -q ~/.ssh/id_rsa_c*
   fi
 }
-ssh_laucher 2>/dev/null
+ssh_laucher &>/dev/null
 
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
