@@ -1,13 +1,13 @@
 #!/bin/bash
 
 SERVICE="ssh-agent"
-if pgrep -x "$SERVICE" *>/dev/null
+if pgrep -x "$SERVICE" 1>/dev/null
 then
     echo "$SERVICE is running yet"
 else
     echo "starting $SERVICE"
-    eval `ssh-agent -s` *>/dev/null
-    ssh-add -q ~/.ssh/id_rsa_c* *>/dev/null
+    eval `ssh-agent -s` 1>/dev/null
+    ssh-add -q ~/.ssh/id_rsa_c* 1>/dev/null
 fi
 
 
