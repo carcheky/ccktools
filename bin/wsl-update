@@ -8,6 +8,7 @@ wsl_update(){
     cd '/c/wsl/user/ccktools'
     git pull
     cd ${CURRENT_DIR}
+    cat ~/ccktools/config/version
   fi
 
   source ~/ccktools/.ccktools_aliases
