@@ -123,7 +123,7 @@ zsh_install(){
       sudo apt install git -y
       sudo apt install nodejs -y
       sudo apt install npm -y
-      sudo rm -fr /home/user/.oh-my-zsh
+      sudo rm -fr $HOME/.oh-my-zsh
       sudo apt install zsh zsh-doc zsh-common -y
 
       sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh?\${DATE_SETUP})"
@@ -234,20 +234,20 @@ wsl_install_reset(){
     sudo apt remove zsh apache2 php mysql-server -y
     sudo rm -fr /etc/wsl.conf
     sudo rm -fr /c/wsl
-    sudo rm -fr /home/user/bin
-    sudo rm -fr /home/user/ccktools
-    # sudo rm -fr /home/user/.config/
-    sudo rm -fr /home/user/.oh-my-zsh
-    # sudo rm -fr /home/user/.profile
-    sudo rm -fr /home/user/.sudo_as_admin_successful
-    # sudo rm -fr /home/user/.viminfo
-    sudo rm -fr /home/user/.zsh_history
-    sudo rm -fr /home/user/.zshrc
-    sudo rm -fr /home/user/.zshrc.pre-oh-my-zsh
-    sudo rm -fr /home/user/.zcompdump
-    sudo rm -fr /home/user/.zcompdump*
-    sudo rm -fr /home/user/.z
-    sudo rm -fr /home/user/.wget-hsts
+    sudo rm -fr $HOME/bin
+    sudo rm -fr $HOME/ccktools
+    # sudo rm -fr $HOME/.config/
+    sudo rm -fr $HOME/.oh-my-zsh
+    # sudo rm -fr $HOME/.profile
+    sudo rm -fr $HOME/.sudo_as_admin_successful
+    # sudo rm -fr $HOME/.viminfo
+    sudo rm -fr $HOME/.zsh_history
+    sudo rm -fr $HOME/.zshrc
+    sudo rm -fr $HOME/.zshrc.pre-oh-my-zsh
+    sudo rm -fr $HOME/.zcompdump
+    sudo rm -fr $HOME/.zcompdump*
+    sudo rm -fr $HOME/.z
+    sudo rm -fr $HOME/.wget-hsts
     sudo apt clean -y
     sudo apt autoclean -y
     sudo dpkg --configure -a
