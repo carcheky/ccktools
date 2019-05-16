@@ -11,10 +11,17 @@ ssh_laucher(){
       ssh-add -q ~/.ssh/id_rsa_c*
   fi
 }
+
 ssh_laucher &>/dev/null
 
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
 
-mountdesadrupal
+
+if mount | grep /desadrupal > /dev/null; then
+    echo "."
+else
+    mountdesadrupal
+fi
+
 cd /c/wsl/sites
