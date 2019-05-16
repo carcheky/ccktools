@@ -1,5 +1,8 @@
 #!/bin/bash
 
+source ~/ccktools/.ccktools_aliases
+source ~/ccktools/.ccktools_functions
+
 ssh_laucher(){
   SERVICE="ssh-agent"
   if pgrep -x "$SERVICE"
@@ -12,10 +15,19 @@ ssh_laucher(){
   fi
 }
 
-ssh_laucher &>/dev/null
+lamp_laucher(){
+  SERVICE="apache2"
+  if pgrep -x "$SERVICE"
+  then
+      echo "$SERVICE is running yet"
+  else
+      echo "starting $SERVICE"
+      lamp start
+  fi
+}
 
-source ~/ccktools/.ccktools_aliases
-source ~/ccktools/.ccktools_functions
+ssh_laucher &>/dev/null
+lamp_laucher
 
 
 if mount | grep /desadrupal > /dev/null; then
@@ -23,5 +35,6 @@ if mount | grep /desadrupal > /dev/null; then
 else
     mountdesadrupal
 fi
+
 
 cd /c/wsl/sites
