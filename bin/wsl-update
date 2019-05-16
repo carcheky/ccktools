@@ -18,3 +18,4 @@ wsl_update(){
 }
 
 wsl_update
+wsl_stop
