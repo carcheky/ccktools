@@ -21,7 +21,6 @@ source ~/ccktools/.ccktools_functions
 if mount | grep /desadrupal > /dev/null; then
     clear
 else
-    echo "montando desadrupal"
     mountdesadrupal
 fi
 
