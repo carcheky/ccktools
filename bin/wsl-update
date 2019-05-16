@@ -1,20 +1,17 @@
 #!/bin/bash
 
 wsl_stop(){
-  echo "==> la consola va a cerrarse"
+  echo "
+  ==> la consola va a cerrarse"
   read a
   sudo killall -r '.*'
 }
 
 wsl_update(){
-  CURRENT_DIR="$(pwd)"
-
-  if [ -d /c/wsl/user/ccktools ]; then
     cd '/c/wsl/user/ccktools'
     git pull origin master
-    cd ${CURRENT_DIR}
     cat ~/ccktools/config/version
-  fi
+    wsl_stop
 }
 
 wsl_update
