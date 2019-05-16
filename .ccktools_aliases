@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# generic alias
 alias ll="ls -la"
-alias cckinstall="cd ~ ; rm -fr ~/bin ~/ccktools/ ~/.wget-hsts ~/.z* ~/.z* ; ls -la ; bash -c \"$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-update)\""
+alias mountdesadrupal="sudo mount -t drvfs '\\\\desadrupal\\html' /desadrupal; sudo mount -t drvfs '\\\\desadrupal8\\html' /desadrupal8"
+
+#server alias
 alias wsl-powerup-php="sed -i 's/post_max_size = 8M/post_max_size = 8G/g' ~/ubuntu-tools-wsl/config/php*.ini; sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' ~/ubuntu-tools-wsl/config/php*.ini; sed -i 's/memory_limit = 128M/memory_limit = 2G/g' ~/ubuntu-tools-wsl/config/php*.ini"
 alias change-repo="cd; git config --global user.name \"carcheky\"; git config --global user.email \"carcheky@gmail.com\";
 ssh-keygen -t rsa -b 4096 -C \"carcheky@gmail.com\";
@@ -20,11 +23,11 @@ alias drws='clear; drush ws --tail --full'
 # alias drup='dr up -y; dr updb -y; drush cu;'
 # alias drwsdel='clear; drush -y watchdog-delete all; drush ws --tail --full'
 
+# more alias
 # alias explorer='/mnt/c/Windows/explorer.exe'
 # alias docker=docker.exe
 # alias docker-compose=docker-compose.exe
 # alias ll='ls -la'
 # alias bashrc='source ~/.bash_aliases'
 # alias goht='cd ${DEVDIR}'
-alias mountdesadrupal="sudo mount -t drvfs '\\\\desadrupal\\html' /desadrupal; sudo mount -t drvfs '\\\\desadrupal8\\html' /desadrupal8"
 # alias restart="lamp-restart"
