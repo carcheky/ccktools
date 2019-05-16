@@ -137,18 +137,18 @@ zsh_install(){
 
       sudo chmod 666 ~/.zshrc
       sudo chown user:user ~/.zsh_history
-      if ! grep -q "export PATH=~/bin:\$PATH" ~/.zshrc ; then
-        sudo echo "export PATH=~/bin:\$PATH" >> ~/.zshrc
-      fi
+      # if ! grep -q "export PATH=~/bin:\$PATH" ~/.zshrc ; then
+      #   sudo echo "export PATH=~/bin:\$PATH" >> ~/.zshrc
+      # fi
 
       if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
         sudo echo "source ~/ccktools/.ccktools" >> ~/.zshrc
         sudo find ~ -name .bashrc -exec sed -i 's/source ~\/ccktools\/.ccktools/# source ~\/ccktools\/.ccktools/g' {} \;
       fi
 
-      if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" ~/.zshrc ; then
-        echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> ~/.zshrc
-      fi
+      # if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" ~/.zshrc ; then
+      #   echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> ~/.zshrc
+      # fi
   fi
 }
 
@@ -207,9 +207,9 @@ lamp_install(){
     composer global require hirak/prestissimo
     composer global require drush/drush:^8
 
-    if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" ~/.bashrc ; then
-      echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> ~/.bashrc
-    fi
+    # if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" ~/.bashrc ; then
+    #   echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> ~/.bashrc
+    # fi
 
     sudo service apache2 stop & sudo service mysql stop
     sudo service apache2 start & sudo service mysql start
