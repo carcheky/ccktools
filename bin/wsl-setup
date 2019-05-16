@@ -113,6 +113,7 @@ zsh_install(){
   read WSL_ZSH
   if [ ${WSL_ZSH} = "y" ]; then
       sudo apt install git -y
+      sudo apt install nodejs -y
       sudo apt install npm -y
       sudo rm -fr /home/user/.oh-my-zsh
       sudo apt install zsh zsh-doc zsh-common -y
