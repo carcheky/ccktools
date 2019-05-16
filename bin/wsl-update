@@ -10,7 +10,8 @@ wsl_update(){
     cd ${CURRENT_DIR}
   fi
 
-  source ~/ccktools/.ccktools
+  source ~/ccktools/.ccktools_aliases
+  source ~/ccktools/.ccktools_functions
 }
 
 wsl_update
