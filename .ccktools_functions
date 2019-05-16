@@ -3,7 +3,7 @@
 source ~/ccktools/.ccktools_aliases
 
 goto(){
-    if [ $1 ]; then
+    if [[ $1 ]]; then
         cd /c/vhost/$1*
     else
         cd /c/vhost
