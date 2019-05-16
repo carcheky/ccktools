@@ -226,37 +226,6 @@ lamp_install(){
 }
 
 
-wsl_install_reset(){
-  # echo "==> quieres reiniciar todo? (y/n)"
-  # read WSL_RESET
-  # if [ "$WSL_RESET" = "y" ]; then
-    echo "==> wsl RESET"
-    sudo apt remove zsh apache2 php mysql-server -y
-    sudo rm -fr /etc/wsl.conf
-    sudo rm -fr /c/wsl
-    sudo rm -fr $HOME/bin
-    sudo rm -fr $HOME/ccktools
-    # sudo rm -fr $HOME/.config/
-    sudo rm -fr $HOME/.oh-my-zsh
-    # sudo rm -fr $HOME/.profile
-    sudo rm -fr $HOME/.sudo_as_admin_successful
-    # sudo rm -fr $HOME/.viminfo
-    sudo rm -fr $HOME/.zsh_history
-    sudo rm -fr $HOME/.zshrc
-    sudo rm -fr $HOME/.zshrc.pre-oh-my-zsh
-    sudo rm -fr $HOME/.zcompdump
-    sudo rm -fr $HOME/.zcompdump*
-    sudo rm -fr $HOME/.z
-    sudo rm -fr $HOME/.wget-hsts
-    sudo apt clean -y
-    sudo apt autoclean -y
-    sudo dpkg --configure -a
-    sudo apt autoremove -y
-    vim ~/.bashrc
-    wsl_stop
-  # fi
-}
-
 ubuntu_update(){
   # echo "==> ubuntu_update ? (y/n)"
   # read WSL_UPDATE_UBUNTU
@@ -289,9 +258,6 @@ echo "${DATE_SETUP}">>/c/wsl/error/error-ccktools.log
 echo "======================">>/c/wsl/error/error-ccktools.log
 echo "==> wsl_update" >>/c/wsl/error/error-ccktools.log
 wsl_update 2>>/c/wsl/error/error-ccktools.log
-
-# echo "==> wsl_install_reset" >>/c/wsl/error/error-ccktools.log
-# wsl_install_reset 2>>/c/wsl/error/error-ccktools.log
 
 echo "==> ubuntu_update" >>/c/wsl/error/error-ccktools.log
 ubuntu_update 2>>/c/wsl/error/error-ccktools.log
