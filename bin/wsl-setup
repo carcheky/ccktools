@@ -153,6 +153,9 @@ lamp_install(){
   read WSL_LAMP
   if [ ${WSL_LAMP} = "y" ]; then
     sudo apt install -y apache2 php
+    sudo apt install -y php7.2-fpm libapache2-mod-php7.2 php7.2 php7.2-curl php7.2-gd php7.2-mbstring  php7.2-mysql php7.2-xml php7.2-zip php7.2-common
+    sudo apt install -y php5.6-fpm libapache2-mod-php5.6 php5.6 php5.6-curl php5.6-gd php5.6-mbstring php5.6-mcrypt php5.6-mysql php5.6-xml php5.6-zip php5.6-common
+
 
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
