@@ -254,7 +254,7 @@ wsl_install_reset(){
     sudo apt autoremove -y
     vim ~/.bashrc
     wsl_stop
-  fi
+  # fi
 }
 
 ubuntu_update(){
