@@ -65,11 +65,11 @@ set_wslconf() {
 launcher_dirs(){
   # echo "==> quieres instalar los scripts personalizados? (y/n)"
   # read WSL_SETDIRS
-  if [ ${WSL_SETDIRS} = "y" ]; then
+  # if [ ${WSL_SETDIRS} = "y" ]; then
     echo "==> wsl setdirs"
     set_dirs
     create_links
-  fi
+  # fi
 }
 
 set_dirs() {
@@ -119,7 +119,7 @@ create_links() {
 zsh_install(){
   # echo "==> quieres instalar zsh? (y/n)"
   # read WSL_ZSH
-  if [ ${WSL_ZSH} = "y" ]; then
+  # if [ ${WSL_ZSH} = "y" ]; then
       sudo apt install git -y
       sudo apt install nodejs -y
       sudo apt install npm -y
@@ -151,13 +151,13 @@ zsh_install(){
       # if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" ~/.zshrc ; then
       #   echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> ~/.zshrc
       # fi
-  fi
+  # fi
 }
 
 lamp_install(){
   # echo "==> quieres instalar lamp? (y/n)"
   # read WSL_LAMP
-  if [ ${WSL_LAMP} = "y" ]; then
+  # if [ ${WSL_LAMP} = "y" ]; then
     sudo apt install -y apache2 php
     sudo apt install -y php7.2-fpm libapache2-mod-php7.2 php7.2 php7.2-curl php7.2-gd php7.2-mbstring  php7.2-mysql php7.2-xml php7.2-zip php7.2-common
 
@@ -222,14 +222,14 @@ lamp_install(){
     echo "==> Server:     localhost "
     echo "==> User:       root"
     echo "==> Password:   root"
-  fi
+  # fi
 }
 
 
 wsl_install_reset(){
   # echo "==> quieres reiniciar todo? (y/n)"
   # read WSL_RESET
-  if [ "$WSL_RESET" = "y" ]; then
+  # if [ "$WSL_RESET" = "y" ]; then
     echo "==> wsl RESET"
     sudo apt remove zsh apache2 php mysql-server -y
     sudo rm -fr /etc/wsl.conf
@@ -260,14 +260,14 @@ wsl_install_reset(){
 ubuntu_update(){
   echo "==> ubuntu_update ? (y/n)"
   read WSL_UPDATE_UBUNTU
-  if [ ${WSL_UPDATE_UBUNTU} = "y" ]; then
+  # if [ ${WSL_UPDATE_UBUNTU} = "y" ]; then
     echo "==> wsl ubuntu_update"
     echo "==> actualizando fuentes..."
     sudo apt update 2>/dev/null
 
     echo "==> actualizando paquetes..."
     sudo apt upgrade -y 2>/dev/null
-  fi
+  # fi
 }
 
 ################
