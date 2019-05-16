@@ -12,15 +12,11 @@ wsl_self_update(){
   fi
 
 }
-echo "gotoupdate"
 wsl_self_update
 
-echo "loadsources"
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
 
-echo "goto"
 goto
 
-echo "mounts"
 mountdesadrupal
