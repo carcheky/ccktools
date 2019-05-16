@@ -6,7 +6,7 @@ wsl_update(){
 if [[ -d /c/wsl/user/ccktools ]]; then
   dir = $(pwd)
   git pull
-  cd $dir
+  cd ${dir}
 fi
 }
 
