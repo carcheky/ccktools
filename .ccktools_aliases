@@ -9,22 +9,21 @@ cd ~/ccktools;
 git remote set-url origin git@github.com:carcheky/ccktools.git;
 git remote -v;"
 
+# drush alias
+alias ccron='drush cc all 2>/dev/null && drush cr 2>/dev/null && drush cron'
+alias drexport='drush sql-dump > database.sql -v'
+alias drimport='drush sql-drop -y; drush sql-cli < database.sql -v'
+alias drws='clear; drush ws --tail --full'
+# alias drbasicmodules='dr -y en module_filter fpa admin_menu adminimal_admin_menu adminimal_theme backup_migrate coffee l10n_update; ccron'
+# alias drdevelmodules='dr -y en devel masquerade admin_views schema db_maintenance module_missing_message_fixer unused_modules; ccron'
+# alias drfordevs='dl module_filter fpa admin_menu adminimal_admin_menu adminimal_theme backup_migrate coffee l10n_update devel masquerade admin_views schema db_maintenance module_missing_message_fixer unused_modules views_bulk_operations --destination=sites/default/modules/fordevs -y'
+# alias drup='dr up -y; dr updb -y; drush cu;'
+# alias drwsdel='clear; drush -y watchdog-delete all; drush ws --tail --full'
+
 # alias explorer='/mnt/c/Windows/explorer.exe'
 # alias docker=docker.exe
 # alias docker-compose=docker-compose.exe
 # alias ll='ls -la'
-# alias cca='drush cc all';
-# alias ccron='cca;  drush cron'
-# alias draim='drush l10n-update-refresh; drush l10n-update'
-# alias dr='drush'
-# alias drwsdel='clear; drush -y watchdog-delete all; drush ws --tail --full'
-# alias drws='clear; drush ws --tail --full'
-# alias drbasicmodules='dr -y en module_filter fpa admin_menu adminimal_admin_menu adminimal_theme backup_migrate coffee l10n_update; ccron'
-# alias drdevelmodules='dr -y en devel masquerade admin_views schema db_maintenance module_missing_message_fixer unused_modules; ccron'
-# alias drfordevs='dl module_filter fpa admin_menu adminimal_admin_menu adminimal_theme backup_migrate coffee l10n_update devel masquerade admin_views schema db_maintenance module_missing_message_fixer unused_modules views_bulk_operations --destination=sites/default/modules/fordevs -y'
-# alias drimport='drush sql-drop -y; drush sql-cli < database.sql -v'
-# alias drexport='drush sql-dump > database.sql -v'
-# alias drup='dr up -y; dr updb -y; drush cu;'
 # alias bashrc='source ~/.bash_aliases'
 # alias goht='cd ${DEVDIR}'
 alias mountdesadrupal="sudo mount -t drvfs '\\\\desadrupal\\html' /desadrupal; sudo mount -t drvfs '\\\\desadrupal8\\html' /desadrupal8"
