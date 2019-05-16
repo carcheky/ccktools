@@ -2,10 +2,18 @@
 
 source ~/ccktools/.ccktools_aliases
 
-goto(){
+govhost(){
     if [[ $1 ]]; then
         cd /c/vhost/$1*
     else
         cd /c/vhost
+    fi
+}
+
+gosites(){
+    if [[ $1 ]]; then
+        cd /c/wsl/sites/$1*
+    else
+        cd /c/wsl/sites
     fi
 }
