@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [[ -d "$HOME/bin" ]]
+    export PATH="~/bin:$PATH"
+fi
+
+if [[ -d "$HOME/.config/composer/vendor/bin" ]]
+    export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+fi
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
 
