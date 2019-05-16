@@ -2,7 +2,7 @@
 
 source ~/ccktools/.ccktools_aliases
 
-govhost(){
+goto(){
     if [[ $1 ]]; then
         cd /c/vhost/$1*
     else
