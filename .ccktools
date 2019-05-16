@@ -1,11 +1,12 @@
 #!/bin/bash
 
+cd /c
 
 wsl_update(){
 if [[ -d /c/wsl/user/ccktools ]]; then
-  cd /c/wsl/user/ccktools
+  dir = $(pwd)
   git pull
-  cd
+  cd $dir
 fi
 }
 
