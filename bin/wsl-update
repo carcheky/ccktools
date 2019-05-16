@@ -14,8 +14,6 @@ wsl_update(){
     cat ~/ccktools/config/version
     find ~/ccktools/bin -type f -exec chmod +x {} \;
     find ~/ccktools/bin -type f -exec dos2unix {} \;
-    wsl_stop
 }
 
 wsl_update
-wsl_stop
