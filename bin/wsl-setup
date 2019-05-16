@@ -81,6 +81,7 @@ set_dirs() {
     sudo mkdir '/c/wsl/'
     sudo mkdir '/c/wsl/sites'
     sudo mkdir '/c/wsl/user'
+    sudo mkdir '/c/wsl/error'
     sudo chown -R user:user '/c/wsl/'
     cd '/c/wsl/user'
     git clone https://github.com/carcheky/ccktools.git
@@ -281,24 +282,24 @@ sudo dpkg --configure -a
 check_version
 
 echo "======================">/c/error/error-ccktools.log
-echo "${DATE_SETUP}">>/c/error/error-ccktools.log
-echo "======================">>/c/error/error-ccktools.log
-echo "==> wsl_update" >>/c/error/error-ccktools.log
-wsl_update 2>>/c/error/error-ccktools.log
+echo "${DATE_SETUP}">>/c/wsl/error/error-ccktools.log
+echo "======================">>/c/wsl/error/error-ccktools.log
+echo "==> wsl_update" >>/c/wsl/error/error-ccktools.log
+wsl_update 2>>/c/wsl/error/error-ccktools.log
 
-# echo "==> wsl_install_reset" >>/c/error/error-ccktools.log
-# wsl_install_reset 2>>/c/error/error-ccktools.log
+# echo "==> wsl_install_reset" >>/c/wsl/error/error-ccktools.log
+# wsl_install_reset 2>>/c/wsl/error/error-ccktools.log
 
-echo "==> ubuntu_update" >>/c/error/error-ccktools.log
-ubuntu_update 2>>/c/error/error-ccktools.log
+echo "==> ubuntu_update" >>/c/wsl/error/error-ccktools.log
+ubuntu_update 2>>/c/wsl/error/error-ccktools.log
 
-echo "==> launcher_dirs" >>/c/error/error-ccktools.log
-launcher_dirs 2>>/c/error/error-ccktools.log
+echo "==> launcher_dirs" >>/c/wsl/error/error-ccktools.log
+launcher_dirs 2>>/c/wsl/error/error-ccktools.log
 
-echo "==> lamp_install" >>/c/error/error-ccktools.log
-lamp_install 2>>/c/error/error-ccktools.log
+echo "==> lamp_install" >>/c/wsl/error/error-ccktools.log
+lamp_install 2>>/c/wsl/error/error-ccktools.log
 
-echo "==> zsh_install" >>/c/error/error-ccktools.log
-zsh_install 2>>/c/error/error-ccktools.log
+echo "==> zsh_install" >>/c/wsl/error/error-ccktools.log
+zsh_install 2>>/c/wsl/error/error-ccktools.log
 create_links
 wsl_stop
