@@ -11,8 +11,6 @@ wsl_update(){
     cat ~/ccktools/config/version
   fi
   wsl-stop
-  source ~/ccktools/.ccktools_aliases
-  source ~/ccktools/.ccktools_functions
 }
 
 wsl_update

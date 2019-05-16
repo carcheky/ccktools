@@ -1,6 +1,6 @@
 #!/bin/bash
 
 if [[ -d ~/ccktools ]]; then
-    find ~/ccktools/ -type f -exec chmod +x {} \;
-    find ~/ccktools/ -type f -exec dos2unix {} \;
+    find ~/ccktools/bin -type f -exec chmod +x {} \;
+    find ~/ccktools/bin -type f -exec dos2unix {} \;
 fi
