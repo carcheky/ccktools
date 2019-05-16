@@ -1,20 +1,12 @@
 #!/bin/bash
 
-wsl_self_update(){
-  CURRENT_DIR="$(pwd)"
-
-  if [[ -d /c/wsl/user/ccktools ]]; then
-    cd /c/wsl/user/ccktools
-    git pull
-    cd $CURRENT_DIR
-  fi
-
-}
-wsl_self_update
+CURRENT_DIR="$(pwd)"
+if [[ -d /c/wsl/user/ccktools ]]; then
+  cd /c/wsl/user/ccktools
+  git pull
+  cd $CURRENT_DIR
+fi
 
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
-
-goto
-
 mountdesadrupal
