@@ -1,5 +1,4 @@
 #!/bin/bash
-sudo dpkg --configure -a
 
 wsl_stop(){
   echo "==> la consola va a cerrarse"
@@ -7,39 +6,16 @@ wsl_stop(){
   sudo killall -r '.*'
 }
 
-wsl_update_check(){
-  CURRENT_DIR="$(pwd)"
-  cd '/c/wsl/user/ccktools'
-
-  UPSTREAM=${1:-'@{u}'}
-  LOCAL=$(git rev-parse @)
-  REMOTE=$(git rev-parse "$UPSTREAM")
-  BASE=$(git merge-base @ "$UPSTREAM")
-
-  if [ $LOCAL = $REMOTE ]; then
-      echo "Up to date"
-  elif [ $LOCAL = $BASE ]; then
-      echo "Need to pull"
-      git pull
-      wsl_stop
-  elif [ $REMOTE = $BASE ]; then
-      echo "Need to push"
-  else
-      echo "Diverged"
-  fi
-
-  cd ${CURRENT_DIR}
-}
-
 wsl_update(){
   CURRENT_DIR="$(pwd)"
 
   if [ -d /c/wsl/user/ccktools ]; then
     cd '/c/wsl/user/ccktools'
-    git pull
+    git pull origin master
     cd ${CURRENT_DIR}
     cat ~/ccktools/config/version
   fi
 }
 
-wsl_update_check
+wsl_update
+wsl_stop
