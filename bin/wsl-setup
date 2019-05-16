@@ -189,9 +189,11 @@ lamp_install(){
     sudo apt install mcrypt -y
     sudo apt install composer -y
 
-    sudo a2enmod rewrite
     sudo phpenmod mcrypt
     sudo phpenmod mbstring
+
+    sudo a2enmod rewrite
+    sudo a2enmod vhost_alias
 
     sudo service apache2 stop & sudo service mysql stop
     sudo service apache2 start & sudo service mysql start
