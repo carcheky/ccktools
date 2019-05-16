@@ -73,19 +73,13 @@ launcher_dirs(){
 }
 
 set_dirs() {
-  if [ -d /c/wsl/ ]; then
-    echo "==> Existe la ruta /c/wsl"
-    return
-  fi
-  if [ ! -d /c/wsl/user ]; then
-    sudo mkdir '/c/wsl/'
-    sudo mkdir '/c/wsl/sites'
-    sudo mkdir '/c/wsl/user'
-    sudo mkdir '/c/wsl/error'
+    mkdir -p '/c/wsl/'
+    mkdir -p '/c/wsl/sites'
+    mkdir -p '/c/wsl/user'
+    mkdir -p '/c/wsl/error'
     sudo chown -R user:user '/c/wsl/'
     cd '/c/wsl/user'
     git clone https://github.com/carcheky/ccktools.git
-  fi
   if [ ! -d /desadrupal ]; then
     mkdir /desadrupal
   fi
