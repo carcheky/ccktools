@@ -33,8 +33,8 @@ if [ -d ${CONF_SITE_FOLDER} ]; then
 else
   echo "==> folder ${CONF_SITE_FOLDER} does not exist."
   echo "==> Creating...."
-  sudo mkdir -p ${CONF_SITE_FOLDER}
-  sudo mkdir -p ${CONF_LOG_FOLDER}
+  mkdir -p ${CONF_SITE_FOLDER}
+  mkdir -p ${CONF_LOG_FOLDER}
   touch ${CONF_LOG_FOLDER}/alumnice.log
 fi
 
