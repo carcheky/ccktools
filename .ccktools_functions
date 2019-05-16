@@ -12,8 +12,8 @@ goto(){
 
 gosi(){
     if [[ $1 ]]; then
-        cd /c/wsl/sites/$1*
-        cd /docroot
+        cd /c/wsl/sites/$1
+        cd docroot
     else
         cd /c/wsl/sites
     fi
