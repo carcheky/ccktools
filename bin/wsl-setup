@@ -145,6 +145,10 @@ zsh_install(){
         sudo echo "source ~/ccktools/.ccktools" >> ~/.zshrc
         sudo find ~ -name .bashrc -exec sed -i 's/source ~\/ccktools\/.ccktools/# source ~\/ccktools\/.ccktools/g' {} \;
       fi
+
+      if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" ~/.zshrc ; then
+        echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> ~/.zshrc
+      fi
   fi
 }
 
@@ -154,7 +158,6 @@ lamp_install(){
   if [ ${WSL_LAMP} = "y" ]; then
     sudo apt install -y apache2 php
     sudo apt install -y php7.2-fpm libapache2-mod-php7.2 php7.2 php7.2-curl php7.2-gd php7.2-mbstring  php7.2-mysql php7.2-xml php7.2-zip php7.2-common
-    sudo apt install -y php5.6-fpm libapache2-mod-php5.6 php5.6 php5.6-curl php5.6-gd php5.6-mbstring php5.6-mcrypt php5.6-mysql php5.6-xml php5.6-zip php5.6-common
 
 
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
@@ -190,7 +193,7 @@ lamp_install(){
 
     sudo apt install php-mbstring -y
     sudo apt install php-curl -y
-    sudo apt install zip php-zip -y
+    sudo apt install zip php-zip unzip -y
     sudo apt install mcrypt -y
     sudo apt install composer -y
 
@@ -202,6 +205,11 @@ lamp_install(){
     sudo a2enmod vhost_alias
 
     composer global require hirak/prestissimo
+    composer global require drush/drush:^8
+
+    if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" ~/.bashrc ; then
+      echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> ~/.bashrc
+    fi
 
     sudo service apache2 stop & sudo service mysql stop
     sudo service apache2 start & sudo service mysql start
