@@ -50,15 +50,15 @@ lamp_laucher(){
 
 # LOGIC
 
-ssh_laucher &>/dev/null
-lamp_laucher
+# ssh_laucher &>/dev/null
+# lamp_laucher
 
 
-if mount | grep /desadrupal > /dev/null; then
-    clear
-else
-    mountdesadrupal
-fi
+# if mount | grep /desadrupal > /dev/null; then
+#     clear
+# else
+#     mountdesadrupal
+# fi
 
 
-gosi al
+# gosi al
