@@ -13,5 +13,8 @@ ssh_laucher(){
 }
 ssh_laucher &>/dev/null
 
-source ~/ccktools/.ccktools_aliases & source ~/ccktools/.ccktools_functions
-mountdesadrupal & cd /c/wsl/sites
+source ~/ccktools/.ccktools_aliases
+source ~/ccktools/.ccktools_functions
+
+mountdesadrupal
+cd /c/wsl/sites
