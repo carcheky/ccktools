@@ -33,7 +33,7 @@ if [ -d ${CONF_SITE_FOLDER} ]; then
 else
   echo "==> folder ${CONF_SITE_FOLDER} does not exist."
   echo "==> Creating...."
-  sudo mkdir ${CONF_SITE_FOLDER}
+  sudo mkdir -p ${CONF_SITE_FOLDER}
 fi
 
 if [ -f ${CONF_SITES_ENABLED} ]; then
