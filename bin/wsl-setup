@@ -281,8 +281,7 @@ sudo dpkg --configure -a
 
 # check_version
 
-if -d /c/wsl 
-then
+if [ -d /c/wsl ] ; then
   mkdir -p '/c/wsl/error'
   echo "======================">/c/wsl/error/error-ccktools.log
 fi
