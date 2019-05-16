@@ -19,7 +19,7 @@ source ~/ccktools/.ccktools_functions
 
 
 if mount | grep /desadrupal > /dev/null; then
-    echo "."
+    echo "desadrupal montado"
 else
     mountdesadrupal
 fi
