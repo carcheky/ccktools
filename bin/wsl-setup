@@ -186,14 +186,19 @@ lamp_install(){
     fi
 
     sudo apt install php-mbstring -y
+    sudo apt install php-curl -y
+    sudo apt install zip php-zip -y
     sudo apt install mcrypt -y
     sudo apt install composer -y
 
     sudo phpenmod mcrypt
+    sudo phpenmod zip
     sudo phpenmod mbstring
 
     sudo a2enmod rewrite
     sudo a2enmod vhost_alias
+
+    composer global require hirak/prestissimo
 
     sudo service apache2 stop & sudo service mysql stop
     sudo service apache2 start & sudo service mysql start
