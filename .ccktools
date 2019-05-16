@@ -1,5 +1,15 @@
 #!/bin/bash
 
+SERVICE="ssh-agent"
+if pgrep -x "$SERVICE" 2>/dev/null
+then
+    echo "$SERVICE is running yet"
+else
+    echo "starting $SERVICE"
+    eval `ssh-agent -s` 2>/dev/null
+    ssh-add -q ~/.ssh/id_rsa_c* 2>/dev/null
+fi
+
 cd /c/wsl/sites
 
 source ~/ccktools/.ccktools_aliases
