@@ -17,20 +17,3 @@ gosites(){
         cd /c/wsl/sites
     fi
 }
-
-new_vhost(){
-
-if [[ ! -f /etc/apache2/sites-avaivable/$1.conf ]]; then
-    sudo echo "
-<VirtualHost *:80>
-    ServerName $1
-    ServerAdmin webmaster@$1
-    DocumentRoot /c/wsl/sites/$1/docroot
-    RewriteEngine On
-    RewriteOptions inherit
-    CustomLog /var/log/apache2/$1.log combined
-</VirtualHost>
-    " >> /etc/apache2/sites-avaivable/$1.conf
-    sudo a2ensite $1.conf
-fi
-}

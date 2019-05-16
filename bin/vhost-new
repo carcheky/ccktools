@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Site to add
+SITE=$1
+
+CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
+CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
+CONF_SITE_FOLDER="/c/wsl/sites/${SITE}/docroot"
+CONF_LOG_FOLDER="/c/wsl/sites/${SITE}/log"
+
+if [ -f ${CONF_SITES_AVAILABLE} ]; then
+  echo "==> ${CONF_SITES_AVAILABLE} exists."
+else
+  echo "==> CONF_SITES_AVAILABLE ${CONF_SITES_AVAILABLE} does not exist."
+  echo "==> Creating...."
+  sudo touch  ${CONF_SITES_AVAILABLE}
+  sudo echo "
+  <VirtualHost *:80>
+      ServerName ${SITE}
+      ServerAdmin webmaster@${SITE}.test
+      DocumentRoot ${CONF_SITE_FOLDER}
+      RewriteEngine On
+      RewriteOptions inherit
+      CustomLog ${CONF_LOG_FOLDER}/${SITE}.log combined
+  </VirtualHost>
+  " | sudo tee --append ${CONF_SITES_AVAILABLE}
+fi
+
+if [ -d ${CONF_SITE_FOLDER} ]; then
+  echo "==> folder ${CONF_SITE_FOLDER} exists."
+else
+  echo "==> folder ${CONF_SITE_FOLDER} does not exist."
+  echo "==> Creating...."
+  sudo mkdir ${CONF_SITE_FOLDER}
+fi
+
+if [ -f ${CONF_SITES_ENABLED} ]; then
+   echo "==> enabled conf ${CONF_SITES_ENABLED} exists."
+
+else
+  echo "==> enabled ${CONF_SITES_ENABLED} does not exist."
+  echo "==> Enabling...."
+  sudo a2ensite ${SITE}.conf
+fi
+
+sudo service apache2 reload
+sudo service apache2 restart
+
+ls -la ${CONF_SITES_ENABLED}
+ls -la ${CONF_SITE_FOLDER}
+
+echo "http://${SITE}/"
+
+echo "add 127.0.0.1 ${SITE} to hosts file & flush dns (recommended http://www.abelhadigital.com/hostsman/)"
