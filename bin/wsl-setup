@@ -272,3 +272,5 @@ echo "==> zsh_install" >>/c/wsl/error/error-ccktools.log
 zsh_install 2>>/c/wsl/error/error-ccktools.log
 create_links
 wsl_stop
+
+rm $HOME/wsl-setu*
