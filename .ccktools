@@ -35,6 +35,8 @@ ssh_laucher(){
       sudo chmod 600 ~/.ssh/*.pub
       eval `ssh-agent -s`
       ssh-add -q ~/.ssh/id_rsa_c*
+      sleep 2
+      clear
   fi
 }
 
