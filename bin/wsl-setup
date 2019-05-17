@@ -179,6 +179,7 @@ lamp_install(){
     sudo find /etc/php/ -name php.ini -exec sed -i 's/memory_limit = 128M/memory_limit = 2G/g' {} \;
 
     sudo chmod 777 /etc/apache2/apache2.conf
+    sudo chmod 777 /etc/apache2/mods-available/dir.conf
     sudo usermod -d /var/lib/mysql/ mysql
     sudo useradd -g www-data user
   
@@ -303,7 +304,6 @@ rm $HOME/wsl-setu*
 
 sudo echo "
 /c/wsl/user/ccktools/bin/wsl-update
-exit
 " >> ~/.bashrc
 
 wsl_stop
