@@ -32,7 +32,8 @@ ssh_laucher(){
       echo "starting $SERVICE"
       sudo chmod 700 ~/.ssh
       sudo chmod 600  ~/.ssh/*
-      sudo chmod 644 ~/.ssh/*.pub
+      sudo chmod 600 ~/.ssh/*.pub
+       wsl-stop
       eval `ssh-agent -s`
       ssh-add -q ~/.ssh/id_rsa_c*
   fi
