@@ -29,3 +29,28 @@ or
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup?$(date +%s))"
 ```
+
+
+##### - add to: /etc/apache2/apache2.conf
+
+```
+Servername localhost
+AcceptFilter http none
+AcceptFilter https none
+
+<Directory /c/vhost>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+</Directory>
+```
+
+##### - add php priority in /etc/apache2/mods-available/dir.conf
+
+```
+<IfModule mod_dir.c>
+    DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+```
