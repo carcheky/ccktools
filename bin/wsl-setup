@@ -305,11 +305,6 @@ create_links
 
 rm $HOME/wsl-setu*
 
-if ! grep -q "/c/wsl/user/ccktools/bin/wsl-update" ; then
-sudo echo "
-/c/wsl/user/ccktools/bin/wsl-update
-" >> ~/.bashrc
-fi
 sudo apt install figlet -y
 figlet "todo va bien"
 sleep 5
