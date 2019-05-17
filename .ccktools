@@ -35,8 +35,7 @@ ssh_laucher(){
       sudo chmod 600 ~/.ssh/*.pub
       eval `ssh-agent -s`
       ssh-add -q ~/.ssh/id_rsa_c*
-      sleep 3
-      clear
+
   fi
 }
 
@@ -58,7 +57,8 @@ lamp_laucher(){
 ssh_laucher 2>/dev/null
 # &>/dev/null
 lamp_laucher
-
+sleep 3
+clear
 
 # if mount | grep /desadrupal > /dev/null; then
 #     clear
