@@ -57,7 +57,6 @@ lamp_laucher(){
 ssh_laucher 2>/dev/null
 # &>/dev/null
 lamp_laucher
-sleep 3
 clear
 
 # if mount | grep /desadrupal > /dev/null; then
