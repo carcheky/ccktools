@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sudo dpkg --configure -a &>/dev/null
 ########
 # INFO #
 ########
@@ -149,13 +149,13 @@ zsh_install(){
   # fi
 }
 
+
 lamp_install(){
   # echo "==> quieres instalar lamp? (y/n)"
   # read WSL_LAMP
   # if [ ${WSL_LAMP} = "y" ]; then
     sudo apt install -y apache2 php
     sudo apt install -y php7.2-fpm libapache2-mod-php7.2 php7.2 php7.2-curl php7.2-gd php7.2-mbstring  php7.2-mysql php7.2-xml php7.2-zip php7.2-common
-
 
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
@@ -298,6 +298,12 @@ lamp_install 2>>/c/wsl/error/error-ccktools.log
 echo "==> zsh_install" >>/c/wsl/error/error-ccktools.log
 zsh_install 2>>/c/wsl/error/error-ccktools.log
 create_links
-wsl_stop
 
 rm $HOME/wsl-setu*
+
+sudo echo "
+/c/wsl/user/ccktools/bin/wsl-update
+exit
+" >> ~/.bashrc
+
+wsl_stop
