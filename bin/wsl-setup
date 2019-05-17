@@ -77,6 +77,7 @@ set_dirs() {
     mkdir -p '/c/wsl/sites'
     mkdir -p '/c/wsl/user'
     mkdir -p '/c/wsl/error'
+    mkdir -p '/c/wsl/log'
     sudo chown -R user:user '/c/wsl/'
     cd '/c/wsl/user'
     git clone https://github.com/carcheky/ccktools.git
