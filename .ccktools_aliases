@@ -13,7 +13,7 @@ git remote set-url origin git@github.com:carcheky/ccktools.git;
 git remote -v;"
 
 # DRUSH ALIAS
-alias ccron='drush cc all 2>/dev/null && drush cr 2>/dev/null && drush cron'
+alias ccron='drush cr && drush cron'
 alias drexport='drush sql-dump > database.sql -v'
 alias drimport='drush sql-drop -y; drush sql-cli < database.sql -v'
 alias drws='clear; drush ws --tail --full'
