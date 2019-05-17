@@ -5,7 +5,7 @@ alias ll="ls -la"
 alias mountdesadrupal="sudo mount -t drvfs '\\\\desadrupal\\html' /desadrupal; sudo mount -t drvfs '\\\\desadrupal8\\html' /desadrupal8"
 
 # SERVER ALIAS
-alias wsl-powerup-php="sed -i 's/post_max_size = 8M/post_max_size = 8G/g' ~/ubuntu-tools-wsl/config/php*.ini; sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' ~/ubuntu-tools-wsl/config/php*.ini; sed -i 's/memory_limit = 128M/memory_limit = 2G/g' ~/ubuntu-tools-wsl/config/php*.ini"
+alias wsl-powerup-php="sudo find /etc/php/ -name php.ini -exec sed -i 's/post_max_size = 8M/post_max_size = 8G/g' {} \; sudo find /etc/php/ -name php.ini -exec sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' {} \; sudo find /etc/php/ -name php.ini -exec sed -i 's/memory_limit = 128M/memory_limit = 2G/g' {} \;"
 alias change-repo="cd; git config --global user.name \"carcheky\"; git config --global user.email \"carcheky@gmail.com\";
 ssh-keygen -t rsa -b 4096 -C \"carcheky@gmail.com\";
 cd ~/ccktools;
