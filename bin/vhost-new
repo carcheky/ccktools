@@ -8,7 +8,7 @@ SITE=$1
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
 CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
 CONF_SITE_FOLDER="/c/wsl/sites/${SITE}/docroot"
-CONF_LOG_FOLDER="/c/wsl/sites/${SITE}/log"
+CONF_LOG_FOLDER="/c/wsl/log/"
 
 if [ -f ${CONF_SITES_AVAILABLE} ]; then
   echo "==> ${CONF_SITES_AVAILABLE} exists."
