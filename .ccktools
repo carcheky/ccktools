@@ -50,7 +50,7 @@ lamp_laucher(){
 
 # LOGIC
 
-# ssh_laucher &>/dev/null
+ssh_laucher &>/dev/null
 lamp_laucher
 
 
