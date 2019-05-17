@@ -181,13 +181,44 @@ lamp_install(){
     sudo chmod 777 /etc/apache2/apache2.conf
     sudo usermod -d /var/lib/mysql/ mysql
     sudo useradd -g www-data user
+  
+    if ! grep -q "
+Servername localhost
+AcceptFilter http none
+AcceptFilter https none
 
-    if ! grep -q "AcceptFilter https none" /etc/apache2/apache2.conf ; then
-      sudo echo "AcceptFilter https none" >> /etc/apache2/apache2.conf
+<Directory /c/wsl/sites>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+</Directory>
+    "  /etc/apache2/apache2.conf ; then
+
+      sudo echo "
+Servername localhost
+AcceptFilter http none
+AcceptFilter https none
+
+<Directory /c/wsl/sites>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+</Directory>
+    " >>  /etc/apache2/apache2.conf
     fi
-    if ! grep -q "AcceptFilter http none" /etc/apache2/apache2.conf ; then
-      sudo echo "AcceptFilter http none" >> /etc/apache2/apache2.conf
-    fi
+
+if ! grep -q "
+<IfModule mod_dir.c>
+    DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+" /etc/apache2/mods-available/dir.conf ; then
+
+sudo echo "
+<IfModule mod_dir.c>
+    DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+" > /etc/apache2/mods-available/dir.conf 
+fi
 
     sudo apt install php-mbstring -y
     sudo apt install php-curl -y
