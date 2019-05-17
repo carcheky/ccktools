@@ -180,6 +180,7 @@ lamp_install(){
 
     sudo chmod 777 /etc/apache2/apache2.conf
     sudo usermod -d /var/lib/mysql/ mysql
+    sudo useradd -g www-data user
 
     if ! grep -q "AcceptFilter https none" /etc/apache2/apache2.conf ; then
       sudo echo "AcceptFilter https none" >> /etc/apache2/apache2.conf
