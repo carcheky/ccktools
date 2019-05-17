@@ -30,6 +30,9 @@ ssh_laucher(){
       echo "$SERVICE is running yet"
   else
       echo "starting $SERVICE"
+      sudo chmod 700 ~/.ssh
+      sudo chmod 600  ~/.ssh/*
+      sudo chmod 644 ~/.ssh/*.pub
       eval `ssh-agent -s`
       ssh-add -q ~/.ssh/id_rsa_c*
   fi
