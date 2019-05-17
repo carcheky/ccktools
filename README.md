@@ -38,7 +38,7 @@ Servername localhost
 AcceptFilter http none
 AcceptFilter https none
 
-<Directory /c/vhost>
+<Directory /c/wsl/sites>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
