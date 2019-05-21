@@ -21,6 +21,9 @@ fi
 
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
+if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
+  source ~/ccktools/.ccktools_custom
+fi
 
 # FUNCTIONS
 ssh_laucher(){
@@ -52,14 +55,13 @@ lamp_laucher(){
 
 # LOGIC
 
-ssh_laucher 2>/dev/null
-
 # if mount | grep /desadrupal > /dev/null; then
 #     clear
 # else
 #     mountdesadrupal
 # fi
 
+ssh_laucher 2>/dev/null
 lamp_laucher
 clear
 gosi al
