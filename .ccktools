@@ -60,7 +60,7 @@ lamp_laucher(){
 #     mountdesadrupal
 # fi
 
-local ret_status="%2~(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+local ret_status="%2~(?:%2~{$fg_bold[green]%2~}➜ :%2~{$fg_bold[red]%2~}➜ )"
 echo ${ret_status}
 lamp_laucher
 clear
