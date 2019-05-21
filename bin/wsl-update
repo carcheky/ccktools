@@ -18,4 +18,4 @@ wsl_update(){
 }
 
 wsl_update
-exit
+exit 0
