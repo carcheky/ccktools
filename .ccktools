@@ -18,7 +18,8 @@ fi
 
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
-ret_status='%(?:%2{%}➜ :%2{%}➜ )'
+
+ret_status='%(?:%2~{%}➜ :%2~{%}➜ )'
 
 
 # FUNCTIONS
