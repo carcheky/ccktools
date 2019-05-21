@@ -64,7 +64,7 @@ echo ${ret_status}
 ssh_laucher 2>/dev/null
 # &>/dev/null
 # lamp_laucher
-sleep zsh_customize
+sleep 5 && zsh_customize
 # clear
 # if mount | grep /desadrupal > /dev/null; then
 #     clear
