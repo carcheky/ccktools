@@ -19,8 +19,6 @@ fi
 source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
 
-
-
 # FUNCTIONS
 
 ssh_laucher(){
