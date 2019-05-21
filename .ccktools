@@ -1,8 +1,10 @@
 #!/bin/bash
 
+# CUSTOM CONFIGS
+PROMPT='${ret_status} %{$fg[cyan]%}%2~$reset_color%} $(git_prompt_info)'
+
 
 # LOAD SOURCES
-
 if [[ -d "$HOME/bin" ]]; then
     export PATH="~/bin:$PATH"
 fi
@@ -12,7 +14,7 @@ if [[ -d "$HOME/.config/composer/vendor/bin" ]]; then
 fi
 
 
-# Include Drush bash customizations.
+# INCLUDE DRUSH BASH CUSTOMIZATIONS.
 if [ -f "$HOME/.drush/drush.bashrc" ] ; then
   source $HOME/.drush/drush.bashrc
 fi
@@ -21,7 +23,6 @@ source ~/ccktools/.ccktools_aliases
 source ~/ccktools/.ccktools_functions
 
 # FUNCTIONS
-
 ssh_laucher(){
   SERVICE="ssh-agent"
   if pgrep -x "$SERVICE"
@@ -51,17 +52,13 @@ lamp_laucher(){
 
 # LOGIC
 
-# ssh_laucher 2>/dev/null
-# &>/dev/null
+ssh_laucher 2>/dev/null
 
 # if mount | grep /desadrupal > /dev/null; then
 #     clear
 # else
 #     mountdesadrupal
 # fi
-
-PROMPT='${ret_status} %{$fg[cyan]%}%2~$reset_color%} $(git_prompt_info)'
-
 
 lamp_laucher
 clear
