@@ -58,7 +58,7 @@ ssh_laucher 2>/dev/null
 # &>/dev/null
 # lamp_laucher
 clear
-ret_status='%(?:%2~{%}➜ :%2~{%}➜ )'
+ret_status='%(?:%2~\{%}➜ :%2~{%}➜ )'
 
 # if mount | grep /desadrupal > /dev/null; then
 #     clear
