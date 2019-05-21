@@ -60,13 +60,13 @@ lamp_laucher(){
 #     mountdesadrupal
 # fi
 
-local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT='${ret_status} %{$fg[cyan]%2~}%2~c%2~$reset_color%2~} $(git_prompt_info)'
+local ret_status="%2~(?:%2~{$fg_bold[green]%2~}➜ :%2~{$fg_bold[red]%2~}➜ )"
+PROMPT='${ret_status} %2~{$fg[cyan]%2~}%2~c%2~$reset_color%2~} $(git_prompt_info)'
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+ZSH_THEME_GIT_PROMPT_PREFIX="%2~{$fg_bold[blue]%2~}git:(%2~{$fg[red]%2~}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%2~{$reset_color%2~} "
+ZSH_THEME_GIT_PROMPT_DIRTY="%2~{$fg[blue]%2~}) %2~{$fg[yellow]%2~}✗"
+ZSH_THEME_GIT_PROMPT_CLEAN="%2~{$fg[blue]%2~})"
 
 lamp_laucher
 clear
