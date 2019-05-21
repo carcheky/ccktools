@@ -11,6 +11,14 @@ stop() {
     sudo service apache2 stop sudo service mysql stop
 }
 
+
+if [$1 != "restart"] | [$1 = "start"] | [$1 != "stop"];
+then
+    echo "=> must run:"
+    echo "=> lamp restart|start|stop"
+    restart
+fi
+
 if [$1 = "restart"];
 then
     echo "=> restarting..."
