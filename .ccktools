@@ -49,6 +49,7 @@ lamp_laucher(){
 }
 
 zsh_customize(){
+  echo "=> customizing"
   local ret_status="%(?:%{$fg_bold[green]%2~}➜ :%{$fg_bold[red]%2~}➜ )"
   PROMPT='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
   ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
@@ -63,7 +64,7 @@ ssh_laucher 2>/dev/null
 # &>/dev/null
 # lamp_laucher
 zsh_customize
-clear
+# clear
 echo ${ret_status}
 # if mount | grep /desadrupal > /dev/null; then
 #     clear
