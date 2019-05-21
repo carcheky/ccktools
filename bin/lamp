@@ -1,32 +1,22 @@
 #!/bin/bash
-
-restart(){
-    sudo service apache2 restart
-    sudo service mysql restart
+restart() {
+    sudo service apache2 restart sudo service mysql restart
 }
 
-start(){
-    sudo service apache2 start
-    sudo service mysql start
+start() {
+    sudo service apache2 start sudo service mysql start
 }
 
-stop(){
-    sudo service apache2 stop
-    sudo service mysql stop
+stop() {
+    sudo service apache2 stop sudo service mysql stop
 }
 
-
-if [ $1 = "restart" ]; then
-    echo "=> restarting..."
-    restart
-fi
-
-if [ $1 = "start" ]; then
-    echo "=> starting..."
-    start
-fi
-
-if [ $1 = "stop" ]; then
-    echo "=> stopping..."
-    stop
-fi
+if [$1 = "restart"];
+then echo "=> restarting..."
+restart fi
+if [$1 = "start"];
+then echo "=> starting..."
+start fi
+if [$1 = "stop"];
+then echo "=> stopping..."
+stop fi
