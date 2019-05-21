@@ -12,11 +12,17 @@ stop() {
 }
 
 if [$1 = "restart"];
-then echo "=> restarting..."
-restart fi
+then
+    echo "=> restarting..."
+    restart
+fi
 if [$1 = "start"];
-then echo "=> starting..."
-start fi
+then
+    echo "=> starting..."
+    start
+fi
 if [$1 = "stop"];
-then echo "=> stopping..."
-stop fi
+then
+    echo "=> stopping..."
+    stop
+fi
