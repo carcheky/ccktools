@@ -55,11 +55,6 @@ lamp_laucher(){
 
 # LOGIC
 
-# if mount | grep /desadrupal > /dev/null; then
-#     clear
-# else
-#     mountdesadrupal
-# fi
 
 ssh_laucher 2>/dev/null
 lamp_laucher
