@@ -6,7 +6,7 @@ PROMPT='${ret_status} %{$fg[cyan]%}%3~$reset_color%} $(git_prompt_info)'
 
 # LOAD SOURCES
 if [[ -d "$HOME/bin" ]]; then
-    export PATH="~/bin:$PATH"
+    export PATH="$HOME/bin:$PATH"
 fi
 
 if [[ -d "$HOME/.config/composer/vendor/bin" ]]; then
@@ -19,10 +19,10 @@ if [ -f "$HOME/.drush/drush.bashrc" ] ; then
   source $HOME/.drush/drush.bashrc
 fi
 
-source ~/ccktools/.ccktools_aliases
-source ~/ccktools/.ccktools_functions
+source $HOME/ccktools/.ccktools_aliases
+source $HOME/ccktools/.ccktools_functions
 if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
-  source ~/ccktools/.ccktools_custom
+  source $HOME/ccktools/.ccktools_custom
 fi
 
 # FUNCTIONS
@@ -33,11 +33,11 @@ ssh_laucher(){
       echo "$SERVICE is running yet"
   else
       echo "starting $SERVICE"
-      sudo chmod 700 ~/.ssh
-      sudo chmod 600  ~/.ssh/*
-      sudo chmod 600 ~/.ssh/*.pub
+      sudo chmod 700 $HOME/.ssh
+      sudo chmod 600  $HOME/.ssh/*
+      sudo chmod 600 $HOME/.ssh/*.pub
       eval `ssh-agent -s`
-      ssh-add -q ~/.ssh/id_rsa_c*
+      ssh-add -q $HOME/.ssh/id_rsa_c*
 
   fi
 }
