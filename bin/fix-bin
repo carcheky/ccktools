@@ -1,8 +1,9 @@
 #!/bin/bash
 
-if [[ -d ~/ccktools/bin ]]; then
-    find ~/ccktools/bin -type f -exec chmod +x {} \;
-    find ~/ccktools/bin -type f -exec dos2unix {} \;
+if [[ -d $HOME/ccktools/bin ]]; then
+    find $HOME/ccktools/bin -type f -exec chmod +x {} \;
+    find $HOME/ccktools/bin -type f -exec dos2unix {} \;
+    dos2unix $HOME/ccktools/.ccktools_*
 fi
 
 if [[ -d /c/Users/cmartinezv/Documents/GitHub/ccktools/bin ]]; then
