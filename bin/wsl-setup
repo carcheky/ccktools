@@ -128,8 +128,8 @@ zsh_install(){
       # sudo chmod -R 777 ~/.z*
       # compaudit | xargs chmod g-w,o-w
 
-      if ! grep -q "bash -c -l zsh" ~/.bashrc ; then
-        sudo echo "bash -c -l zsh" >> ~/.bashrc
+      if ! grep -q "bash -c -l zsh; exit" ~/.bashrc ; then
+        sudo echo "bash -c -l zsh; exit" >> ~/.bashrc
       fi
 
       sudo chmod 666 ~/.zshrc
