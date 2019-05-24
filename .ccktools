@@ -53,9 +53,10 @@ lamp_laucher(){
 
 # LOGIC
 
-
+echo "loading ssh..."
 ssh_laucher &>/dev/null
-lamp_laucher
+echo "loading lamp..."
+lamp_laucher &>/dev/null
 
 if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
   source $HOME/ccktools/.ccktools_custom
