@@ -21,9 +21,7 @@ fi
 
 source $HOME/ccktools/.ccktools_aliases
 source $HOME/ccktools/.ccktools_functions
-if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
-  source $HOME/ccktools/.ccktools_custom
-fi
+
 
 # FUNCTIONS
 ssh_laucher(){
@@ -56,7 +54,9 @@ lamp_laucher(){
 # LOGIC
 
 
-ssh_laucher 2>/dev/null
+ssh_laucher &>/dev/null
 lamp_laucher
-# clear
-gosi al
+
+if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
+  source $HOME/ccktools/.ccktools_custom
+fi
