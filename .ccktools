@@ -58,5 +58,5 @@ lamp_laucher(){
 
 ssh_laucher 2>/dev/null
 lamp_laucher
-clear
+# clear
 gosi al
