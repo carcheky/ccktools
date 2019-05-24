@@ -58,8 +58,7 @@ ssh_laucher &>/dev/null
 echo "=> loading lamp..."
 lamp_laucher &>/dev/null
 
+gosi
 if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
   source $HOME/ccktools/.ccktools_custom
 fi
-
-gosi
