@@ -31,18 +31,18 @@ wsl_update(){
   # check_version
 }
 
-update_repo() {
-  if [ -d ~/ccktools ]; then
-    cd ~/ccktools/
-    if git pull
-      then
-        echo "==> ccktools updated"
-      else
-        echo "==> ccktools update failed"
-    fi
-    # check_version
-  fi
-}
+# update_repo() {
+#   if [ -d $HOME/ccktools ]; then
+#     cd $HOME/ccktools/
+#     if git pull
+#       then
+#         echo "==> ccktools updated"
+#       else
+#         echo "==> ccktools update failed"
+#     fi
+#     # check_version
+#   fi
+# }
 
 check_version(){
   echo "==> Online version:" $(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/config/version?\${DATE_SETUP}) 2>>/dev/null
@@ -95,15 +95,15 @@ create_links() {
     sudo ln -s /c/wsl/user/ccktools/bin  $HOME
     sudo ln -s /c/wsl/user/ccktools  $HOME
 
-    if ! grep -q "source $HOME/ccktools/.ccktools" $HOME/.bashrc ; then
-      echo "source $HOME/ccktools/.ccktools" >> $HOME/.bashrc
-    fi
+    # if ! grep -q "source $HOME/ccktools/.ccktools" $HOME/.bashrc ; then
+    #   echo "source $HOME/ccktools/.ccktools" >> $HOME/.bashrc
+    # fi
 
-    if -f "$HOME/.zshrc" ; then
-      if ! grep -q "source $HOME/ccktools/.ccktools" $HOME/.zshrc ; then
-        echo "source $HOME/ccktools/.ccktools" >> $HOME/.zshrc
-      fi
-    fi
+    # if -f "$HOME/.zshrc" ; then
+    #   if ! grep -q "source $HOME/ccktools/.ccktools" $HOME/.zshrc ; then
+    #     echo "source $HOME/ccktools/.ccktools" >> $HOME/.zshrc
+    #   fi
+    # fi
     sudo apt install dos2unix -y 2>/dev/null
 
     find $HOME/bin/ -type f -exec chmod +x {} \;
@@ -123,28 +123,29 @@ zsh_install(){
 
       sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh?\${DATE_SETUP})"
 
-      # sudo chown -R user:user ~
-      # sudo chown -R root:root ~/.oh-my-zsh
-      # sudo chmod -R 777 ~/.z*
+      # sudo chown -R user:user $HOME
+      # sudo chown -R root:root $HOME/.oh-my-zsh
+      # sudo chmod -R 777 $HOME/.z*
       # compaudit | xargs chmod g-w,o-w
 
-      if ! grep -q "bash -c -l zsh; exit" ~/.bashrc ; then
-        sudo echo "bash -c -l zsh; exit" >> ~/.bashrc
+      if ! grep -q "bash -c -l zsh; exit" $HOME/.bashrc ; then
+        sudo echo "bash -c -l zsh; exit" >> $HOME/.bashrc
       fi
 
-      sudo chmod 666 ~/.zshrc
-      sudo chown user:user ~/.zsh_history
-      # if ! grep -q "export PATH=~/bin:\$PATH" ~/.zshrc ; then
-      #   sudo echo "export PATH=~/bin:\$PATH" >> ~/.zshrc
+      sudo chmod 666 $HOME/.zshrc
+      sudo chown user:user $HOME/.zsh_history
+      # if ! grep -q "export PATH=$HOME/bin:\$PATH" $HOME/.zshrc ; then
+      #   sudo echo "export PATH=$HOME/bin:\$PATH" >> $HOME/.zshrc
       # fi
 
-      if ! grep -q "source ~/ccktools/.ccktools" ~/.zshrc ; then
-        sudo echo "source ~/ccktools/.ccktools" >> ~/.zshrc
-        sudo find ~ -name .bashrc -exec sed -i 's/source ~\/ccktools\/.ccktools/# source ~\/ccktools\/.ccktools/g' {} \;
+      if ! grep -q "source $HOME/ccktools/.ccktools" $HOME/.zshrc ; then
+        sudo echo "source $HOME/ccktools/.ccktools" >> $HOME/.zshrc
+        sed -i 's/source \/home\/user\/ccktools\/.ccktools/# source \/home\/user\/ccktools\/.ccktools/g' $HOME/.bashrc
+        cat $HOME/.bashrc | grep "# source /home/user/ccktools/.ccktools"
       fi
 
-      # if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" ~/.zshrc ; then
-      #   echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> ~/.zshrc
+      # if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" $HOME/.zshrc ; then
+      #   echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> $HOME/.zshrc
       # fi
   # fi
 }
@@ -184,45 +185,29 @@ lamp_install(){
     sudo usermod -d /var/lib/mysql/ mysql
     sudo useradd -g www-data user
 
-    if ! grep -q "
-Servername localhost
-AcceptFilter http none
-AcceptFilter https none
-
-<Directory /c/wsl/sites>
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-</Directory>
-    "  /etc/apache2/apache2.conf ; then
-
-      sudo echo "
-Servername localhost
-AcceptFilter http none
-AcceptFilter https none
-
-<Directory /c/wsl/sites>
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-</Directory>
-    " >>  /etc/apache2/apache2.conf
-    fi
-
-if ! grep -q "
-<IfModule mod_dir.c>
-    DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
-</IfModule>
-" /etc/apache2/mods-available/dir.conf ; then
+if ! grep -q "AcceptFilter http none"  /etc/apache2/apache2.conf ; then
 
 sudo echo "
-<IfModule mod_dir.c>
-    DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
-</IfModule>
-" > /etc/apache2/mods-available/dir.conf
+Servername localhost
+AcceptFilter http none
+AcceptFilter https none
+
+<Directory /c/wsl/sites>
+Options Indexes FollowSymLinks
+AllowOverride All
+Require all granted
+</Directory>
+" >>  /etc/apache2/apache2.conf
 fi
-cat /etc/apache2/apache2.conf
-cat /etc/apache2/mods-available/dir.conf
+
+if ! grep -q "DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm" /etc/apache2/mods-available/dir.conf ; then
+sudo echo "
+<IfModule mod_dir.c>
+DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+" > /etc/apache2/mods-available/dir.conf 
+fi
+
 
     sudo apt install php-mbstring -y
     sudo apt install php-curl -y
@@ -241,8 +226,8 @@ cat /etc/apache2/mods-available/dir.conf
     composer global require drush/drush:^8
     $HOME/.config/composer/vendor/bin/drush init -n
 
-    # if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" ~/.bashrc ; then
-    #   echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> ~/.bashrc
+    # if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" $HOME/.bashrc ; then
+    #   echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> $HOME/.bashrc
     # fi
 
     sudo service apache2 stop & sudo service mysql stop
