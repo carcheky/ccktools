@@ -134,6 +134,7 @@ zsh_install(){
 
       sudo chmod 666 $HOME/.zshrc
       sudo chown user:user $HOME/.zsh_history
+      
       # if ! grep -q "export PATH=$HOME/bin:\$PATH" $HOME/.zshrc ; then
       #   sudo echo "export PATH=$HOME/bin:\$PATH" >> $HOME/.zshrc
       # fi
