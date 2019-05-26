@@ -144,6 +144,9 @@ zsh_install(){
         cat $HOME/.bashrc | grep "# source /home/user/ccktools/.ccktools"
       fi
 
+      if ! grep -q "plugins=(git z ubuntu vscode)" $HOME/.zshrc ; then
+        sed -i 's/plugins=(git)/plugins=(git z ubuntu vscode)/g' $HOME/.zshrc && cat .zshrc | grep git
+      fi
       # if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" $HOME/.zshrc ; then
       #   echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> $HOME/.zshrc
       # fi
@@ -286,9 +289,9 @@ lamp_install 2>>/c/wsl/error/error-ccktools.log
 
 echo "==> zsh_install" >>/c/wsl/error/error-ccktools.log
 zsh_install 2>>/c/wsl/error/error-ccktools.log
-create_links
+create_links &>/dev/null
 
-rm $HOME/wsl-setu*
+rm $HOME/wsl-setu* &>/dev/null
 
 sudo apt install figlet -y
 figlet "todo va bien"
