@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # CUSTOM CONFIGS
-PROMPT='${ret_status} %{$fg[cyan]%}%3~$reset_color%} $(git_prompt_info)'
+# PROMPT='${ret_status} %{$fg[cyan]%}%3~$reset_color%} $(git_prompt_info)'
 
 
 # LOAD SOURCES
