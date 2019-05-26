@@ -23,10 +23,6 @@ sudo apt update && sudo apt upgrade -y
 
 ### Setup
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-update?$(date +%s))"
-```
-or
-```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/bin/wsl-setup?$(date +%s))"
 ```
 
