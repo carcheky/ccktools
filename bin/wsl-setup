@@ -28,21 +28,7 @@ wsl_update(){
     git pull
     cd
   fi
-  # check_version
 }
-
-# update_repo() {
-#   if [ -d $HOME/ccktools ]; then
-#     cd $HOME/ccktools/
-#     if git pull
-#       then
-#         echo "==> ccktools updated"
-#       else
-#         echo "==> ccktools update failed"
-#     fi
-#     # check_version
-#   fi
-# }
 
 check_version(){
   echo "==> Online version:" $(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/config/version?\${DATE_SETUP}) 2>>/dev/null
@@ -63,13 +49,9 @@ set_wslconf() {
 }
 
 launcher_dirs(){
-  # echo "==> quieres instalar los scripts personalizados? (y/n)"
-  # read WSL_SETDIRS
-  # if [ ${WSL_SETDIRS} = "y" ]; then
     echo "==> wsl setdirs"
     set_dirs
     create_links
-  # fi
 }
 
 set_dirs() {
@@ -91,19 +73,9 @@ set_dirs() {
 
 create_links() {
   if [ -d /c/wsl/user/ccktools ]; then
-
     sudo ln -s /c/wsl/user/ccktools/bin  $HOME
     sudo ln -s /c/wsl/user/ccktools  $HOME
 
-    # if ! grep -q "source $HOME/ccktools/.ccktools" $HOME/.bashrc ; then
-    #   echo "source $HOME/ccktools/.ccktools" >> $HOME/.bashrc
-    # fi
-
-    # if -f "$HOME/.zshrc" ; then
-    #   if ! grep -q "source $HOME/ccktools/.ccktools" $HOME/.zshrc ; then
-    #     echo "source $HOME/ccktools/.ccktools" >> $HOME/.zshrc
-    #   fi
-    # fi
     sudo apt install dos2unix -y 2>/dev/null
 
     find $HOME/bin/ -type f -exec chmod +x {} \;
@@ -112,9 +84,6 @@ create_links() {
 }
 
 zsh_install(){
-  # echo "==> quieres instalar zsh? (y/n)"
-  # read WSL_ZSH
-  # if [ ${WSL_ZSH} = "y" ]; then
       sudo apt install git -y
       sudo apt install nodejs -y
       sudo apt install npm -y
@@ -123,21 +92,12 @@ zsh_install(){
 
       sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh?\${DATE_SETUP})"
 
-      # sudo chown -R user:user $HOME
-      # sudo chown -R root:root $HOME/.oh-my-zsh
-      # sudo chmod -R 777 $HOME/.z*
-      # compaudit | xargs chmod g-w,o-w
-
       if ! grep -q "echo '=> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" $HOME/.bashrc ; then
         sudo echo "echo '=> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" >> $HOME/.bashrc
       fi
 
       sudo chmod 666 $HOME/.zshrc
       sudo chown user:user $HOME/.zsh_history
-
-      # if ! grep -q "export PATH=$HOME/bin:\$PATH" $HOME/.zshrc ; then
-      #   sudo echo "export PATH=$HOME/bin:\$PATH" >> $HOME/.zshrc
-      # fi
 
       if ! grep -q "source $HOME/ccktools/.ccktools" $HOME/.zshrc ; then
         sudo echo "source $HOME/ccktools/.ccktools" >> $HOME/.zshrc
@@ -148,17 +108,10 @@ zsh_install(){
       if ! grep -q "plugins=(git z ubuntu vscode)" $HOME/.zshrc ; then
         sed -i 's/plugins=(git)/plugins=(git z ubuntu vscode)/g' $HOME/.zshrc && cat .zshrc | grep git
       fi
-      # if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" $HOME/.zshrc ; then
-      #   echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> $HOME/.zshrc
-      # fi
-  # fi
 }
 
 
 lamp_install(){
-  # echo "==> quieres instalar lamp? (y/n)"
-  # read WSL_LAMP
-  # if [ ${WSL_LAMP} = "y" ]; then
     sudo apt install -y apache2 php
     sudo apt install -y php7.2-fpm libapache2-mod-php7.2 php7.2 php7.2-curl php7.2-gd php7.2-mbstring  php7.2-mysql php7.2-xml php7.2-zip php7.2-common
 
@@ -214,7 +167,6 @@ DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
 " > /etc/apache2/mods-available/dir.conf
 fi
 
-
     sudo apt install php-mbstring -y
     sudo apt install php-curl -y
     sudo apt install zip php-zip unzip -y
@@ -232,45 +184,32 @@ fi
     composer global require drush/drush:^8
     $HOME/.config/composer/vendor/bin/drush init -n
 
-    # if ! grep -q "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"" $HOME/.bashrc ; then
-    #   echo "PATH=\"\$HOME/.config/composer/vendor/bin:\$PATH\"">> $HOME/.bashrc
-    # fi
-
     sudo service apache2 stop & sudo service mysql stop
     sudo service apache2 start & sudo service mysql start
-
 
     echo "==> Usa HeidiSQL para gestionar las bases de datos https://www.heidisql.com/"
     echo "==> Server:     localhost "
     echo "==> User:       root"
     echo "==> Password:   root"
-  # fi
 }
 
 
 ubuntu_update(){
-  # echo "==> ubuntu_update ? (y/n)"
-  # read WSL_UPDATE_UBUNTU
-  # if [ ${WSL_UPDATE_UBUNTU} = "y" ]; then
     echo "==> wsl ubuntu_update"
     echo "==> actualizando fuentes..."
     sudo apt update 2>/dev/null
 
     echo "==> actualizando paquetes..."
     sudo apt upgrade -y 2>/dev/null
-  # fi
 }
 
 ################
 # MAIN PROGRAM #
 ################
 
-
 set_wslconf
 rm -fr .wget-hsts
 sudo dpkg --configure -a
-
-# check_version
 
 if [ -d /c/wsl ] ; then
   mkdir -p '/c/wsl/error'
