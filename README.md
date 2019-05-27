@@ -50,3 +50,8 @@ AcceptFilter https none
 
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
 ```
+
+
+
+###### to test
+cd ; sed -i '$ d' .bashrc ; sudo rm -fr .oh* .z*
