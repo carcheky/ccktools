@@ -108,6 +108,7 @@ zsh_install(){
       if ! grep -q "plugins=(git z ubuntu vscode)" $HOME/.zshrc ; then
         sed -i 's/plugins=(git)/plugins=(git z ubuntu vscode)/g' $HOME/.zshrc && cat .zshrc | grep git
       fi
+      touch $HOME/.z
 }
 
 
