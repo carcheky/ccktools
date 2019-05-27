@@ -128,8 +128,8 @@ zsh_install(){
       # sudo chmod -R 777 $HOME/.z*
       # compaudit | xargs chmod g-w,o-w
 
-      if ! grep -q "bash -c -l zsh; exit" $HOME/.bashrc ; then
-        sudo echo "bash -c -l zsh; exit" >> $HOME/.bashrc
+      if ! grep -q "echo '=> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" $HOME/.bashrc ; then
+        sudo echo "echo '=> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" >> $HOME/.bashrc
       fi
 
       sudo chmod 666 $HOME/.zshrc
