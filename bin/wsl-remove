@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if grep -q "echo '=> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" $HOME/.bashrc ; then
+   sed -i '$ d'  $HOME/.bashrc
+fi
+ sudo rm -fr $HOME/.oh*  $HOME/.z*
