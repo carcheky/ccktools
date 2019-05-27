@@ -134,7 +134,7 @@ zsh_install(){
 
       sudo chmod 666 $HOME/.zshrc
       sudo chown user:user $HOME/.zsh_history
-      
+
       # if ! grep -q "export PATH=$HOME/bin:\$PATH" $HOME/.zshrc ; then
       #   sudo echo "export PATH=$HOME/bin:\$PATH" >> $HOME/.zshrc
       # fi
@@ -188,6 +188,8 @@ lamp_install(){
     sudo chmod 777 /etc/apache2/mods-available/dir.conf
     sudo usermod -d /var/lib/mysql/ mysql
     sudo useradd -g www-data user
+    sudo adduser user www-data
+
 
 if ! grep -q "AcceptFilter http none"  /etc/apache2/apache2.conf ; then
 
@@ -209,7 +211,7 @@ sudo echo "
 <IfModule mod_dir.c>
 DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
 </IfModule>
-" > /etc/apache2/mods-available/dir.conf 
+" > /etc/apache2/mods-available/dir.conf
 fi
 
 
