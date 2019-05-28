@@ -9,6 +9,9 @@ sudo dpkg --configure -a &>/dev/null
 # CONFIG #
 ##########
 
+BASE_PATH="/c"
+BASE_PATH_WSL="${BASE_PATH}/wsl"
+
 DATE_SETUP="$(date +%s)"
 NEW_THEME=robbyrussell
 
@@ -23,8 +26,8 @@ wsl_stop(){
 }
 
 wsl_update(){
-  if [[ -d /c/wsl/user/ccktools ]]; then
-    cd /c/wsl/user/ccktools
+  if [[ -d ${BASE_PATH_WSL}/user/ccktools ]]; then
+    cd ${BASE_PATH_WSL}/user/ccktools
     git pull
     cd
   fi
@@ -32,7 +35,7 @@ wsl_update(){
 
 check_version(){
   echo "==> Online version:" $(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/config/version?\${DATE_SETUP}) 2>>/dev/null
-  echo "==> Local version:" $(cat /c/wsl/user/ccktools/config/version  2>>/dev/null)
+  echo "==> Local version:" $(cat ${BASE_PATH_WSL}/user/ccktools/config/version  2>>/dev/null)
 }
 
 set_wslconf() {
@@ -55,13 +58,13 @@ launcher_dirs(){
 }
 
 set_dirs() {
-    mkdir -p '/c/wsl/'
-    mkdir -p '/c/wsl/sites'
-    mkdir -p '/c/wsl/user'
-    mkdir -p '/c/wsl/error'
-    mkdir -p '/c/wsl/log'
-    sudo chown -R user:user '/c/wsl/'
-    cd '/c/wsl/user'
+    mkdir -p "${BASE_PATH_WSL}/"
+    mkdir -p "${BASE_PATH_WSL}/sites"
+    mkdir -p "${BASE_PATH_WSL}/user"
+    mkdir -p "${BASE_PATH_WSL}/error"
+    mkdir -p "${BASE_PATH_WSL}/log"
+    sudo chown -R user:user "${BASE_PATH_WSL}/"
+    cd "${BASE_PATH_WSL}/user"
     git clone https://github.com/carcheky/ccktools.git
   if [ ! -d /desadrupal ]; then
     sudo mkdir /desadrupal
@@ -72,9 +75,9 @@ set_dirs() {
 }
 
 create_links() {
-  if [ -d /c/wsl/user/ccktools ]; then
-    sudo ln -s /c/wsl/user/ccktools/bin  $HOME
-    sudo ln -s /c/wsl/user/ccktools  $HOME
+  if [ -d ${BASE_PATH_WSL}/user/ccktools ]; then
+    sudo ln -s ${BASE_PATH_WSL}/user/ccktools/bin  $HOME
+    sudo ln -s ${BASE_PATH_WSL}/user/ccktools  $HOME
 
     sudo apt install dos2unix -y 2>/dev/null
 
@@ -167,7 +170,7 @@ Servername localhost
 AcceptFilter http none
 AcceptFilter https none
 
-<Directory /c/wsl/sites>
+<Directory ${BASE_PATH_WSL}/sites>
 Options Indexes FollowSymLinks
 AllowOverride All
 Require all granted
@@ -227,26 +230,26 @@ set_wslconf
 rm -fr .wget-hsts
 sudo dpkg --configure -a
 
-if [ -d /c/wsl ] ; then
-  mkdir -p '/c/wsl/error'
-  echo "======================">/c/wsl/error/error-ccktools.log
+if [ -d ${BASE_PATH_WSL} ] ; then
+  mkdir -p "${BASE_PATH_WSL}/error"
+  echo "======================">${BASE_PATH_WSL}/error/error-ccktools.log
 fi
-echo "${DATE_SETUP}">>/c/wsl/error/error-ccktools.log
-echo "======================">>/c/wsl/error/error-ccktools.log
-echo "==> wsl_update" >>/c/wsl/error/error-ccktools.log
-wsl_update 2>>/c/wsl/error/error-ccktools.log
+echo "${DATE_SETUP}">>${BASE_PATH_WSL}/error/error-ccktools.log
+echo "======================">>${BASE_PATH_WSL}/error/error-ccktools.log
+echo "==> wsl_update" >>${BASE_PATH_WSL}/error/error-ccktools.log
+wsl_update 2>>${BASE_PATH_WSL}/error/error-ccktools.log
 
-echo "==> ubuntu_update" >>/c/wsl/error/error-ccktools.log
-ubuntu_update 2>>/c/wsl/error/error-ccktools.log
+echo "==> ubuntu_update" >>${BASE_PATH_WSL}/error/error-ccktools.log
+ubuntu_update 2>>${BASE_PATH_WSL}/error/error-ccktools.log
 
-echo "==> launcher_dirs" >>/c/wsl/error/error-ccktools.log
-launcher_dirs 2>>/c/wsl/error/error-ccktools.log
+echo "==> launcher_dirs" >>${BASE_PATH_WSL}/error/error-ccktools.log
+launcher_dirs 2>>${BASE_PATH_WSL}/error/error-ccktools.log
 
-echo "==> lamp_install" >>/c/wsl/error/error-ccktools.log
-lamp_install 2>>/c/wsl/error/error-ccktools.log
+echo "==> lamp_install" >>${BASE_PATH_WSL}/error/error-ccktools.log
+lamp_install 2>>${BASE_PATH_WSL}/error/error-ccktools.log
 
-echo "==> zsh_install" >>/c/wsl/error/error-ccktools.log
-zsh_install 2>>/c/wsl/error/error-ccktools.log
+echo "==> zsh_install" >>${BASE_PATH_WSL}/error/error-ccktools.log
+zsh_install 2>>${BASE_PATH_WSL}/error/error-ccktools.log
 create_links &>/dev/null
 
 rm $HOME/wsl-setu* &>/dev/null
