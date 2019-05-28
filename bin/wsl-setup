@@ -87,10 +87,21 @@ zsh_install(){
       sudo apt install git -y
       sudo apt install nodejs -y
       sudo apt install npm -y
-      sudo rm -fr $HOME/.oh-my-zsh
       sudo apt install zsh zsh-doc zsh-common -y
 
-      sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh?\${DATE_SETUP})"
+      # sudo rm -fr $HOME/.oh-my-zsh;
+      # sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh?\${DATE_SETUP})"
+
+      sudo rm -fr $HOME/.oh-my-zsh;
+      curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh?\${DATE_SETUP} >> $HOME/ohmyzsh.sh
+      if grep -q "env zsh -l" $HOME/ohmyzsh.sh ; then
+        sed -i 's/env zsh -l//g' $HOME/ohmyzsh.sh
+        echo "testing:" ;
+        sudo chmod +x $HOME/ohmyzsh.sh
+        sudo rm -fr $HOME/.oh-my-zsh;
+        sudo sh -c $HOME/ohmyzsh.sh
+        sudo rm $HOME/ohmyzsh.sh
+      fi
 
       if ! grep -q "echo '=> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" $HOME/.bashrc ; then
         sudo echo "echo '=> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" >> $HOME/.bashrc
