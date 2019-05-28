@@ -109,9 +109,9 @@ zsh_install(){
         sed -i 's/plugins=(git)/plugins=(git z ubuntu vscode)/g' $HOME/.zshrc && cat .zshrc | grep git
       fi
 
-      if ! grep -q 'ZSH_THEME="robbyrussell"' $HOME/.zshrc ; then
-        sed -i 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME="robbyrussell"/g' $HOME/.zshrc && cat .zshrc | grep ZSH_THEME
-      fi
+      # if ! grep -q 'ZSH_THEME="robbyrussell"' $HOME/.zshrc ; then
+      #   sed -i 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME="robbyrussell"/g' $HOME/.zshrc && cat .zshrc | grep ZSH_THEME
+      # fi
 
       touch $HOME/.z
 }
