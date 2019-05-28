@@ -10,7 +10,7 @@ sudo dpkg --configure -a &>/dev/null
 ##########
 
 DATE_SETUP="$(date +%s)"
-
+NEW_THEME=robbyrussell
 
 #############
 # FUNCTIONS #
@@ -108,6 +108,11 @@ zsh_install(){
       if ! grep -q "plugins=(git z ubuntu vscode)" $HOME/.zshrc ; then
         sed -i 's/plugins=(git)/plugins=(git z ubuntu vscode)/g' $HOME/.zshrc && cat .zshrc | grep git
       fi
+
+      if ! grep -q 'ZSH_THEME="robbyrussell"' $HOME/.zshrc ; then
+        sed -i 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME="robbyrussell"/g' $HOME/.zshrc && cat .zshrc | grep ZSH_THEME
+      fi
+
       touch $HOME/.z
 }
 
