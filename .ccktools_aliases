@@ -41,3 +41,4 @@ alias pmu='drush pmu -y'
 # alias bashrc='source ~/.bash_aliases'
 # alias goht='cd ${DEVDIR}'
 # alias restart="lamp-restart"
+alias zshconfig="vim ~/.zshrc"
