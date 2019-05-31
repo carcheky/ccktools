@@ -64,9 +64,9 @@ cremove(){
     if [[ $1 ]]; then
 		MODULE_NAME=$1
 		OUTPUT_CHECK=$(drush pmu -y $MODULE_NAME)
-		if [[ $OUTPUT_CHECK == *"Do you really want to continue? (y/n): y"* ]]; then
+		# if [[ $OUTPUT_CHECK == *"Do you really want to continue? (y/n): y"* ]]; then
 			composer remove drupal/$MODULE_NAME
-		fi
+		# fi
 	else
 		echo "falta nombre"
 	fi
