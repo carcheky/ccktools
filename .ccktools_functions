@@ -60,8 +60,6 @@ crequire(){
 	else
 		echo "falta nombre"
 	fi
-drush pmu -y $MODULE_NAME
-composer remove drupal/$MODULE_NAME
 }
 
 cremove(){
