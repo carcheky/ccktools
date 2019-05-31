@@ -49,19 +49,8 @@ _________________________
 crequire(){
 	if [[ $1 ]]; then
 		MODULE_NAME=$1
-		echo "==> DESCARGANDO $MODULE_NAME"
-		OUTPUT_CHECK=$(composer require drupal/$MODULE_NAME 2>/dev/null)
-		echo "======================================"
-		echo "======================================"
-		echo "======================================"
-		echo $OUTPUT_CHECK
-		echo "======================================"
-		echo "======================================"
-		echo "======================================"
-		if [[ $OUTPUT_CHECK == *"- Installing drupal/$MODULE_NAME"* ]]; then
-			echo "==> HABILITANDO $MODULE_NAME"
-			drush en -y $MODULE_NAME
-		fi
+		composer require drupal/$MODULE_NAME
+		drush en -y $MODULE_NAME
 	else
 		echo "falta nombre"
 	fi
