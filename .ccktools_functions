@@ -50,9 +50,11 @@ crequire(){
 	if [[ $1 ]]; then
 		MODULE_NAME=$1
 		composer require drupal/$MODULE_NAME
-		drush en -y $MODULE_NAME
-		draim
-		cr
+		OUTPUT_CHECK=$(drush en -y $MODULE_NAME)
+		if [[ $OUTPUT_CHECK == *"Do you really want to continue? (y/n): y"* ]]; then
+			draim
+			cr
+		fi
 	else
 		echo "falta nombre"
 	fi
