@@ -53,6 +53,8 @@ crequire(){
 		drush en -y ${MODULE_NAME}
 		draim
 		cr
+	else
+		echo "falta nombre"
 	fi
 }
 
@@ -63,5 +65,7 @@ cremove(){
 		drush pmu -y ${MODULE_NAME}
 		draim
 		cr
+	else
+		echo "falta nombre"
 	fi
 }
