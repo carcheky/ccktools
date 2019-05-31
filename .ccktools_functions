@@ -48,7 +48,7 @@ _________________________
 
 crequire(){
 	if [[ $1 ]]; then
-		MODULE_NAME=${1}
+		MODULE_NAME=$1
 		composer require drupal/${MODULE_NAME}
 		drush en -y ${MODULE_NAME}
 		# draim
@@ -60,9 +60,10 @@ crequire(){
 
 cremove(){
     if [[ $1 ]]; then
-		MODULE_NAME=${1}
+		MODULE_NAME=$1
 		drush pmu -y ${MODULE_NAME} & > OUTPUT_CHECK
-		echo "prueba: ${OUTPUT_CHECK}"
+		echo "==> prueba: "
+		echo ${OUTPUT_CHECK}
 		composer remove drupal/${MODULE_NAME}
 		# cr
 	else
