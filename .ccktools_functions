@@ -52,7 +52,7 @@ crequire(){
 		OUTPUT_CHECK=$(composer require drupal/$MODULE_NAME)
 		echo "==> prueba"
 		echo $OUTPUT_CHECK
-		if [[ $OUTPUT_CHECK == *"Using version"* ]]; then
+		if [[ $OUTPUT_CHECK == *"- Installing drupal/$MODULE_NAME"* ]]; then
 			drush en -y $MODULE_NAME
 		fi
 	else
