@@ -51,8 +51,8 @@ crequire(){
 		MODULE_NAME=${1}
 		composer require drupal/${MODULE_NAME}
 		drush en -y ${MODULE_NAME}
-		draim
-		cr
+		# draim
+		# cr
 	else
 		echo "falta nombre"
 	fi
@@ -64,7 +64,7 @@ cremove(){
 		drush pmu -y ${MODULE_NAME} & > OUTPUT_CHECK
 		echo "prueba: ${OUTPUT_CHECK}"
 		composer remove drupal/${MODULE_NAME}
-		cr
+		# cr
 	else
 		echo "falta nombre"
 	fi
