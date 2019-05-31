@@ -51,4 +51,13 @@ crequire(){
 	composer require drupal/${MODULE_NAME}
 	drush en -y ${MODULE_NAME}
 	draim
+	cr
+}
+
+cremove(){
+	MODULE_NAME=${1}
+	composer remove drupal/${MODULE_NAME}
+	drush pmu -y ${MODULE_NAME}
+	draim
+	cr
 }
