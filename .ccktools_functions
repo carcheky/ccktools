@@ -45,3 +45,10 @@ _________________________
 	sudo service apache2 restart
 	php -v
 }
+
+crequire(){
+	MODULE_NAME=${1}
+	composer require drupal/${MODULE_NAME}
+	drush en -y ${MODULE_NAME}
+	draim
+}
