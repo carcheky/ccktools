@@ -51,6 +51,8 @@ crequire(){
 		MODULE_NAME=$1
 		composer require drupal/$MODULE_NAME
 		drush en -y $MODULE_NAME
+		draim
+		cr
 	else
 		echo "falta nombre"
 	fi
@@ -63,6 +65,7 @@ cremove(){
 		if [[ $OUTPUT_CHECK == *"Do you really want to continue? (y/n): y"* ]]; then
 			composer remove drupal/$MODULE_NAME
 		fi
+		cr
 	else
 		echo "falta nombre"
 	fi
