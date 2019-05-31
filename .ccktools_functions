@@ -49,7 +49,7 @@ _________________________
 crequire(){
 	if [[ $1 ]]; then
 		MODULE_NAME=$1
-		composer require drupal/$MODULE_NAME
+		# composer require drupal/$MODULE_NAME
 		drush en -y $MODULE_NAME
 	else
 		echo "falta nombre"
