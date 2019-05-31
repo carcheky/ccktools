@@ -118,8 +118,8 @@ zsh_install(){
         cat $HOME/.bashrc | grep "# source /home/user/ccktools/.ccktools"
       fi
 
-      if ! grep -q "plugins=(git z ubuntu vscode)" $HOME/.zshrc ; then
-        sed -i 's/plugins=(git)/plugins=(git z ubuntu vscode)/g' $HOME/.zshrc && cat .zshrc | grep git
+      if ! grep -q "plugins=(git composer z ubuntu vscode)" $HOME/.zshrc ; then
+        sed -i 's/plugins=(git)/plugins=(git composer z ubuntu vscode)/g' $HOME/.zshrc && cat .zshrc | grep git
       fi
 
       # if ! grep -q 'ZSH_THEME="robbyrussell"' $HOME/.zshrc ; then
