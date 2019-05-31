@@ -49,7 +49,7 @@ _________________________
 crequire(){
 	if [[ $1 ]]; then
 		MODULE_NAME=$1
-		OUTPUT_CHECK=$(composer require drupal/$MODULE_NAME)
+		OUTPUT_CHECK='composer require drupal/$MODULE_NAME'
 		echo "==> prueba"
 		echo $OUTPUT_CHECK
 		# drush en -y $MODULE_NAME
