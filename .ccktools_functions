@@ -49,7 +49,7 @@ _________________________
 crequire(){
 	if [[ $1 ]]; then
 		MODULE_NAME=$1
-		OUTPUT_CHECK=$(composer require drupal/$MODULE_NAME) &>/dev/null
+		OUTPUT_CHECK=$(composer require drupal/$MODULE_NAME)
 		if [[ $OUTPUT_CHECK == *"Finished: success: 1"* ]]; then
 			drush en -y $MODULE_NAME
 		fi
@@ -61,7 +61,7 @@ crequire(){
 cremove(){
     if [[ $1 ]]; then
 		MODULE_NAME=$1
-		OUTPUT_CHECK=$(drush pmu -y $MODULE_NAME) &>/dev/null
+		OUTPUT_CHECK=$(drush pmu -y $MODULE_NAME)
 		if [[ $OUTPUT_CHECK == *"Do you really want to continue? (y/n): y"* ]]; then
 			composer remove drupal/$MODULE_NAME
 		fi
