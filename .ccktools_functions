@@ -50,7 +50,7 @@ crequire(){
 	if [[ $1 ]]; then
 		MODULE_NAME=$1
 		echo "==> DESCARGANDO $MODULE_NAME"
-		OUTPUT_CHECK=$(composer require drupal/$MODULE_NAME &>/dev/null)
+		OUTPUT_CHECK=$(composer require drupal/$MODULE_NAME 2>/dev/null)
 		echo "======================================"
 		echo "======================================"
 		echo "======================================"
