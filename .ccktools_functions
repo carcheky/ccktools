@@ -49,10 +49,12 @@ _________________________
 crequire(){
 	if [[ $1 ]]; then
 		MODULE_NAME=$1
+		echo "==> DESCARGANDO $MODULE_NAME"
 		OUTPUT_CHECK=$(composer require drupal/$MODULE_NAME)
 		echo "==> prueba"
 		echo $OUTPUT_CHECK
 		if [[ $OUTPUT_CHECK == *"- Installing drupal/$MODULE_NAME"* ]]; then
+			echo "==> HABILITANDO $MODULE_NAME"
 			drush en -y $MODULE_NAME
 		fi
 	else
