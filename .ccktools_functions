@@ -62,7 +62,9 @@ cremove(){
 		OUTPUT_CHECK=$(drush pmu -y $MODULE_NAME)
 		echo "==> prueba: "
 		echo ${OUTPUT_CHECK}
-		# composer remove drupal/$MODULE_NAME
+		if [[ $MODULE_NAME == *"Do you really want to continue? (y/n): y"* ]]; then
+			composer remove drupal/$MODULE_NAME
+		fi
 	else
 		echo "falta nombre"
 	fi
