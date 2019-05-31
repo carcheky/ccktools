@@ -50,6 +50,8 @@ crequire(){
 	if [[ $1 ]]; then
 		MODULE_NAME=$1
 		OUTPUT_CHECK=$(composer require drupal/$MODULE_NAME)
+		echo "==> prueba"
+		echo $MODULE_NAME
 		if [[ $OUTPUT_CHECK == *"Using version"* ]]; then
 			drush en -y $MODULE_NAME
 		fi
