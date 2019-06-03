@@ -141,14 +141,14 @@ lamp_install(){
     sudo service apache2 stop & sudo service mysql stop
   echo "==> 7" >>${BASE_PATH_WSL}/error/error-ccktools.log
 
-    sudo chmod 777 -R /var/cache/debconf
+    sudo chmod -R 777 /var/cache/debconf
   echo "==> 8" >>${BASE_PATH_WSL}/error/error-ccktools.log
 
-    sudo APP_PASS="root"
+    APP_PASS="root"
   echo "==> 9" >>${BASE_PATH_WSL}/error/error-ccktools.log
-    sudo ROOT_PASS="root"
+    ROOT_PASS="root"
   echo "==> 10" >>${BASE_PATH_WSL}/error/error-ccktools.log
-    sudo APP_DB_PASS="root"
+    APP_DB_PASS="root"
 
   echo "==> 11" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo apt clean -y
