@@ -57,7 +57,7 @@ if [[ $2 ]]; then
   echo "==> installing drupal"
   cd ${CONF_SITE_FOLDER}
   cd ..
-  rm -fr docroot
+  sudo rm -fr docroot
   $DRUSH dl drupal
   mv drup* docroot
   cd docroot
@@ -65,6 +65,7 @@ if [[ $2 ]]; then
   cp sites/default/default.settings.php sites/default/settings.php
   composer install
   $DRUSH -y si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin
+  # $DRUSH sql-drop -y
 fi
 
 ls -la ${CONF_SITES_ENABLED}
