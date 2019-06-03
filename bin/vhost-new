@@ -56,17 +56,19 @@ DRUSH=$(which drush)
 if [[ $2='drupal' ]]; then
   echo "==> installing drupal"
   cd ${CONF_SITE_FOLDER}
+  sudo chmod -R 777 .
   cd ..
   sudo rm -fr docroot
   $DRUSH dl drupal
   mv drup* docroot
   cd docroot
-  chmod -R 777 .
   cp sites/default/default.settings.php sites/default/settings.php
   mkdir sites/default/files/translations
   composer install
   $DRUSH -y si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin
   # $DRUSH sql-drop -y
+  cd ..
+  sudo chmod -R 777 .
 fi
 
 ls -la ${CONF_SITES_ENABLED}
