@@ -91,12 +91,12 @@ zsh_install(){
       sudo apt install zsh zsh-doc zsh-common -y
 
       curl -Lo install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-      sed -i 's/zsh -l/ll/g' $HOME/install.sh
+      sed -i 's/zsh -l/ls/g' $HOME/install.sh
       sudo chmod +x $HOME/install.sh
       sudo rm -fr $HOME/.oh-my-zsh;
       sudo sh -c $HOME/install.sh
       sudo rm $HOME/install.sh
-      
+
       fi
 
       if ! grep -q "echo '=> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" $HOME/.bashrc ; then
