@@ -1,5 +1,7 @@
 #!/bin/bash
 
+bash /home/user/bin/wsl-update
+
 sudo killall -r '.*'
 sudo service apache2 reload
 
