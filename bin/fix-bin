@@ -10,3 +10,4 @@ if [[ -d /c/Users/cmartinezv/Documents/GitHub/ccktools/bin ]]; then
     find /c/Users/cmartinezv/Documents/GitHub/ccktools/bin -type f -exec chmod +x {} \;
     find /c/Users/cmartinezv/Documents/GitHub/ccktools/bin -type f -exec dos2unix {} \;
 fi
+

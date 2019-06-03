@@ -23,4 +23,3 @@ echo "Escriba el mensaje del commit:"
 
 git commit -a -m "${COMMIT_MSG}"
 git push
-

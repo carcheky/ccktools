@@ -6,3 +6,4 @@ if ! grep -q "${1}" $2 ; then
 fi
 
 cat $2
+

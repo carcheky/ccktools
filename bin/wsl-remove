@@ -8,3 +8,4 @@ sudo rm -fr /c/wsl $HOME/.cache $HOME/ohmyzsh.sh $HOME/.oh*  $HOME/.z* $HOME/bin
 
 bash /c/wsl/user/ccktools/bin/wsl-update
 bash /c/wsl/user/ccktools/bin/wsl-stop
+

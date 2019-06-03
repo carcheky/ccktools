@@ -38,4 +38,3 @@ if [ $1 = "stop" ]; then
     echo "=> stopping..."
     stop
 fi
-

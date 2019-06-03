@@ -74,5 +74,3 @@ ls -la ${CONF_SITE_FOLDER}
 echo "http://${SITE}/"
 
 echo "add 127.0.0.1 ${SITE} to hosts file & flush dns (recommended http://www.abelhadigital.com/hostsman/)"
-
-
