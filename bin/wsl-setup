@@ -109,19 +109,21 @@ zsh_install(){
         sudo echo "echo '=> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" >> $HOME/.bashrc
       fi
 
-      sudo chmod 666 $HOME/.zshrc
-      sudo chown user:user $HOME/.zsh_history
+      if [ -f $HOME/.zshrc
+       ]; then
+        sudo chmod 666 $HOME/.zshrc
+        sudo chown user:user $HOME/.zsh_history
 
-      if ! grep -q "source $HOME/ccktools/.ccktools" $HOME/.zshrc ; then
-        sudo echo "source $HOME/ccktools/.ccktools" >> $HOME/.zshrc
-        sed -i 's/source \/home\/user\/ccktools\/.ccktools/# source \/home\/user\/ccktools\/.ccktools/g' $HOME/.bashrc
-        cat $HOME/.bashrc | grep "# source /home/user/ccktools/.ccktools"
-      fi
+        if ! grep -q "source $HOME/ccktools/.ccktools" $HOME/.zshrc ; then
+          sudo echo "source $HOME/ccktools/.ccktools" >> $HOME/.zshrc
+          sed -i 's/source \/home\/user\/ccktools\/.ccktools/# source \/home\/user\/ccktools\/.ccktools/g' $HOME/.bashrc
+          cat $HOME/.bashrc | grep "# source /home/user/ccktools/.ccktools"
+        fi
 
-      if ! grep -q "plugins=(git composer z ubuntu vscode)" $HOME/.zshrc ; then
-        sed -i 's/plugins=(git)/plugins=(git composer z ubuntu vscode)/g' $HOME/.zshrc && cat .zshrc | grep git
-      fi
-
+        if ! grep -q "plugins=(git composer z ubuntu vscode)" $HOME/.zshrc ; then
+          sed -i 's/plugins=(git)/plugins=(git composer z ubuntu vscode)/g' $HOME/.zshrc && cat .zshrc | grep git
+        fi
+      fi  
       # if ! grep -q 'ZSH_THEME="robbyrussell"' $HOME/.zshrc ; then
       #   sed -i 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME="robbyrussell"/g' $HOME/.zshrc && cat .zshrc | grep ZSH_THEME
       # fi
