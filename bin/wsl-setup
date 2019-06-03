@@ -109,8 +109,7 @@ zsh_install(){
         sudo echo "echo '=> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" >> $HOME/.bashrc
       fi
 
-      if [ -f $HOME/.zshrc
-       ]; then
+      if [ -f $HOME/.zshrc ]; then
         sudo chmod 666 $HOME/.zshrc
         sudo chown user:user $HOME/.zsh_history
 
