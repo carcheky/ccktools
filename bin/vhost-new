@@ -53,7 +53,7 @@ sudo service apache2 restart
 
 DRUSH=$(which drush)
 
-if [[ $2 ]]; then
+if [[ $2='drupal' ]]; then
   echo "==> installing drupal"
   cd ${CONF_SITE_FOLDER}
   cd ..
@@ -63,6 +63,7 @@ if [[ $2 ]]; then
   cd docroot
   chmod -R 777 .
   cp sites/default/default.settings.php sites/default/settings.php
+  mkdir sites/default/files/translations
   composer install
   $DRUSH -y si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin
   # $DRUSH sql-drop -y
@@ -71,6 +72,6 @@ fi
 ls -la ${CONF_SITES_ENABLED}
 ls -la ${CONF_SITE_FOLDER}
 
-echo "http://${SITE}/"
 
 echo "add 127.0.0.1 ${SITE} to hosts file & flush dns (recommended http://www.abelhadigital.com/hostsman/)"
+echo "=====> http://${SITE}/"
