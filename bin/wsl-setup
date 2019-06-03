@@ -97,8 +97,8 @@ zsh_install(){
 
       sudo rm -fr $HOME/.oh-my-zsh;
       curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh?\${DATE_SETUP} >> $HOME/ohmyzsh.sh
-      if grep -q "env zsh -l" $HOME/ohmyzsh.sh ; then
-        sed -i 's/env zsh -l//g' $HOME/ohmyzsh.sh
+      if grep -q "zsh -l" $HOME/ohmyzsh.sh ; then
+        sed -i 's/zsh -l/ll/g' $HOME/ohmyzsh.sh
         sudo chmod +x $HOME/ohmyzsh.sh
         sudo rm -fr $HOME/.oh-my-zsh;
         sudo sh -c $HOME/ohmyzsh.sh
