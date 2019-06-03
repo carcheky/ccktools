@@ -5,6 +5,8 @@
 
 # Site to add
 SITE=$1
+sudo rm -fr /c/wsl/sites/${SITE}
+sudo a2dissite ${SITE}.conf
 
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
 CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
