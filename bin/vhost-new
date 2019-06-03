@@ -61,7 +61,7 @@ if [[ $2='drupal' ]]; then
   sudo chmod -R 777 .
   cd ..
   sudo rm -fr docroot
-  $DRUSH dl drupal
+  $DRUSH dl drupal -v
   mv drup* docroot
   cd docroot
   cp sites/default/default.settings.php sites/default/settings.php
