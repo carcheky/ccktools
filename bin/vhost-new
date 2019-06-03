@@ -64,7 +64,7 @@ if [[ $2 ]]; then
   chmod -R 777 .
   cp sites/default/default.settings.php sites/default/settings.php
   composer install
-  $DRUSH si -y --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin
+  $DRUSH si -y standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin
 fi
 
 ls -la ${CONF_SITES_ENABLED}
