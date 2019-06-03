@@ -72,7 +72,12 @@ if [[ $2='drupal' ]]; then
   composer require drupal/toolbar_menu_clean
   composer require drupal/config_direct_save
   composer require drupal/pathauto
-  $DRUSH en locale adminimal_admin_toolbar backup_migrate toolbar_menu_clean config_direct_save pathauto -y
+  $DRUSH en -y locale
+  $DRUSH en -y adminimal_admin_toolbar
+  $DRUSH en -y backup_migrate
+  $DRUSH en -y toolbar_menu_clean
+  $DRUSH en -y config_direct_save
+  $DRUSH en -y pathauto
   $DRUSH locale-check
   $DRUSH locale-update
   cd ..
