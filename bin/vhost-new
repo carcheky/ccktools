@@ -58,13 +58,13 @@ echo "http://${SITE}/"
 
 echo "add 127.0.0.1 ${SITE} to hosts file & flush dns (recommended http://www.abelhadigital.com/hostsman/)"
 
-
+DRUSH=$(which drush)
 
 if [[ $2 ]]; then
   cd ${CONF_SITE_FOLDER}
   cd ..
   rm -fr docroot
-  dl drupal
+  $DRUSH dl drupal
   mv drup* docroot
   cd docroot
   chmod -R 777 .
