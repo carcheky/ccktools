@@ -75,9 +75,9 @@ if [[ $2='drupal' ]]; then
   $DRUSH en -y locale
   $DRUSH en -y adminimal_admin_toolbar
   $DRUSH en -y backup_migrate
-  $DRUSH en -y toolbar_menu_clean
   $DRUSH en -y config_direct_save
   $DRUSH en -y pathauto
+  $DRUSH en -y toolbar_menu_clean
   $DRUSH locale-check
   $DRUSH locale-update
   cd ..
