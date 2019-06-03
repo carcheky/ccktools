@@ -4,7 +4,7 @@ if grep -q "echo '=> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash 
    sed -i '$ d'  $HOME/.bashrc
 fi
 sudo apt remove zsh -y
-sudo rm -fr  $HOME/.cache $HOME/ohmyzsh.sh $HOME/.oh*  $HOME/.z* $HOME/bin $HOME/ccktools $HOME/.drush/ $HOME/.config/ $HOME/.local/ $HOME/.sudo_as_admin_successful
+sudo rm -fr /c/wsl $HOME/.cache $HOME/ohmyzsh.sh $HOME/.oh*  $HOME/.z* $HOME/bin $HOME/ccktools $HOME/.drush/ $HOME/.config/ $HOME/.local/ $HOME/.sudo_as_admin_successful
 
 bash /c/wsl/user/ccktools/bin/wsl-update
 bash /c/wsl/user/ccktools/bin/wsl-stop
