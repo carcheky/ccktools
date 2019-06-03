@@ -51,16 +51,10 @@ fi
 sudo service apache2 reload
 sudo service apache2 restart
 
-ls -la ${CONF_SITES_ENABLED}
-ls -la ${CONF_SITE_FOLDER}
-
-echo "http://${SITE}/"
-
-echo "add 127.0.0.1 ${SITE} to hosts file & flush dns (recommended http://www.abelhadigital.com/hostsman/)"
-
 DRUSH=$(which drush)
 
 if [[ $2 ]]; then
+  echo "==> installing drupal"
   cd ${CONF_SITE_FOLDER}
   cd ..
   rm -fr docroot
@@ -71,3 +65,12 @@ if [[ $2 ]]; then
   cp sites/default/default.settings.php sites/default/settings.php
   composer install
 fi
+
+ls -la ${CONF_SITES_ENABLED}
+ls -la ${CONF_SITE_FOLDER}
+
+echo "http://${SITE}/"
+
+echo "add 127.0.0.1 ${SITE} to hosts file & flush dns (recommended http://www.abelhadigital.com/hostsman/)"
+
+
