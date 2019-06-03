@@ -87,12 +87,12 @@ create_links() {
 }
 
 zsh_install(){
-      sudo apt install git nodejs npm fonts-powerline-y
+      sudo apt install git nodejs npm fonts-powerline -y
       sudo apt install zsh zsh-doc zsh-common -y
 
       curl -Lo install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
       sed -i 's/zsh -l/ls/g' $HOME/install.sh
-      sed -i 's/read opt/opt=y/g' $HOME/install.sh 
+      sed -i 's/read opt/opt\=y/g' $HOME/install.sh 
       sudo chmod +x $HOME/install.sh
       sudo rm -fr $HOME/.oh-my-zsh;
       sudo sh -c $HOME/install.sh
