@@ -125,36 +125,60 @@ zsh_install(){
 
 
 lamp_install(){
+  echo "1"
     sudo apt install -y apache2 php
+  echo "2"
     sudo apt install -y php7.2-fpm libapache2-mod-php7.2 php7.2 php7.2-curl php7.2-gd php7.2-mbstring  php7.2-mysql php7.2-xml php7.2-zip php7.2-common
+  echo "3"
 
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
+  echo "4"
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
+  echo "5"
     sudo apt install -y mysql-server
+  echo "6"
 
     sudo service apache2 stop & sudo service mysql stop
+  echo "7"
 
     sudo chmod 777 -R /var/cache/debconf
+  echo "8"
 
     sudo APP_PASS="root"
+  echo "9"
     sudo ROOT_PASS="root"
+  echo "10"
     sudo APP_DB_PASS="root"
 
+  echo "11"
     sudo apt clean -y
+  echo "12"
     sudo apt autoclean -y
+  echo "13"
     sudo dpkg --configure -a
+  echo "14"
     sudo apt autoremove -y
 
+  echo "15"
     sudo find /etc/php/ -name php.ini -exec sed -i 's/post_max_size = 8M/post_max_size = 8G/g' {} \;
+  echo "16"
     sudo find /etc/php/ -name php.ini -exec sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' {} \;
+  echo "17"
     sudo find /etc/php/ -name php.ini -exec sed -i 's/memory_limit = 128M/memory_limit = 2G/g' {} \;
 
+  echo "18"
     sudo chmod -R 777 /etc/apache2
+  echo "19"
     sudo chmod 777 /etc/apache2/apache2.conf
+  echo "20"
     sudo chmod 777 /etc/apache2/mods-available/dir.conf
+  echo "21"
     sudo usermod -d /var/lib/mysql/ mysql
+  echo "22"
     sudo useradd -g www-data user
+  echo "23"
     sudo adduser user www-data
+  echo "24"
 
 
 if ! grep -q "AcceptFilter http none"  /etc/apache2/apache2.conf ; then
