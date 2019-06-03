@@ -87,22 +87,16 @@ create_links() {
 }
 
 zsh_install(){
-      sudo apt install git -y
-      sudo apt install nodejs -y
-      sudo apt install npm -y
+      sudo apt install git nodejs npm fonts-powerline-y
       sudo apt install zsh zsh-doc zsh-common -y
-      sudo apt install fonts-powerline -y
-      # sudo rm -fr $HOME/.oh-my-zsh;
-      # sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh?\${DATE_SETUP})"
 
+      curl -Lo install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+      sed -i 's/zsh -l/ll/g' $HOME/install.sh
+      sudo chmod +x $HOME/install.sh
       sudo rm -fr $HOME/.oh-my-zsh;
-      curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh?\${DATE_SETUP} >> $HOME/ohmyzsh.sh
-      if grep -q "zsh -l" $HOME/ohmyzsh.sh ; then
-        sed -i 's/zsh -l/ll/g' $HOME/ohmyzsh.sh
-        sudo chmod +x $HOME/ohmyzsh.sh
-        sudo rm -fr $HOME/.oh-my-zsh;
-        sudo sh -c $HOME/ohmyzsh.sh
-        sudo rm $HOME/ohmyzsh.sh
+      sudo sh -c $HOME/install.sh
+      sudo rm $HOME/install.sh
+      
       fi
 
       if ! grep -q "echo '=> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" $HOME/.bashrc ; then
