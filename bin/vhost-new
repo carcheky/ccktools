@@ -68,7 +68,11 @@ if [[ $2='drupal' ]]; then
   composer install
   $DRUSH -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin  --locale=es
   composer require drupal/adminimal_admin_toolbar
-  $DRUSH en locale adminimal_admin_toolbar -y
+  composer require drupal/backup_migrate
+  composer require drupal/toolbar_menu_clean
+  composer require drupal/config_direct_save
+  composer require drupal/pathauto
+  $DRUSH en locale adminimal_admin_toolbar backup_migrate toolbar_menu_clean config_direct_save pathauto -y
   $DRUSH locale-check
   $DRUSH locale-update
   cd ..
