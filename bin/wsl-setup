@@ -98,8 +98,6 @@ zsh_install(){
       sudo sh -c $HOME/install.sh
       sudo rm $HOME/install.sh
 
-      fi
-
       if ! grep -q "echo '=> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" $HOME/.bashrc ; then
         sudo echo "echo '=> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" >> $HOME/.bashrc
       fi
