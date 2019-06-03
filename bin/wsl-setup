@@ -125,60 +125,60 @@ zsh_install(){
 
 
 lamp_install(){
-  echo "1"
+  echo "==> 1" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo apt install -y apache2 php
-  echo "2"
+  echo "==> 2" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo apt install -y php7.2-fpm libapache2-mod-php7.2 php7.2 php7.2-curl php7.2-gd php7.2-mbstring  php7.2-mysql php7.2-xml php7.2-zip php7.2-common
-  echo "3"
+  echo "==> 3" >>${BASE_PATH_WSL}/error/error-ccktools.log
 
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-  echo "4"
+  echo "==> 4" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-  echo "5"
+  echo "==> 5" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo apt install -y mysql-server
-  echo "6"
+  echo "==> 6" >>${BASE_PATH_WSL}/error/error-ccktools.log
 
     sudo service apache2 stop & sudo service mysql stop
-  echo "7"
+  echo "==> 7" >>${BASE_PATH_WSL}/error/error-ccktools.log
 
     sudo chmod 777 -R /var/cache/debconf
-  echo "8"
+  echo "==> 8" >>${BASE_PATH_WSL}/error/error-ccktools.log
 
     sudo APP_PASS="root"
-  echo "9"
+  echo "==> 9" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo ROOT_PASS="root"
-  echo "10"
+  echo "==> 10" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo APP_DB_PASS="root"
 
-  echo "11"
+  echo "==> 11" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo apt clean -y
-  echo "12"
+  echo "==> 12" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo apt autoclean -y
-  echo "13"
+  echo "==> 13" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo dpkg --configure -a
-  echo "14"
+  echo "==> 14" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo apt autoremove -y
 
-  echo "15"
+  echo "==> 15" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo find /etc/php/ -name php.ini -exec sed -i 's/post_max_size = 8M/post_max_size = 8G/g' {} \;
-  echo "16"
+  echo "==> 16" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo find /etc/php/ -name php.ini -exec sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' {} \;
-  echo "17"
+  echo "==> 17" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo find /etc/php/ -name php.ini -exec sed -i 's/memory_limit = 128M/memory_limit = 2G/g' {} \;
 
-  echo "18"
+  echo "==> 18" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo chmod -R 777 /etc/apache2
-  echo "19"
+  echo "==> 19" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo chmod 777 /etc/apache2/apache2.conf
-  echo "20"
+  echo "==> 20" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo chmod 777 /etc/apache2/mods-available/dir.conf
-  echo "21"
+  echo "==> 21" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo usermod -d /var/lib/mysql/ mysql
-  echo "22"
+  echo "==> 22" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo useradd -g www-data user
-  echo "23"
+  echo "==> 23" >>${BASE_PATH_WSL}/error/error-ccktools.log
     sudo adduser user www-data
-  echo "24"
+  echo "==> 24" >>${BASE_PATH_WSL}/error/error-ccktools.log
 
 
 if ! grep -q "AcceptFilter http none"  /etc/apache2/apache2.conf ; then
