@@ -257,6 +257,7 @@ rm $HOME/wsl-setu* &>/dev/null
 
 sudo apt install figlet -y
 figlet "todo va bien"
+env zsh -l
 sleep 5
 wsl_stop
 
