@@ -223,7 +223,8 @@ ubuntu_update(){
 set_wslconf
 rm -fr .wget-hsts
 sudo dpkg --configure -a
-
+mkdir -p /c/wsl/error
+touch /c/wsl/error/error-ccktools.log
 if [ -d ${BASE_PATH_WSL} ] ; then
   mkdir -p "${BASE_PATH_WSL}/error"
   echo "======================">${BASE_PATH_WSL}/error/error-ccktools.log
