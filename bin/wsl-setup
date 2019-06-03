@@ -182,6 +182,7 @@ lamp_install(){
 
 
 if ! grep -q "AcceptFilter http none"  /etc/apache2/apache2.conf ; then
+  echo "==> 25" >>${BASE_PATH_WSL}/error/error-ccktools.log
 
 sudo echo "
 Servername localhost
@@ -203,6 +204,7 @@ DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
 </IfModule>
 " > /etc/apache2/mods-available/dir.conf
 fi
+  echo "==> 26" >>${BASE_PATH_WSL}/error/error-ccktools.log
 
     sudo apt install php-mbstring -y
     sudo apt install php-curl -y
@@ -216,10 +218,12 @@ fi
 
     sudo a2enmod rewrite
     sudo a2enmod vhost_alias
+  echo "==> 27" >>${BASE_PATH_WSL}/error/error-ccktools.log
 
     composer global require hirak/prestissimo
     composer global require drush/drush:^8
     $HOME/.config/composer/vendor/bin/drush init -n
+  echo "==> 28" >>${BASE_PATH_WSL}/error/error-ccktools.log
 
     sudo service apache2 stop & sudo service mysql stop
     sudo service apache2 start & sudo service mysql start
