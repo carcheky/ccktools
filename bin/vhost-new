@@ -66,7 +66,7 @@ if [[ $2='drupal' ]]; then
   sudo mkdir -p sites/default/files/translations
   sudo chmod -R 777 .
   composer install
-  $DRUSH -y si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin
+  $DRUSH -y si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin  --locale=es
   cd ..
   sudo chmod -R 777 .
 fi
