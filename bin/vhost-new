@@ -1,11 +1,15 @@
 #!/bin/bash
 
-[[ ! -z "$1" ]] && SITE=$1 && echo "==> $SITE will be created" || $(
-  echo "Empty VAR " &
+[[ ! -z "$1" ]] && (
+  SITE=$1 &
+  echo "==> $SITE will be created"
+) || (
+  echo "falta var" &
   exit
 )
 [[ ! -z "$2" ]] && INSTALL=$2 && echo "==> $INSTALL will be installed" || (INSTALL="-")
 
+# [[]] && echo 1 || echo 0
 # Site to add
 
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
