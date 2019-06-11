@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ ! -z "$1" ]] && echo "Not empty" || exit
+[[ ! -z "$1" ]] && echo "Not empty" && echo "empty" || exit
 [[ ! -z "$2" ]] && INSTALL=$2
 
 echo "
