@@ -2,7 +2,8 @@
 
 [[ ! -z "$1" ]] && echo "Not empty" || exit
 [[ ! -z "$2" ]] && INSTALL=""
-echo $INSTALL
+
+echo fin
 exit
 # Site to add
 SITE=$1
