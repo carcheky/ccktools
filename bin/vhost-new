@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ ! -z "$1" ]] && echo "Not empty" || echo "Empty VAR " && exit
+[[ ! -z "$1" ]] && SITE=$1 && echo "$SITE will be created" || echo "Empty VAR " && exit
 [[ ! -z "$2" ]] && INSTALL=$2 || INSTALL=""
 
 echo "
@@ -9,7 +9,6 @@ $2
 ==> fin"
 exit
 # Site to add
-SITE=$1
 
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
 CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
