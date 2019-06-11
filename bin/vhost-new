@@ -1,7 +1,7 @@
 #!/bin/bash
 
-[[ ! -z "$1" ]] && SITE=$1 && echo "$SITE will be created" || echo "Empty VAR " && exit
-[[ -z "$2" ]] && INSTALL=$2 && echo "with $INSTALL"
+[[ ! -z "$1" ]] && SITE=$1 && echo "==> $SITE will be created" || echo "Empty VAR " && exit
+[[ ! -z "$2" ]] && SITE=$2 && echo "==> $INSTALL will be installed"
 
 echo "
 $1
