@@ -1,9 +1,11 @@
 #!/bin/bash
 
 [[ ! -z "$1" ]] && echo "Not empty" || exit
-[[ ! -z "$2" ]] && INSTALL=""
+[[ ! -z "$2" ]] && INSTALL=$2
 
-echo fin
+echo "
+
+==> fin"
 exit
 # Site to add
 SITE=$1
@@ -55,7 +57,7 @@ sudo service apache2 restart
 
 DRUSH=$(which drush)
 
-if [[ $2='drupal' ]]; then
+if [[ $INSTALL='drupal' ]]; then
   echo "==> installing drupal"
   cd ${CONF_SITE_FOLDER}
   sudo chmod -R 777 .
