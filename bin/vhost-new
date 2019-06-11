@@ -2,7 +2,8 @@
 
 [[ ! -z "$1" ]] && echo "Not empty" || exit
 [[ -z "$2" ]] && INSTALL="drupal"
-
+echo $INSTALL
+exit
 # Site to add
 SITE=$1
 
@@ -16,7 +17,7 @@ if [ -f ${CONF_SITES_AVAILABLE} ]; then
 else
   echo "==> CONF_SITES_AVAILABLE ${CONF_SITES_AVAILABLE} does not exist."
   echo "==> Creating...."
-  sudo touch  ${CONF_SITES_AVAILABLE}
+  sudo touch ${CONF_SITES_AVAILABLE}
   sudo echo "
   <VirtualHost *:80>
       ServerName ${SITE}
@@ -40,7 +41,7 @@ else
 fi
 
 if [ -f ${CONF_SITES_ENABLED} ]; then
-   echo "==> enabled conf ${CONF_SITES_ENABLED} exists."
+  echo "==> enabled conf ${CONF_SITES_ENABLED} exists."
 
 else
   echo "==> enabled ${CONF_SITES_ENABLED} does not exist."
@@ -66,7 +67,7 @@ if [[ $2='drupal' ]]; then
   sudo mkdir -p sites/default/files/translations
   sudo chmod -R 777 .
   composer install
-  $DRUSH -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin  --locale=es
+  $DRUSH -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin --locale=es
   composer require drupal/adminimal_admin_toolbar
   composer require drupal/backup_migrate
   composer require drupal/toolbar_menu_clean
@@ -86,7 +87,6 @@ fi
 
 ls -la ${CONF_SITES_ENABLED}
 ls -la ${CONF_SITE_FOLDER}
-
 
 echo "add 127.0.0.1 ${SITE} to hosts file & flush dns (recommended http://www.abelhadigital.com/hostsman/)"
 echo "=====> http://${SITE}/user"
