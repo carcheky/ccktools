@@ -1,7 +1,7 @@
 #!/bin/bash
 
 [[ ! -z "$1" ]] && echo "Not empty" || exit
-[[ -z "$2" ]] && INSTALL="drupal"
+[[ ! -z "$2" ]] && INSTALL=""
 echo $INSTALL
 exit
 # Site to add
