@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # [] && false || true
-# [] && true || false
+# [!] && true || false
 
-[[ ! -z $1 ]] && SITE=$1 || exit
-[[ ! -z $2 ]] && INSTALL=$2
-
-[[ ! -z $1 ]] && echo "==> SITE: $SITE"
-[[ ! -z $2 ]] && echo "==> INSTALL: $INSTALL"
+[[ $1 ]] && SITE=$1 || echo "falta vhost name"
+[[ $1 ]] && SITE=$1 || exit
+[[ $2 ]] && INSTALL=$2
+[[ $SITE ]] && echo "==> SITE: $SITE"
+[[ $INSTALL ]] && echo "==> INSTALL: $INSTALL"
 
 # Site to add
-if [[ -z $SITE ]]; then
+if [[ $SITE ]]; then
   CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
   CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
   CONF_SITE_FOLDER="/c/wsl/sites/${SITE}/docroot"
@@ -55,7 +55,7 @@ if [[ -z $SITE ]]; then
 
   sudo service apache2 reload
   sudo service apache2 restart
-  if [[ -z $INSTALL ]]; then
+  if [[ $INSTALL ]]; then
 
     DRUSH=$(which drush)
 
