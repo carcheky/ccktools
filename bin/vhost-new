@@ -1,6 +1,9 @@
 #!/bin/bash
 
-[[ ! -z "$1" ]] && SITE=$1 && echo "==> $SITE will be created" || (echo "Empty VAR " && exit)
+[[ ! -z "$1" ]] && SITE=$1 && echo "==> $SITE will be created" || (
+  echo "Empty VAR "
+  exit
+)
 [[ ! -z "$2" ]] && INSTALL=$2 && echo "==> $INSTALL will be installed" || (INSTALL="-")
 
 # Site to add
