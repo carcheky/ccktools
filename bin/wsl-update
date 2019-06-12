@@ -21,25 +21,3 @@ wsl_update() {
 
 wsl_update
 fix-bin &>/dev/null
-
-# cd ~/ccktools/
-# echo "==> Checking ccktools updates..." &
-# git remote update &>/dev/null
-
-# UPSTREAM=${1:-'@{u}'}
-# LOCAL=$(git rev-parse @) &
-# REMOTE=$(git rev-parse "$UPSTREAM") &
-# BASE=$(git merge-base @ "$UPSTREAM")
-
-# if [ $LOCAL = $REMOTE ]; then
-#   echo "==> Up to date"
-#   clear
-#   exit
-# elif [ $LOCAL = $BASE ]; then
-#   echo "==> Updating ccktools..."
-#   wsl_update
-# elif [ $REMOTE = $BASE ]; then
-#   echo "==> Need to push"
-# else
-#   echo "==> Diverged"
-# fi
