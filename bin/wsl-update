@@ -19,7 +19,7 @@ wsl_update() {
 
 cd ~/ccktools/
 
-git fetch
+git fetch &>/dev/null
 
 UPSTREAM=${1:-'@{u}'}
 LOCAL=$(git rev-parse @)
@@ -28,7 +28,7 @@ BASE=$(git merge-base @ "$UPSTREAM")
 
 if [ $LOCAL = $BASE ]; then
   echo "==> Updating..."
-  wsl_update
+  wsl_update &>/dev/null
 fi
 
 # if [ $LOCAL = $REMOTE ]; then
