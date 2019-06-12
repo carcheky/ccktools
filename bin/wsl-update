@@ -21,6 +21,7 @@ wsl_update() {
 }
 
 wsl_update
+fix-bin
 
 # cd ~/ccktools/
 # echo "==> Checking ccktools updates..." &
