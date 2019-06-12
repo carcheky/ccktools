@@ -27,6 +27,7 @@ REMOTE=$(git rev-parse "$UPSTREAM") &
 BASE=$(git merge-base @ "$UPSTREAM")
 
 if [ $LOCAL = $REMOTE ]; then
+  clear
   exit
 elif [ $LOCAL = $BASE ]; then
   echo "==> Updating ccktools..."
