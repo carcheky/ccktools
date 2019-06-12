@@ -19,22 +19,17 @@ wsl_update() {
 
 cd ~/ccktools/
 
-echo "==> Checking ccktools updates..." && clear
+echo "==> Checking ccktools updates..."
 git fetch &>/dev/null
 UPSTREAM=${1:-'@{u}'}
 LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse "$UPSTREAM")
 BASE=$(git merge-base @ "$UPSTREAM")
-
-if [ $LOCAL = $BASE ]; then
-  echo "==> Updating..."
-  wsl_update &>/dev/null
-fi
-
+clear
 if [ $LOCAL = $REMOTE ]; then
   exit
 elif [ $LOCAL = $BASE ]; then
-  echo "==> Updating..."
+  echo "==> Updating ccktools..."
   wsl_update
 elif [ $REMOTE = $BASE ]; then
   echo "==>Need to push"
