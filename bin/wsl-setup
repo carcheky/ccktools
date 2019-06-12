@@ -97,7 +97,7 @@ zsh_install() {
   sudo sh -c $HOME/install.sh
   sudo rm $HOME/install.sh
 
-  BASHRC_INIT_COMMAND="/home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit"
+  BASHRC_INIT_COMMAND="/home/user/bin/wsl-update; bash -c -l zsh; exit"
   if ! grep -q "${BASHRC_INIT_COMMAND}" $HOME/.bashrc; then
     sudo echo "${BASHRC_INIT_COMMAND}" >>$HOME/.bashrc
   fi
