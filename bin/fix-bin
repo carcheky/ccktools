@@ -1,13 +1,15 @@
 #!/bin/bash
 
-if [[ -d $HOME/ccktools/bin ]]; then
-    find $HOME/ccktools/bin -type f -exec chmod +x {} \;
-    find $HOME/ccktools/bin -type f -exec dos2unix {} \;
-    dos2unix $HOME/ccktools/.ccktools_*
-fi
+fix_path() {
+    if [[ -d $PATH_TO_FIX/bin ]]; then
+        find $PATH_TO_FIX/bin -type f -exec chmod +x {} \;
+        find $PATH_TO_FIX/bin -type f -exec dos2unix {} \;
+        dos2unix $PATH_TO_FIX/.ccktools_*
+    fi
+}
 
-if [[ -d /c/Users/cmartinezv/Documents/GitHub/ccktools/bin ]]; then
-    find /c/Users/cmartinezv/Documents/GitHub/ccktools/bin -type f -exec chmod +x {} \;
-    find /c/Users/cmartinezv/Documents/GitHub/ccktools/bin -type f -exec dos2unix {} \;
-    dos2unix /c/Users/cmartinezv/Documents/GitHub/ccktools/.ccktools_*
-fi
+PATH_TO_FIX="$HOME/ccktools"
+fix_path
+
+PATH_TO_FIX="/c/Users/cmartinezv/Documents/GitHub/ccktools"
+fix_path
