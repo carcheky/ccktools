@@ -19,6 +19,7 @@ wsl_update() {
 
 cd ~/ccktools/
 
+echo "==> Checking ccktools updates..." && clear
 git fetch &>/dev/null
 
 UPSTREAM=${1:-'@{u}'}
