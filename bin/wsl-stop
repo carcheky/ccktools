@@ -25,3 +25,4 @@ sudo killall -u mysql
 sudo killall -u www-data
 
 sudo usermod -d /var/lib/mysql mysql
+

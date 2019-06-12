@@ -255,3 +255,4 @@ sudo apt install figlet -y
 figlet "todo va bien"
 sleep 5
 wsl_stop
+

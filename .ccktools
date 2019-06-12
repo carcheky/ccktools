@@ -64,3 +64,4 @@ lamp_laucher() {
 if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
   source $HOME/ccktools/.ccktools_custom
 fi
+
