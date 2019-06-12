@@ -2,51 +2,51 @@
 
 source ~/ccktools/.ccktools_aliases
 
-goto(){
-    if [[ $1 ]]; then
-        cd /c/vhost/$1*
-    else
-        cd /c/vhost
-    fi
+goto() {
+	if [[ $1 ]]; then
+		cd /c/vhost/$1*
+	else
+		cd /c/vhost
+	fi
 }
 
-gosi(){
-    if [[ $1 ]]; then
-        cd /c/wsl/sites/$1*
-        cd docroot
-    else
-        cd /c/wsl/sites
-    fi
+gosi() {
+	if [[ $1 ]]; then
+		cd /c/wsl/sites/$1*
+		cd docroot
+	else
+		cd /c/wsl/sites
+	fi
 }
 
-phpchanger(){
-echo "
+phpchanger() {
+	echo "
 _________________________
 ==> disabling mods"
 	sudo a2dismod php5.6
 	sudo a2dismod php7.0
 	sudo a2dismod php7.1
 	sudo a2dismod php7.2
-echo "
+	echo "
 _________________________
 ==> disabling mpm"
 	sudo a2dismod mpm_prefork
 	sudo a2dismod mpm_worker
 	sudo a2dismod mpm_event
 	sudo a2dismod mpm_prefork
-echo "
+	echo "
 _________________________
 ==> enabling $1"
 	sudo a2enmod php$1
 	sudo update-alternatives --set php /usr/bin/php$1
-echo "
+	echo "
 _________________________
 ==> restarting apache"
 	sudo service apache2 restart
 	php -v
 }
 
-crequire(){
+crequire() {
 	if [[ $1 ]]; then
 		MODULE_NAME=$1
 		composer require drupal/${MODULE_NAME}
@@ -60,8 +60,8 @@ crequire(){
 	fi
 }
 
-cremove(){
-    if [[ $1 ]]; then
+cremove() {
+	if [[ $1 ]]; then
 		MODULE_NAME=$1
 		OUTPUT_CHECK=$(drush pmu -y ${MODULE_NAME})
 		if [[ $OUTPUT_CHECK == *"Do you really want to continue? (y/n): y"* ]]; then

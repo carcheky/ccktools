@@ -4,7 +4,6 @@ sudo dpkg --configure -a &>/dev/null
 # INFO #
 ########
 
-
 ##########
 # CONFIG #
 ##########
@@ -19,13 +18,13 @@ NEW_THEME=robbyrussell
 # FUNCTIONS #
 #############
 
-wsl_stop(){
+wsl_stop() {
   echo "==> la consola va a cerrarse"
   read a
   sudo killall -r '.*'
 }
 
-wsl_update(){
+wsl_update() {
   if [[ -d ${BASE_PATH_WSL}/user/ccktools ]]; then
     cd ${BASE_PATH_WSL}/user/ccktools
     git pull
@@ -33,9 +32,9 @@ wsl_update(){
   fi
 }
 
-check_version(){
+check_version() {
   echo "==> Online version:" $(curl -fsSL https://raw.githubusercontent.com/carcheky/ccktools/master/config/version?\${DATE_SETUP}) 2>>/dev/null
-  echo "==> Local version:" $(cat ${BASE_PATH_WSL}/user/ccktools/config/version  2>>/dev/null)
+  echo "==> Local version:" $(cat ${BASE_PATH_WSL}/user/ccktools/config/version 2>>/dev/null)
 }
 
 set_wslconf() {
@@ -51,21 +50,21 @@ set_wslconf() {
   fi
 }
 
-launcher_dirs(){
-    echo "==> wsl setdirs"
-    set_dirs
-    create_links
+launcher_dirs() {
+  echo "==> wsl setdirs"
+  set_dirs
+  create_links
 }
 
 set_dirs() {
-    mkdir -p "${BASE_PATH_WSL}/"
-    mkdir -p "${BASE_PATH_WSL}/sites"
-    mkdir -p "${BASE_PATH_WSL}/user"
-    mkdir -p "${BASE_PATH_WSL}/error"
-    mkdir -p "${BASE_PATH_WSL}/log"
-    sudo chown -R user:user "${BASE_PATH_WSL}/"
-    cd "${BASE_PATH_WSL}/user"
-    git clone https://github.com/carcheky/ccktools.git
+  mkdir -p "${BASE_PATH_WSL}/"
+  mkdir -p "${BASE_PATH_WSL}/sites"
+  mkdir -p "${BASE_PATH_WSL}/user"
+  mkdir -p "${BASE_PATH_WSL}/error"
+  mkdir -p "${BASE_PATH_WSL}/log"
+  sudo chown -R user:user "${BASE_PATH_WSL}/"
+  cd "${BASE_PATH_WSL}/user"
+  git clone https://github.com/carcheky/ccktools.git
   if [ ! -d /desadrupal ]; then
     sudo mkdir /desadrupal
   fi
@@ -76,8 +75,8 @@ set_dirs() {
 
 create_links() {
   if [ -d ${BASE_PATH_WSL}/user/ccktools ]; then
-    sudo ln -s ${BASE_PATH_WSL}/user/ccktools/bin  $HOME
-    sudo ln -s ${BASE_PATH_WSL}/user/ccktools  $HOME
+    sudo ln -s ${BASE_PATH_WSL}/user/ccktools/bin $HOME
+    sudo ln -s ${BASE_PATH_WSL}/user/ccktools $HOME
 
     sudo apt install dos2unix -y 2>/dev/null
 
@@ -86,80 +85,79 @@ create_links() {
   fi
 }
 
-zsh_install(){
-      sudo apt install git nodejs npm fonts-powerline -y
-      sudo apt install zsh zsh-doc zsh-common -y
-      cd $HOME
-      curl -Lo install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-      sed -i 's/zsh -l/ls/g' $HOME/install.sh
-      sed -i 's/read opt/opt\=y/g' $HOME/install.sh
-      sudo chmod +x $HOME/install.sh
-      sudo rm -fr $HOME/.oh-my-zsh;
-      sudo sh -c $HOME/install.sh
-      sudo rm $HOME/install.sh
+zsh_install() {
+  sudo apt install git nodejs npm fonts-powerline -y
+  sudo apt install zsh zsh-doc zsh-common -y
+  cd $HOME
+  curl -Lo install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+  sed -i 's/zsh -l/ls/g' $HOME/install.sh
+  sed -i 's/read opt/opt\=y/g' $HOME/install.sh
+  sudo chmod +x $HOME/install.sh
+  sudo rm -fr $HOME/.oh-my-zsh
+  sudo sh -c $HOME/install.sh
+  sudo rm $HOME/install.sh
 
-      if ! grep -q "echo '==> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" $HOME/.bashrc ; then
-        sudo echo "echo '==> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" >> $HOME/.bashrc
-      fi
+  if ! grep -q "echo '==> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" $HOME/.bashrc; then
+    sudo echo "echo '==> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" >>$HOME/.bashrc
+  fi
 
-      if [ -f $HOME/.zshrc ]; then
-        sudo chmod 666 $HOME/.zshrc
-        sudo chown user:user $HOME/.zsh_history
+  if [ -f $HOME/.zshrc ]; then
+    sudo chmod 666 $HOME/.zshrc
+    sudo chown user:user $HOME/.zsh_history
 
-        if ! grep -q "source $HOME/ccktools/.ccktools" $HOME/.zshrc ; then
-          sudo echo "source $HOME/ccktools/.ccktools" >> $HOME/.zshrc
-          sed -i 's/source \/home\/user\/ccktools\/.ccktools/# source \/home\/user\/ccktools\/.ccktools/g' $HOME/.bashrc
-          cat $HOME/.bashrc | grep "# source /home/user/ccktools/.ccktools"
-        fi
+    if ! grep -q "source $HOME/ccktools/.ccktools" $HOME/.zshrc; then
+      sudo echo "source $HOME/ccktools/.ccktools" >>$HOME/.zshrc
+      sed -i 's/source \/home\/user\/ccktools\/.ccktools/# source \/home\/user\/ccktools\/.ccktools/g' $HOME/.bashrc
+      cat $HOME/.bashrc | grep "# source /home/user/ccktools/.ccktools"
+    fi
 
-        if ! grep -q "plugins=(git composer z ubuntu vscode)" $HOME/.zshrc ; then
-          sed -i 's/plugins=(git)/plugins=(git composer z ubuntu vscode)/g' $HOME/.zshrc && cat .zshrc | grep git
-        fi
-      fi
-      # if ! grep -q 'ZSH_THEME="robbyrussell"' $HOME/.zshrc ; then
-      #   sed -i 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME="robbyrussell"/g' $HOME/.zshrc && cat .zshrc | grep ZSH_THEME
-      # fi
+    if ! grep -q "plugins=(git composer z ubuntu vscode)" $HOME/.zshrc; then
+      sed -i 's/plugins=(git)/plugins=(git composer z ubuntu vscode)/g' $HOME/.zshrc && cat .zshrc | grep git
+    fi
+  fi
+  # if ! grep -q 'ZSH_THEME="robbyrussell"' $HOME/.zshrc ; then
+  #   sed -i 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME="robbyrussell"/g' $HOME/.zshrc && cat .zshrc | grep ZSH_THEME
+  # fi
 
-      touch $HOME/.z
+  touch $HOME/.z
 }
 
+lamp_install() {
+  sudo apt install -y apache2 php
+  sudo apt install -y php7.2-fpm libapache2-mod-php7.2 php7.2 php7.2-curl php7.2-gd php7.2-mbstring php7.2-mysql php7.2-xml php7.2-zip php7.2-common
 
-lamp_install(){
-    sudo apt install -y apache2 php
-    sudo apt install -y php7.2-fpm libapache2-mod-php7.2 php7.2 php7.2-curl php7.2-gd php7.2-mbstring  php7.2-mysql php7.2-xml php7.2-zip php7.2-common
+  sudo debconf-set-selections <<<'mysql-server mysql-server/root_password password root'
+  sudo debconf-set-selections <<<'mysql-server mysql-server/root_password_again password root'
+  sudo apt install -y mysql-server
 
-    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-    sudo apt install -y mysql-server
+  sudo service apache2 stop &
+  sudo service mysql stop
 
-    sudo service apache2 stop & sudo service mysql stop
+  sudo chmod -R 777 /var/cache/debconf
 
-    sudo chmod -R 777 /var/cache/debconf
+  APP_PASS="root"
+  ROOT_PASS="root"
+  APP_DB_PASS="root"
 
-    APP_PASS="root"
-    ROOT_PASS="root"
-    APP_DB_PASS="root"
+  sudo apt clean -y
+  sudo apt autoclean -y
+  sudo dpkg --configure -a
+  sudo apt autoremove -y
 
-    sudo apt clean -y
-    sudo apt autoclean -y
-    sudo dpkg --configure -a
-    sudo apt autoremove -y
+  sudo find /etc/php/ -name php.ini -exec sed -i 's/post_max_size = 8M/post_max_size = 8G/g' {} \;
+  sudo find /etc/php/ -name php.ini -exec sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' {} \;
+  sudo find /etc/php/ -name php.ini -exec sed -i 's/memory_limit = 128M/memory_limit = 2G/g' {} \;
 
-    sudo find /etc/php/ -name php.ini -exec sed -i 's/post_max_size = 8M/post_max_size = 8G/g' {} \;
-    sudo find /etc/php/ -name php.ini -exec sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' {} \;
-    sudo find /etc/php/ -name php.ini -exec sed -i 's/memory_limit = 128M/memory_limit = 2G/g' {} \;
+  sudo chmod -R 777 /etc/apache2
+  sudo chmod 777 /etc/apache2/apache2.conf
+  sudo chmod 777 /etc/apache2/mods-available/dir.conf
+  sudo usermod -d /var/lib/mysql/ mysql
+  sudo useradd -g www-data user
+  sudo adduser user www-data
 
-    sudo chmod -R 777 /etc/apache2
-    sudo chmod 777 /etc/apache2/apache2.conf
-    sudo chmod 777 /etc/apache2/mods-available/dir.conf
-    sudo usermod -d /var/lib/mysql/ mysql
-    sudo useradd -g www-data user
-    sudo adduser user www-data
+  if ! grep -q "AcceptFilter http none" /etc/apache2/apache2.conf; then
 
-
-if ! grep -q "AcceptFilter http none"  /etc/apache2/apache2.conf ; then
-
-sudo echo "
+    sudo echo "
 Servername localhost
 AcceptFilter http none
 AcceptFilter https none
@@ -169,51 +167,52 @@ Options Indexes FollowSymLinks
 AllowOverride All
 Require all granted
 </Directory>
-" >>  /etc/apache2/apache2.conf
-fi
+" >>/etc/apache2/apache2.conf
+  fi
 
-if ! grep -q "DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm" /etc/apache2/mods-available/dir.conf ; then
-sudo echo "
+  if ! grep -q "DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm" /etc/apache2/mods-available/dir.conf; then
+    sudo echo "
 <IfModule mod_dir.c>
 DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
 </IfModule>
-" > /etc/apache2/mods-available/dir.conf
-fi
+" >/etc/apache2/mods-available/dir.conf
+  fi
 
-    sudo apt install php-mbstring -y
-    sudo apt install php-curl -y
-    sudo apt install zip php-zip unzip -y
-    sudo apt install mcrypt -y
-    sudo apt install composer -y
+  sudo apt install php-mbstring -y
+  sudo apt install php-curl -y
+  sudo apt install zip php-zip unzip -y
+  sudo apt install mcrypt -y
+  sudo apt install composer -y
 
-    sudo phpenmod mcrypt
-    sudo phpenmod zip
-    sudo phpenmod mbstring
+  sudo phpenmod mcrypt
+  sudo phpenmod zip
+  sudo phpenmod mbstring
 
-    sudo a2enmod rewrite
-    sudo a2enmod vhost_alias
+  sudo a2enmod rewrite
+  sudo a2enmod vhost_alias
 
-    composer global require hirak/prestissimo
-    composer global require drush/drush:^8
-    $HOME/.config/composer/vendor/bin/drush init -n
+  composer global require hirak/prestissimo
+  composer global require drush/drush:^8
+  $HOME/.config/composer/vendor/bin/drush init -n
 
-    sudo service apache2 stop & sudo service mysql stop
-    sudo service apache2 start & sudo service mysql start
+  sudo service apache2 stop &
+  sudo service mysql stop
+  sudo service apache2 start &
+  sudo service mysql start
 
-    echo "==> Usa HeidiSQL para gestionar las bases de datos https://www.heidisql.com/"
-    echo "==> Server:     localhost "
-    echo "==> User:       root"
-    echo "==> Password:   root"
+  echo "==> Usa HeidiSQL para gestionar las bases de datos https://www.heidisql.com/"
+  echo "==> Server:     localhost "
+  echo "==> User:       root"
+  echo "==> Password:   root"
 }
 
+ubuntu_update() {
+  echo "==> wsl ubuntu_update"
+  echo "==> actualizando fuentes..."
+  sudo apt update 2>/dev/null
 
-ubuntu_update(){
-    echo "==> wsl ubuntu_update"
-    echo "==> actualizando fuentes..."
-    sudo apt update 2>/dev/null
-
-    echo "==> actualizando paquetes..."
-    sudo apt upgrade -y 2>/dev/null
+  echo "==> actualizando paquetes..."
+  sudo apt upgrade -y 2>/dev/null
 }
 
 ################
@@ -223,14 +222,17 @@ ubuntu_update(){
 set_wslconf
 rm -fr .wget-hsts
 sudo dpkg --configure -a
-sudo mkdir -p /c/wsl/error ; sudo touch /c/wsl/error/error-ccktools.log ; sudo chmod -R 777 /c/wsl ; sudo chown -R user:user /c/wsl
+sudo mkdir -p /c/wsl/error
+sudo touch /c/wsl/error/error-ccktools.log
+sudo chmod -R 777 /c/wsl
+sudo chown -R user:user /c/wsl
 
-if [ -d ${BASE_PATH_WSL} ] ; then
+if [ -d ${BASE_PATH_WSL} ]; then
   mkdir -p "${BASE_PATH_WSL}/error"
-  echo "======================">${BASE_PATH_WSL}/error/error-ccktools.log
+  echo "======================" >${BASE_PATH_WSL}/error/error-ccktools.log
 fi
-echo "${DATE_SETUP}">>${BASE_PATH_WSL}/error/error-ccktools.log
-echo "======================">>${BASE_PATH_WSL}/error/error-ccktools.log
+echo "${DATE_SETUP}" >>${BASE_PATH_WSL}/error/error-ccktools.log
+echo "======================" >>${BASE_PATH_WSL}/error/error-ccktools.log
 echo "==> wsl_update" >>${BASE_PATH_WSL}/error/error-ccktools.log
 wsl_update 2>>${BASE_PATH_WSL}/error/error-ccktools.log
 
@@ -253,5 +255,3 @@ sudo apt install figlet -y
 figlet "todo va bien"
 sleep 5
 wsl_stop
-
-

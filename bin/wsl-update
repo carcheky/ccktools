@@ -1,6 +1,6 @@
 #!/bin/bash
 
-wsl_stop(){
+wsl_stop() {
   echo "
   ==> la consola va a cerrarse
   "
@@ -9,12 +9,12 @@ wsl_stop(){
   sudo killall -r '.*'
 }
 
-wsl_update(){
-    cd '/c/wsl/user/ccktools'
-    git reset --hard
-    git pull origin master
-    find ~/ccktools/bin -type f -exec chmod +x {} \;
-    find ~/ccktools/bin -type f -exec dos2unix {} \;
+wsl_update() {
+  cd '/c/wsl/user/ccktools'
+  git reset --hard
+  git pull origin master
+  find ~/ccktools/bin -type f -exec chmod +x {} \;
+  find ~/ccktools/bin -type f -exec dos2unix {} \;
 }
 
 wsl_update

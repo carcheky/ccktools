@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-if [[ -f  sites/default/default.settings.php ]]; then
+if [[ -f sites/default/default.settings.php ]]; then
     echo "==> estableciendo permisos..."
     sudo chmod -R 777 .
     sudo chown -R user:user .
