@@ -1,4 +1,5 @@
 #!/bin/bash
+source ~/ccktools/.ccktools_aliases
 
 fix_path() {
     if [[ -d $PATH_TO_FIX/bin ]]; then
