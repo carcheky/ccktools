@@ -19,7 +19,7 @@ wsl_update() {
 
 cd ~/ccktools/
 echo "==> Checking ccktools updates..." &
-git fetch &>/dev/null
+git remote update &>/dev/null
 
 UPSTREAM=${1:-'@{u}'}
 LOCAL=$(git rev-parse @) &
