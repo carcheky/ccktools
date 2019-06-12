@@ -14,7 +14,8 @@ wsl_update() {
   # git reset --hard
   # git pull origin master
   GITPULL=$(git pull)
-  [[ ${GITPULL} == 'Already up to date.' ]] && echo ${GITPULL} || git pull
+  echo "==> Checking ccktools updates..." &
+  [[ ${GITPULL} == 'Already up to date.' ]] && clear || git pull
 
   find ~/ccktools/bin -type f -exec chmod +x {} \; &>/dev/null
   find ~/ccktools/bin -type f -exec dos2unix {} \; &>/dev/null
