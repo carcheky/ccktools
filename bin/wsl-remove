@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# reset
 if grep -q "echo '==> updating...' ; /home/user/bin/wsl-update &>/dev/null; bash -c -l zsh; exit" $HOME/.bashrc; then
     sed -i '$ d' $HOME/.bashrc
 fi

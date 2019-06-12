@@ -1,4 +1,5 @@
 #!/bin/bash
+# functions
 
 # [] && false || true
 # [!] && true || false
@@ -100,4 +101,3 @@ if [[ $SITE ]]; then
   echo "add 127.0.0.1 ${SITE} to hosts file & flush dns (recommended http://www.abelhadigital.com/hostsman/)"
   echo "=====> http://${SITE}/user"
 fi
-
