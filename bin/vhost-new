@@ -1,5 +1,4 @@
 #!/bin/bash
-# functions
 
 # [] && false || true
 # [!] && true || false

@@ -1,5 +1,5 @@
 #!/bin/bash
-dos2unix /c/Users/cmartinezv/Documents/GitHub/ccktools/bin/* &>/dev/null
+
 wsl_stop() {
   echo "
   ==> la consola va a cerrarse
@@ -21,6 +21,7 @@ wsl_update() {
 }
 
 wsl_update
+
 # cd ~/ccktools/
 # echo "==> Checking ccktools updates..." &
 # git remote update &>/dev/null
