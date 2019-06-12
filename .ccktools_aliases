@@ -33,7 +33,7 @@ alias pmu='drush pmu -y'
 # alias drup='dr up -y; dr updb -y; drush cu;'
 # alias drwsdel='clear; drush -y watchdog-delete all; drush ws --tail --full'
 
-# MORE ALIAS
+# ANOTHER ALIAS
 # alias explorer='/mnt/c/Windows/explorer.exe'
 # alias docker=docker.exe
 # alias docker-compose=docker-compose.exe
