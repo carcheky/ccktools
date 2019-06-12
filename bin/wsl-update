@@ -21,7 +21,6 @@ cd ~/ccktools/
 
 echo "==> Checking ccktools updates..." && clear
 git fetch &>/dev/null
-
 UPSTREAM=${1:-'@{u}'}
 LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse "$UPSTREAM")
@@ -32,13 +31,13 @@ if [ $LOCAL = $BASE ]; then
   wsl_update &>/dev/null
 fi
 
-# if [ $LOCAL = $REMOTE ]; then
-#   echo "==> Up-to-date"
-# elif [ $LOCAL = $BASE ]; then
-#   echo "==> Updating..."
-#   wsl_update
-# elif [ $REMOTE = $BASE ]; then
-#   echo "==>Need to push"
-# else
-#   echo "==>Diverged"
-# fi
+if [ $LOCAL = $REMOTE ]; then
+  exit
+elif [ $LOCAL = $BASE ]; then
+  echo "==> Updating..."
+  wsl_update
+elif [ $REMOTE = $BASE ]; then
+  echo "==>Need to push"
+else
+  echo "==>Diverged"
+fi
