@@ -18,14 +18,14 @@ wsl_update() {
 }
 
 cd ~/ccktools/
-
-echo "==> Checking ccktools updates..."
+echo "==> Checking ccktools updates..." &
 git fetch &>/dev/null
+
 UPSTREAM=${1:-'@{u}'}
-LOCAL=$(git rev-parse @)
-REMOTE=$(git rev-parse "$UPSTREAM")
+LOCAL=$(git rev-parse @) &
+REMOTE=$(git rev-parse "$UPSTREAM") &
 BASE=$(git merge-base @ "$UPSTREAM")
-clear
+
 if [ $LOCAL = $REMOTE ]; then
   exit
 elif [ $LOCAL = $BASE ]; then
