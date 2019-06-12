@@ -1,5 +1,5 @@
 #!/bin/bash
-
+dos2unix /c/Users/cmartinezv/Documents/GitHub/ccktools/bin/* &>/dev/null
 wsl_stop() {
   echo "
   ==> la consola va a cerrarse
@@ -13,12 +13,10 @@ wsl_update() {
   cd ~/ccktools/
   # git reset --hard
   # git pull origin master
-  if [git pull]; then
-    echo "==> ccktools updated"
-  fi
+  [[ 'git pull' ]] && echo "==> ccktools updated" || echo "==> ccktools updated FAILED"
 
-  find ~/ccktools/bin -type f -exec chmod +x {} \;
-  find ~/ccktools/bin -type f -exec dos2unix {} \;
+  find ~/ccktools/bin -type f -exec chmod +x {} \; &>/dev/null
+  find ~/ccktools/bin -type f -exec dos2unix {} \; &>/dev/null
 }
 
 wsl_update
