@@ -14,48 +14,44 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 
 # LOAD SOURCES
 if [[ -d "$HOME/bin" ]]; then
-    export PATH="$HOME/bin:$PATH"
+  export PATH="$HOME/bin:$PATH"
 fi
 
 if [[ -d "$HOME/.config/composer/vendor/bin" ]]; then
-    export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+  export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 fi
 
-
 # INCLUDE DRUSH BASH CUSTOMIZATIONS.
-if [ -f "$HOME/.drush/drush.bashrc" ] ; then
+if [ -f "$HOME/.drush/drush.bashrc" ]; then
   source $HOME/.drush/drush.bashrc
 fi
 
 source $HOME/ccktools/.ccktools_aliases
 source $HOME/ccktools/.ccktools_functions
 
-
 # FUNCTIONS
-ssh_laucher(){
+ssh_laucher() {
   SERVICE="ssh-agent"
-  if pgrep -x "$SERVICE"
-  then
-      echo "$SERVICE is running yet"
+  if pgrep -x "$SERVICE"; then
+    echo "$SERVICE is running yet"
   else
-      echo "starting $SERVICE"
-      sudo chmod 700 $HOME/.ssh
-      sudo chmod 600  $HOME/.ssh/*
-      sudo chmod 600 $HOME/.ssh/*.pub
-      eval `ssh-agent -s`
-      ssh-add -q $HOME/.ssh/id_rsa_c*
+    echo "starting $SERVICE"
+    sudo chmod 700 $HOME/.ssh
+    sudo chmod 600 $HOME/.ssh/*
+    sudo chmod 600 $HOME/.ssh/*.pub
+    eval $(ssh-agent -s)
+    ssh-add -q $HOME/.ssh/id_rsa_c*
 
   fi
 }
 
-lamp_laucher(){
+lamp_laucher() {
   SERVICE="apache2"
-  if pgrep -x "$SERVICE"
-  then
-      echo "$SERVICE is running yet"
+  if pgrep -x "$SERVICE"; then
+    echo "$SERVICE is running yet"
   else
-      echo "starting $SERVICE"
-      lamp start
+    echo "starting $SERVICE"
+    lamp start
   fi
 }
 
@@ -66,7 +62,6 @@ ssh_laucher &>/dev/null
 echo "=> loading lamp..."
 lamp_laucher &>/dev/null
 
-gosi
 if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
   source $HOME/ccktools/.ccktools_custom
 fi
