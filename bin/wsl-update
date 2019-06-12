@@ -13,7 +13,8 @@ wsl_update() {
   cd ~/ccktools/
   # git reset --hard
   # git pull origin master
-  [[ 'git pull' ]] && echo "==> ccktools updated" || echo "==> ccktools updated FAILED"
+  GITPULL=$(git pull)
+  [[ 'git pull' ]] && echo "==> $GITPULL" || echo "==> ccktools updated FAILED"
 
   find ~/ccktools/bin -type f -exec chmod +x {} \; &>/dev/null
   find ~/ccktools/bin -type f -exec dos2unix {} \; &>/dev/null
