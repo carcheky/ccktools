@@ -10,14 +10,15 @@ wsl_stop() {
 }
 
 wsl_update() {
-  cd '/c/wsl/user/ccktools'
+  cd ~/ccktools/
   git reset --hard
   git pull origin master
   find ~/ccktools/bin -type f -exec chmod +x {} \;
   find ~/ccktools/bin -type f -exec dos2unix {} \;
 }
 
-cd '/c/wsl/user/ccktools'
+cd ~/ccktools/
+git remote update
 UPSTREAM=${1:-'@{u}'}
 LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse "$UPSTREAM")
