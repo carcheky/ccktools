@@ -17,6 +17,7 @@ wsl_update() {
   find ~/ccktools/bin -type f -exec dos2unix {} \;
 }
 
+cd '/c/wsl/user/ccktools'
 UPSTREAM=${1:-'@{u}'}
 LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse "$UPSTREAM")
