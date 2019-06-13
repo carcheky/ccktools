@@ -62,14 +62,14 @@ if [[ $SITE ]]; then
     if [[ $INSTALL='drupal' ]]; then
       echo "==> installing drupal"
       cd "/c/wsl/sites"
-      # cd ${CONF_SITE_FOLDER}
-      # sudo chmod -R 777 .
-      # cd ..
-      # sudo rm -fr docroot
-      composer create-project drupal-composer/drupal-project:8.x-dev ${SITE} --no-interaction
-      # $DRUSH dl drupal -v
-      # mv drup* docroot
-      # cd docroot
+      # composer create-project drupal-composer/drupal-project:8.x-dev ${SITE} --no-interaction
+      cd ${CONF_SITE_FOLDER}
+      sudo chmod -R 777 .
+      cd ..
+      sudo rm -fr docroot
+      $DRUSH dl drupal -v
+      mv drup* docroot
+      cd docroot
       cd "${SITE}/web"
       cp sites/default/default.settings.php sites/default/settings.php
       sudo mkdir -p sites/default/files/translations
