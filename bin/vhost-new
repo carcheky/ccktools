@@ -105,17 +105,11 @@ if [[ $SITE ]]; then
       sudo chmod -R 777 .
       cd ${CONF_SITE_FOLDER}
       pwd
-      read
       sudo cp sites/default/default.settings.php sites/default/settings.php
-      read
       sudo mkdir -p sites/default/files/translations
-      read
       sudo chmod -R 777 .
-      read
       $DRUSH -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin --locale=es
-      read
       $DRUSH en -y locale adminimal_admin_toolbar backup_migrate config_direct_save pathauto toolbar_menu_clean
-      read
       $DRUSH locale-check
       $DRUSH locale-update
       cd ..
