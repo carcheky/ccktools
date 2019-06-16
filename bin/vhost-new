@@ -111,7 +111,7 @@ if [[ $SITE ]]; then
       lamp restart
       drush sql:drop -y
       $DRUSH -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin --locale=es
-      $DRUSH en -y  locale devel webprofiler adminimal_admin_toolbar backup_migrate config_direct_save pathauto toolbar_menu_clean admin_toolbar_links_access_filter admin_toolbar_tools config_translation layout_builder layout_discovery
+      $DRUSH pm:en -y  locale devel webprofiler adminimal_admin_toolbar backup_migrate config_direct_save pathauto toolbar_menu_clean admin_toolbar_links_access_filter admin_toolbar_tools config_translation layout_builder layout_discovery
       $DRUSH locale-check
       $DRUSH locale-update
       cd ..
