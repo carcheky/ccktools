@@ -101,7 +101,7 @@ if [[ $SITE ]]; then
       lamp restart
       composer create-project drupal-composer/drupal-project:8.x-dev ${SITE} --no-interaction
       cd $SITE
-      composer require drupal/adminimal_admin_toolbar drupal/backup_migrate drupal/toolbar_menu_clean drupal/config_direct_save drupal/pathauto drupal/devel
+      composer require drupal/adminimal_admin_toolbar drupal/backup_migrate drupal/toolbar_menu_clean drupal/config_direct_save drupal/pathauto drupal/devel drupal/fontawesome
       sudo chmod -R 777 .
       cd ${CONF_SITE_FOLDER}
       pwd
@@ -111,7 +111,7 @@ if [[ $SITE ]]; then
       lamp restart
       drush sql:drop -y
       $DRUSH -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin --locale=es
-      $DRUSH pm:en -y  locale devel webprofiler adminimal_admin_toolbar backup_migrate config_direct_save pathauto toolbar_menu_clean admin_toolbar_links_access_filter admin_toolbar_tools config_translation layout_builder layout_discovery
+      $DRUSH pm:en -y  locale devel webprofiler adminimal_admin_toolbar fontawesome backup_migrate config_direct_save pathauto toolbar_menu_clean admin_toolbar_links_access_filter admin_toolbar_tools config_translation layout_builder layout_discovery
       $DRUSH locale-check
       $DRUSH locale-update
       cd ..
