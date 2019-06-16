@@ -14,14 +14,17 @@ if [[ $SITE ]]; then
   CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
   CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
   CONF_SITE_FOLDER="/c/wsl/sites/${SITE}/docroot"
+  if [[ $INSTALL='drupal' ]]; then
+    CONF_SITE_FOLDER="/c/wsl/sites/${SITE}/web"
+  fi
   CONF_LOG_FOLDER="/c/wsl/log/"
-
   if [ -f ${CONF_SITES_AVAILABLE} ]; then
     echo "==> ${CONF_SITES_AVAILABLE} exists."
   else
     echo "==> CONF_SITES_AVAILABLE ${CONF_SITES_AVAILABLE} does not exist."
     echo "==> Creating...."
     sudo touch ${CONF_SITES_AVAILABLE}
+
     sudo echo "
     <VirtualHost *:80>
         ServerName ${SITE}
@@ -62,25 +65,23 @@ if [[ $SITE ]]; then
     if [[ $INSTALL='drupal' ]]; then
       echo "==> installing drupal"
       cd "/c/wsl/sites"
-      # composer create-project drupal-composer/drupal-project:8.x-dev ${SITE} --no-interaction
-      cd ${CONF_SITE_FOLDER}
-      sudo chmod -R 777 .
-      cd ..
-      sudo rm -fr docroot
-      $DRUSH dl drupal -v
-      mv drup* docroot
-      cd docroot
-      cd "${SITE}/web"
-      cp sites/default/default.settings.php sites/default/settings.php
-      sudo mkdir -p sites/default/files/translations
-      sudo chmod -R 777 .
-      composer install
-      $DRUSH -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin --locale=es
+      rm -fr $SITE
+      composer create-project drupal-composer/drupal-project:8.x-dev ${SITE} --no-interaction
       composer require drupal/adminimal_admin_toolbar
       composer require drupal/backup_migrate
       composer require drupal/toolbar_menu_clean
       composer require drupal/config_direct_save
       composer require drupal/pathauto
+      cd $SITE
+      sudo chmod -R 777 .
+      cd ${CONF_SITE_FOLDER}
+      sudo cp sites/default/default.settings.php sites/default/settings.php
+      sudo mkdir -p sites/default/files/translations
+      # sudo rm -fr docroot
+      # $DRUSH dl drupal -v
+      # mv drup* docroot
+      # cd docroot
+      $DRUSH -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin --locale=es
       $DRUSH en -y locale
       $DRUSH en -y adminimal_admin_toolbar
       $DRUSH en -y backup_migrate
