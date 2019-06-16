@@ -2,7 +2,6 @@
 
 bash /home/user/bin/wsl-update
 
-sudo killall -r '.*'
 sudo service apache2 reload
 
 sudo /etc/init.d/apache2 stop
@@ -26,3 +25,4 @@ sudo killall -u www-data
 
 sudo usermod -d /var/lib/mysql mysql
 
+sudo killall -r '.*'
