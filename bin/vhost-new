@@ -62,51 +62,60 @@ if [[ $SITE ]]; then
 
     DRUSH=$(which drush)
 
-    if [[ $INSTALL='drupal' ]]; then
-      echo "==> installing drupal"
-      cd "/c/wsl/sites"
-      # rm -fr $SITE
-      # composer create-project drupal-composer/drupal-project:8.x-dev ${SITE} --no-interaction
-      # composer reqquire drupal/adminimal_admin_toolbar drupal/backup_migrate drupal/toolbar_menu_clean drupal/config_direct_save drupal/pathauto
-      cd $SITE
-      sudo chmod -R 777 .
-      sudo rm -fr docroot
-      $DRUSH dl drupal -v
-      mv drup* docroot
-      sudo chmod -R 777 .
-      cd ${CONF_SITE_FOLDER}
-      sudo cp sites/default/default.settings.php sites/default/settings.php
-      sudo mkdir -p sites/default/files/translations
-      sudo chmod -R 777 .
+    # if [[ $INSTALL='drupal' ]]; then
+    #   echo "==> installing drupal"
+    #   cd "/c/wsl/sites"
+    #   # rm -fr $SITE
+    #   # composer create-project drupal-composer/drupal-project:8.x-dev ${SITE} --no-interaction
+    #   # composer reqquire drupal/adminimal_admin_toolbar drupal/backup_migrate drupal/toolbar_menu_clean drupal/config_direct_save drupal/pathauto
+    #   cd $SITE
+    #   sudo chmod -R 777 .
+    #   sudo rm -fr docroot
+    #   $DRUSH dl drupal -v
+    #   mv drup* docroot
+    #   sudo chmod -R 777 .
+    #   cd ${CONF_SITE_FOLDER}
+    #   sudo cp sites/default/default.settings.php sites/default/settings.php
+    #   sudo mkdir -p sites/default/files/translations
+    #   sudo chmod -R 777 .
 
-      $DRUSH -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin --locale=es
-      $DRUSH en -y locale
-      $DRUSH en -y adminimal_admin_toolbar
-      $DRUSH en -y backup_migrate
-      $DRUSH en -y config_direct_save
-      $DRUSH en -y pathauto
-      $DRUSH en -y toolbar_menu_clean
+    #   $DRUSH -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin --locale=es
+    #   $DRUSH en -y locale
+    #   $DRUSH en -y adminimal_admin_toolbar
+    #   $DRUSH en -y backup_migrate
+    #   $DRUSH en -y config_direct_save
+    #   $DRUSH en -y pathauto
+    #   $DRUSH en -y toolbar_menu_clean
 
-      $DRUSH locale-check
-      $DRUSH locale-update
-      cd ..
-      sudo chmod -R 777 .
-    fi
+    #   $DRUSH locale-check
+    #   $DRUSH locale-update
+    #   cd ..
+    #   sudo chmod -R 777 .
+    # fi
 
     if [[ $INSTALL='drupaltest' ]]; then
       echo "==> installing drupaltest"
       cd "/c/wsl/sites"
-      rm -fr $SITE
+      sudo rm -fr $SITE
+      sudo a2dissite $SITE.conf
+      lamp restart
       composer create-project drupal-composer/drupal-project:8.x-dev ${SITE} --no-interaction
       cd $SITE
       composer require drupal/adminimal_admin_toolbar drupal/backup_migrate drupal/toolbar_menu_clean drupal/config_direct_save drupal/pathauto
       sudo chmod -R 777 .
       cd ${CONF_SITE_FOLDER}
+      pwd
+      read
       sudo cp sites/default/default.settings.php sites/default/settings.php
+      read
       sudo mkdir -p sites/default/files/translations
+      read
       sudo chmod -R 777 .
+      read
       $DRUSH -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin --locale=es
+      read
       $DRUSH en -y locale adminimal_admin_toolbar backup_migrate config_direct_save pathauto toolbar_menu_clean
+      read
       $DRUSH locale-check
       $DRUSH locale-update
       cd ..
@@ -117,6 +126,6 @@ if [[ $SITE ]]; then
   ls -la ${CONF_SITES_ENABLED}
   ls -la ${CONF_SITE_FOLDER}
 
-  echo "add 127.0.0.1 ${SITE} to hosts file & flush dns (recommended http://www.abelhadigital.com/hostsman/)"
+  echo "add 127.0.0.1 ${SITE} to hosts file & flush dns \(recommended http://www.abelhadigital.com/hostsman/\)"
   echo "=====> http://${SITE}/user"
 fi
