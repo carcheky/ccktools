@@ -104,10 +104,7 @@ if [[ $SITE ]]; then
       cd ${CONF_SITE_FOLDER}
       sudo cp sites/default/default.settings.php sites/default/settings.php
       sudo mkdir -p sites/default/files/translations
-      # sudo rm -fr docroot
-      # $DRUSH dl drupal -v
-      # mv drup* docroot
-      # cd docroot
+      sudo chmod -R 777 .
       $DRUSH -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin --locale=es
       $DRUSH en -y locale adminimal_admin_toolbar backup_migrate config_direct_save pathauto toolbar_menu_clean
       $DRUSH locale-check
