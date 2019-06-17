@@ -1,8 +1,11 @@
 #!/bin/bash
 
+# REQUIRED
+
 source ~/ccktools/.ccktools_aliases
 
 # FUNCTIONS
+
 goto() {
 	if [[ $1 ]]; then
 		cd /c/vhost/$1*
