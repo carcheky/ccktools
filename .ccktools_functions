@@ -20,6 +20,15 @@ gosi() {
 	fi
 }
 
+goth() {
+	if [[ $1 ]]; then
+		cd /c/wsl/sites/$1*
+		cd docroot/themes/custom/
+	else
+		cd /c/wsl/sites
+	fi
+}
+
 phpchanger() {
 	echo "
 _________________________
