@@ -14,14 +14,18 @@ if [[ $SITE ]]; then
   CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
   CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
   CONF_SITE_FOLDER="/c/wsl/sites/${SITE}/docroot"
+  if [[ $INSTALL='drupaltest' ]]; then
+    CONF_SITE_FOLDER="/c/wsl/sites/${SITE}/web"
+  fi
   CONF_LOG_FOLDER="/c/wsl/log/"
-
   if [ -f ${CONF_SITES_AVAILABLE} ]; then
     echo "==> ${CONF_SITES_AVAILABLE} exists."
   else
     echo "==> CONF_SITES_AVAILABLE ${CONF_SITES_AVAILABLE} does not exist."
     echo "==> Creating...."
+    sudo rm ${CONF_SITES_AVAILABLE}
     sudo touch ${CONF_SITES_AVAILABLE}
+
     sudo echo "
     <VirtualHost *:80>
         ServerName ${SITE}
@@ -59,34 +63,55 @@ if [[ $SITE ]]; then
 
     DRUSH=$(which drush)
 
-    if [[ $INSTALL='drupal' ]]; then
-      echo "==> installing drupal"
+    # if [[ $INSTALL='drupal' ]]; then
+    #   echo "==> installing drupal"
+    #   cd "/c/wsl/sites"
+    #   # rm -fr $SITE
+    #   # composer create-project drupal-composer/drupal-project:8.x-dev ${SITE} --no-interaction
+    #   # composer reqquire drupal/adminimal_admin_toolbar drupal/backup_migrate drupal/toolbar_menu_clean drupal/config_direct_save drupal/pathauto
+    #   cd $SITE
+    #   sudo chmod -R 777 .
+    #   sudo rm -fr docroot
+    #   $DRUSH dl drupal -v
+    #   mv drup* docroot
+    #   sudo chmod -R 777 .
+    #   cd ${CONF_SITE_FOLDER}
+    #   sudo cp sites/default/default.settings.php sites/default/settings.php
+    #   sudo mkdir -p sites/default/files/translations
+    #   sudo chmod -R 777 .
+
+    #   $DRUSH -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin --locale=es
+    #   $DRUSH en -y locale
+    #   $DRUSH en -y adminimal_admin_toolbar
+    #   $DRUSH en -y backup_migrate
+    #   $DRUSH en -y config_direct_save
+    #   $DRUSH en -y pathauto
+    #   $DRUSH en -y toolbar_menu_clean
+
+    #   $DRUSH locale-check
+    #   $DRUSH locale-update
+    #   cd ..
+    #   sudo chmod -R 777 .
+    # fi
+
+    if [[ $INSTALL='drupaltest' ]]; then
+      echo "==> installing drupaltest"
       cd "/c/wsl/sites"
-      # composer create-project drupal-composer/drupal-project:8.x-dev ${SITE} --no-interaction
-      cd ${CONF_SITE_FOLDER}
+      sudo rm -fr $SITE
+      lamp restart
+      composer create-project drupal-composer/drupal-project:8.x-dev ${SITE} --no-interaction
+      cd $SITE
+      composer require drupal/adminimal_admin_toolbar drupal/backup_migrate drupal/toolbar_menu_clean drupal/config_direct_save drupal/pathauto drupal/devel drupal/fontawesome
       sudo chmod -R 777 .
-      cd ..
-      sudo rm -fr docroot
-      $DRUSH dl drupal -v
-      mv drup* docroot
-      cd docroot
-      cd "${SITE}/web"
-      cp sites/default/default.settings.php sites/default/settings.php
+      cd ${CONF_SITE_FOLDER}
+      pwd
+      sudo cp sites/default/default.settings.php sites/default/settings.php
       sudo mkdir -p sites/default/files/translations
       sudo chmod -R 777 .
-      composer install
+      lamp restart
+      drush sql:drop -y
       $DRUSH -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-mail=test@test.test --account-pass=admin --locale=es
-      composer require drupal/adminimal_admin_toolbar
-      composer require drupal/backup_migrate
-      composer require drupal/toolbar_menu_clean
-      composer require drupal/config_direct_save
-      composer require drupal/pathauto
-      $DRUSH en -y locale
-      $DRUSH en -y adminimal_admin_toolbar
-      $DRUSH en -y backup_migrate
-      $DRUSH en -y config_direct_save
-      $DRUSH en -y pathauto
-      $DRUSH en -y toolbar_menu_clean
+      $DRUSH pm:en -y  locale devel webprofiler adminimal_admin_toolbar fontawesome backup_migrate config_direct_save pathauto toolbar_menu_clean admin_toolbar_links_access_filter admin_toolbar_tools config_translation layout_builder layout_discovery
       $DRUSH locale-check
       $DRUSH locale-update
       cd ..
@@ -97,6 +122,6 @@ if [[ $SITE ]]; then
   ls -la ${CONF_SITES_ENABLED}
   ls -la ${CONF_SITE_FOLDER}
 
-  echo "add 127.0.0.1 ${SITE} to hosts file & flush dns (recommended http://www.abelhadigital.com/hostsman/)"
+  echo "add 127.0.0.1 ${SITE} to hosts file & flush dns \(recommended http://www.abelhadigital.com/hostsman/\)"
   echo "=====> http://${SITE}/user"
 fi
