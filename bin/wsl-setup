@@ -222,7 +222,7 @@ ubuntu_update() {
 # MAIN PROGRAM #
 ################
 
-set_wslconf
+# set_wslconf
 rm -fr .wget-hsts
 sudo dpkg --configure -a
 sudo mkdir -p /mnt/c/wsl/error

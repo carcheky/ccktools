@@ -13,11 +13,11 @@
 if [[ $SITE ]]; then
   CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
   CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
-  CONF_SITE_FOLDER="/c/wsl/sites/${SITE}/docroot"
+  CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/docroot"
   if [[ $INSTALL='drupaltest' ]]; then
-    CONF_SITE_FOLDER="/c/wsl/sites/${SITE}/web"
+    CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/web"
   fi
-  CONF_LOG_FOLDER="/c/wsl/log/"
+  CONF_LOG_FOLDER="/mnt/c/wsl/log/"
   if [ -f ${CONF_SITES_AVAILABLE} ]; then
     echo "==> ${CONF_SITES_AVAILABLE} exists."
   else
@@ -65,7 +65,7 @@ if [[ $SITE ]]; then
 
     # if [[ $INSTALL='drupal' ]]; then
     #   echo "==> installing drupal"
-    #   cd "/c/wsl/sites"
+    #   cd "/mnt/c/wsl/sites"
     #   # rm -fr $SITE
     #   # composer create-project drupal-composer/drupal-project:8.x-dev ${SITE} --no-interaction
     #   # composer reqquire drupal/adminimal_admin_toolbar drupal/backup_migrate drupal/toolbar_menu_clean drupal/config_direct_save drupal/pathauto
