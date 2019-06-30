@@ -96,7 +96,7 @@ if [[ $SITE ]]; then
 
     if [[ $INSTALL='drupaltest' ]]; then
       echo "==> installing drupaltest"
-      cd "/c/wsl/sites"
+      cd "/mnt/c/wsl/sites"
       sudo rm -fr $SITE
       lamp restart
       composer create-project drupal-composer/drupal-project:8.x-dev ${SITE} --no-interaction

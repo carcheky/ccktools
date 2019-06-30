@@ -8,7 +8,7 @@ sudo dpkg --configure -a &>/dev/null
 # CONFIG #
 ##########
 
-BASE_PATH="/c"
+BASE_PATH="/mnt/c"
 BASE_PATH_WSL="${BASE_PATH}/wsl"
 
 DATE_SETUP="$(date +%s)"
@@ -225,10 +225,10 @@ ubuntu_update() {
 set_wslconf
 rm -fr .wget-hsts
 sudo dpkg --configure -a
-sudo mkdir -p /c/wsl/error
-sudo touch /c/wsl/error/error-ccktools.log
-sudo chmod -R 777 /c/wsl
-sudo chown -R user:user /c/wsl
+sudo mkdir -p /mnt/c/wsl/error
+sudo touch /mnt/c/wsl/error/error-ccktools.log
+sudo chmod -R 777 /mnt/c/wsl
+sudo chown -R user:user /mnt/c/wsl
 
 if [ -d ${BASE_PATH_WSL} ]; then
   mkdir -p "${BASE_PATH_WSL}/error"
