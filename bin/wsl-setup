@@ -227,7 +227,7 @@ rm -fr .wget-hsts
 sudo dpkg --configure -a
 sudo mkdir -p /mnt/c/wsl/error
 sudo touch /mnt/c/wsl/error/error-ccktools.log
-sudo chmod -R 777 /mnt/c/wsl
+sudo chmod -R 777 /mnt/c/wsl/user
 sudo chown -R user:user /mnt/c/wsl
 
 if [ -d ${BASE_PATH_WSL} ]; then
