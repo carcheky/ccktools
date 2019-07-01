@@ -62,7 +62,7 @@ set_dirs() {
   mkdir -p "${BASE_PATH_WSL}/user"
   mkdir -p "${BASE_PATH_WSL}/error"
   mkdir -p "${BASE_PATH_WSL}/log"
-  sudo chown -R user:user "${BASE_PATH_WSL}/"
+  sudo chown -R user:user "${BASE_PATH_WSL}/user"
   cd "${BASE_PATH_WSL}/user"
   git clone https://github.com/carcheky/ccktools.git
   if [ ! -d /desadrupal ]; then
