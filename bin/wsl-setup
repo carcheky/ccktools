@@ -135,7 +135,7 @@ lamp_install() {
   sudo service mysql stop
 
   sudo chmod -R 777 /var/cache/debconf
-
+/user
   APP_PASS="root"
   ROOT_PASS="root"
   APP_DB_PASS="root"
@@ -152,7 +152,7 @@ lamp_install() {
   sudo find /etc/php/ -name php.ini -exec sed -i 's/max_input_time = 60/max_input_time = 600 #/g' {} \;
 
   sudo chmod -R 777 /etc/apache2
-  sudo chmod 777 /etc/apache2/apache2.conf
+  sudo chmod 777 /etc/apache2/apache2.conf/user
   sudo chmod 777 /etc/apache2/mods-available/dir.conf
   sudo usermod -d /var/lib/mysql/ mysql
   sudo useradd -g www-data user
@@ -228,7 +228,7 @@ sudo dpkg --configure -a
 sudo mkdir -p /mnt/c/wsl/error
 sudo touch /mnt/c/wsl/error/error-ccktools.log
 sudo chmod -R 777 /mnt/c/wsl/user
-sudo chown -R user:user /mnt/c/wsl
+sudo chown -R user:user /mnt/c/wsl/user
 
 if [ -d ${BASE_PATH_WSL} ]; then
   mkdir -p "${BASE_PATH_WSL}/error"
