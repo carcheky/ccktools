@@ -101,7 +101,8 @@ if [[ $SITE ]]; then
       lamp restart
       composer create-project drupal-composer/drupal-project:8.x-dev ${SITE} --no-interaction
       cd $SITE
-      composer require drupal/adminimal_admin_toolbar drupal/backup_migrate drupal/toolbar_menu_clean drupal/config_direct_save drupal/pathauto drupal/devel drupal/fontawesome
+      composer require drupal/admin_toolbar drupal/backup_migrate drupal/pathauto drupal/devel
+      # composer require drupal/toolbar_menu_clean drupal/config_direct_save drupal/fontawesome
       sudo chmod -R 777 .
       cd ${CONF_SITE_FOLDER}
       pwd
