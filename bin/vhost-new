@@ -27,7 +27,7 @@ if [[ $SITE ]]; then
     sudo touch ${CONF_SITES_AVAILABLE}
 
     sudo echo "
-    <VirtualHost *:80>
+    <VirtualHost *:8888>
         ServerName ${SITE}
         ServerAdmin webmaster@${SITE}.test
         DocumentRoot ${CONF_SITE_FOLDER}
