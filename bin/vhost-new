@@ -13,7 +13,7 @@
 if [[ $SITE ]]; then
   CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
   CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
-  CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/docroot"
+  CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/web"
   if [[ $INSTALL='drupaltest' ]]; then
     CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/web"
   fi
