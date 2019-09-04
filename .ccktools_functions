@@ -92,3 +92,9 @@ superchargephp() {
 	sudo find /etc/php/ -name php.ini -exec sed -i 's/max_input_time = 60/max_input_time = 600 #/g' {} \;
 
 }
+
+
+drsinew(){
+	SITE=${1}
+  drush -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-name=admin --account-mail=test@test.test --site-pass=admin
+}
