@@ -96,5 +96,5 @@ superchargephp() {
 
 drsinew(){
 	SITE=${1}
-  drush -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-name=admin --account-mail=test@test.test --site-pass=admin
+  drush -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@test.test --account-name=admin --account-mail=test@test.test --account-pass=admin
 }
