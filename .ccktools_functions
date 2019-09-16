@@ -94,8 +94,13 @@ superchargephp() {
 
 }
 
-
 drsinew(){
 	SITE=${1}
   drush -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@${SITE}.test --account-name=admin --account-mail=test@${SITE}.test --account-pass=admin --locale=es
+}
+
+open_browsers(){
+	/mnt/c/Program\ Files/Mozilla\ Firefox/firefox.exe $1
+	/mnt/c/Program\ Files/internet\ explorer/iexplore.exe $1
+	/mnt/c/Program\ Files\ \(x86\)/BraveSoftware/Brave-Browser/Application/brave.exe $1
 }
