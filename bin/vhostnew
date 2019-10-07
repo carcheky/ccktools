@@ -96,7 +96,7 @@ function install_drupal(){
         drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
         # drush si minimal --db-url=mysql://root:root@localhost/${SITE} -y
     else
-        echo -e "==> Existe una isntalación activa, bórrala manualmente para usar este script"
+        echo -e "==> Existe una isntalaciรณn activa, bรณrrala manualmente para usar este script"
     fi
     echo -e "==============================================================";
 }
@@ -125,6 +125,7 @@ function finalmessage(){
     echo -e "\n==> http://${SITE}:8888/user\n"
     echo -e "\n\n==============================================================\n==============================================================\n";
 }
+
 
 
 
