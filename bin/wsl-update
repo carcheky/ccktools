@@ -11,7 +11,7 @@ wsl_stop() {
 
 wsl_update() {
   cd ~/ccktools/
-  git reset --hard
+  # git reset --hard
   echo "==> Checking ccktools updates..." &
   [[ $(git pull) == 'Already up to date.' ]] && clear || git pull
 
