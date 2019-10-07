@@ -75,6 +75,8 @@ function newvhost(){
 # drupal install
 function install_drupal(){
     echo "installing drupal"
+    [[ $INSTALL ]] && echo "==> INSTALL: $INSTALL" : break
+    echo "prueba"
 }
 
 # final message
@@ -97,4 +99,5 @@ sudo service apache2 start
 
 newfolder;
 newvhost;
+install_drupal;
 finalmessage;
