@@ -18,6 +18,6 @@ wsl_update() {
   find ~/ccktools/bin -type f -exec chmod +x {} \; &>/dev/null
   find ~/ccktools/bin -type f -exec dos2unix {} \; &>/dev/null
 }
-
+#esto es una prueba
 wsl_update
 fix-bin &>/dev/null
