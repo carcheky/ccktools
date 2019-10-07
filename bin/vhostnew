@@ -126,7 +126,7 @@ function install_drupal(){
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
     else
-        echo -e "==> Existe una isntalaciรณn activa, bรณrrala manualmente para usar este script"
+        echo -e "==> Existe una isntalaciรณn activa, borrala manualmente para usar este script"
     fi
     echo -e "==============================================================";
 }
