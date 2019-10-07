@@ -41,6 +41,7 @@ function newfolder(){
         mkdir -p ${CONF_SITE_FOLDER}/web
         mkdir -p ${CONF_SITE_FOLDER}/log
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
+        sudo chown -R user:user ${CONF_SITE_FOLDER}
     fi
     echo -e "==============================================================";
     
@@ -82,7 +83,8 @@ function install_drupal(){
     if [[ ! -f "./web/sites/default/settings.php" ]]; then
         echo -e "==> Bajando drupal core...\n"
         drush -y dl drupal --drupal-project-rename="web"
-        sudo chmod -R 777 .
+        sudo chmod -R 777 ${CONF_SITE_FOLDER}
+        sudo chown -R user:user ${CONF_SITE_FOLDER}
         cd web
         composer require drupal/admin_toolbar --no-update
         composer require drupal/backup_migrate --no-update
