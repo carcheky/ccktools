@@ -166,9 +166,9 @@ function finalmessage(){
 
 # LOGIC
 
-[[ ${INSTALL} = "borrar" ]] && echo "omitiendo" || sudo service mysql start 2>/dev/null
-[[ ${INSTALL} = "borrar" ]] && echo "omitiendo" || sudo service apache2 start 2>/dev/null
-[[ ${INSTALL} = "borrar" ]] && echo "omitiendo" || newfolder;
-[[ ${INSTALL} = "borrar" ]] && echo "omitiendo" || newvhost;
+[[ ${INSTALL} = "borrar" ]] && echo "" || sudo service mysql start 2>/dev/null
+[[ ${INSTALL} = "borrar" ]] && echo "" || sudo service apache2 start 2>/dev/null
+[[ ${INSTALL} = "borrar" ]] && echo "" || newfolder;
+[[ ${INSTALL} = "borrar" ]] && echo "" || newvhost;
 install_selector;
-[[ ${INSTALL} = "borrar" ]] && echo "omitiendo" || finalmessage;
+[[ ${INSTALL} = "borrar" ]] && echo "" || finalmessage;
