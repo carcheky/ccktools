@@ -44,18 +44,18 @@ sudo echo "
 # create folder
 function newfolder(){
     if [[ ${CONF_SITE_FOLDER} ]]; then
-        echo "==> Existe la ruta, paso omitido."
-    else
         echo "==> No existe la ruta, creándola..."
         mkdir -p ${CONF_SITE_FOLDER}
+    else
+        echo "==> Existe la ruta, paso omitido."
     fi
     
     if [[ ${CONF_LOG_FOLDER} ]]; then
-        echo "==> Existe el log, paso omitido."
-    else
         echo "==> No existe el log, creándolo..."
         mkdir -p ${CONF_LOG_FOLDER}
         touch ${CONF_LOG_FOLDER}/SITE.log
+    else
+        echo "==> Existe el log, paso omitido."
     fi
     
     if [[ ${CONF_SITE_FOLDER} ]]; then
