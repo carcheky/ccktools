@@ -59,7 +59,7 @@ function newfolder(){
     fi
     
     if [[ ${CONF_SITE_FOLDER} ]]; then
-        sudo chmod -R ${CONF_SITE_FOLDER}
+        sudo chmod -R 777 ${CONF_SITE_FOLDER}
     fi
 }
 
