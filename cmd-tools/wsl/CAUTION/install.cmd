@@ -7,7 +7,7 @@ set TARGET_DIR=%SYSTEMDRIVE%\wsl\Distro\WslServer
 if not exist %TARGET_DIR% mkdir %TARGET_DIR%
 wsl --import WslServer %TARGET_DIR% .\install\install.tar.gz
 wsl -s WslServer
-
+wsl --upgrade WslServer
 :exit
 del install.zip
 rd /s /q install
