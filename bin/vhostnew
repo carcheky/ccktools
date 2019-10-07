@@ -36,7 +36,7 @@ function newfolder(){
     if [[ -d ${CONF_SITE_FOLDER} ]]; then
         echo -e "Paso 1 ==> Existe la ruta, continuando."
     else
-        echo -e "Paso 1 ==> No existe la ruta, creandola..."
+        echo -e "Paso 1 ==> NO existe la ruta, creandola..."
         mkdir -p ${CONF_SITE_FOLDER}
         mkdir -p ${CONF_SITE_FOLDER}/web
         mkdir -p ${CONF_SITE_FOLDER}/log
@@ -53,7 +53,7 @@ function newvhost(){
         if [ -f ${CONF_SITES_AVAILABLE} ]; then
             echo -e "Paso 2 ==> Existe la configuracion \n${CONF_SITES_AVAILABLE}, continuando."
         else
-            echo -e "Paso 2 ==> No existe la configuracion \n${CONF_SITES_AVAILABLE}, creandola..."
+            echo -e "Paso 2 ==> NO existe la configuracion \n${CONF_SITES_AVAILABLE}, creandola..."
             sudo rm ${CONF_SITES_AVAILABLE} 2>/dev/null
             sudo touch ${CONF_SITES_AVAILABLE} 2>/dev/null
             
