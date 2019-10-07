@@ -49,9 +49,9 @@ function newvhost(){
     if [[ $SITE ]]; then #comprueba si existe la ruta
         
         if [ -f ${CONF_SITES_AVAILABLE} ]; then
-            echo -e "Paso 2 ==> Existe la configuracion ${CONF_SITES_AVAILABLE}, continuando."
+            echo -e "Paso 2 ==> Existe la configuracion \n${CONF_SITES_AVAILABLE}, continuando."
         else
-            echo -e "Paso 2 ==> No existe la configuracion ${CONF_SITES_AVAILABLE}, creandola..."
+            echo -e "Paso 2 ==> No existe la configuracion \n${CONF_SITES_AVAILABLE}, creandola..."
             sudo rm ${CONF_SITES_AVAILABLE} 2>/dev/null
             sudo touch ${CONF_SITES_AVAILABLE} 2>/dev/null
             
@@ -99,7 +99,7 @@ function install_selector(){
 # final message
 function finalmessage(){
     echo -e "\n\n====================================================\n====================================================\n";
-    echo -e "\n=====> add 127.0.0.1 ${SITE} to hosts file & flush dns \(recommended http://www.abelhadigital.com/hostsman/\)"
+    echo -e "\n=====> add 127.0.0.1 ${SITE} to hosts file & flush dns\n \(recommended http://www.abelhadigital.com/hostsman/\)"
     echo -e "=====> http://${SITE}:8888/user\n"
     echo -e "\n\n====================================================\n====================================================\n";
 }
