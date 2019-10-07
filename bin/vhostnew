@@ -37,7 +37,7 @@ sudo echo "
     CustomLog ${CONF_LOG_FOLDER}/${SITE}.log combined
 </VirtualHost>
 "
-exit
+# exit
 
 #FUNCTIONS
 
@@ -65,7 +65,6 @@ function newfolder(){
 
 # create vhost
 function newvhost(){
-    
     if [[ $SITE ]]; then #comprueba si existe la ruta
         
         if [ -f ${CONF_SITES_AVAILABLE} ]; then
@@ -98,5 +97,18 @@ function finalmessage(){
     echo "=====> http://${SITE}:8888/user"
 }
 
+
+
+
+
+
+
+
+
+# LOGIC
 sudo service mysql start
 sudo service apache2 start
+
+newfolder();
+newvhost();
+finalmessage();
