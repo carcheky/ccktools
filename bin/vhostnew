@@ -74,7 +74,7 @@ function newvhost(){
 
 # drupal install
 function install_selector(){
-    if [ -f ${INSTALL} ]; then
+    if [ ${INSTALL} ]; then
         case ${INSTALL} in
             drupal)
                 echo "Instalando Drupal"
