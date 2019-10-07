@@ -75,7 +75,7 @@ function newvhost(){
 # drupal install
 function install_drupal(){
     echo "installing drupal"
-    [[ $INSTALL ]] && echo "==> INSTALL: $INSTALL" : break
+    [[ $INSTALL ]] && echo "==> INSTALL: $INSTALL" : exit
     echo "prueba"
 }
 
