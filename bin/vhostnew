@@ -10,7 +10,10 @@
 [[ $1 ]] && SITE=$1 || echo "falta vhost name"
 [[ $1 ]] && SITE=$1 || exit
 
+# check installation type
 [[ $2 ]] && INSTALL=$2
+
+#print options
 [[ $SITE ]] && echo "==> SITE: $SITE"
 [[ $INSTALL ]] && echo "==> INSTALL: $INSTALL"
 
@@ -69,6 +72,12 @@ function newvhost(){
     fi
 }
 
+# drupal install
+function install_drupal(){
+    echo "installing drupal"
+}
+
+# final message
 function finalmessage(){
     echo "add 127.0.0.1 ${SITE} to hosts file & flush dns \(recommended http://www.abelhadigital.com/hostsman/\)"
     echo "=====> http://${SITE}:8888/user"
