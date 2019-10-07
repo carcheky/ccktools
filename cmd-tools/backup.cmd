@@ -1,7 +1,7 @@
 @echo off
 pushd "%~dp0"
 
-wsl --export Ubuntu1804Custom %userprofile%\Ubuntu1804Custom-backup.tar.gz
+wsl --export WslServer %userprofile%\WslServer-backup.tar.gz
 
 :exit
 popd

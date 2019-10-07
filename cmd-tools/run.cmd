@@ -1,7 +1,7 @@
 @echo off
 pushd "%~dp0"
 
-wsl --distribution Ubuntu1804Custom
+wsl --distribution WslServer
 
 :exit
 popd

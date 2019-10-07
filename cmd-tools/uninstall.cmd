@@ -1,8 +1,8 @@
 @echo off
 pushd "%~dp0"
 
-set TARGET_DIR=%SYSTEMDRIVE%\Distro\Ubuntu1804Custom
-wsl --unregister Ubuntu1804Custom
+set TARGET_DIR=%SYSTEMDRIVE%\wsl\Distro\WslServer
+wsl --unregister WslServer
 if exist %TARGET_DIR% rmdir /s /q %TARGET_DIR%
 
 :exit

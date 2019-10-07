@@ -1,7 +1,7 @@
 @echo off
 pushd "%~dp0"
 
-start \\wsl$\Ubuntu1804Custom
+start \\wsl$\WslServer
 
 :exit
 popd
