@@ -2,8 +2,7 @@
 
 
 1-  [Download Distro](https://drive.google.com/open?id=1Uw5rjVzwM7xooR1Juyr_EHQdHPPZbEzP)  
-2-  Clone this repo to C:/wsl/user/ccktools/ ( C:/wsl/user/ccktools/.git)  
-   ![adf](https://raw.githubusercontent.com/carcheky/ccktools/master/img/folders.png)
+2-  Clone this repo to C:/wsl/user/ccktools/ ( C:/wsl/user/ccktools/.git) [as here](https://raw.githubusercontent.com/carcheky/ccktools/master/img/folders.png)
 
 
 
