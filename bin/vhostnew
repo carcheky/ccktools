@@ -73,10 +73,17 @@ function newvhost(){
 }
 
 # drupal install
-function install_drupal(){
-    echo "installing drupal"
-    [[ $INSTALL ]] && echo "==> INSTALL: $INSTALL" : exit
-    echo "prueba"
+function install_selector(){
+    if [ -f ${INSTALL} ]; then
+        case ${INSTALL} in
+            drupal)
+                echo "Instalando Drupal"
+            ;;
+            *)
+                echo "desconozco esa opción"
+            ;;
+        esac
+    fi
 }
 
 # final message
@@ -99,5 +106,5 @@ sudo service apache2 start
 
 newfolder;
 newvhost;
-install_drupal;
+install_selector;
 finalmessage;
