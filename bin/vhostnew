@@ -79,8 +79,10 @@ function install_drupal(){
     echo -e "\n==> Instalando Drupal:\n"
     cd ${CONF_SITE_FOLDER}
     if [[ ! -d "web/sites/default/settings.php" ]]; then
-        echo -e "==> Creando drupal"
+        echo -e "==> Bajando drupal core..."
         drush -y dl drupal --drupal-project-rename="web"
+        sudo chmod -R 777 .
+        cd web
     else
         echo -e "==> Existe una isntalación activa, bórrala manualmente para usar este script"
     fi
