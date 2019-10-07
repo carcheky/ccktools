@@ -91,6 +91,9 @@ function install_drupal(){
         composer require drupal/pathauto --no-update
         git clone https://github.com/carcheky/druparcheky_profile.git profiles/druparcheky && rm -fr profiles/druparcheky/.git
         # composer config repositories.druparcheky_profile vcs https://github.com/carcheky/druparcheky_profile.git && composer require carcheky/druparcheky_profile:master
+        composer install
+        composer update
+        drush si druparcheky --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test --db-su=root --db-su=root --db-url=root:root@localhost/${SITE} -y
     else
         echo -e "==> Existe una isntalación activa, bórrala manualmente para usar este script"
     fi
