@@ -14,7 +14,7 @@
 [[ $2 ]] && INSTALL=$2
 
 #print options
-[[ $SITE ]] && echo -e "\n\n==========================\n==========================\n==> SITE: $SITE\n==========================\n"
+[[ $SITE ]] && echo -e "\n\n==========================\n==========================\n==> SITE: $SITE\n=========================="
 [[ $INSTALL ]] && echo -e "==> INSTALL: $INSTALL\n==========================\n==========================\n\n"
 
 # set vars
@@ -40,13 +40,13 @@ function newfolder(){
         mkdir -p ${CONF_SITE_FOLDER}/log
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
     fi
-    
+
 }
 
 # create vhost
 function newvhost(){
     if [[ $SITE ]]; then #comprueba si existe la ruta
-        
+
         if [ -f ${CONF_SITES_AVAILABLE} ]; then
             echo -e "\n${CONF_SITES_AVAILABLE} exists."
         else
@@ -54,7 +54,7 @@ function newvhost(){
             echo -e "\nCreating...."
             sudo rm ${CONF_SITES_AVAILABLE} 2>/dev/null
             sudo touch ${CONF_SITES_AVAILABLE} 2>/dev/null
-            
+
             sudo echo "
 <VirtualHost *:8888>
     ServerName ${SITE}
@@ -79,7 +79,7 @@ function install_drupal(){
 function install_selector(){
     if [ ${INSTALL} ]; then
         echo -e "\n\n==> Buscando instalaciones disponibles...."
-        
+
         case ${INSTALL} in
             drupal)
                 install_drupal;
