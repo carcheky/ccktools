@@ -16,7 +16,7 @@
 #print options
 echo -e "\n\n==========================\n==========================\n";
 [[ $SITE ]] && echo -e "==> SITE: $SITE";
-[[ $INSTALL ]] && echo -e "\n==> INSTALL: $INSTALL\n==========================";
+[[ $INSTALL ]] && echo -e "\n==> INSTALL: $INSTALL";
 echo -e "\n==========================\n==========================\n\n";
 # set vars
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
