@@ -5,8 +5,7 @@
 2-  Clone this repo to C:/wsl/user/ccktools/ ( C:/wsl/user/ccktools/.git)  
    <img src="https://raw.githubusercontent.com/carcheky/ccktools/master/img/folders.png">
 
-
-
+![alt text](https://raw.githubusercontent.com/carcheky/ccktools/master/img/folders.png)
 
 
 
