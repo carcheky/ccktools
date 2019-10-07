@@ -71,7 +71,10 @@ function newvhost(){
         fi
     fi
 }
-
+# install_drupal
+function install_drupal(){
+    echo "==> Instalando Drupal"
+}
 # drupal install
 function install_selector(){
     if [ ${INSTALL} ]; then
@@ -79,8 +82,7 @@ function install_selector(){
         
         case ${INSTALL} in
             drupal)
-                echo "==> Instalando Drupal"
-                install_drupal()
+                install_drupal;
             ;;
             *)
                 echo "==> desconozco esa opción"
