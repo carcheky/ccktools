@@ -79,7 +79,7 @@ function newvhost(){
 function install_drupal(){
     echo -e "\n==> Instalando Drupal:\n"
     cd ${CONF_SITE_FOLDER}
-    if [[ ! -d "web/sites/default/settings.php" ]]; then
+    if [[ ! -f "./web/sites/default/settings.php" ]]; then
         echo -e "==> Bajando drupal core..."
         drush -y dl drupal --drupal-project-rename="web"
         sudo chmod -R 777 .
