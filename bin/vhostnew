@@ -78,7 +78,12 @@ function newvhost(){
 function install_drupal(){
     echo -e "\n==> Instalando Drupal:\n"
     cd ${CONF_SITE_FOLDER}
-    drush -y dl drupal --drupal-project-rename="web"
+    if {{ ! -d "web/sites/default/settings.php"}}; then
+        echo -e "==> Creando drupal"
+        drush -y dl drupal --drupal-project-rename="web"
+    else
+        echo -e "==> Existe una isntalación activa, bórrala manualmente para usar este script"
+    fi
     echo -e "==============================================================";
 }
 
