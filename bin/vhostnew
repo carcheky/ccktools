@@ -4,11 +4,26 @@
 # VARS
 # [] && false || true
 # [!] && true || false
-
+# ask for var
+read_site(){
+    until [ ! -z ${SITE} ] 
+    do
+        echo "Escribe el nombre del sitio:"
+        read SITE
+    done    
+}
+read_install_type(){
+    until [ ! -z ${INSTALL} ] 
+    do
+        echo "Escoge el tipo de instalacion:"
+        read INSTALL
+    done    
+}
 echo -e "\n\n==============================================================\n==============================================================\n";
 
 # check vhost name
-[[ $1 ]] && SITE=$1 || echo "Escribe el nombre del sitio:" && read SITE
+[[ $1 ]] && SITE=$1 || read_site;
+# [[ $1 ]] && SITE=$1 || echo "Escribe el nombre del sitio:" && until ${SITE} do read SITE done;
 
 echo -e "\n==============================================================\n==============================================================";
 
@@ -16,8 +31,7 @@ echo -e "\n==============================================================\n=====
 [[ $2 ]] && INSTALL=$2 || echo -e "
 ==>      1) Drupal
 ==>      n) Ninguna, sólo vhost
-==> borrar) escribe <borrar> para borrar esta instalacion\n
-Escoge el tipo de instalacion:" && read INSTALL
+==> borrar) escribe <borrar> para borrar esta instalacion\n" && read_install_type;
 
 echo -e "\n==============================================================\n==============================================================\n\n";
 
@@ -38,6 +52,7 @@ echo -e "\n==============================================================\n=====
 
 
 #FUNCTIONS
+
 
 # create folder
 function newfolder(){
