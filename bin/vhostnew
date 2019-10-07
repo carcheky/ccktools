@@ -1,0 +1,94 @@
+#!/bin/bash
+
+
+# VARS
+
+# [] && false || true
+# [!] && true || false
+
+# check vhost name
+[[ $1 ]] && SITE=$1 || echo "falta vhost name"
+[[ $1 ]] && SITE=$1 || exit
+
+[[ $2 ]] && INSTALL=$2
+[[ $SITE ]] && echo "==> SITE: $SITE"
+[[ $INSTALL ]] && echo "==> INSTALL: $INSTALL"
+
+
+
+# set vars
+CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
+CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
+CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/web"
+CONF_LOG_FOLDER="/mnt/c/wsl/${SITE}/log/"
+
+
+echo $1
+echo $2
+echo $SITE
+echo $INSTALL
+echo $CONF_SITES_AVAILABLE
+echo $CONF_SITES_ENABLED
+echo $CONF_SITE_FOLDER
+echo $CONF_LOG_FOLDER
+
+exit
+
+#FUNCTIONS
+
+# create folder
+function newfolder(){
+    if [[ ${CONF_SITE_FOLDER} ]]; then
+        echo "==> Existe la ruta, paso omitido."
+    else
+        echo "==> No existe la ruta, creándola..."
+        mkdir -p ${CONF_SITE_FOLDER}
+    fi
+    
+    if [[ ${CONF_LOG_FOLDER} ]]; then
+        echo "==> Existe el log, paso omitido."
+    else
+        echo "==> No existe el log, creándolo..."
+        mkdir -p ${CONF_LOG_FOLDER}
+        touch ${CONF_LOG_FOLDER}/SITE.log
+    fi
+    
+    if [[ ${CONF_SITE_FOLDER} ]]; then
+        sudo chmod -R ${CONF_SITE_FOLDER}
+    fi
+}
+
+# create vhost
+function newvhost(){
+    
+    if [[ $SITE ]]; then #comprueba si existe la ruta
+        
+        if [ -f ${CONF_SITES_AVAILABLE} ]; then
+            echo "==> ${CONF_SITES_AVAILABLE} exists."
+        else
+            echo "==> CONF_SITES_AVAILABLE ${CONF_SITES_AVAILABLE} does not exist."
+            echo "==> Creating...."
+            sudo rm ${CONF_SITES_AVAILABLE}
+            sudo touch ${CONF_SITES_AVAILABLE}
+            
+            sudo echo "
+<VirtualHost *:8888>
+    ServerName ${SITE}
+    ServerAdmin webmaster@${SITE}.test
+    DocumentRoot ${CONF_SITE_FOLDER}
+    RewriteEngine On
+    RewriteOptions inherit
+    CustomLog ${CONF_LOG_FOLDER}/${SITE}.log combined
+</VirtualHost>
+            " | sudo tee --append ${CONF_SITES_AVAILABLE}
+        fi
+        sudo a2ensite ${SITE}.conf
+        sudo service apache2 reload
+        sudo service apache2 restart
+    fi
+}
+
+function finalmessage(){
+    echo "add 127.0.0.1 ${SITE} to hosts file & flush dns \(recommended http://www.abelhadigital.com/hostsman/\)"
+    echo "=====> http://${SITE}:8888/user"
+}
