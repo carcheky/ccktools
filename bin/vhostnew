@@ -31,7 +31,16 @@ echo $CONF_SITES_AVAILABLE
 echo $CONF_SITES_ENABLED
 echo $CONF_SITE_FOLDER
 echo $CONF_LOG_FOLDER
-
+sudo echo "
+<VirtualHost *:8888>
+    ServerName ${SITE}
+    ServerAdmin webmaster@${SITE}.test
+    DocumentRoot ${CONF_SITE_FOLDER}
+    RewriteEngine On
+    RewriteOptions inherit
+    CustomLog ${CONF_LOG_FOLDER}/${SITE}.log combined
+</VirtualHost>
+"
 exit
 
 #FUNCTIONS
