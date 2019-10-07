@@ -5,12 +5,21 @@
 # [] && false || true
 # [!] && true || false
 
+echo -e "\n\n==============================================================\n==============================================================\n";
+
 # check vhost name
-[[ $1 ]] && SITE=$1 || echo "falta vhost name"
-[[ $1 ]] && SITE=$1 || exit
+[[ $1 ]] && SITE=$1 || echo "Escribe el nombre del sitio:" && read SITE
+
+echo -e "\n==============================================================\n==============================================================";
 
 # check installation type
-[[ $2 ]] && INSTALL=$2
+[[ $2 ]] && INSTALL=$2 || echo -e "
+==>      1) Drupal
+==>      n) Ninguna, sólo vhost
+==> borrar) escribe <borrar> para borrar esta instalacion\n
+Escoge el tipo de instalacion:" && read INSTALL
+
+echo -e "\n==============================================================\n==============================================================\n\n";
 
 # set vars
 SITES_FOLDER="/mnt/c/wsl/sites"
@@ -104,11 +113,18 @@ function install_drupal(){
 # install_selector
 function install_selector(){
     if [ ${INSTALL} ]; then
-        echo -e "Paso 3 ==> Buscando instalaciones disponibles...."
+        echo -e "Paso 3 ==> Ejecutando tipo de instalacion...."
         
         case ${INSTALL} in
             drupal)
                 install_drupal;
+            ;;
+            borrar)
+                echo "borrando"
+                sudo rm -fr /etc/apache2/sites-*/${SITE}* /mnt/c/wsl/sites/${SITE}
+            ;;
+            n)
+                echo -e "Ninguna, solo vhost"
             ;;
             *)
                 echo -e "Paso 3 ==> opcion incorrecta"
