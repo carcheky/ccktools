@@ -17,10 +17,10 @@ CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
 CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/"
 
 #print options
-echo -e "\n\n==========================\n==========================\n";
+echo -e "\n\n====================================================\n====================================================\n";
 [[ $SITE ]] && echo -e "==> SITE: $SITE";
 [[ $INSTALL ]] && echo -e "\n==> INSTALL: $INSTALL";
-echo -e "\n==========================\n==========================\n\n";
+echo -e "\n====================================================\n====================================================\n\n";
 
 
 
@@ -30,7 +30,7 @@ echo -e "\n==========================\n==========================\n\n";
 
 # create folder
 function newfolder(){
-    echo -e "\n\n==========================\n==========================";
+    echo -e "\n\n====================================================\n====================================================";
     if [[ -d ${CONF_SITE_FOLDER} ]]; then
         echo -e "Paso 1 ==> Existe la ruta, continuando."
     else
@@ -40,7 +40,7 @@ function newfolder(){
         mkdir -p ${CONF_SITE_FOLDER}/log
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
     fi
-    echo -e "==========================";
+    echo -e "====================================================";
     
 }
 
@@ -50,7 +50,6 @@ function newvhost(){
         
         if [ -f ${CONF_SITES_AVAILABLE} ]; then
             echo -e "Paso 2 ==> Existe la configuracion ${CONF_SITES_AVAILABLE}, continuando."
-            echo -e "\n${CONF_SITES_AVAILABLE} exists."
         else
             echo -e "Paso 2 ==> No existe la configuracion ${CONF_SITES_AVAILABLE}, creandola..."
             sudo rm ${CONF_SITES_AVAILABLE} 2>/dev/null
@@ -70,14 +69,14 @@ function newvhost(){
             sudo service apache2 reload
             sudo service apache2 restart
         fi
-        echo -e "==========================";
+        echo -e "====================================================";
     fi
 }
 
 # install_drupal
 function install_drupal(){
     echo -e "==> Instalando Drupal"
-    echo -e "==========================";
+    echo -e "====================================================";
 }
 
 # install_selector
@@ -94,15 +93,15 @@ function install_selector(){
             ;;
         esac
     fi
-    echo -e "==========================";
+    echo -e "====================================================";
 }
 
 # final message
 function finalmessage(){
-    echo -e "\n\n==========================\n==========================\n";
-    echo -e "\n\n=====> add 127.0.0.1 ${SITE} to hosts file & flush dns \(recommended http://www.abelhadigital.com/hostsman/\)"
-    echo -e "=====> http://${SITE}:8888/user\n\n"
-    echo -e "\n\n==========================\n==========================\n";
+    echo -e "\n\n====================================================\n====================================================\n";
+    echo -e "\n=====> add 127.0.0.1 ${SITE} to hosts file & flush dns \(recommended http://www.abelhadigital.com/hostsman/\)"
+    echo -e "=====> http://${SITE}:8888/user\n"
+    echo -e "\n\n====================================================\n====================================================\n";
 }
 
 
