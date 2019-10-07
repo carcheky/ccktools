@@ -105,21 +105,22 @@ function install_drupal(){
     echo -e "\n==> Instalando Drupal:\n"
     cd ${CONF_SITE_FOLDER}
     if [[ ! -f "./web/sites/default/settings.php" ]]; then
-        drush="/home/user/.config/composer/vendor/bin/drush"
-        drush="/home/user/.config/composer/vendor/bin/drush"
+        drush="sudo /home/user/.config/composer/vendor/bin/drush"
+        composer="/usr/bin/composer"
         echo -e "==> Bajando drupal core...\n"
         $drush -y dl drupal --drupal-project-rename="web"
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         cd web
-        composer require drupal/admin_toolbar --no-update
-        composer require drupal/backup_migrate --no-update
-        composer require drupal/ctools --no-update
-        composer require drupal/devel --no-update
-        composer require drupal/pathauto --no-update
-        composer update
+        $composer require drupal/admin_toolbar --no-update
+        $composer require drupal/backup_migrate --no-update
+        $composer require drupal/ctools --no-update
+        $composer require drupal/devel --no-update
+        $composer require drupal/pathauto --no-update
+        $composer update
         git clone https://github.com/carcheky/druparcheky_profile.git profiles/druparcheky && rm -fr profiles/druparcheky/.git
         $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
+        sudo chown -R user:user ${CONF_SITE_FOLDER}
         # $drush si minimal --db-url=mysql://root:root@localhost/${SITE} -y
     else
         echo -e "==> Existe una isntalaciรณn activa, bรณrrala manualmente para usar este script"
