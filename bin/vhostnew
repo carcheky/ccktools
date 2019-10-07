@@ -23,10 +23,6 @@ CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/web"
 CONF_LOG_FOLDER="/mnt/c/wsl/${SITE}/log/"
 
 
-echo $1
-echo $2
-echo $SITE
-echo $INSTALL
 echo $CONF_SITES_AVAILABLE
 echo $CONF_SITES_ENABLED
 echo $CONF_SITE_FOLDER
