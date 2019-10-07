@@ -80,7 +80,7 @@ function install_drupal(){
     echo -e "\n==> Instalando Drupal:\n"
     cd ${CONF_SITE_FOLDER}
     if [[ ! -f "./web/sites/default/settings.php" ]]; then
-        echo -e "==> Bajando drupal core..."
+        echo -e "==> Bajando drupal core...\n"
         drush -y dl drupal --drupal-project-rename="web"
         sudo chmod -R 777 .
         cd web
