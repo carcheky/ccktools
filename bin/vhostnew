@@ -13,17 +13,16 @@
 # check installation type
 [[ $2 ]] && INSTALL=$2
 
-#print options
-echo -e "\n\n==========================\n==========================\n";
-[[ $SITE ]] && echo -e "==> SITE: $SITE";
-[[ $INSTALL ]] && echo -e "\n==> INSTALL: $INSTALL";
-echo -e "\n==========================\n==========================\n\n";
 # set vars
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
 CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
 CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/"
 
-
+#print options
+echo -e "\n\n==========================\n==========================\n";
+[[ $SITE ]] && echo -e "==> SITE: $SITE";
+[[ $INSTALL ]] && echo -e "\n==> INSTALL: $INSTALL";
+echo -e "\n==========================\n==========================\n\n";
 
 
 
@@ -32,20 +31,23 @@ CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/"
 
 # create folder
 function newfolder(){
+    echo -e "\n\n==========================\n==========================\n";
     if [[ -d ${CONF_SITE_FOLDER} ]]; then
-        echo -e "==> Existe la ruta, continuando."
+        echo -e "Paso 1 ==> Existe la ruta, continuando."
     else
-        echo -e "No existe la ruta, creándola..."
+        echo -e "Paso 1 ==> No existe la ruta, creándola..."
         mkdir -p ${CONF_SITE_FOLDER}
         mkdir -p ${CONF_SITE_FOLDER}/web
         mkdir -p ${CONF_SITE_FOLDER}/log
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
     fi
+    echo -e "\n\n==========================\n==========================\n";
     
 }
 
 # create vhost
 function newvhost(){
+    echo -e "\n\n==========================\n==========================\n";
     if [[ $SITE ]]; then #comprueba si existe la ruta
         
         if [ -f ${CONF_SITES_AVAILABLE} ]; then
@@ -71,13 +73,17 @@ function newvhost(){
             sudo service apache2 restart
         fi
     fi
+    echo -e "\n\n==========================\n==========================\n";
 }
 # install_drupal
 function install_drupal(){
+    echo -e "\n\n==========================\n==========================\n";
     echo -e "\n\n==> Instalando Drupal"
+    echo -e "\n\n==========================\n==========================\n";
 }
 # drupal install
 function install_selector(){
+    echo -e "\n\n==========================\n==========================\n";
     if [ ${INSTALL} ]; then
         echo -e "\n\n==> Buscando instalaciones disponibles...."
         
@@ -90,12 +96,15 @@ function install_selector(){
             ;;
         esac
     fi
+    echo -e "\n\n==========================\n==========================\n";
 }
 
 # final message
 function finalmessage(){
+    echo -e "\n\n==========================\n==========================\n";
     echo -e "\n\n=====> add 127.0.0.1 ${SITE} to hosts file & flush dns \(recommended http://www.abelhadigital.com/hostsman/\)"
     echo -e "=====> http://${SITE}:8888/user"
+    echo -e "\n\n==========================\n==========================\n";
 }
 
 
