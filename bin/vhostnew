@@ -14,10 +14,10 @@
 [[ $2 ]] && INSTALL=$2
 
 #print options
-echo -e "\n\n==========================";
-[[ $SITE ]] && echo -e "\n==> SITE: $SITE\n==========================";
-[[ $INSTALL ]] && echo -e "==> INSTALL: $INSTALL\n==========================\n";
-echo -e "==========================\n\n";
+echo -e "\n\n==========================\n==========================";
+[[ $SITE ]] && echo -e "==> SITE: $SITE";
+[[ $INSTALL ]] && echo -e "==> INSTALL: $INSTALL\n==========================";
+echo -e "==========================\n==========================\n\n";
 # set vars
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
 CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
