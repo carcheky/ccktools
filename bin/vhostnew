@@ -93,7 +93,7 @@ function install_drupal(){
         # composer config repositories.druparcheky_profile vcs https://github.com/carcheky/druparcheky_profile.git && composer require carcheky/druparcheky_profile:master
         composer install
         composer update
-        drush si druparcheky --account-name=admin --account-mail=admin@${SITES}.test --account-pass=admin --site-name=${SITES} --site-mail=${SITES}@${SITES}.test -y
+        drush si druparcheky --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
     else
         echo -e "==> Existe una isntalación activa, bórrala manualmente para usar este script"
     fi
