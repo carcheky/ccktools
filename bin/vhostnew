@@ -75,12 +75,15 @@ function newvhost(){
 # drupal install
 function install_selector(){
     if [ ${INSTALL} ]; then
+        echo "==> Buscando instalaciones disponibles...."
+        
         case ${INSTALL} in
             drupal)
-                echo "\n\n\n==> Instalando Drupal"
+                echo "==> Instalando Drupal"
+                install_drupal()
             ;;
             *)
-                echo "\n\n\n==> desconozco esa opción"
+                echo "==> desconozco esa opción"
             ;;
         esac
     fi
