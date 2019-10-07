@@ -120,7 +120,8 @@ function install_drupal(){
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         $composer update
         sudo chown -R user:user ${CONF_SITE_FOLDER}
-        git clone https://github.com/carcheky/druparcheky_profile.git profiles/druparcheky && rm -fr profiles/druparcheky/.git
+        sudo git clone https://github.com/carcheky/druparcheky_profile.git profiles/druparcheky
+        sudo rm -fr profiles/druparcheky/.git
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
