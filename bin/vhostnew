@@ -1,8 +1,6 @@
 #!/bin/bash
 
-
 # VARS
-
 # [] && false || true
 # [!] && true || false
 
@@ -23,6 +21,7 @@ echo -e "\n\n==========================\n==========================\n";
 [[ $SITE ]] && echo -e "==> SITE: $SITE";
 [[ $INSTALL ]] && echo -e "\n==> INSTALL: $INSTALL";
 echo -e "\n==========================\n==========================\n\n";
+
 
 
 
@@ -71,26 +70,27 @@ function newvhost(){
             sudo service apache2 reload
             sudo service apache2 restart
         fi
+        echo -e "==========================";
     fi
 }
 
 # install_drupal
 function install_drupal(){
-    echo -e "\n\n==> Instalando Drupal"
+    echo -e "==> Instalando Drupal"
     echo -e "==========================";
 }
 
 # install_selector
 function install_selector(){
     if [ ${INSTALL} ]; then
-        echo -e "\n\n==> Buscando instalaciones disponibles...."
+        echo -e "==> Buscando instalaciones disponibles...."
         
         case ${INSTALL} in
             drupal)
                 install_drupal;
             ;;
             *)
-                echo -e "\n\n==> opcion incorrecta"
+                echo -e "==> opcion incorrecta"
             ;;
         esac
     fi
@@ -101,13 +101,9 @@ function install_selector(){
 function finalmessage(){
     echo -e "\n\n==========================\n==========================\n";
     echo -e "\n\n=====> add 127.0.0.1 ${SITE} to hosts file & flush dns \(recommended http://www.abelhadigital.com/hostsman/\)"
-    echo -e "=====> http://${SITE}:8888/user"
+    echo -e "=====> http://${SITE}:8888/user\n\n"
     echo -e "\n\n==========================\n==========================\n";
 }
-
-
-
-
 
 
 
@@ -116,7 +112,6 @@ function finalmessage(){
 # LOGIC
 sudo service mysql start *>/dev/null
 sudo service apache2 start *>/dev/null
-
 newfolder;
 newvhost;
 install_selector;
