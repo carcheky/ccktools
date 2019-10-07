@@ -43,13 +43,13 @@ sudo echo "
 # create folder
 function newfolder(){
     if [[ -d ${CONF_SITE_FOLDER} ]]; then
+        echo "==> Existe la ruta, paso omitido."
+    else
         echo "==> No existe la ruta, creándola..."
         mkdir -p ${CONF_SITE_FOLDER}
         mkdir -p ${CONF_SITE_FOLDER}/web
         mkdir -p ${CONF_SITE_FOLDER}/log
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
-    else
-        echo "==> Existe la ruta, paso omitido."
     fi
     
 }
