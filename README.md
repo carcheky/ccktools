@@ -1,4 +1,28 @@
 # ccktools
+
+
+1-  [Download Distro](https://drive.google.com/open?id=1Uw5rjVzwM7xooR1Juyr_EHQdHPPZbEzP)  
+2-  Clone this repo to C:/wsl/user/ccktools/ ( C:/wsl/user/ccktools/.git)  
+    ![alt text](/img/folders.png "folder structure")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## WSL Tools.
 ## AUTOINSTALL WSL + APACHE + MYSQL + COMPOSER + DRUSH + CCKTOOLS FOR LOCAL DEV
 
