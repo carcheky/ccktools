@@ -13,11 +13,11 @@ wsl_update() {
   cd ~/ccktools/
   # git reset --hard
   echo "==> Checking ccktools updates..." &
-  [[ $(git pull) == 'Already up to date.' ]] && clear || git pull
+  [[ $(git pull) == 'Already up to date.' ]]  || git pull
 
   find ~/ccktools/bin -type f -exec chmod +x {} \; &>/dev/null
   find ~/ccktools/bin -type f -exec dos2unix {} \; &>/dev/null
 }
-#esto es una prueba
+
 wsl_update
 fix-bin &>/dev/null
