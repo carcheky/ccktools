@@ -3,9 +3,7 @@
 
 1-  [Download Distro](https://drive.google.com/open?id=1Uw5rjVzwM7xooR1Juyr_EHQdHPPZbEzP)  
 2-  Clone this repo to C:/wsl/user/ccktools/ ( C:/wsl/user/ccktools/.git)  
-   <img src="https://raw.githubusercontent.com/carcheky/ccktools/master/img/folders.png">
-
-![alt text](https://raw.githubusercontent.com/carcheky/ccktools/master/img/folders.png)
+   ![adf](https://raw.githubusercontent.com/carcheky/ccktools/master/img/folders.png)
 
 
 
