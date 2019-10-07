@@ -31,6 +31,7 @@ echo -e "\n==============================================================\n=====
 # check installation type
 [[ $2 ]] && INSTALL=$2 || echo -e "
 ==>      1) Drupal
+==>      2) Drupal con composer (MUCHOS ERRORES)
 ==>      0) Ninguna, sólo vhost
 ==> borrar) escribe <borrar> para borrar esta instalacion\n" && read_install_type;
 
@@ -132,6 +133,39 @@ function install_drupal(){
     echo -e "==============================================================";
 }
 
+# install_drupal_composer
+function install_drupal_composer(){
+    echo -e "\n==> Instalando Drupal:\n"
+    cd ${CONF_SITE_FOLDER}
+    if [[ ! -f "./web/sites/default/settings.php" ]]; then
+        drush="sudo /home/user/.config/composer/vendor/bin/drush"
+        composer="sudo /usr/bin/composer"
+        echo -e "==> Bajando drupal core...\n"
+        # $drush -y dl drupal --drupal-project-rename="web"
+        $composer require drupal/core --no-update
+        sudo chmod -R 777 ${CONF_SITE_FOLDER}
+        sudo chown -R user:user ${CONF_SITE_FOLDER}
+        cd web
+        $composer require drupal/admin_toolbar --no-update
+        $composer require drupal/backup_migrate --no-update
+        $composer require drupal/ctools --no-update
+        $composer require drupal/devel --no-update
+        $composer require drupal/pathauto --no-update
+        sudo chown -R user:user ${CONF_SITE_FOLDER}
+        $composer update
+        sudo chown -R user:user ${CONF_SITE_FOLDER}
+        sudo git clone https://github.com/carcheky/druparcheky_profile.git profiles/druparcheky
+        sudo rm -fr profiles/druparcheky/.git
+        sudo chown -R user:user ${CONF_SITE_FOLDER}
+        $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
+        sudo chmod -R 777 ${CONF_SITE_FOLDER}
+        sudo chown -R user:user ${CONF_SITE_FOLDER}
+    else
+        echo -e "==> Existe una isntalaciรณn activa, borrala manualmente para usar este script"
+    fi
+    echo -e "==============================================================";
+}
+
 # install_selector
 function install_selector(){
     if [ ${INSTALL} ]; then
@@ -140,6 +174,9 @@ function install_selector(){
         case ${INSTALL} in
             1|drupal)
                 install_drupal;
+            ;;
+            2)
+                install_drupal_composer;
             ;;
             0)
                 echo -e "Ninguna, solo vhost"
