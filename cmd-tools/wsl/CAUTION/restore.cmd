@@ -1,7 +1,7 @@
 @echo off
 pushd "%~dp0"
 
-wsl --import WslServer %SYSTEMDRIVE%\WslServer %SYSTEMDRIVE%\wsl\WslDistros\WslServer-backup.tar.gz
+wsl --import WslServer %APPDATA%\WslServer %SYSTEMDRIVE%\wsl\WslDistros\WslServer-backup.tar.gz
 wsl --upgrade WslServer
 
 :exit
