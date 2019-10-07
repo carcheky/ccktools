@@ -12,9 +12,10 @@ sudo rm -fr mnt testing /etc/apache2/sites*/testing*
 [[ $2 ]] && INSTALL=$2
 
 # set vars
+SITES_FOLDER="/mnt/c/wsl/sites"
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
 CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
-CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}"
+CONF_SITE_FOLDER="${SITES_FOLDER}/${SITE}"
 
 #print options
 echo -e "\n\n==============================================================\n==============================================================\n";
