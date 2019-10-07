@@ -14,29 +14,15 @@
 [[ $SITE ]] && echo "==> SITE: $SITE"
 [[ $INSTALL ]] && echo "==> INSTALL: $INSTALL"
 
-
-
 # set vars
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
 CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
 CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/"
 
 
-echo $CONF_SITES_AVAILABLE
-echo $CONF_SITES_ENABLED
-echo $CONF_SITE_FOLDER
-echo $CONF_LOG_FOLDER
-sudo echo "
-<VirtualHost *:8888>
-    ServerName ${SITE}
-    ServerAdmin webmaster@${SITE}.test
-    DocumentRoot ${CONF_SITE_FOLDER}
-    RewriteEngine On
-    RewriteOptions inherit
-    CustomLog ${CONF_LOG_FOLDER}/${SITE}.log combined
-</VirtualHost>
-"
-# exit
+
+
+
 
 #FUNCTIONS
 
@@ -70,10 +56,10 @@ function newvhost(){
 <VirtualHost *:8888>
     ServerName ${SITE}
     ServerAdmin webmaster@${SITE}.test
-    DocumentRoot ${CONF_SITE_FOLDER}
+    DocumentRoot ${CONF_SITE_FOLDER}/web
     RewriteEngine On
     RewriteOptions inherit
-    CustomLog ${CONF_LOG_FOLDER}/${SITE}.log combined
+    CustomLog ${CONF_SITE_FOLDER}/log/${SITE}.log combined
 </VirtualHost>
             " | sudo tee --append ${CONF_SITES_AVAILABLE}
         fi
@@ -102,4 +88,4 @@ sudo service apache2 start
 
 newfolder;
 newvhost;
-# finalmessage;
+finalmessage;
