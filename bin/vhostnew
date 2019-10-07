@@ -84,6 +84,13 @@ function install_drupal(){
         drush -y dl drupal --drupal-project-rename="web"
         sudo chmod -R 777 .
         cd web
+        # composer require drupal/admin_toolbar --no-update
+        # composer require drupal/backup_migrate --no-update
+        # composer require drupal/ctools --no-update
+        # composer require drupal/devel --no-update
+        # composer require drupal/pathauto --no-update
+        # git clone https://github.com/carcheky/druparcheky_profile.git profiles/druparcheky && rm -fr profiles/druparcheky/.git
+        composer config repositories.druparcheky_profile vcs https://github.com/carcheky/druparcheky_profile.git && composer require carcheky/druparcheky_profile:master
     else
         echo -e "==> Existe una isntalación activa, bórrala manualmente para usar este script"
     fi
