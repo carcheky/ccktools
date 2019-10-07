@@ -14,8 +14,8 @@
 [[ $2 ]] && INSTALL=$2
 
 #print options
-[[ $SITE ]] && echo "==> SITE: $SITE"
-[[ $INSTALL ]] && echo "==> INSTALL: $INSTALL"
+[[ $SITE ]] && echo -e "==> SITE: $SITE"
+[[ $INSTALL ]] && echo -e "==> INSTALL: $INSTALL\n"
 
 # set vars
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
@@ -32,9 +32,9 @@ CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/"
 # create folder
 function newfolder(){
     if [[ -d ${CONF_SITE_FOLDER} ]]; then
-        echo "==> Existe la ruta, paso omitido."
+        echo -e "\n==> Existe la ruta, paso omitido."
     else
-        echo "==> No existe la ruta, creándola..."
+        echo -e "\nNo existe la ruta, creándola..."
         mkdir -p ${CONF_SITE_FOLDER}
         mkdir -p ${CONF_SITE_FOLDER}/web
         mkdir -p ${CONF_SITE_FOLDER}/log
@@ -48,10 +48,10 @@ function newvhost(){
     if [[ $SITE ]]; then #comprueba si existe la ruta
         
         if [ -f ${CONF_SITES_AVAILABLE} ]; then
-            echo "==> ${CONF_SITES_AVAILABLE} exists."
+            echo -e "\n${CONF_SITES_AVAILABLE} exists."
         else
-            echo "==> CONF_SITES_AVAILABLE ${CONF_SITES_AVAILABLE} does not exist."
-            echo "==> Creating...."
+            echo -e "\nCONF_SITES_AVAILABLE ${CONF_SITES_AVAILABLE} does not exist."
+            echo -e "\nCreating...."
             sudo rm ${CONF_SITES_AVAILABLE} 2>/dev/null
             sudo touch ${CONF_SITES_AVAILABLE} 2>/dev/null
             
