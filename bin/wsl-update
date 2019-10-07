@@ -21,3 +21,7 @@ wsl_update() {
 
 wsl_update
 fix-bin &>/dev/null
+
+
+
+  
