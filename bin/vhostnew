@@ -14,7 +14,7 @@
 [[ $2 ]] && INSTALL=$2
 
 #print options
-[[ $SITE ]] && echo -e "==> SITE: $SITE"
+[[ $SITE ]] && echo -e "\n\n==========================\n\n==> SITE: $SITE\n==========================\n\n"
 [[ $INSTALL ]] && echo -e "==> INSTALL: $INSTALL\n"
 
 # set vars
@@ -32,9 +32,9 @@ CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/"
 # create folder
 function newfolder(){
     if [[ -d ${CONF_SITE_FOLDER} ]]; then
-        echo -e "\n==> Existe la ruta, paso omitido."
+        echo -e "==> Existe la ruta, continuando."
     else
-        echo -e "\nNo existe la ruta, creándola..."
+        echo -e "No existe la ruta, creándola..."
         mkdir -p ${CONF_SITE_FOLDER}
         mkdir -p ${CONF_SITE_FOLDER}/web
         mkdir -p ${CONF_SITE_FOLDER}/log
