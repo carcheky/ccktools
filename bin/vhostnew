@@ -1,5 +1,6 @@
 #!/bin/bash
 # sudo rm -fr mnt testing /etc/apache2/sites*/testing*
+ls -la /etc/apache2/sites-enabled
 
 # VARS
 # [] && false || true
@@ -8,7 +9,7 @@
 read_site(){
     until [ ! -z ${SITE} ] 
     do
-        echo "Escribe el nombre del sitio:"
+        echo "Escribe el nombre del sitio a gestionar:"
         read SITE
     done    
 }
