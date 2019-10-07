@@ -14,7 +14,7 @@
 # set vars
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
 CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
-CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/"
+CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}"
 
 #print options
 echo -e "\n\n==============================================================\n==============================================================\n";
