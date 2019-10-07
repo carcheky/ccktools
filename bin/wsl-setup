@@ -142,7 +142,7 @@ lamp_install() {
   sudo find /etc/php/ -name php.ini -exec sed -i 's/max_input_time = 60/max_input_time = 600 #/g' {} \;
 
   sudo chmod -R 777 /etc/apache2
-  sudo chmod 777 /etc/apache2/apache2.conf/user
+  sudo chmod 777 /etc/apache2/apache2.conf
   sudo chmod 777 /etc/apache2/mods-available/dir.conf
   sudo usermod -d /var/lib/mysql/ mysql
   sudo useradd -g www-data user
