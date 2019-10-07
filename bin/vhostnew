@@ -131,7 +131,7 @@ function install_selector(){
         echo -e "Paso 3 ==> Ejecutando tipo de instalacion...."
         
         case ${INSTALL} in
-            1)
+            1|drupal)
                 install_drupal;
             ;;
             0)
