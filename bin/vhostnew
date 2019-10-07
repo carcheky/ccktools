@@ -19,8 +19,7 @@
 # set vars
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
 CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
-CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/web"
-CONF_LOG_FOLDER="/mnt/c/wsl/sites/${SITE}/log/"
+CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/"
 
 
 echo $CONF_SITES_AVAILABLE
@@ -43,24 +42,16 @@ sudo echo "
 
 # create folder
 function newfolder(){
-    if [[ ${CONF_SITE_FOLDER} ]]; then
+    if [[ -d ${CONF_SITE_FOLDER} ]]; then
         echo "==> No existe la ruta, creándola..."
         mkdir -p ${CONF_SITE_FOLDER}
+        mkdir -p ${CONF_SITE_FOLDER}/web
+        mkdir -p ${CONF_SITE_FOLDER}/log
+        sudo chmod -R 777 ${CONF_SITE_FOLDER}
     else
         echo "==> Existe la ruta, paso omitido."
     fi
     
-    if [[ ${CONF_LOG_FOLDER} ]]; then
-        echo "==> No existe el log, creándolo..."
-        mkdir -p ${CONF_LOG_FOLDER}
-        touch ${CONF_LOG_FOLDER}/SITE.log
-    else
-        echo "==> Existe el log, paso omitido."
-    fi
-    
-    if [[ ${CONF_SITE_FOLDER} ]]; then
-        sudo chmod -R 777 ${CONF_SITE_FOLDER}
-    fi
 }
 
 # create vhost
