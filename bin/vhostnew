@@ -14,8 +14,8 @@
 [[ $2 ]] && INSTALL=$2
 
 #print options
-[[ $SITE ]] && echo -e "\n\n==========================\n==> SITE: $SITE\n==========================\n\n"
-[[ $INSTALL ]] && echo -e "==> INSTALL: $INSTALL\n==========================\n\n"
+[[ $SITE ]] && echo -e "\n\n==========================\n==========================\n==> SITE: $SITE\n==========================\n"
+[[ $INSTALL ]] && echo -e "==> INSTALL: $INSTALL\n==========================\n==========================\n\n"
 
 # set vars
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
