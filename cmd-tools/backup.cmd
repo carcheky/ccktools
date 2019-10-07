@@ -1,7 +1,7 @@
 @echo off
 pushd "%~dp0"
 
-wsl --export WslServer %userprofile%\WslServer-backup.tar.gz
+wsl --export WslServer %SYSTEMDRIVE%\wsl\WslDistros\WslServer-backup.tar.gz
 
 :exit
 popd
