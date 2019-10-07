@@ -20,7 +20,7 @@
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
 CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
 CONF_SITE_FOLDER="/mnt/c/wsl/sites/${SITE}/web"
-CONF_LOG_FOLDER="/mnt/c/wsl/${SITE}/log/"
+CONF_LOG_FOLDER="/mnt/c/wsl/sites/${SITE}/log/"
 
 
 echo $CONF_SITES_AVAILABLE
