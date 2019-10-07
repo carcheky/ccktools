@@ -65,28 +65,18 @@ set_dirs() {
   sudo chown -R user:user "${BASE_PATH_WSL}/user"
   cd "${BASE_PATH_WSL}/user"
   git clone https://github.com/carcheky/ccktools.git
-  if [ ! -d /desadrupal ]; then
-    sudo mkdir /desadrupal
-  fi
-  if [ ! -d /desadrupal8 ]; then
-    sudo mkdir /desadrupal8
-  fi
 }
 
 create_links() {
   if [ -d ${BASE_PATH_WSL}/user/ccktools ]; then
     sudo ln -s ${BASE_PATH_WSL}/user/ccktools/bin $HOME
     sudo ln -s ${BASE_PATH_WSL}/user/ccktools $HOME
-
-    sudo apt install dos2unix -y 2>/dev/null
-
     find $HOME/bin/ -type f -exec chmod +x {} \;
     find $HOME/bin/ -type f -exec dos2unix {} \;
   fi
 }
 
 zsh_install() {
-  sudo apt install git nodejs npm fonts-powerline -y
   sudo apt install zsh zsh-doc zsh-common -y
   cd $HOME
   curl -Lo install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
@@ -216,6 +206,10 @@ ubuntu_update() {
 
   echo "==> actualizando paquetes..."
   sudo apt upgrade -y 2>/dev/null
+
+  sudo apt install dos2unix -y 2>/dev/null
+  sudo apt install git nodejs npm fonts-powerline -y
+  sudo apt install figlet -y
 }
 
 ################
@@ -254,7 +248,6 @@ create_links &>/dev/null
 
 rm $HOME/wsl-setu* &>/dev/null
 
-sudo apt install figlet -y
 figlet "todo va bien"
 sleep 5
 wsl_stop
