@@ -146,9 +146,11 @@ function install_selector(){
                 echo "hola ${SITE}" >>/mnt/c/wsl/sites/${SITE}/web/index.html
             ;;
             borrar)
+                echo -e "==============================================================\n"
                 echo "borrando instalacion ${SITE}"
                 sudo rm -fr /etc/apache2/sites-*/${SITE}.conf /mnt/c/wsl/sites/${SITE}
-                echo "Quieres borrar la base de datos ${SITE} [y/N]"
+                echo -e "\n==============================================================\n\nQuieres borrar la base de datos ${SITE} [y/N]"
+                echo -e "\n==============================================================\n"
                 mysqladmin -hlocalhost -uroot -proot drop ${SITE}
             ;;
             *)
