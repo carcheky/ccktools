@@ -125,7 +125,7 @@ lamp_install() {
   sudo service mysql stop
 
   sudo chmod -R 777 /var/cache/debconf
-/user
+
   APP_PASS="root"
   ROOT_PASS="root"
   APP_DB_PASS="root"
