@@ -30,7 +30,7 @@ echo -e "\n==============================================================\n=====
 # check installation type
 [[ $2 ]] && INSTALL=$2 || echo -e "
 ==>      1) Drupal
-==>      n) Ninguna, sólo vhost
+==>      0) Ninguna, sólo vhost
 ==> borrar) escribe <borrar> para borrar esta instalacion\n" && read_install_type;
 
 echo -e "\n==============================================================\n==============================================================\n\n";
@@ -46,7 +46,6 @@ echo -e "\n\n==============================================================\n===
 [[ $SITE ]] && echo -e "==> SITE: $SITE";
 [[ $INSTALL ]] && echo -e "\n==> INSTALL: $INSTALL";
 echo -e "\n==============================================================\n==============================================================\n\n";
-
 
 
 
@@ -131,18 +130,19 @@ function install_selector(){
         echo -e "Paso 3 ==> Ejecutando tipo de instalacion...."
         
         case ${INSTALL} in
-            drupal)
+            1)
                 install_drupal;
             ;;
+            0)
+                echo -e "Ninguna, solo vhost"
+                echo "hola ${SITE}" >>/mnt/c/wsl/sites/${SITE}/web/index.html
+            ;;
             borrar)
-                echo "borrando"
+                echo "borrando instalacion ${SITE}"
                 sudo rm -fr /etc/apache2/sites-*/${SITE}* /mnt/c/wsl/sites/${SITE}
             ;;
-            n)
-                echo -e "Ninguna, solo vhost"
-            ;;
             *)
-                echo -e "Paso 3 ==> opcion incorrecta"
+                echo -e "opcion incorrecta, instalamos solo vhost"
             ;;
         esac
     fi
@@ -163,9 +163,10 @@ function finalmessage(){
 
 
 # LOGIC
-sudo service mysql start *>/dev/null
-sudo service apache2 start *>/dev/null
-newfolder;
-newvhost;
+
+[[ ${INSTALL} = "borrar" ]] && echo "omitiendo" || sudo service mysql start 2>/dev/null
+[[ ${INSTALL} = "borrar" ]] && echo "omitiendo" || sudo service apache2 start 2>/dev/null
+[[ ${INSTALL} = "borrar" ]] && echo "omitiendo" || newfolder;
+[[ ${INSTALL} = "borrar" ]] && echo "omitiendo" || newvhost;
 install_selector;
-finalmessage;
+[[ ${INSTALL} = "borrar" ]] && echo "omitiendo" || finalmessage;
