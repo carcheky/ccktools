@@ -76,7 +76,7 @@ function newvhost(){
 # install_drupal
 function install_drupal(){
     echo -e "\n==> Instalando Drupal:\n"
-    drush -y dl drupal --drupal-project-rename=${CONF_SITE_FOLDER}/web
+    drush -y dl drupal --drupal-project-rename="${CONF_SITE_FOLDER}/web"
     echo -e "==============================================================";
 }
 
