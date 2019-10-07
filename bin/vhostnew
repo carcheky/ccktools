@@ -93,8 +93,8 @@ function install_selector(){
 
 # final message
 function finalmessage(){
-    echo "=====> add 127.0.0.1 ${SITE} to hosts file & flush dns \(recommended http://www.abelhadigital.com/hostsman/\)"
-    echo "=====> http://${SITE}:8888/user"
+    echo -e "\n\n=====> add 127.0.0.1 ${SITE} to hosts file & flush dns \(recommended http://www.abelhadigital.com/hostsman/\)"
+    echo -e "=====> http://${SITE}:8888/user"
 }
 
 
