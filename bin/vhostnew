@@ -51,10 +51,10 @@ function newvhost(){
     if [[ $SITE ]]; then #comprueba si existe la ruta
         
         if [ -f ${CONF_SITES_AVAILABLE} ]; then
+            echo -e "Paso 2 ==> Existe la configuracion ${CONF_SITES_AVAILABLE}, continuando."
             echo -e "\n${CONF_SITES_AVAILABLE} exists."
         else
-            echo -e "\nCONF_SITES_AVAILABLE ${CONF_SITES_AVAILABLE} does not exist."
-            echo -e "\nCreating...."
+            echo -e "Paso 2 ==> No existe la configuracion ${CONF_SITES_AVAILABLE}, creandola..."
             sudo rm ${CONF_SITES_AVAILABLE} 2>/dev/null
             sudo touch ${CONF_SITES_AVAILABLE} 2>/dev/null
             
