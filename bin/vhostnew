@@ -92,3 +92,6 @@ function finalmessage(){
     echo "add 127.0.0.1 ${SITE} to hosts file & flush dns \(recommended http://www.abelhadigital.com/hostsman/\)"
     echo "=====> http://${SITE}:8888/user"
 }
+
+sudo service mysql start
+sudo service apache2 start
