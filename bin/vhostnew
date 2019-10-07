@@ -84,8 +84,8 @@ function newvhost(){
             
             sudo echo "
 <VirtualHost *:80 *:8888>
-    ServerName ${SITE}
-    ServerAdmin webmaster@${SITE}.test
+    ServerName ${SITE}.local
+    ServerAdmin webmaster@${SITE}.local
     DocumentRoot ${CONF_SITE_FOLDER}/web
     RewriteEngine On
     RewriteOptions inherit
