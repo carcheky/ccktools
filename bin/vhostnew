@@ -31,23 +31,22 @@ echo -e "\n==========================\n==========================\n\n";
 
 # create folder
 function newfolder(){
-    echo -e "\n\n==========================\n==========================\n";
+    echo -e "\n\n==========================\n==========================";
     if [[ -d ${CONF_SITE_FOLDER} ]]; then
         echo -e "Paso 1 ==> Existe la ruta, continuando."
     else
-        echo -e "Paso 1 ==> No existe la ruta, creándola..."
+        echo -e "Paso 1 ==> No existe la ruta, creandola..."
         mkdir -p ${CONF_SITE_FOLDER}
         mkdir -p ${CONF_SITE_FOLDER}/web
         mkdir -p ${CONF_SITE_FOLDER}/log
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
     fi
-    echo -e "\n\n==========================\n==========================\n";
+    echo -e "==========================";
     
 }
 
 # create vhost
 function newvhost(){
-    echo -e "\n\n==========================\n==========================\n";
     if [[ $SITE ]]; then #comprueba si existe la ruta
         
         if [ -f ${CONF_SITES_AVAILABLE} ]; then
@@ -73,17 +72,16 @@ function newvhost(){
             sudo service apache2 restart
         fi
     fi
-    echo -e "\n\n==========================\n==========================\n";
 }
+
 # install_drupal
 function install_drupal(){
-    echo -e "\n\n==========================\n==========================\n";
     echo -e "\n\n==> Instalando Drupal"
-    echo -e "\n\n==========================\n==========================\n";
+    echo -e "==========================";
 }
-# drupal install
+
+# install_selector
 function install_selector(){
-    echo -e "\n\n==========================\n==========================\n";
     if [ ${INSTALL} ]; then
         echo -e "\n\n==> Buscando instalaciones disponibles...."
         
@@ -92,11 +90,11 @@ function install_selector(){
                 install_drupal;
             ;;
             *)
-                echo -e "\n\n==> desconozco esa opción"
+                echo -e "\n\n==> opcion incorrecta"
             ;;
         esac
     fi
-    echo -e "\n\n==========================\n==========================\n";
+    echo -e "==========================";
 }
 
 # final message
