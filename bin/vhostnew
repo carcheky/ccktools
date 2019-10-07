@@ -77,10 +77,10 @@ function install_selector(){
     if [ ${INSTALL} ]; then
         case ${INSTALL} in
             drupal)
-                echo "Instalando Drupal"
+                echo "\n\n\n==> Instalando Drupal"
             ;;
             *)
-                echo "desconozco esa opción"
+                echo "\n\n\n==> desconozco esa opción"
             ;;
         esac
     fi
