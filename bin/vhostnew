@@ -143,7 +143,7 @@ function install_selector(){
             ;;
             borrar)
                 echo "borrando instalacion ${SITE}"
-                sudo rm -fr /etc/apache2/sites-*/${SITE}* /mnt/c/wsl/sites/${SITE}
+                sudo rm -fr /etc/apache2/sites-*/${SITE}.conf /mnt/c/wsl/sites/${SITE}
             ;;
             *)
                 echo -e "opcion incorrecta, instalamos solo vhost"
