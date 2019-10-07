@@ -82,14 +82,14 @@ function install_drupal(){
 # install_selector
 function install_selector(){
     if [ ${INSTALL} ]; then
-        echo -e "==> Buscando instalaciones disponibles...."
+        echo -e "Paso 3 ==> Buscando instalaciones disponibles...."
         
         case ${INSTALL} in
             drupal)
                 install_drupal;
             ;;
             *)
-                echo -e "==> opcion incorrecta"
+                echo -e "Paso 3 ==> opcion incorrecta"
             ;;
         esac
     fi
