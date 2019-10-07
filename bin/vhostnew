@@ -59,7 +59,7 @@ function newvhost(){
             sudo touch ${CONF_SITES_AVAILABLE} 2>/dev/null
             
             sudo echo "
-<VirtualHost *:8888>
+<VirtualHost *:80 *:8888>
     ServerName ${SITE}
     ServerAdmin webmaster@${SITE}.test
     DocumentRoot ${CONF_SITE_FOLDER}/web
