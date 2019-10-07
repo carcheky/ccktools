@@ -53,7 +53,7 @@ function newvhost(){
         if [ -f ${CONF_SITES_AVAILABLE} ]; then
             echo -e "Paso 2 ==> Existe la configuracion \n${CONF_SITES_AVAILABLE}, continuando."
         else
-            echo -e "Paso 2 ==> NO existe la configuracion \n${CONF_SITES_AVAILABLE}, creandola..."
+            echo -e "Paso 2 ==> NO existe la configuracion \n${CONF_SITES_AVAILABLE}, \n==>creandola..."
             sudo rm ${CONF_SITES_AVAILABLE} 2>/dev/null
             sudo touch ${CONF_SITES_AVAILABLE} 2>/dev/null
             
