@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sudo rm -fr mnt testing /etc/apache2/sites*/testing*
 # VARS
 # [] && false || true
 # [!] && true || false
