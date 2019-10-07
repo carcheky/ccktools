@@ -65,10 +65,10 @@ function newvhost(){
     CustomLog ${CONF_SITE_FOLDER}/log/${SITE}.log combined
 </VirtualHost>
             " | sudo tee --append ${CONF_SITES_AVAILABLE}
+            sudo a2ensite ${SITE}.conf
+            sudo service apache2 reload
+            sudo service apache2 restart
         fi
-        sudo a2ensite ${SITE}.conf
-        sudo service apache2 reload
-        sudo service apache2 restart
     fi
 }
 
