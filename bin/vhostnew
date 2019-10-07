@@ -63,8 +63,8 @@ function newvhost(){
         else
             echo "==> CONF_SITES_AVAILABLE ${CONF_SITES_AVAILABLE} does not exist."
             echo "==> Creating...."
-            sudo rm ${CONF_SITES_AVAILABLE}
-            sudo touch ${CONF_SITES_AVAILABLE}
+            sudo rm ${CONF_SITES_AVAILABLE} 2>/dev/null
+            sudo touch ${CONF_SITES_AVAILABLE} 2>/dev/null
             
             sudo echo "
 <VirtualHost *:8888>
