@@ -1,2 +1,3 @@
 #!/bin/bash
 mysqldump -uroot -proot --all-databases > /mnt/c/wsl/WslDDBB/alldb.sql
+sudo rm -fr /tmp/*
