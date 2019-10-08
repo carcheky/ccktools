@@ -2,9 +2,13 @@
 source ~/ccktools/.ccktools_aliases
 
 fix_path() {
-    if [[ -d $PATH_TO_FIX/bin ]]; then
-        find $PATH_TO_FIX/bin -type f -exec chmod +x {} \;
-        find $PATH_TO_FIX/bin -type f -exec dos2unix {} \;
+    if [[ -d $PATH_TO_FIX ]]; then
+        find $PATH_TO_FIX -type d -exec sudo chown -R user:user {} \;
+        find $PATH_TO_FIX -type d -exec sudo chown -R 755 {} \;
+        find $PATH_TO_FIX -type f -exec sudo chown -R user:user {} \;
+        find $PATH_TO_FIX -type f -exec sudo chown -R 644 {} \;
+        find $PATH_TO_FIX -type f -exec sudo dos2unix {} \;
+        find $PATH_TO_FIX -type f -exec sudo chmod +x {} \;
         dos2unix $PATH_TO_FIX/.ccktools_*
     fi
 }
@@ -12,5 +16,8 @@ fix_path() {
 PATH_TO_FIX="$HOME/ccktools"
 fix_path
 
-PATH_TO_FIX="/c/Users/cmartinezv/Documents/GitHub/ccktools"
+PATH_TO_FIX="/mnt/c/wsl/"
+fix_path
+
+PATH_TO_FIX="/mnt/c/Users/cmartinezv/Documents/GitHub/ccktools"
 fix_path
