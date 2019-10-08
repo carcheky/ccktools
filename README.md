@@ -6,10 +6,10 @@
 
 
 Recomended:
--  http://www.abelhadigital.com/hostsman/ (to add hosts to windows)
--  https://github.com/Maximus5/ConEmu/releases/latest/ (a modern terminal)
--  https://www.heidisql.com/ (to manage databases)
-
+-  [to add hosts to windows](http://www.abelhadigital.com/hostsman/)
+-  [a modern terminal](https://github.com/Maximus5/ConEmu/releases/latest/)
+-  [to manage databases](https://www.heidisql.com/)
+-  [to list sites installed](https://github.com/carcheky/home-lamp)
 
 
 
