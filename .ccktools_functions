@@ -104,11 +104,3 @@ open_browsers(){
 	/mnt/c/Program\ Files/internet\ explorer/iexplore.exe $1
 	/mnt/c/Program\ Files\ \(x86\)/BraveSoftware/Brave-Browser/Application/brave.exe $1
 }
-
-drush8(){
-	composer global require drush/drush:^8
-}
-
-drush9(){
-	composer global require drush/drush:^9
-}
