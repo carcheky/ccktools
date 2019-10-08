@@ -1,18 +1,15 @@
 # ccktools
 
 
-1-  [Download Distro](https://drive.google.com/open?id=1Uw5rjVzwM7xooR1Juyr_EHQdHPPZbEzP)  
+1-  [Download Distro](https://drive.google.com/open?id=1Uw5rjVzwM7xooR1Juyr_EHQdHPPZbEzP)
 2-  Clone this repo to C:/wsl/user/ccktools/ ( C:/wsl/user/ccktools/.git) [as here](https://raw.githubusercontent.com/carcheky/ccktools/master/img/folders.png)
 
 
-
-
-
-
-
-
-
-
+Recomended:
+-  [to add hosts to windows](http://www.abelhadigital.com/hostsman/)
+-  [a modern terminal](https://github.com/Maximus5/ConEmu/releases/latest/)
+-  [to manage databases](https://www.heidisql.com/)
+-  [to list sites installed](https://github.com/carcheky/home-lamp)
 
 
 

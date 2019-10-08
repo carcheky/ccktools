@@ -2,15 +2,30 @@
 source ~/ccktools/.ccktools_aliases
 
 fix_path() {
-    if [[ -d $PATH_TO_FIX/bin ]]; then
-        find $PATH_TO_FIX/bin -type f -exec chmod +x {} \;
-        find $PATH_TO_FIX/bin -type f -exec dos2unix {} \;
-        dos2unix $PATH_TO_FIX/.ccktools_*
+    if [[ -d $PATH_TO_FIX ]]; then
+        # ccktools folder
+        find $PATH_TO_FIX/user/ccktools/bin -type f -exec sudo dos2unix {} \;
+        sudo dos2unix $PATH_TO_FIX/user/ccktools/.ccktool*
+        sudo chmod -R 777 $PATH_TO_FIX/user/ccktools/bin
+        sudo chown -R user:user $PATH_TO_FIX/user/ccktools/bin
+
+        # cmd-tools folder
+        sudo unix2dos $PATH_TO_FIX/user/ccktools/cmd-tools/*
+        sudo chmod -R 777 $PATH_TO_FIX/user/ccktools/cmd-tools/
+        sudo chown -R user:user $PATH_TO_FIX/user/ccktools/cmd-tools/
+
+        # sites folder
+        find $PATH_TO_FIX/sites -type f -exec sudo unix2dos {} \;
+        sudo chmod -R 777 $PATH_TO_FIX/sites
+        sudo chown -R user:user $PATH_TO_FIX/sites
     fi
 }
 
-PATH_TO_FIX="$HOME/ccktools"
+# PATH_TO_FIX="$HOME/ccktools"
+# fix_path
+
+PATH_TO_FIX="/mnt/c/wsl/"
 fix_path
 
-PATH_TO_FIX="/c/Users/cmartinezv/Documents/GitHub/ccktools"
-fix_path
+# PATH_TO_FIX="/mnt/c/Users/cmartinezv/Documents/GitHub/ccktools"
+# fix_path

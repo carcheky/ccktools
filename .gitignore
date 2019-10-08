@@ -8,3 +8,4 @@ composer.phar
 **/test.sh
 config/.ccktools_custom
 bin/test
+.ccktools_custom
