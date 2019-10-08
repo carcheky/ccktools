@@ -3,15 +3,16 @@ source ~/ccktools/.ccktools_aliases
 
 fix_path() {
     if [[ -d $PATH_TO_FIX ]]; then
-        sudo chmod -R 777 $PATH_TO_FIX
-        sudo chown -R user:user $PATH_TO_FIX
-        find $PATH_TO_FIX -type d -exec chown -R user:user -vvv {} \;
-        find $PATH_TO_FIX -type d -exec chown -R 755 -vvv {} \;
-        find $PATH_TO_FIX -type f -exec chown -R user:user -vvv {} \;
-        find $PATH_TO_FIX -type f -exec chown -R 644 -vvv {} \;
-        find $PATH_TO_FIX -type f -exec dos2unix -vvv {} \;
-        find $PATH_TO_FIX -type f -exec chmod +x -vvv {} \;
-        dos2unix $PATH_TO_FIX/.ccktools_*
+        #user folder
+        sudo chmod -R 777 $PATH_TO_FIX/user
+        sudo chown -R user:user $PATH_TO_FIX/user
+        find $PATH_TO_FIX/user -type f -exec sudo dos2unix {} \;
+        sudo unix2dos $PATH_TO_FIX/user/ccktools/cmd-tools/*
+        #sites folder
+        sudo chmod -R 777 $PATH_TO_FIX/sites
+        sudo chown -R user:user $PATH_TO_FIX/sites
+        find $PATH_TO_FIX/sites -type f -exec sudo unix2dos {} \;
+        $PATH_TO_FIX/sites/*
     fi
 }
 
