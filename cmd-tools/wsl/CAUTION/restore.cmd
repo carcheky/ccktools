@@ -2,7 +2,7 @@
 pushd "%~dp0"
 
 wsl --import WslServer %APPDATA%\WslServer %SYSTEMDRIVE%\wsl\WslDistros\WslServer-backup.tar.gz
-wsl --upgrade WslServer
+REM wsl --upgrade WslServer
 wsl -s WslServer
 
 :exit
