@@ -107,7 +107,7 @@ function install_drupal(){
     cd ${CONF_SITE_FOLDER}
     if [[ ! -f "./web/sites/default/settings.php" ]]; then
         drush="sudo /home/user/.config/composer/vendor/bin/drush"
-        composer="sudo /usr/bin/composer"
+        composer="/usr/bin/composer"
         echo -e "==> Bajando drupal core...\n"
         $drush -y dl drupal --drupal-project-rename="web"
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
