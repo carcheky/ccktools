@@ -5,12 +5,6 @@
 2-  Clone this repo to C:/wsl/user/ccktools/ ( C:/wsl/user/ccktools/.git) [as here](https://raw.githubusercontent.com/carcheky/ccktools/master/img/folders.png)
 
 
-
-
-
-
-
-
 Recomended:
 -  http://www.abelhadigital.com/hostsman/ (to add hosts to windows)
 -  https://github.com/Maximus5/ConEmu/releases/latest/ (a modern terminal)
