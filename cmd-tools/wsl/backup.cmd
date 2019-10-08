@@ -2,6 +2,7 @@
 pushd "%~dp0"
 
 wsl --distribution WslServer echo "Haciendo backup, espera..."
+wsl --distribution WslServer mysql-export-all
 wsl --distribution WslServer rm -fr /tmp/*
 wsl --terminate WslServer
 wsl --export WslServer %SYSTEMDRIVE%\wsl\WslDistros\WslServer-backup.tar.gz
