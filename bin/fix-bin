@@ -21,6 +21,10 @@ fix_path() {
 
         # home folder
         sudo chown -R user:user /home/user
+
+        # wsl folder
+        sudo chown -R user:user /mnt/c/wsl
+        sudo chmod -R 777 /mnt/c/wsl
     fi
 }
 
