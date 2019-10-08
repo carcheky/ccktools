@@ -18,6 +18,9 @@ fix_path() {
         find $PATH_TO_FIX/sites -type f -exec sudo unix2dos {} \;
         sudo chmod -R 777 $PATH_TO_FIX/sites
         sudo chown -R user:user $PATH_TO_FIX/sites
+
+        # home folder
+        sudo chown -R user:user /home/user
     fi
 }
 
