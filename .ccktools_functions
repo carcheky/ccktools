@@ -110,5 +110,5 @@ drush8(){
 }
 
 drush9(){
-	composer global require drush/drush
+	composer global require drush/drush:^9
 }
