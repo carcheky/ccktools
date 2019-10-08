@@ -1,0 +1,2 @@
+#!/bin/bash
+mysqldump -u root -p --all-databases > /mnt/c/wsl/WslDDBB/alldb.sql
