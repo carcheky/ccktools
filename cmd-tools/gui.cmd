@@ -34,6 +34,10 @@ goto :1
   CALL C:\wsl\user\ccktools\cmd-tools\scripts\lamp-vhostnew.cmd
   GOTO :GUI
 
+:8
+  CALL C:\wsl\user\ccktools\cmd-tools\scripts\run.cmd
+  GOTO :GUI
+
 
 goto :EOF
 
@@ -42,11 +46,11 @@ goto :EOF
 
 <HTML>
 <HEAD>
-<HTA:APPLICATION SCROLL="no" SYSMENU="yes" >
+<HTA:APPLICATION SCROLL="yes" SYSMENU="yes" >
 
 <TITLE>WslServerGui</TITLE>
 <SCRIPT language="JavaScript">
-window.resizeTo(374,250);
+window.resizeTo(400,400);
 
 function closeHTA(reply){
    var fso = new ActiveXObject("Scripting.FileSystemObject");
@@ -94,6 +98,7 @@ button.exit{
 <BODY>
   <div class="exit">
     <button class="exit" onclick="closeHTA(1);">exit</button>
+    <button class="exit" onclick="closeHTA(8);">terminal</button>
   </div>
   <h3>WslServer tools</h3>
   <div class="wslserver_buttons">
