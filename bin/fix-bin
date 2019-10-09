@@ -4,7 +4,8 @@ source ~/ccktools/.ccktools_aliases
 fix_path() {
     if [[ -d "/mnt/c/wsl/" ]]; then
         # ccktools folder
-        find /mnt/c/wsl/user/ccktools/ -type f -exec sudo dos2unix {} \;
+        find /mnt/c/wsl/user/ccktools/bin -type f -exec sudo dos2unix {} \;
+        sudo dos2unix /mnt/c/wsl/user/ccktools/.ccktool*
 
         # cmd-tools folder
         sudo unix2dos /mnt/c/wsl/user/ccktools/cmd-tools/*
