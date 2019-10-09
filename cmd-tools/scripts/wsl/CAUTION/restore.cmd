@@ -6,7 +6,6 @@ wsl --import WslServer %APPDATA%\WslServer %SYSTEMDRIVE%\wsl\Wsl_Backups\WslServ
 
 wsl -s WslServer
 
-pause
 :exit
 popd
 @echo on
