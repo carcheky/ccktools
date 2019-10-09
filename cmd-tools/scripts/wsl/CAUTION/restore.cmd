@@ -1,6 +1,7 @@
 @echo off
 pushd "%~dp0"
 
+wsl --distribution WslServer echo "Importando Backup WslServer, espera..."
 wsl --import WslServer %APPDATA%\WslServer %SYSTEMDRIVE%\wsl\Wsl_Backups\WslServer-backup-DISTRO.tar.gz
 REM wsl --upgrade WslServer
 
