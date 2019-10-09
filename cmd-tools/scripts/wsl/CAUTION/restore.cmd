@@ -3,7 +3,10 @@ pushd "%~dp0"
 
 wsl --import WslServer %APPDATA%\WslServer %SYSTEMDRIVE%\wsl\Wsl_Backups\WslServer-backup-DISTRO.tar.gz
 REM wsl --upgrade WslServer
+
+
 wsl -s WslServer
+CALL C:\wsl\user\ccktools\cmd-tools\scripts\wsl\set-default-user.ps1
 
 :exit
 popd
