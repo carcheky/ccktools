@@ -60,14 +60,14 @@ body{
   font-family:  Arial;
 }
 button{
-  border: 1px solid black;
+  border: 2px solid black;
   background: gray;
   color: white;
   font-weight: bold;
+    width: 31%;
+  margin: 1%;
 }
 .lamp_buttons button{
-  width: 30%;
-  margin: 1%;
 
 }
 .lamp_start{
