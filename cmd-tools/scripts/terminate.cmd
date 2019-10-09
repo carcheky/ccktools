@@ -1,7 +1,8 @@
 @echo off
 pushd "%~dp0"
-
-wsl --distribution WslServer echo "Cerrando WslServer y todos sus procesos"
+@echo on
+echo  "Cerrando WslServer y todos sus procesos"
+@echo off
 wsl --terminate WslServer
 
 :exit

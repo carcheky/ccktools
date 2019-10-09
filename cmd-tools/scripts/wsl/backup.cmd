@@ -1,7 +1,9 @@
 @echo off
 pushd "%~dp0"
 
-wsl --distribution WslServer echo "Haciendo backup, espera..."
+@echo on
+echo "Haciendo backup, espera..."
+@echo off
 wsl --terminate WslServer
 wsl --distribution WslServer --user user /home/user/ccktools/bin/lamp start
 wsl --distribution WslServer --user user /home/user/ccktools/bin/mysql-export-all

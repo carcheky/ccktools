@@ -1,7 +1,8 @@
 @echo off
 pushd "%~dp0"
-
-wsl --distribution WslServer echo "Iniciando lamp... espera"
+@echo on
+echo  "Iniciando lamp... espera"
+@echo off
 wsl --distribution WslServer --user user /home/user/ccktools/bin/lamp start
 
 :exit

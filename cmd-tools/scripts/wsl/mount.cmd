@@ -1,7 +1,9 @@
 @echo off
 pushd "%~dp0"
 
-wsl --distribution WslServer echo "Montando wsl"
+@echo on
+echo "Montando wsl"
+@echo off
 start \\wsl$\WslServer
 
 :exit

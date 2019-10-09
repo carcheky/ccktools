@@ -1,7 +1,10 @@
-@echo off
+@echo on
 pushd "%~dp0"
 
-wsl --distribution WslServer echo "Desistalando WslServer, espera..."
+@echo on
+echo "Desistalando WslServer, espera..."
+@echo off
+
 set TARGET_DIR=%APPDATA%\WslServer
 wsl --unregister WslServer
 if exist %TARGET_DIR% rmdir /s /q %TARGET_DIR%
