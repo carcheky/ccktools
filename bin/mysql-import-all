@@ -1,2 +1,2 @@
 #!/bin/bash
-mysql -uroot -proot < /mnt/c/wsl/Wsl_Backups/alldb.sql
+mysql -uroot -proot < /mnt/c/wsl/Wsl_Backups/WslServer-backup-BBDD.sql

@@ -1,4 +1,4 @@
 #!/bin/bash
 mkdir -p /mnt/c/wsl/Wsl_Backups/ 2>/dev/null
-mysqldump -uroot -proot --all-databases > /mnt/c/wsl/Wsl_Backups/alldb.sql
+mysqldump -uroot -proot --all-databases > /mnt/c/wsl/Wsl_Backups/WslServer-backup-BBDD.sql
 sudo rm -fr /tmp/*
