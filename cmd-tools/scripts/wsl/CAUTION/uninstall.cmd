@@ -1,4 +1,4 @@
-@echo on
+@echo off
 pushd "%~dp0"
 
 @echo on
