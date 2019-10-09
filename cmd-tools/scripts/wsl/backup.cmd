@@ -6,7 +6,7 @@ wsl --terminate WslServer
 wsl --distribution WslServer --user user /home/user/ccktools/bin/lamp start
 wsl --distribution WslServer --user user /home/user/ccktools/bin/mysql-export-all
 wsl --terminate WslServer
-wsl --export WslServer %SYSTEMDRIVE%\wsl\Wsl_Backups\WslServer-backup.tar.gz
+wsl --export WslServer %SYSTEMDRIVE%\wsl\Wsl_Backups\WslServer-backup-DISTRO.tar.gz
 
 :exit
 popd
