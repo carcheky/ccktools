@@ -6,6 +6,8 @@ wsl --import WslServer %APPDATA%\WslServer %SYSTEMDRIVE%\wsl\Wsl_Backups\WslServ
 
 wsl -s WslServer
 
+wsl --distribution WslServer --user user /home/user/ccktools/bin/mysql-import-all
+
 :: powershell.exe -File C:\wsl\user\ccktools\cmd-tools\scripts\wsl\set-default-user.ps1
 
 :exit
