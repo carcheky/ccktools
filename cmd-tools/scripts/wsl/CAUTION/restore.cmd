@@ -6,7 +6,7 @@ REM wsl --upgrade WslServer
 
 
 wsl -s WslServer
-CALL C:\wsl\user\ccktools\cmd-tools\scripts\wsl\set-default-user.ps1
+powershell.exe -File C:\wsl\user\ccktools\cmd-tools\scripts\wsl\set-default-user.ps1
 
 :exit
 popd
