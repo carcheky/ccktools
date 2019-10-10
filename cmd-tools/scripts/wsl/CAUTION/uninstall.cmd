@@ -10,5 +10,6 @@ wsl --unregister WslServer
 if exist %TARGET_DIR% rmdir /s /q %TARGET_DIR%
 
 :exit
-popd
+exit
+::popd
 @echo on

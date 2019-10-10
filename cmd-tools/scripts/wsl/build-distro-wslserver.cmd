@@ -17,5 +17,6 @@ wsl --distribution WslServer --user user /home/user/ccktools/bin/lamp start
 wsl --distribution WslServer --user user /home/user/ccktools/bin/build-distro-wslserver import
 wsl --terminate WslServer
 :exit
-popd
+exit
+::popd
 @echo on

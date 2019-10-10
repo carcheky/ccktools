@@ -30,5 +30,6 @@ powershell C:\wsl\user\ccktools\cmd-tools\scripts\wsl\CAUTION\set-default-user.p
 sleep 5
 
 :exit
-popd
+exit
+::popd
 @echo on

@@ -11,5 +11,6 @@ wsl --terminate WslServer
 wsl --export WslServer %SYSTEMDRIVE%\wsl\Wsl_Backups\WslServer-backup-DISTRO.tar.gz
 
 :exit
-popd
+exit
+::popd
 @echo on

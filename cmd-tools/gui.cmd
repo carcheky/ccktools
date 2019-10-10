@@ -6,7 +6,7 @@ setlocal
 echo Select an option:
 for /F "delims=" %%a in ('mshta.exe "%~F0"') do set "HTAreply=%%a"
 CALL :%HTAreply%
-goto :1
+GOTO :1
 
 :: EXIT
 :1
@@ -14,32 +14,32 @@ goto :1
 
 :: LAMP TOOLS
 :2
-  CALL C:\wsl\user\ccktools\cmd-tools\scripts\lamp-start.cmd
+  start C:\wsl\user\ccktools\cmd-tools\scripts\lamp-start.cmd
   GOTO :GUI
 :3
-    CALL C:\wsl\user\ccktools\cmd-tools\scripts\lamp-stop.cmd
+  start C:\wsl\user\ccktools\cmd-tools\scripts\lamp-stop.cmd
   GOTO :GUI
 :4
-  CALL C:\wsl\user\ccktools\cmd-tools\scripts\lamp-restart.cmd
+  start C:\wsl\user\ccktools\cmd-tools\scripts\lamp-restart.cmd
   GOTO :GUI
 
 :: WSL TOOLS
 :5
-  CALL C:\wsl\user\ccktools\cmd-tools\scripts\wsl\backup.cmd
+  start C:\wsl\user\ccktools\cmd-tools\scripts\wsl\backup.cmd
   GOTO :GUI
 :6
-  CALL C:\wsl\user\ccktools\cmd-tools\scripts\terminate.cmd
+  start C:\wsl\user\ccktools\cmd-tools\scripts\terminate.cmd
   GOTO :GUI
 :7
-  CALL C:\wsl\user\ccktools\cmd-tools\scripts\lamp-vhostnew.cmd
+  start C:\wsl\user\ccktools\cmd-tools\scripts\lamp-vhostnew.cmd
   GOTO :GUI
 
 :8
-  CALL C:\wsl\user\ccktools\cmd-tools\scripts\run.cmd
+  start C:\wsl\user\ccktools\cmd-tools\scripts\run.cmd
   GOTO :GUI
 
 
-goto :EOF
+GOTO :EOF
 
 -->
 

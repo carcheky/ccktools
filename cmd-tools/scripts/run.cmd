@@ -4,5 +4,6 @@ pushd "%~dp0"
 wsl --distribution WslServer --user user
 
 :exit
-popd
+exit
+::popd
 @echo on
