@@ -6,5 +6,6 @@ echo  "Iniciando lamp... espera"
 wsl --distribution WslServer --user user /home/user/ccktools/bin/lamp start
 
 :exit
-popd
+exit
+::popd
 @echo on

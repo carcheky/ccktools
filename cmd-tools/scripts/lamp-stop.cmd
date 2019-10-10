@@ -6,5 +6,6 @@ echo "Parando lamp... espera"
 wsl --distribution WslServer --user user /home/user/ccktools/bin/lamp stop
 
 :exit
-popd
+exit
+::popd
 @echo on

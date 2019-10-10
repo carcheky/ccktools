@@ -6,5 +6,6 @@ echo  "Cerrando WslServer y todos sus procesos"
 wsl --terminate WslServer
 
 :exit
-popd
+exit
+::popd
 @echo on

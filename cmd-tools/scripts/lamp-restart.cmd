@@ -6,5 +6,6 @@ echo "Reiniciando lamp... espera"
 wsl --distribution WslServer --user user /home/user/ccktools/bin/lamp restart
 
 :exit
-popd
+exit
+::popd
 @echo on

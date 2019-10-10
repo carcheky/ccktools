@@ -6,5 +6,6 @@ echo "newvhost"
 wsl --distribution WslServer --user user bash /home/user/ccktools/bin/vhostnew
 
 :exit
-popd
+exit
+::popd
 @echo on

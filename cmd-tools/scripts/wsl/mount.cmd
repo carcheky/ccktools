@@ -7,5 +7,6 @@ echo "Montando wsl"
 start \\wsl$\WslServer
 
 :exit
-popd
+exit
+::popd
 @echo on
