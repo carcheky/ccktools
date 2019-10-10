@@ -6,7 +6,7 @@ setlocal
 echo Select an option:
 for /F "delims=" %%a in ('mshta.exe "%~F0"') do set "HTAreply=%%a"
 CALL :%HTAreply%
-goto :1
+GOTO :1
 
 :: EXIT
 :1
@@ -15,13 +15,13 @@ goto :1
 :: LAMP TOOLS
 :2
   CALL C:\wsl\user\ccktools\cmd-tools\scripts\lamp-start.cmd
-  GOTO :GUI
+  GOTO :1
 :3
-    CALL C:\wsl\user\ccktools\cmd-tools\scripts\lamp-stop.cmd
-  GOTO :GUI
+  CALL C:\wsl\user\ccktools\cmd-tools\scripts\lamp-stop.cmd
+  GOTO :1
 :4
   CALL C:\wsl\user\ccktools\cmd-tools\scripts\lamp-restart.cmd
-  GOTO :GUI
+  GOTO :1
 
 :: WSL TOOLS
 :5
@@ -39,7 +39,7 @@ goto :1
   GOTO :GUI
 
 
-goto :EOF
+GOTO :EOF
 
 -->
 
