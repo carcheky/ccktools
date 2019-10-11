@@ -1,7 +1,7 @@
 @echo off
 pushd "%~dp0"
 
-wsl --distribution WslServer --user user
+"C:\Program Files\ConEmu\ConEmu64.exe"
 
 :exit
 exit
