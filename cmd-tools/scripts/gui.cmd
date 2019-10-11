@@ -37,7 +37,9 @@ GOTO :1
 :8
   start C:\wsl\user\ccktools\cmd-tools\scripts\run.cmd
   GOTO :GUI
-
+:9
+  start C:\wsl\user\ccktools\cmd-tools\scripts\wsl\update-ccktools.cmd
+  GOTO :GUI
 
 GOTO :EOF
 
@@ -103,6 +105,7 @@ button.exit{
   <div class="exit">
     <button class="exit" onclick="closeHTA(1);">exit</button>
     <button class="exit" onclick="closeHTA(8);">terminal</button>
+    <button class="exit" onclick="closeHTA(9);">update</button>
   </div>
   <h3>WslServer tools</h3>
   <div class="wslserver_buttons">
