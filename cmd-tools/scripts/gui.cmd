@@ -46,9 +46,9 @@ GOTO :EOF
 
 <HTML>
 <HEAD>
-<HTA:APPLICATION SCROLL="yes" SYSMENU="yes" >
+<HTA:APPLICATION SCROLL="yes" SYSMENU="yes" ICON="..\IMG\icon.ico" >
 
-<TITLE>WslServerGui</TITLE>
+<TITLE>WslServer Manager</TITLE>
 
 <SCRIPT language="JavaScript">
 window.resizeTo(400,400);
