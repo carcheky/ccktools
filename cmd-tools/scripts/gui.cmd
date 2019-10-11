@@ -49,8 +49,12 @@ GOTO :EOF
 <HTA:APPLICATION SCROLL="yes" SYSMENU="yes" >
 
 <TITLE>WslServerGui</TITLE>
+
 <SCRIPT language="JavaScript">
 window.resizeTo(400,400);
+WindowLeft = (window.screen.availWidth - 450)  ;
+WindowTop  = (window.screen.availHeight - 400);
+window.moveTo( WindowLeft, WindowTop);
 
 function closeHTA(reply){
    var fso = new ActiveXObject("Scripting.FileSystemObject");
