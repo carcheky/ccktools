@@ -14,13 +14,13 @@ GOTO :1
 
 :: LAMP TOOLS
 :2
-  start C:\wsl\user\ccktools\cmd-tools\scripts\lamp-start.cmd
+  start C:\wsl\user\ccktools\cmd-tools\scripts\lamp\lamp-start.cmd
   GOTO :GUI
 :3
-  start C:\wsl\user\ccktools\cmd-tools\scripts\lamp-stop.cmd
+  start C:\wsl\user\ccktools\cmd-tools\scripts\lamp\lamp-stop.cmd
   GOTO :GUI
 :4
-  start C:\wsl\user\ccktools\cmd-tools\scripts\lamp-restart.cmd
+  start C:\wsl\user\ccktools\cmd-tools\scripts\lamp\lamp-restart.cmd
   GOTO :GUI
 
 :: WSL TOOLS
