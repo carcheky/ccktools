@@ -6,36 +6,34 @@ ls -la /etc/apache2/sites-enabled
 # [] && false || true
 # [!] && true || false
 # ask for var
-read_site(){
-    until [ ! -z ${SITE} ] 
-    do
+read_site() {
+    until [ ! -z ${SITE} ]; do
         echo "Escribe el nombre del sitio a gestionar:"
         read SITE
-    done    
+    done
 }
-read_install_type(){
-    until [ ! -z ${INSTALL} ] 
-    do
+read_install_type() {
+    until [ ! -z ${INSTALL} ]; do
         echo "Escoge el tipo de instalacion:"
         read INSTALL
-    done    
+    done
 }
-echo -e "\n\n==============================================================\n==============================================================\n";
+echo -e "\n\n==============================================================\n==============================================================\n"
 
 # check vhost name
-[[ $1 ]] && SITE=$1 || read_site;
+[[ $1 ]] && SITE=$1 || read_site
 # [[ $1 ]] && SITE=$1 || echo "Escribe el nombre del sitio:" && until ${SITE} do read SITE done;
 
-echo -e "\n==============================================================\n==============================================================";
+echo -e "\n==============================================================\n=============================================================="
 
 # check installation type
 [[ $2 ]] && INSTALL=$2 || echo -e "
 ==>      1) Drupal
 ==>      2) Drupal con composer (MUCHOS ERRORES)
 ==>      0) Ninguna, sólo vhost
-==> borrar) escribe <borrar> para borrar esta instalacion\n" && read_install_type;
+==> borrar) escribe <borrar> para borrar esta instalacion\n" && read_install_type
 
-echo -e "\n==============================================================\n==============================================================\n\n";
+echo -e "\n==============================================================\n==============================================================\n\n"
 
 # set vars
 SITES_FOLDER="/mnt/c/wsl/sites"
@@ -44,20 +42,16 @@ CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
 CONF_SITE_FOLDER="${SITES_FOLDER}/${SITE}"
 
 #print options
-echo -e "\n\n==============================================================\n==============================================================\n";
-[[ $SITE ]] && echo -e "==> SITE: $SITE";
-[[ $INSTALL ]] && echo -e "\n==> INSTALL: $INSTALL";
-echo -e "\n==============================================================\n==============================================================\n\n";
-
-
-
+echo -e "\n\n==============================================================\n==============================================================\n"
+[[ $SITE ]] && echo -e "==> SITE: $SITE"
+[[ $INSTALL ]] && echo -e "\n==> INSTALL: $INSTALL"
+echo -e "\n==============================================================\n==============================================================\n\n"
 
 #FUNCTIONS
 
-
 # create folder
-function newfolder(){
-    echo -e "\n\n==============================================================\n==============================================================";
+function newfolder() {
+    echo -e "\n\n==============================================================\n=============================================================="
     if [[ -d ${CONF_SITE_FOLDER} ]]; then
         echo -e "Paso 1 ==> Existe la ruta, continuando."
     else
@@ -68,21 +62,21 @@ function newfolder(){
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
     fi
-    echo -e "==============================================================";
-    
+    echo -e "=============================================================="
+
 }
 
 # create vhost
-function newvhost(){
+function newvhost() {
     if [[ $SITE ]]; then #comprueba si existe la ruta
-        
+
         if [ -f ${CONF_SITES_AVAILABLE} ]; then
             echo -e "Paso 2 ==> Existe la configuracion \n${CONF_SITES_AVAILABLE}, continuando."
         else
             echo -e "Paso 2 ==> NO existe la configuracion \n${CONF_SITES_AVAILABLE}, \n==>creandola..."
             sudo rm ${CONF_SITES_AVAILABLE} 2>/dev/null
             sudo touch ${CONF_SITES_AVAILABLE} 2>/dev/null
-            
+
             sudo echo "
 <VirtualHost *:80 *:8888>
     ServerName ${SITE}.local
@@ -97,12 +91,12 @@ function newvhost(){
             sudo service apache2 reload
             sudo service apache2 restart
         fi
-        echo -e "==============================================================";
+        echo -e "=============================================================="
     fi
 }
 
 # install_drupal
-function install_drupal(){
+function install_drupal() {
     echo -e "\n==> Instalando Drupal:\n"
     cd ${CONF_SITE_FOLDER}
     if [[ ! -f "./web/sites/default/settings.php" ]]; then
@@ -130,11 +124,11 @@ function install_drupal(){
     else
         echo -e "==> Existe una isntalaciรณn activa, borrala manualmente para usar este script"
     fi
-    echo -e "==============================================================";
+    echo -e "=============================================================="
 }
 
 # install_drupal_composer
-function install_drupal_composer(){
+function install_drupal_composer() {
     echo -e "\n==> Instalando Drupal:\n"
     cd ${CONF_SITE_FOLDER}
     if [[ ! -f "./web/sites/default/settings.php" ]]; then
@@ -159,60 +153,61 @@ function install_drupal_composer(){
     else
         echo -e "==> Existe una isntalaciรณn activa, borrala manualmente para usar este script"
     fi
-    echo -e "==============================================================";
+    echo -e "=============================================================="
 }
 
 # install_selector
-function install_selector(){
+function install_selector() {
     if [ ${INSTALL} ]; then
         echo -e "Paso 3 ==> Ejecutando tipo de instalacion...."
-        
+
         case ${INSTALL} in
-            1|drupal)
-                install_drupal;
+        1 | drupal)
+            install_drupal
             ;;
-            2)
-                install_drupal_composer;
+        2)
+            install_drupal_composer
             ;;
-            0)
-                echo -e "Ninguna, solo vhost"
-                echo "hola ${SITE}" >>/mnt/c/wsl/sites/${SITE}/web/index.html
+        0)
+            echo -e "Ninguna, solo vhost"
+            echo "hola ${SITE}" >>/mnt/c/wsl/sites/${SITE}/web/index.html
             ;;
-            borrar)
-                echo -e "==============================================================\n"
-                echo "borrando instalacion ${SITE}"
-                sudo rm -fr /etc/apache2/sites-*/${SITE}.conf /mnt/c/wsl/sites/${SITE}
-                echo -e "\n==============================================================\n\nQuieres borrar la base de datos ${SITE} [y/N]"
-                echo -e "\n==============================================================\n"
-                mysqladmin -hlocalhost -uroot -proot drop ${SITE}
+        borrar)
+            echo -e "==============================================================\n"
+            echo "borrando instalacion ${SITE}"
+            sudo rm -fr /etc/apache2/sites-*/${SITE}.conf /mnt/c/wsl/sites/${SITE}
+            echo -e "\n==============================================================\n\nQuieres borrar la base de datos ${SITE} [y/N]"
+            echo -e "\n==============================================================\n"
+            mysqladmin -hlocalhost -uroot -proot drop ${SITE}
             ;;
-            *)
-                echo -e "opcion incorrecta, instalamos solo vhost"
+        *)
+            echo -e "opcion incorrecta, instalamos solo vhost"
             ;;
         esac
     fi
-    echo -e "==============================================================";
+    echo -e "=============================================================="
 }
 
 # final message
-function finalmessage(){
-    echo -e "\n\n==============================================================\n==============================================================\n";
+function finalmessage() {
+    echo -e "\n\n==============================================================\n==============================================================\n"
     echo -e "\n==> add 127.0.0.1 ${SITE} to hosts file & flush dns\n (recommended http://www.abelhadigital.com/hostsman/)"
     echo -e "\n==> http://${SITE}.local/user\n"
     echo -e "\n==> http://${SITE}.local:8888/user\n"
-    echo -e "\n\n==============================================================\n==============================================================\n";
+    echo -e "\n\n==============================================================\n==============================================================\n"
 }
 
-
-
-
-
+# add to hosts
+function add_to_hosts() {
+    # echo 0.0.0.0 websitename.com >> %WINDIR%\System32\Drivers\Etc\Hosts
+    runas /user:Administrator
+}
 
 # LOGIC
 
-[[ ${INSTALL} = "borrar" ]] && echo "" || sudo service mysql start 2>/dev/null
-[[ ${INSTALL} = "borrar" ]] && echo "" || sudo service apache2 start 2>/dev/null
-[[ ${INSTALL} = "borrar" ]] && echo "" || newfolder;
-[[ ${INSTALL} = "borrar" ]] && echo "" || newvhost;
-install_selector;
-[[ ${INSTALL} = "borrar" ]] && echo "" || finalmessage;
+[[ ${INSTALL} == "borrar" ]] && echo "" || sudo service mysql start 2>/dev/null
+[[ ${INSTALL} == "borrar" ]] && echo "" || sudo service apache2 start 2>/dev/null
+[[ ${INSTALL} == "borrar" ]] && echo "" || newfolder
+[[ ${INSTALL} == "borrar" ]] && echo "" || newvhost
+install_selector
+[[ ${INSTALL} == "borrar" ]] && echo "" || finalmessage
