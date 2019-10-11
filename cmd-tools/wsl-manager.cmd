@@ -1,5 +1,3 @@
 
-start /B "C:\wsl\user\ccktools\cmd-tools\scripts\gui.cmd"
-
-sleep .1
-exit
+REM start /MIN  "WslManager" "C:\wsl\user\ccktools\cmd-tools\scripts\gui.cmd"
+wscript.exe "C:\wsl\user\ccktools\cmd-tools\scripts\invisible.vbs" "C:\wsl\user\ccktools\cmd-tools\scripts\gui.cmd"
