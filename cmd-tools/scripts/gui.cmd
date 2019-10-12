@@ -31,7 +31,7 @@ GOTO :1
   start C:\wsl\user\ccktools\cmd-tools\scripts\wsl\terminate.cmd
   GOTO :GUI
 :7
-  start C:\wsl\user\ccktools\cmd-tools\scripts\vhostnew.cmd
+  start C:\wsl\user\ccktools\cmd-tools\scripts\lamp\vhostnew.cmd
   GOTO :GUI
 
 :8
