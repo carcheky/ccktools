@@ -4,6 +4,7 @@ pushd "%~dp0"
 echo "Reiniciando lamp... espera"
 @echo off
 wsl --distribution WslServer --user user /home/user/ccktools/bin/lamp restart
+wsl --distribution WslServer --user user /home/user/ccktools/bin/wsl-notify restarted
 
 :exit
 exit
