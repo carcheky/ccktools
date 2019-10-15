@@ -43,10 +43,10 @@ GOTO :EOF
 ID="wslserver_manager"
 ICON="..\IMG\icon.ico"
 SYSMENU="no"
-REM APPLICATIONNAME="WslServer Manager"
 SCROLL="yes"
 BORDER="none"
 BORDERSTYLE="sunken"
+REM APPLICATIONNAME="WslServer Manager"
 REM CAPTION="yes"
 REM MAXIMIZEBUTTON="yes"
 REM MINIMIZEBUTTON="yes"
@@ -83,10 +83,10 @@ button{
   display: block;
 }
 button:hover{
-  
+
 }
 .lamp_buttons button{
-  
+
 }
 .lamp_buttons .start{
     background: green;
