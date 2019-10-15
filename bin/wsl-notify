@@ -1,3 +1,4 @@
-#!/usr/bin/env -bash
+#!/bin/bash
 
-powershell.exe "New-BurntToastNotification -Text \"$1\""
+notification=$1
+/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe "New-BurntToastNotification -Text \"$notification\"" 2>/dev/null
