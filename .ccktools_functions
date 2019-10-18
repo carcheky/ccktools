@@ -89,6 +89,10 @@ cr-update-core(){
 	drush cr
 }
 
+cr-update-modules(){
+	composer update drupal/* --with-dependencies
+}
+
 superchargephp() {
 
 	sudo find /etc/php/ -name php.ini -exec sed -i 's/post_max_size = 8M/post_max_size = 8G/g' {} \;
