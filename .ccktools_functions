@@ -84,6 +84,7 @@ cremove() {
 }
 
 cr-update-core(){
+	composer outdated "drupal/*"
 	composer update drupal/core --with-dependencies
 	drush updatedb
 	drush cr
