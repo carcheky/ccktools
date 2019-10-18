@@ -91,7 +91,7 @@ cr-update-core(){
 }
 
 cr-update-modules(){
-	composer update drupal/* --with-dependencies
+	composer update --with-dependencies
 }
 
 superchargephp() {
