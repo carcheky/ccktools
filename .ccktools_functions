@@ -83,6 +83,12 @@ cremove() {
 	fi
 }
 
+cr-update-core(){
+	composer update drupal/core --with-dependencies
+	drush updatedb
+	drush cr
+}
+
 superchargephp() {
 
 	sudo find /etc/php/ -name php.ini -exec sed -i 's/post_max_size = 8M/post_max_size = 8G/g' {} \;
