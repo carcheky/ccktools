@@ -143,6 +143,7 @@ function install_drupal_composer() {
         $composer require drupal/ctools --no-update
         $composer require drupal/devel --no-update
         $composer require drupal/pathauto --no-update
+        $composer require drupal/module_filter --no-update
         $composer update
         sudo git clone https://github.com/carcheky/druparcheky_profile.git profiles/druparcheky
         sudo rm -fr profiles/druparcheky/.git
