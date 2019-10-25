@@ -3,6 +3,14 @@ source ~/ccktools/.ccktools_aliases
 
 fix_path() {
     if [[ -d "/mnt/c/wsl/" ]]; then
+        # wsl folder
+        sudo chown -R user:user /mnt/c/wsl
+        sudo chmod -R 777 /mnt/c/wsl
+    fi
+}
+
+fix_bin() {
+    if [[ -d "/mnt/c/wsl/" ]]; then
         # ccktools folder
         find /mnt/c/wsl/user/ccktools/bin -type f -exec sudo dos2unix {} \;
         sudo dos2unix /mnt/c/wsl/user/ccktools/.ccktool*
@@ -13,12 +21,15 @@ fix_path() {
         # home folder
         sudo chown -R user:user /home/user
 
-        # wsl folder
-        sudo chown -R user:user /mnt/c/wsl
-        sudo chmod -R 777 /mnt/c/wsl
+        # home folder
+        sudo chown -R user:user ~/.drush
+        sudo chmod -R 777 ~/.drush
     fi
 }
-
-
 PATH_TO_FIX="/mnt/c/wsl/"
-fix_path
+
+if [[ $1 == '--all']]; then
+    fix_path
+fi
+
+fix_bin
