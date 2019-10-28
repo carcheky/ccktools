@@ -1,6 +1,7 @@
 <!-- :: Batch section
 @echo off
 setlocal
+
 :GUI
 echo Select an option:
 for /F "delims=" %%a in ('mshta.exe "%~F0"') do set "HTAreply=%%a"
@@ -38,6 +39,7 @@ GOTO :1
 :10
   start C:\wsl\user\ccktools\cmd-tools\scripts\wsl\build-distro-wslserver.cmd
   GOTO :GUI
+
 GOTO :EOF
 -->
 <HTML>
@@ -150,6 +152,11 @@ hr{
     <button class="terminal" onclick="closeHTA(8);" title="abre una nueva terminal">terminal</button>
     <button class="kill" onclick="closeHTA(6);" title="mata todos los procesos del servidor">kill</button>
     <button class="update" onclick="closeHTA(9);" title="actualiza el programita">update</button>
+  </div>
+  <div class="sites">
+    <iframe src="http://home.local/app.php" title="site list" width="100%" height="500">
+      <p>Your browser does not support iframes.</p>
+    </iframe>
   </div>
 </BODY>
 </HTML>
