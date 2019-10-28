@@ -154,6 +154,7 @@ hr{
     <button class="update" onclick="closeHTA(9);" title="actualiza el programita">update</button>
   </div>
   <div class="sites">
+  <p>sites:</p>
     <iframe src="http://home.local/app.php" title="site list" width="100%" height="500">
       <p>Your browser does not support iframes.</p>
     </iframe>
