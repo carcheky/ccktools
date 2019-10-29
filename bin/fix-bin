@@ -36,6 +36,11 @@ elif [[ $1 == "--site" ]]; then
     PATH_TO_FIX="/mnt/c/wsl/sites/$2"
     fix_path
     exit
+elif [[ $1 == "--this" ]]; then
+    echo "fixin all in /mnt/c/wsl/sites/$2..."
+    PATH_TO_FIX=$(pwd)
+    fix_path
+    exit
 fi
 
 fix_bin
