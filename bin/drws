@@ -1,0 +1,7 @@
+#!/bin/bash
+# alias drws='clear; drush ws --tail --full; drws'
+
+
+clear
+drush ws --tail --full
+bash ~/ccktools/bin/drws
