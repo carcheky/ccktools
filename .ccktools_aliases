@@ -21,7 +21,7 @@ git remote -v;"
 alias ccron='drush cr && drush cron'
 alias drexport='drush sql-dump > database.sql -v'
 alias drimport='drush sql-drop -y; drush sql-cli < database.sql -v'
-alias drws='clear; drush ws --tail --full; drws'
+alias drws='clear; drush ws --tail --full; source ~/ccktools/.ccktools_aliases; drws'
 alias draim='drush locale-check && drush locale-update;'
 alias drcu="composer outdated \"drupal/*\"  -n && composer update \"drupal/*\" --with-dependencies  -n && drush updatedb -y"
 alias dl='drush dl -y'
