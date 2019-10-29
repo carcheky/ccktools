@@ -33,7 +33,6 @@ if [[ $1 == "--all" ]]; then
     fix_path
 elif [[ $1 == "--site" ]]; then
     echo "fixin all in /mnt/c/wsl/sites/$2..."
-
     PATH_TO_FIX="/mnt/c/wsl/sites/$2"
     fix_path
     exit
