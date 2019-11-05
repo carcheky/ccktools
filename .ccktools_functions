@@ -61,36 +61,38 @@ _________________________
 }
 
 crequire() {
-	if [[ $1 ]]; then
-		MODULE_NAME=$1
-		composer require drupal/${MODULE_NAME}
-		drush en -y ${MODULE_NAME}
-		draim
-		cr
+	if [[ $@ ]]; then
+		for var in "$@"; do
+			echo "-> ${var}"
+			composer require drupal/${var} --no-update
+		done
+		composer update --with-dependencies
 	else
 		echo "falta nombre"
 	fi
 }
 
 cremove() {
-	if [[ $1 ]]; then
-		MODULE_NAME=$1
-		drush pmu -y ${MODULE_NAME}
-		composer remove drupal/${MODULE_NAME}
-		cr
+	if [[ $@ ]]; then
+		for var in "$@"; do
+			echo "-> ${var}"
+			drush pmu -y ${var}
+			composer remove drupal/${var}
+		done
+		composer update --with-dependencies
 	else
 		echo "falta nombre"
 	fi
 }
 
-cr-update-core(){
+cr-update-core() {
 	composer outdated "drupal/*"
 	composer update drupal/core --with-dependencies
 	drush updatedb
 	drush cr
 }
 
-cr-update-modules(){
+cr-update-modules() {
 	composer update --with-dependencies
 }
 
@@ -105,12 +107,12 @@ superchargephp() {
 
 }
 
-drsinew(){
+drsinew() {
 	SITE=${1}
-  drush -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@${SITE}.test --account-name=admin --account-mail=test@${SITE}.test --account-pass=admin --locale=es
+	drush -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@${SITE}.test --account-name=admin --account-mail=test@${SITE}.test --account-pass=admin --locale=es
 }
 
-open_browsers(){
+open_browsers() {
 	/mnt/c/Program\ Files/Mozilla\ Firefox/firefox.exe $1
 	/mnt/c/Program\ Files/internet\ explorer/iexplore.exe $1
 	/mnt/c/Program\ Files\ \(x86\)/BraveSoftware/Brave-Browser/Application/brave.exe $1
