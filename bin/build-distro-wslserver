@@ -1,21 +1,23 @@
 #!/bin/bash
 
-export_ddbb(){
+export_ddbb() {
   mkdir -p /mnt/c/wsl/Wsl_Backups/ 2>/dev/null
-  mysqldump -uroot -proot --all-databases > /mnt/c/wsl/Wsl_Backups/building.sql
-  mysql -uroot -proot -e "show databases" | grep -v Database | grep -v mysql| grep -v sys| grep -v information_schema| grep -v performance_schema| gawk '{print "drop database `" $1 "`;select sleep(0.1);"}' | mysql -uroot -proot
+  mysqldump -uroot -proot --all-databases >/mnt/c/wsl/Wsl_Backups/building.sql
+  mysql -uroot -proot -e "show databases" | grep -v Database | grep -v mysql | grep -v sys | grep -v information_schema | grep -v performance_schema | gawk '{print "drop database `" $1 "`;select sleep(0.1);"}' | mysql -uroot -proot
   sudo rm -fr /tmp/*
+  sudo rm -fr /home/user/.composer/cache/*
+  sudo rm -fr /home/user/.cache/*
 }
 
-import_ddbb(){
-  mysql -uroot -proot < /mnt/c/wsl/Wsl_Backups/building.sql
+import_ddbb() {
+  mysql -uroot -proot </mnt/c/wsl/Wsl_Backups/building.sql
   rm /mnt/c/wsl/Wsl_Backups/building.sql
 }
 
 if [ $1 = "export" ]; then
-    export_ddbb
+  export_ddbb
 fi
 
 if [ $1 = "import" ]; then
-    import_ddbb
+  import_ddbb
 fi
