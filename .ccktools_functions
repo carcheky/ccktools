@@ -94,6 +94,8 @@ cr-update-core() {
 
 cr-update-modules() {
 	composer update --with-dependencies
+	drush updatedb
+	drush cr
 }
 
 superchargephp() {
