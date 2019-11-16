@@ -92,7 +92,7 @@ cr-update-core() {
 	drush cr
 }
 
-cr-update-modules() {
+cr-update() {
 	composer update --with-dependencies
 	drush updatedb
 	drush cr
