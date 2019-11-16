@@ -1,0 +1,87 @@
+#!/bin/bash
+
+site=$(pwd)
+echo $site
+
+
+# modules
+
+if [ -d "$site/modules/contrib/" ]
+then
+    echo ==> COMPOSERIZANDO MODULES/CONTRIB
+    cd $site/modules/contrib/
+    rm *.txt
+    array=(*)
+    for dir in "${array[@]}";
+    do
+    if [ -d $dir ]
+    then
+        echo "añadiendo $dir...";
+        composer require drupal/$dir --no-update -d ../..
+        fi
+    done
+    cd $site
+fi
+
+
+# themes
+
+if [ -d $site/themes/contrib/ ]
+then
+    echo ==> COMPOSERIZANDO THEMES/CONTRIB
+    cd $site/themes/contrib/
+    rm *.txt
+    array=(*)
+    for dir in "${array[@]}";
+    do
+    if [ -d $dir ]
+    then
+        echo "añadiendo $dir...";
+        composer require drupal/$dir --no-update -d ../..
+    fi
+    done
+    cd $site
+fi
+
+
+# profiles
+
+if [ -d $site/profiles/contrib/ ]
+then
+echo ==> COMPOSERIZANDO PROFILES/CONTRIB
+    cd $site/profiles/contrib/
+    rm *.txt
+    array=(*)
+    for dir in "${array[@]}";
+    do
+    if [ -d $dir ]
+    then
+        echo "añadiendo $dir...";
+        composer require drupal/$dir --no-update -d ../..
+    fi
+    done
+    cd $site
+fi
+
+
+# drush
+
+if [ -d $site/drush/contrib/ ]
+then
+echo ==> COMPOSERIZANDO DRUSH/CONTRIB
+    cd $site/drush/contrib/
+    rm *.txt
+    array=(*)
+    for dir in "${array[@]}";
+    do
+    if [ -d $dir ]
+    then
+        echo "añadiendo $dir...";
+        composer require drupal/$dir --no-update -d ../..
+    fi
+    done
+    cd $site
+fi
+
+
+
