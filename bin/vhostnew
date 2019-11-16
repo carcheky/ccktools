@@ -107,11 +107,15 @@ function install_drupal() {
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         cd web
+        $composer require drupal/core --no-update
         $composer require drupal/admin_toolbar --no-update
         $composer require drupal/backup_migrate --no-update
         $composer require drupal/ctools --no-update
         $composer require drupal/devel --no-update
         $composer require drupal/pathauto --no-update
+        $composer require drupal/module_filter --no-update
+        $composer require drupal/imce --no-update
+        $composer require drupal/config_devel --no-update
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         $composer update
         sudo chown -R user:user ${CONF_SITE_FOLDER}
@@ -144,9 +148,10 @@ function install_drupal_composer() {
         $composer require drupal/devel --no-update
         $composer require drupal/pathauto --no-update
         $composer require drupal/module_filter --no-update
+        $composer require drupal/imce --no-update
+        $composer require drupal/config_devel --no-update
         $composer update
         sudo git clone https://github.com/carcheky/druparcheky_profile.git profiles/druparcheky
-        sudo rm -fr profiles/druparcheky/.git
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
         # sudo chmod -R 777 ${CONF_SITE_FOLDER}
