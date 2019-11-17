@@ -98,7 +98,7 @@ cr-update() {
 	drush cr
 }
 
-	superchargephp() {
+superchargephp() {
 	sudo find /etc/php/ -name php.ini -exec sed -i 's/post_max_size = 8M/post_max_size = 8G/g' {} \;
 	sudo find /etc/php/ -name php.ini -exec sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' {} \;
 	sudo find /etc/php/ -name php.ini -exec sed -i 's/memory_limit = 128M/memory_limit = 2G/g' {} \;
