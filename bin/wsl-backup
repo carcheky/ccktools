@@ -14,13 +14,15 @@ then
     array=(*)
     for dir in "${array[@]}";
     do
-        if [ -d $dir ]
+        if [ -f $dir/web/sites/default/settings.php ]
         then
-            echo "backup de $dir...";
+            echo "==========================";
+            echo "backup de $dir/web...";
             cd $dir/web
-            drush cc all
+            (drush cc all & drush cr) 2>/dev/null
             drush ard --destination=../backup/backup$( date '+%Y%m%d-%H%M%S').tar.gz --tar-options="--exclude=core --exclude=**/contrib --exclude=composer.lock --exclude=*.txt --exclude=vendor"
             cd $sites
+            echo "==========================";
         fi
     done
 fi
