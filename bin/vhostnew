@@ -107,7 +107,7 @@ function install_drupal() {
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         cd web
-	    sed -i '/\"drupal\/core\"\:/d' ${CONF_SITE_FOLDER}/composer.json
+	    sed -i '/\"drupal\/core\"\:/d' ./composer.json
         $composer require drupal/core --no-update
         $composer require drupal/admin_toolbar --no-update
         $composer require drupal/backup_migrate --no-update
@@ -118,14 +118,12 @@ function install_drupal() {
         $composer require drupal/imce --no-update
         $composer require drupal/config_devel --no-update
         sudo chown -R user:user ${CONF_SITE_FOLDER}
-        $composer update
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         sudo git clone https://github.com/carcheky/druparcheky_profile.git profiles/druparcheky
-        sudo rm -fr profiles/druparcheky/.git
-        sudo chown -R user:user ${CONF_SITE_FOLDER}
-        $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
+        $composer update
+        $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
     else
         echo -e "==> Existe una isntalaciรณn activa, borrala manualmente para usar este script"
     fi
