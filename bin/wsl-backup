@@ -1,0 +1,26 @@
+#!/bin/bash
+
+sites=/mnt/c/wsl/sites
+echo $sites
+
+
+# modules
+
+if [ -d "$sites" ]
+then
+    echo ==> BACKUP SITES...
+    cd $sites
+    rm *.txt 2>/dev/null
+    array=(*)
+    for dir in "${array[@]}";
+    do
+        if [ -d $dir ]
+        then
+            echo "backup de $dir...";
+            cd $dir/web
+            drush cc all
+            drush ard --destination=../backup/backup$( date '+%Y%m%d-%H%M%S').tar.gz --tar-options="--exclude=core --exclude=**/contrib --exclude=composer.lock --exclude=*.txt --exclude=vendor"
+            cd $sites
+        fi
+    done
+fi
