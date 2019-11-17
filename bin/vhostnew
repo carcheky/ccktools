@@ -107,6 +107,7 @@ function install_drupal() {
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         cd web
+	    sed -i '/\"drupal\/core\"\:/d' ${CONF_SITE_FOLDER}/composer.json
         $composer require drupal/core --no-update
         $composer require drupal/admin_toolbar --no-update
         $composer require drupal/backup_migrate --no-update
@@ -141,7 +142,7 @@ function install_drupal_composer() {
         # $drush -y dl drupal --drupal-project-rename="web"
         composer="/usr/bin/composer"
         cd web
-	    sed -i '/\"drupal\/core\"\:/d' composer.json
+	    sed -i '/\"drupal\/core\"\:/d' ${CONF_SITE_FOLDER}/composer.json
         $composer require drupal/core --no-update
         $composer require drupal/admin_toolbar --no-update
         $composer require drupal/backup_migrate --no-update
