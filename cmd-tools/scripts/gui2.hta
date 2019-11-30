@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script language="VBScript">
+        Sub Code( )
+            Const NORMAL_WINDOW = 1
+            Set objShell = CreateObject("Shell.Application")
+            objShell.ShellExecute "notepad.exe", , , , NORMAL_WINDOW
+        End Sub
+    </script>
+</head>
+
+<body>
+    <button type="button" name="Code" id="Code" onclick="Code">Code</button>
+</body>
+
+</html>
