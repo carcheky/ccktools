@@ -3,5 +3,5 @@
 
 
 clear
-drush ws --tail --full
+drush watchdog-show --tail --extended
 bash ~/ccktools/bin/drws
