@@ -3,5 +3,14 @@
 
 
 clear
+echo "=> vaciando cache..."
+drush cr
+clear
+echo "=> ejecutando cron..."
+drush cron
+echo "=> Viendo mensajes del registro..."
 drush watchdog-show --tail --extended
+clear
+echo "=> esperando 20 segundos..."
+sleep 20
 bash ~/ccktools/bin/drws
