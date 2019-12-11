@@ -1,7 +1,4 @@
 #!/bin/bash
-# alias drws='clear; drush ws --tail --full; drws'
-
-
 clear
 echo "=> vaciando cache..."
 drush cr
