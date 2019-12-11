@@ -5,9 +5,13 @@ drush cr
 clear
 echo "=> ejecutando cron..."
 drush cron
+clear
+echo "=> Vaciando mensajes anteriores del registro..."
+drush watchdog-delete all -y 2>/dev/null
+clear
 echo "=> Viendo mensajes del registro..."
 drush watchdog-show --tail --extended
 clear
-echo "=> esperando 20 segundos..."
-sleep 20
+echo "=> esperando 25 segundos..."
+sleep 25
 bash ~/ccktools/bin/drws
