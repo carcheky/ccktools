@@ -42,6 +42,9 @@ GOTO :1
 :11
   start C:\wsl\user\ccktools\cmd-tools\scripts\windows\edit.cmd
   GOTO :GUI
+:12
+  start C:\wsl\user\ccktools\cmd-tools\scripts\wsl\fix-bin.cmd
+  GOTO :GUI
 
 GOTO :EOF
 -->
@@ -179,10 +182,7 @@ GOTO :EOF
   <div class="another-mix-buttons">
     <button class="edit" onclick="closeHTA(11);" title="edit ccktools">cckedit</button>
     <button class="update" onclick="closeHTA(9);" title="actualiza el programita">update</button>
-  </div>
-
-
-  <div class="another-mix-buttons">
+    <button class="fix-bin" onclick="closeHTA(12);" title="actualiza el programita">fix-bin</button>
     <button class="backup" onclick="closeHTA(5);" title="copia de seguridad de tu servidor">backup</button>
     <button class="build" onclick="closeHTA(10);"
       title="Exporta la distribución linux sin bases de datos para importar en otro pc">build</button>
