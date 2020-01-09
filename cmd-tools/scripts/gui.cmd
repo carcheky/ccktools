@@ -81,12 +81,10 @@ GOTO :EOF
   <style>
     body {
       font-size: 20px;
-      font-weight: bold;
     }
 
     button {
       font-size: 25px;
-      font-weight: bold;
       border: 1px solid black;
       background: gray;
       color: white;
@@ -172,9 +170,9 @@ GOTO :EOF
 
   <div class="separador"></div>
   <div class="mix_buttons">
-    <button class="backup" onclick="closeHTA(5);" title="copia de seguridad de tu servidor">BACKUP</button>
-    <button class="backup" onclick="closeHTA(10);"
-      title="Exporta la distribución linux sin bases de datos para importar en otro pc">BUILD</button>
+    <button class="backup" onclick="closeHTA(5);" title="copia de seguridad de tu servidor">backup</button>
+    <button class="build" onclick="closeHTA(10);"
+      title="Exporta la distribución linux sin bases de datos para importar en otro pc">build</button>
   </div>
 
 
