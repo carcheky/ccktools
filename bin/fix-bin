@@ -13,6 +13,8 @@ fix_bin() {
     if [[ -d "/mnt/c/wsl/user/ccktools/" ]]; then
         # ccktools folder
         find /mnt/c/wsl/user/ccktools/bin -type f -exec sudo dos2unix {} \;
+        find /mnt/c/wsl/user/ccktools/bin -type f -exec sudo sudo chown -R user:user {} \;
+        find /mnt/c/wsl/user/ccktools/bin -type f -exec sudo chmod -R 777 {} \;
         sudo dos2unix /mnt/c/wsl/user/ccktools/.ccktool*
 
         # cmd-tools folder
@@ -38,7 +40,7 @@ elif [[ $1 == "--site" ]]; then
     exit
 elif [[ $1 == "--this" ]]; then
     echo "fixin all in /mnt/c/wsl/sites/$2..."
-    PATH_TO_FIX=$(pwd)
+    PATH_TO_FIX="."
     fix_path
     exit
 fi
