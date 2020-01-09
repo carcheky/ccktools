@@ -47,24 +47,24 @@ GOTO :EOF
 <HTA:APPLICATION
 ID="wslserver_manager"
 ICON="..\IMG\icon.ico"
-SYSMENU="no"
+REM SYSMENU="no"
 SCROLL="yes"
-BORDER="none"
-BORDERSTYLE="normal"
-REM APPLICATIONNAME="WslServer Manager"
+REM BORDER="none"
+REM BORDERSTYLE="normal"
+APPLICATIONNAME="WslServer Manager"
 REM CAPTION="yes"
 REM MAXIMIZEBUTTON="yes"
 REM MINIMIZEBUTTON="yes"
-REM SHOWINTASKBAR="yes"
-REM SINGLEINSTANCE="yes"
-REM VERSION="1.0"
+SHOWINTASKBAR="yes"
+SINGLEINSTANCE="yes"
+VERSION="1.0"
 REM WINDOWSTATE="maximize"
 />
 <TITLE>WslServer Manager</TITLE>
 <SCRIPT language="JavaScript">
-window.resizeTo(200,120);
+window.resizeTo(200,220);
 WindowLeft = (window.screen.availWidth - 200)  ;
-WindowTop  = (window.screen.availHeight - 120);
+WindowTop  = (window.screen.availHeight - 220);
 window.moveTo( WindowLeft, WindowTop);
 function closeHTA(reply){
      var fso = new ActiveXObject("Scripting.FileSystemObject");
@@ -72,7 +72,9 @@ function closeHTA(reply){
    window.close();
 }
 </SCRIPT>
-<style>
+<style>/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.23, autoprefixer: v9.7.3) */
+
+
 body{
   font-family:  comic-sans;
 }
@@ -99,10 +101,14 @@ button:hover{
 .lamp_buttons .restart{
   background: orange;
 }
-.exit_buttons{
+.mix_buttons{
   width: 80%;
+  display:-ms-flexbox;
+  display:flex;
 }
-.exit_buttons button{
+.mix_buttons button{
+  -ms-flex: 1 1 50%;
+      flex: 1 1 50%;
   float: left;
   background: black;
   font-size: 12px;
@@ -112,16 +118,11 @@ button:hover{
 }
 .exit_buttons button.exit{
   font-size: 15px;
-  border-radius: 100px;
   background: red;
   margin: 0;
   padding:2px 5px;
-  float:right;
   border: 1px solid black;
   font-weight: 400 !important;
-  position:absolute;
-  top: 2px;
-  right: 0;
 }
 hr{
   clear: both;
@@ -133,31 +134,22 @@ hr{
 <BODY>
   <div class="exit_buttons">
     <button class="exit" onclick="closeHTA(1);" title="cerrar">X</button>
+  </div>
+  <div class="mix_buttons">
+    <button class="newvhost" onclick="closeHTA(7);" title="Asistente para crear un nuevo virtual host con drupal instalado">add</button>
     <button class="terminal" onclick="closeHTA(8);" title="abre una nueva terminal">terminal</button>
     <button class="kill" onclick="closeHTA(6);" title="mata todos los procesos del servidor">kill</button>
-    <button class="newvhost" onclick="closeHTA(7);" title="Asistente para crear un nuevo virtual host con drupal instalado">+</button>
+    <button class="update" onclick="closeHTA(9);" title="actualiza el programita">update</button>
   </div>
   <div class="lamp_buttons flex">
     <button class="start" onclick="closeHTA(2);" title="Arranca el servidor apache + mysql">START</button>
     <button class="restart" onclick="closeHTA(4);" title="Reinicia el servidor apache + mysql">RESTART</button>
     <button class="stop" onclick="closeHTA(3);" title="Para el servidor apache + mysql">STOP</button>
     <hr>
-    <button class="newvhost" onclick="closeHTA(7);" title="Asistente para crear un nuevo virtual host con drupal instalado">+ CREAR SITIO</button>
-    <hr>
     <button class="backup" onclick="closeHTA(5);" title="copia de seguridad de tu servidor">BACKUP</button>
     <button class="backup" onclick="closeHTA(10);" title="Exporta la distribución linux sin bases de datos para importar en otro pc">BUILD</button>
   </div>
     <hr>
-  <div class="exit_buttons">
-    <button class="terminal" onclick="closeHTA(8);" title="abre una nueva terminal">terminal</button>
-    <button class="kill" onclick="closeHTA(6);" title="mata todos los procesos del servidor">kill</button>
-    <button class="update" onclick="closeHTA(9);" title="actualiza el programita">update</button>
-  </div>
-  <div class="sites">
-  <p>sites:</p>
-    <iframe src="http://home.local/app.php" title="site list" width="100%" height="500">
-      <p>Your browser does not support iframes.</p>
-    </iframe>
-  </div>
+
 </BODY>
 </HTML>
