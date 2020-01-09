@@ -6,6 +6,7 @@ setlocal
 echo Select an option:
 for /F "delims=" %%a in ('mshta.exe "%~F0"') do set "HTAreply=%%a"
 CALL :%HTAreply%
+GOTO :1
 :: EXIT
 :1
   EXIT /B 0
@@ -25,7 +26,7 @@ CALL :%HTAreply%
   GOTO :GUI
 :6
   start C:\wsl\user\ccktools\cmd-tools\scripts\wsl\terminate.cmd
-  GOTO :GUI
+  GOTO :1
 :7
   start C:\wsl\user\ccktools\cmd-tools\scripts\lamp\lamp-vhostnew.cmd
   GOTO :GUI
@@ -66,9 +67,9 @@ GOTO :EOF
   -->
   <TITLE>WslServer Manager</TITLE>
   <SCRIPT language="JavaScript">
-    window.resizeTo(250, 250);
+    window.resizeTo(250, 220);
     WindowLeft = (window.screen.availWidth - 250);
-    WindowTop = (window.screen.availHeight - 250);
+    WindowTop = (window.screen.availHeight - 220);
     window.moveTo(WindowLeft, WindowTop);
 
     function closeHTA(reply) {
@@ -78,13 +79,14 @@ GOTO :EOF
     }
   </SCRIPT>
   <style>
-    /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.23, autoprefixer: v9.7.3) */
-
     body {
-      font-family: comic-sans;
+      font-size: 20px;
+      font-weight: bold;
     }
 
     button {
+      font-size: 25px;
+      font-weight: bold;
       border: 1px solid black;
       background: gray;
       color: white;
@@ -105,32 +107,27 @@ GOTO :EOF
     }
 
     .lamp_buttons .stop {
-      background: red;
+      background: maroon;
     }
 
     .lamp_buttons .restart {
-      background: orange;
+      background: yellow;
+      color: black;
     }
 
     .mix_buttons {
       width: 100%;
-      display: -ms-flexbox;
-      display: flex;
     }
 
     .mix_buttons button {
-      -ms-flex: 1 1 50%;
-      flex: 1 1 50%;
-      float: left;
+      font-size: 18px;
       background: black;
-      font-size: 12px;
       margin: 1%;
-      padding: 0;
-      width: 46%;
+      float: left;
+      width: 47%;
     }
 
     .exit_buttons button.exit {
-      font-size: 15px;
       background: red;
       margin: 0;
       padding: 2px 5px;
@@ -138,45 +135,53 @@ GOTO :EOF
       font-weight: 400 !important;
     }
 
-    hr {
-      clear: both;
+    .separador {
       width: 100%;
-      padding: 200px;
-      display:block;
+      line-height: 1px;
     }
-
   </style>
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
 </HEAD>
 
 <BODY>
   <!--
-   -->
   <div class="exit_buttons">
     <button class="exit" onclick="closeHTA(1);" title="cerrar">X</button>
-    <hr>
+
   </div>
+   -->
   <div class="mix_buttons">
     <button class="newvhost" onclick="closeHTA(7);"
       title="Asistente para crear un nuevo virtual host con drupal instalado">add</button>
     <button class="terminal" onclick="closeHTA(8);" title="abre una nueva terminal">terminal</button>
-    <button class="kill" onclick="closeHTA(6);" title="mata todos los procesos del servidor">kill</button>
-    <hr>
+
   </div>
-  <div class="lamp_buttons flex">
+  <div class="lamp_buttons">
     <button class="start" onclick="closeHTA(2);" title="Arranca el servidor apache + mysql">START</button>
     <button class="restart" onclick="closeHTA(4);" title="Reinicia el servidor apache + mysql">RESTART</button>
     <button class="stop" onclick="closeHTA(3);" title="Para el servidor apache + mysql">STOP</button>
-    <hr>
-    <button class="backup" onclick="closeHTA(5);" title="copia de seguridad de tu servidor">BACKUP</button>
-    <button class="backup" onclick="closeHTA(10);"
-      title="Exporta la distribución linux sin bases de datos para importar en otro pc">BUILD</button>
-    <hr>
   </div>
+
+
+  <div class="separador"></div>
   <div class="mix_buttons">
     <button class="edit" onclick="closeHTA(11);" title="edit ccktools">cckedit</button>
     <button class="update" onclick="closeHTA(9);" title="actualiza el programita">update</button>
-    <hr>
+  </div>
+
+
+  <div class="separador"></div>
+  <div class="mix_buttons">
+    <button class="backup" onclick="closeHTA(5);" title="copia de seguridad de tu servidor">BACKUP</button>
+    <button class="backup" onclick="closeHTA(10);"
+      title="Exporta la distribución linux sin bases de datos para importar en otro pc">BUILD</button>
+  </div>
+
+
+  <div class="separador"></div>
+  <div class="mix_buttons">
+    <button class="salir" onclick="closeHTA(1);" title="salir">salir</button>
+    <button class="kill" onclick="closeHTA(6);" title="mata todos los procesos del servidor y sale">kill</button>
   </div>
 </BODY>
 
