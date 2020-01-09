@@ -1,6 +1,3 @@
-/mnt/c/wsl/user/ccktools/bin
-
-
 @echo off
 pushd "%~dp0"
 
