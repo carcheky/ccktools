@@ -53,8 +53,8 @@ GOTO :EOF
 <HEAD>
   <HTA:APPLICATION
   ID="wslserver_manager"
-  VERSION="1.0"
-  APPLICATIONNAME="WslServer Manager"
+  VERSION="3.2"
+  APPLICATIONNAME="WslServer Manager stable-3.2"
   ICON="..\IMG\icon.ico"
   SYSMENU="no"
   SCROLL="no"
