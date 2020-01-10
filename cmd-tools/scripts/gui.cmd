@@ -70,9 +70,9 @@ GOTO :EOF
   -->
   <TITLE>WslServer Manager</TITLE>
   <SCRIPT language="JavaScript">
-    window.resizeTo(220, 370);
+    window.resizeTo(220, 390);
     WindowLeft = (window.screen.availWidth - 220);
-    WindowTop = (window.screen.availHeight - 370);
+    WindowTop = (window.screen.availHeight - 390);
     window.moveTo(WindowLeft, WindowTop);
 
     function closeHTA(reply) {
