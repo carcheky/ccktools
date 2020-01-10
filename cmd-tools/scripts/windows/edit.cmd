@@ -1,12 +1,7 @@
 @echo off
-pushd "%~dp0"
-@echo on
-echo  "Iniciando lamp... espera"
-@echo off
 
-code C:\wsl\user\ccktools\ccktools.code-workspace
+start "C:\Users\cmartinezv\AppData\Local\Programs\Microsoft VS Code\Code.exe" C:\wsl\user\ccktools\ccktools.code-workspace
+
 
 :exit
 exit
-::popd
-@echo on
