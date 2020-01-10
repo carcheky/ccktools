@@ -35,7 +35,7 @@ GOTO :1
   GOTO :GUI
 :9
   start C:\wsl\user\ccktools\cmd-tools\scripts\wsl\update-ccktools.cmd
-  GOTO :GUI
+  GOTO :1
 :10
   start C:\wsl\user\ccktools\cmd-tools\scripts\wsl\build-distro-wslserver.cmd
   GOTO :GUI
