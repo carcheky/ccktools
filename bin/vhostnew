@@ -239,6 +239,7 @@ function install_selector() {
             ;;
         esac
     fi
+    lamp restart
     echo -e "=============================================================="
 }
 
