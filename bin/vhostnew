@@ -197,16 +197,9 @@ function install_druparcheky_core_composer_project() {
 
         cd ${CONF_SITE_FOLDER}/web
 
-        $drush si minimal --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y --locale=es
+        # $drush si minimal --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y --locale=es
 
-        # sudo cp sites/default/default.settings.php sites/default/settings.php
-        # sudo cp sites/default/default.services.php sites/default/default.services.php
-        # cd ..
-        # sudo chmod -R 777 .
-        # sudo chown -R user:user .
-        # composer update --with-dependencies
-        # $drush sql-drop -y
-        # $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y --locale=es
+        $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y --locale=es
     else
         echo -e "==> Existe una isntalacion activa, borrala manualmente para usar este script"
     fi
