@@ -91,6 +91,7 @@ function newvhost() {
             sudo a2ensite ${SITE}.conf
             sudo service apache2 reload
             sudo service apache2 restart
+            mkdir ${SITES_FOLDER}/log/${SITE}/
         fi
         echo -e "=============================================================="
     fi
