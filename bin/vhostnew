@@ -84,7 +84,7 @@ function newvhost() {
     DocumentRoot ${CONF_SITE_FOLDER}/web
     RewriteEngine On
     RewriteOptions inherit
-    CustomLog ${SITES_FOLDER}/log/${SITE}.log combined
+    CustomLog ${SITES_FOLDER}/log/${SITE}/${SITE}.log combined
 </VirtualHost>
             " | sudo tee --append ${CONF_SITES_AVAILABLE}
             sudo a2ensite ${SITE}.conf
