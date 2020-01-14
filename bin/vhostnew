@@ -84,7 +84,7 @@ function newvhost() {
     DocumentRoot ${CONF_SITE_FOLDER}/web
     RewriteEngine On
     RewriteOptions inherit
-    CustomLog ${CONF_SITE_FOLDER}/log/${SITE}.log combined
+    CustomLog ${SITES_FOLDER}/log/${SITE}.log combined
 </VirtualHost>
             " | sudo tee --append ${CONF_SITES_AVAILABLE}
             sudo a2ensite ${SITE}.conf
@@ -125,7 +125,7 @@ function install_drupal() {
         $composer update
         $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
     else
-        echo -e "==> Existe una isntalaciรณn activa, borrala manualmente para usar este script"
+        echo -e "==> Existe una isntalacion activa, borrala manualmente para usar este script"
     fi
     echo -e "=============================================================="
 }
@@ -157,7 +157,7 @@ function install_drupal_composer() {
         # sudo chmod -R 777 ${CONF_SITE_FOLDER}
         # sudo chown -R user:user ${CONF_SITE_FOLDER}
     else
-        echo -e "==> Existe una isntalaciรณn activa, borrala manualmente para usar este script"
+        echo -e "==> Existe una isntalacion activa, borrala manualmente para usar este script"
     fi
     echo -e "=============================================================="
 }
