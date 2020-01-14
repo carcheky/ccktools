@@ -37,6 +37,7 @@ echo -e "\n==============================================================\n=====
 echo -e "\n==============================================================\n==============================================================\n\n"
 
 # set vars
+WSL_FOLDER="/mnt/c/wsl"
 SITES_FOLDER="/mnt/c/wsl/sites"
 CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
 CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
@@ -85,13 +86,13 @@ function newvhost() {
     DocumentRoot ${CONF_SITE_FOLDER}/web
     RewriteEngine On
     RewriteOptions inherit
-    CustomLog ${SITES_FOLDER}/log/${SITE}/${SITE}.log combined
+    CustomLog ${WSL_FOLDER}/log/${SITE}/${SITE}.log combined
 </VirtualHost>
             " | sudo tee --append ${CONF_SITES_AVAILABLE}
+            mkdir ${WSL_FOLDER}/log/${SITE} -p
             sudo a2ensite ${SITE}.conf
             sudo service apache2 reload
             sudo service apache2 restart
-            mkdir ${SITES_FOLDER}/log/${SITE}/
         fi
         echo -e "=============================================================="
     fi
@@ -168,12 +169,33 @@ function install_drupal_composer() {
 function install_druparcheky_core_composer_project() {
     echo -e "\n==> Instalando Drupal [druparcheky_core_composer_project] :\n"
     cd ${SITES_FOLDER}
-    sudo rm -fr $SITE
+    lamp stop
+    sudo rm -fr test
+
     if [[ ! -d "$SITE" ]]; then
         git clone https://github.com/carcheky/druparcheky-core-composer-project.git $SITE
+
         cd $SITE
         git submodule init
         git submodule update
+        lamp start
+
+        cd ${CONF_SITE_FOLDER}
+        composer install
+        sudo chmod -R 777 .
+        sudo chown -R user:user .
+
+        cd web
+        $drush si minimal --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y --locale=es
+
+        # sudo cp sites/default/default.settings.php sites/default/settings.php
+        # sudo cp sites/default/default.services.php sites/default/default.services.php
+        # cd ..
+        # sudo chmod -R 777 .
+        # sudo chown -R user:user .
+        # composer update --with-dependencies
+        # $drush sql-drop -y
+        # $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y --locale=es
     else
         echo -e "==> Existe una isntalacion activa, borrala manualmente para usar este script"
     fi
