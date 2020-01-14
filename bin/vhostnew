@@ -203,6 +203,7 @@ function install_druparcheky_core_composer_project() {
         # $drush si minimal --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y --locale=es
 
         $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y --locale=es
+        $drush fp
     else
         echo -e "==> Existe una isntalacion activa, borrala manualmente para usar este script"
     fi
