@@ -65,7 +65,8 @@ function newfolder() {
         echo -e "Paso 1 ==> NO existe la ruta, creandola..."
         mkdir -p ${CONF_SITE_FOLDER}
         mkdir -p ${CONF_SITE_FOLDER}/web
-        mkdir -p ${CONF_SITE_FOLDER}/log
+        mkdir ${WSL_FOLDER}/log/${SITE} -p
+
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
     fi
@@ -94,7 +95,6 @@ function newvhost() {
     CustomLog ${WSL_FOLDER}/log/${SITE}/${SITE}.log combined
 </VirtualHost>
             " | sudo tee --append ${CONF_SITES_AVAILABLE}
-            mkdir ${WSL_FOLDER}/log/${SITE} -p
             sudo a2ensite ${SITE}.conf
             sudo service apache2 reload
             sudo service apache2 restart
