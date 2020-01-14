@@ -165,30 +165,14 @@ function install_drupal_composer() {
 
 # install_drupal_composer
 function install_druparcheky_core_composer_project() {
-    echo -e "\n==> Instalando Drupal:\n"
-    cd ${CONF_SITE_FOLDER}
-    if [[ ! -f "./web/sites/default/settings.php" ]]; then
-        echo -e "==> Bajando drupal core...\n"
-        # drush="sudo /home/user/.config/composer/vendor/bin/drush"
-        # $drush -y dl drupal --drupal-project-rename="web"
-        composer="/usr/bin/composer"
-        cd web
-	    sed -i '/\"drupal\/core\"\:/d' ./composer.json
-        $composer require drupal/core --no-update
-        $composer require drupal/admin_toolbar --no-update
-        $composer require drupal/backup_migrate --no-update
-        $composer require drupal/ctools --no-update
-        $composer require drupal/devel --no-update
-        $composer require drupal/pathauto --no-update
-        $composer require drupal/module_filter --no-update
-        $composer require drupal/imce --no-update
-        $composer require drupal/config_devel --no-update
-        $composer update
-        sudo git clone https://github.com/carcheky/druparcheky_profile.git profiles/druparcheky
-        sudo chown -R user:user ${CONF_SITE_FOLDER}
-        $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y --locale=es
-        # sudo chmod -R 777 ${CONF_SITE_FOLDER}
-        # sudo chown -R user:user ${CONF_SITE_FOLDER}
+    echo -e "\n==> Instalando Drupal [druparcheky_core_composer_project] :\n"
+    cd ${SITES_FOLDER}
+    sudo rm -fr $SITE
+    if [[ ! -d "$SITE" ]]; then
+        git clone https://github.com/carcheky/druparcheky-core-composer-project.git $SITE
+        cd $SITE
+        git submodule init
+        git submodule update
     else
         echo -e "==> Existe una isntalacion activa, borrala manualmente para usar este script"
     fi
