@@ -60,10 +60,8 @@ echo -e "\n==============================================================\n=====
 function newfolder() {
     echo -e "\n\n==============================================================\n=============================================================="
     if [[ -d ${CONF_SITE_FOLDER} ]]; then
-        clear
         echo -e "Paso 1 ==> Existe la ruta, continuando."
     else
-        clear
         echo -e "Paso 1 ==> NO existe la ruta, creandola..."
         mkdir -p ${CONF_SITE_FOLDER}
         mkdir -p ${CONF_SITE_FOLDER}/web
@@ -81,10 +79,8 @@ function newvhost() {
     if [[ $SITE ]]; then #comprueba si existe la ruta
 
         if [ -f ${CONF_SITES_AVAILABLE} ]; then
-            clear
             echo -e "Paso 2 ==> Existe la configuracion \n${CONF_SITES_AVAILABLE}, continuando."
         else
-            clear
             echo -e "Paso 2 ==> NO existe la configuracion \n${CONF_SITES_AVAILABLE}, \n==>creandola..."
             sudo rm ${CONF_SITES_AVAILABLE} 2>/dev/null
             sudo touch ${CONF_SITES_AVAILABLE} 2>/dev/null
@@ -215,7 +211,6 @@ function install_druparcheky_core_composer_project() {
 # install_selector
 function install_selector() {
     if [ ${INSTALL} ]; then
-        clear
         echo -e "Paso 3 ==> Ejecutando tipo de instalacion...."
 
         case ${INSTALL} in
