@@ -180,10 +180,10 @@ function install_druparcheky_core_composer_project() {
         git clone https://github.com/carcheky/druparcheky-core-composer-project.git $SITE
 
         cd $SITE
-        mv *.code-workspace $SITE.code-workspace
         git submodule init
         git submodule update
         find ./ -name .git -type d -exec rm -fr {} \; 2>/dev/null
+        mv *.code-workspace $SITE.code-workspace
 
         cd ${CONF_SITE_FOLDER}
 
@@ -203,7 +203,6 @@ function install_druparcheky_core_composer_project() {
     else
         echo -e "==> Existe una isntalacion activa, borrala manualmente para usar este script"
     fi
-    lamp start 2>/dev/null
 
     echo -e "=============================================================="
 }
