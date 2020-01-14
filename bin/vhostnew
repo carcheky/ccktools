@@ -181,6 +181,7 @@ function install_druparcheky_core_composer_project() {
         git clone https://github.com/carcheky/druparcheky-core-composer-project.git $SITE
 
         cd $SITE
+        cp *.code-workspace $SITE.code-workspace
         git submodule init
         git submodule update
         lamp start
