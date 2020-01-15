@@ -110,6 +110,11 @@ superchargephp() {
 	echo Hecho
 }
 
+updatebuntu(){
+	sudo apt update
+	sudo apt upgrade -y
+	superchargephp
+}
 drsinew() {
 	SITE=${1}
 	drush -yv si standard --db-url=mysql://root:root@localhost/${SITE} --site-name=${SITE} --site-mail=test@${SITE}.test --account-name=admin --account-mail=test@${SITE}.test --account-pass=admin --locale=es
