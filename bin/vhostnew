@@ -149,7 +149,6 @@ function install_druparcheky_core_composer_project() {
         cd $SITE
         git submodule init
         git submodule update
-        find ./ -name .git -type d -exec rm -fr {} \; 2>/dev/null
         mv *.code-workspace $SITE.code-workspace
 
         cd ${CONF_SITE_FOLDER}
@@ -163,6 +162,7 @@ function install_druparcheky_core_composer_project() {
 
         cd ${CONF_SITE_FOLDER}/web/themes/custom/druparcheky_theme
         bash generate-subtheme.sh $SITE
+
         cd ${CONF_SITE_FOLDER}/web
 
         # $drush si minimal --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
