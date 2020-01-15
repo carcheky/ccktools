@@ -161,6 +161,8 @@ function install_druparcheky_core_composer_project() {
         sudo chmod -R 777 .
         sudo chown -R user:user .
 
+        cd ${CONF_SITE_FOLDER}/web/themes/custom/druparcheky_theme
+        bash generate-subtheme.sh $SITE
         cd ${CONF_SITE_FOLDER}/web
 
         # $drush si minimal --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
