@@ -233,5 +233,5 @@ install_selector
 
 $lamp restart
 
-~/bin/wsl-notify "${SITE} vhost operation finished"
+# ~/bin/wsl-notify "${SITE} vhost operation finished"
 
