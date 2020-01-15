@@ -133,3 +133,28 @@ open_browsers() {
 	/mnt/c/Program\ Files/internet\ explorer/iexplore.exe $1
 	/mnt/c/Program\ Files\ \(x86\)/BraveSoftware/Brave-Browser/Application/brave.exe $1
 }
+
+ssh_laucher() {
+  SERVICE="ssh-agent"
+  if pgrep -x "$SERVICE"; then
+    echo "$SERVICE is running yet"
+  else
+    echo "starting $SERVICE"
+    sudo chmod 700 $HOME/.ssh
+    sudo chmod 600 $HOME/.ssh/*
+    sudo chmod 600 $HOME/.ssh/*.pub
+    eval $(ssh-agent -s)
+    ssh-add -q $HOME/.ssh/id_rsa_c*
+
+  fi
+}
+
+lamp_laucher() {
+  SERVICE="apache2"
+  if pgrep -x "$SERVICE"; then
+    echo "$SERVICE is running yet"
+  else
+    echo "starting $SERVICE"
+    lamp start
+  fi
+}
