@@ -111,9 +111,16 @@ superchargephp() {
 }
 
 updatebuntu(){
-	sudo apt update
-	sudo apt upgrade -y
+	echo "actualizando lista de paquetes..."
+	sudo apt -qq update
+	echo "actualizando paquetes..."
+	sudo apt -qq upgrade -y
+	echo "actualizando php..."
 	superchargephp
+	echo "limpiando..."
+	sudo apt -qq autoremove -y
+	sudo apt -qq autoclean -y
+	sudo apt -qq clean -y
 }
 
 drsinew() {
