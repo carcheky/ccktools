@@ -228,6 +228,6 @@ function add_to_hosts() {
 [[ ${INSTALL} == "borrar" ]] && echo "" || newvhost
 install_selector
 [[ ${INSTALL} == "borrar" ]] && echo "" || finalmessage
+$lamp restart
 ~/bin/wsl-notify "${SITE} vhost operation finished"
 
-$lamp restart
