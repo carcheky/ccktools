@@ -10,8 +10,6 @@ drush="sudo /home/user/.config/composer/vendor/bin/drush"
 composer="/usr/bin/composer"
 lamp="/home/user/bin/lamp"
 
-$lamp restart
-
 # ask for var
 read_site() {
     until [ ! -z ${SITE} ]; do
