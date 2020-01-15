@@ -9,6 +9,9 @@ ls -la /etc/apache2/sites-enabled
 drush="sudo /home/user/.config/composer/vendor/bin/drush"
 composer="/usr/bin/composer"
 lamp="/home/user/bin/lamp"
+
+$lamp restart
+
 # ask for var
 read_site() {
     until [ ! -z ${SITE} ]; do
@@ -201,7 +204,6 @@ function install_selector() {
             ;;
         esac
     fi
-    $lamp restart
     echo -e "=============================================================="
 }
 
@@ -229,3 +231,5 @@ function add_to_hosts() {
 install_selector
 [[ ${INSTALL} == "borrar" ]] && echo "" || finalmessage
 ~/bin/wsl-notify "${SITE} vhost operation finished"
+
+$lamp restart
