@@ -173,6 +173,7 @@ function install_druparcheky_core_composer_project() {
 
 
         echo "inicializando git..."
+        cp example.gitignore .gitignore
         git init
         git add .
         git commit -m "first commit"
