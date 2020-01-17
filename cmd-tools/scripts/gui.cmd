@@ -70,9 +70,9 @@ GOTO :EOF
   -->
   <TITLE>WslServer Manager</TITLE>
   <SCRIPT language="JavaScript">
-    window.resizeTo(220, 390);
+    window.resizeTo(220, 400);
     WindowLeft = (window.screen.availWidth - 220);
-    WindowTop = (window.screen.availHeight - 390);
+    WindowTop = (window.screen.availHeight - 400);
     window.moveTo(WindowLeft, WindowTop);
 
     function closeHTA(reply) {
@@ -174,7 +174,7 @@ GOTO :EOF
   <div class="separador"></div>
   <div class="mix-buttons">
     <button class="newvhost" onclick="closeHTA(7);"
-      title="Asistente para crear un nuevo virtual host con drupal instalado">add</button>
+      title="Asistente para crear un nuevo virtual host con drupal instalado">manage<br>sites</button>
     <button class="terminal" onclick="closeHTA(8);" title="abre una nueva terminal">terminal</button>
   </div>
 
