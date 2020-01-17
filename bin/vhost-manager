@@ -169,7 +169,7 @@ function install_druparcheky_core_composer_project() {
         find ./ -name .git -type d -exec rm -fr {} \;
 
         cd ${CONF_SITE_FOLDER}
-        rm .gitignore
+        rm .gitignore .gitmodules
 
         cp example.gitignore .gitignore
 
