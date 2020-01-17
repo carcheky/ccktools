@@ -195,7 +195,7 @@ function install_selector() {
         1 | drupal)
             install_drupal
             ;;
-        2)
+        2 | drupal-composer)
             install_druparcheky_core_composer_project
             ;;
         0)
