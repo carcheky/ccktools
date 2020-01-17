@@ -7,7 +7,7 @@ ls -la /etc/apache2/sites-enabled
 # [!] && true || false
 
 drush="sudo /home/user/.config/composer/vendor/bin/drush"
-composer="/usr/bin/composer"
+# composer="/usr/bin/composer"
 lamp="/home/user/bin/lamp"
 
 # ask for var
@@ -114,21 +114,21 @@ function install_drupal() {
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         cd web
         sed -i '/\"drupal\/core\"\:/d' ./composer.json
-        $composer require drupal/core --no-update
-        $composer require drupal/admin_toolbar --no-update
-        $composer require drupal/backup_migrate --no-update
-        $composer require drupal/ctools --no-update
-        $composer require drupal/devel --no-update
-        $composer require drupal/pathauto --no-update
-        $composer require drupal/module_filter --no-update
-        $composer require drupal/imce --no-update
-        $composer require drupal/config_devel --no-update
+        composer require drupal/core --no-update
+        composer require drupal/admin_toolbar --no-update
+        composer require drupal/backup_migrate --no-update
+        composer require drupal/ctools --no-update
+        composer require drupal/devel --no-update
+        composer require drupal/pathauto --no-update
+        composer require drupal/module_filter --no-update
+        composer require drupal/imce --no-update
+        composer require drupal/config_devel --no-update
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         sudo git clone https://github.com/carcheky/druparcheky_profile.git profiles/druparcheky
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
-        $composer update
+        composer update
         $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
     else
         echo -e "==> Existe una instalacion activa, borrala manualmente para usar este script"
@@ -152,7 +152,7 @@ function install_druparcheky_core_composer_project() {
 
         cd ${CONF_SITE_FOLDER}
 
-        # $composer require drupal/admin_toolbar drupal/backup_migrate drupal/ctools drupal/devel drupal/pathauto drupal/module_filter drupal/imce drupal/config_devel --no-update
+        # composer require drupal/admin_toolbar drupal/backup_migrate drupal/ctools drupal/devel drupal/pathauto drupal/module_filter drupal/imce drupal/config_devel --no-update
 
         composer update --with-dependencies
 
