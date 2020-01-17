@@ -6,8 +6,8 @@ ls -la /etc/apache2/sites-enabled
 # [] && false || true
 # [!] && true || false
 
-drush="sudo /home/user/.config/composer/vendor/bin/drush"
-# composer="/usr/bin/composer"
+# drush="sudo /home/user/.config/composer/vendor/bin/drush"
+composer="/usr/bin/composer"
 lamp="/home/user/bin/lamp"
 
 # ask for var
@@ -109,27 +109,27 @@ function install_drupal() {
     if [[ ! -f "./web/sites/default/settings.php" ]]; then
 
         echo -e "==> Bajando drupal core...\n"
-        $drush -y dl drupal --drupal-project-rename="web"
+        drush -y dl drupal --drupal-project-rename="web"
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         cd web
         sed -i '/\"drupal\/core\"\:/d' ./composer.json
-        composer require drupal/core --no-update
-        composer require drupal/admin_toolbar --no-update
-        composer require drupal/backup_migrate --no-update
-        composer require drupal/ctools --no-update
-        composer require drupal/devel --no-update
-        composer require drupal/pathauto --no-update
-        composer require drupal/module_filter --no-update
-        composer require drupal/imce --no-update
-        composer require drupal/config_devel --no-update
+        $composer require drupal/core --no-update
+        $composer require drupal/admin_toolbar --no-update
+        $composer require drupal/backup_migrate --no-update
+        $composer require drupal/ctools --no-update
+        $composer require drupal/devel --no-update
+        $composer require drupal/pathauto --no-update
+        $composer require drupal/module_filter --no-update
+        $composer require drupal/imce --no-update
+        $composer require drupal/config_devel --no-update
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
         sudo git clone https://github.com/carcheky/druparcheky_profile.git profiles/druparcheky
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
-        composer update
-        $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
+        $composer update
+        drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
     else
         echo -e "==> Existe una instalacion activa, borrala manualmente para usar este script"
     fi
@@ -154,7 +154,7 @@ function install_druparcheky_core_composer_project() {
 
         # composer require drupal/admin_toolbar drupal/backup_migrate drupal/ctools drupal/devel drupal/pathauto drupal/module_filter drupal/imce drupal/config_devel --no-update
 
-        composer update --with-dependencies
+        $composer update --with-dependencies
 
         sudo chmod -R 777 .
         sudo chown -R user:user .
@@ -178,9 +178,9 @@ read
 
         cd ${CONF_SITE_FOLDER}/web
 
-        # $drush si minimal --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
-        $drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y --locale=es
-        $drush fp
+        # drush si minimal --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
+        drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y --locale=es
+        drush fp
     else
         echo -e "==> Existe una isntalacion activa, borrala manualmente para usar este script"
     fi
