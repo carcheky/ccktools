@@ -161,6 +161,8 @@ function install_druparcheky_core_composer_project() {
 
         cd ${CONF_SITE_FOLDER}/web/themes/custom/druparcheky_theme
         bash generate-subtheme.sh $SITE
+        sudo rm -fr ${CONF_SITE_FOLDER}/web/themes/custom/druparcheky_theme
+        find ./ -name .git -type d -exec rm -fr {} \;
 
         cd ${CONF_SITE_FOLDER}/web
 
