@@ -224,8 +224,8 @@ function add_to_hosts() {
 
 # LOGIC
 
-[[ ${INSTALL} == "borrar" ]] && echo "" || sudo service mysql start 2>/dev/null
-[[ ${INSTALL} == "borrar" ]] && echo "" || sudo service apache2 start 2>/dev/null
+[[ ${INSTALL} == "borrar" ]] && echo "" || (sudo service mysql start) 2>/dev/null
+[[ ${INSTALL} == "borrar" ]] && echo "" || (sudo service apache2 start) 2>/dev/null
 [[ ${INSTALL} == "borrar" ]] && echo "" || newfolder
 [[ ${INSTALL} == "borrar" ]] && echo "" || newvhost
 install_selector
