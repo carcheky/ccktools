@@ -169,12 +169,13 @@ function install_druparcheky_core_composer_project() {
         cd ${CONF_SITE_FOLDER}
         echo "borrando carpetas .git..."
         find ./ -name .git -type d -exec rm -fr {} \;
-
-        cd ${CONF_SITE_FOLDER}
         rm .gitignore .gitmodules
 
-        cp example.gitignore .gitignore
 
+        echo "inicializando git..."
+        git init
+        git add .
+        git commit -m "first commit"
 
         cd ${CONF_SITE_FOLDER}/web
 
