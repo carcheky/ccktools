@@ -183,7 +183,7 @@ function install_druparcheky_core_composer_project() {
 
         sudo chmod -R 777 .
         sudo chown -R user:user .
-        
+
         echo "terminado, haga el primer commit"
     else
         echo -e "==> Existe una isntalacion activa, borrala manualmente para usar este script"
