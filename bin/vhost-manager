@@ -175,14 +175,13 @@ function install_druparcheky_core_composer_project() {
 
         # drush si minimal --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
         drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y --locale=es
-        drush fp
 
         echo "inicializando git..."
         cp example.gitignore .gitignore
         git init
 
         sudo chmod -R 777 .
-        sudo chown -R user:user .
+        drush fp
 
         echo "terminado, haga el primer commit"
     else
