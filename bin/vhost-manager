@@ -201,7 +201,7 @@ function install_selector() {
             install_drupal
             ;;
         2 | drupal-composer)
-            install_druparcheky_core_composer_project
+            time install_druparcheky_core_composer_project
             ;;
         0)
             echo -e "Ninguna, solo vhost"
