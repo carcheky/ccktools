@@ -163,8 +163,8 @@ function install_druparcheky_core_composer_project() {
         bash generate-subtheme.sh $SITE
 
         cd ${CONF_SITE_FOLDER}
-        echo "borrando druparcheky_theme..."
-        sudo rm -fr ${CONF_SITE_FOLDER}/web/themes/custom/druparcheky_theme
+        # echo "borrando druparcheky_theme..."
+        # sudo rm -fr ${CONF_SITE_FOLDER}/web/themes/custom/druparcheky_theme
 
         cd ${CONF_SITE_FOLDER}
         echo "borrando carpetas .git..."
