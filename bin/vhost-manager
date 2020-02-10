@@ -162,7 +162,7 @@ function install_druparcheky_core_composer_project() {
         cd ${CONF_SITE_FOLDER}/web/themes/custom/druparcheky_theme
         bash generate-subtheme.sh $SITE
 
-        cd ${CONF_SITE_FOLDER}
+        # cd ${CONF_SITE_FOLDER}
         # echo "borrando druparcheky_theme..."
         # sudo rm -fr ${CONF_SITE_FOLDER}/web/themes/custom/druparcheky_theme
 
@@ -191,6 +191,33 @@ function install_druparcheky_core_composer_project() {
     echo -e "=============================================================="
 }
 
+# install_wordpress
+install_wordpress() {
+
+    echo -e "\n==> Instalando Drupal [druparcheky_core_composer_project] :\n"
+    cd ${SITES_FOLDER}
+    rm -fr $SITE
+
+    if [[ ! -d "$SITE" ]]; then
+
+        cd ${CONF_SITE_FOLDER}
+
+        wp core download --path=web --locale=es_ES
+
+        cd ${CONF_SITE_FOLDER}/web
+
+        wp config create --dbname=$SITE --dbuser=root --dbpass=root
+
+        mysql -uroot -proot -e "create database $SITE"
+
+        wp core install --url=$SITE.local --title=$SITE --admin_user=admin --admin_password=admin --admin_email=info@$SITE.test
+    else
+        echo -e "==> Existe una isntalacion activa, borrala manualmente para usar este script"
+    fi
+
+    echo -e "=============================================================="
+}
+
 # install_selector
 function install_selector() {
     if [ ${INSTALL} ]; then
@@ -202,6 +229,9 @@ function install_selector() {
             ;;
         2 | drupal-composer)
             time install_druparcheky_core_composer_project
+            ;;
+        3 | wp | wordpress)
+            time install_wordpress
             ;;
         0)
             echo -e "Ninguna, solo vhost"
@@ -249,4 +279,3 @@ install_selector
 $lamp restart
 
 # ~/bin/wsl-notify "${SITE} vhost operation finished"
-
