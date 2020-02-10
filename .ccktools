@@ -38,3 +38,6 @@ if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
   source $HOME/ccktools/.ccktools_custom
 fi
 
+if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
+  source $HOME/ccktools/wp-completion.bash
+fi
