@@ -198,7 +198,7 @@ install_wordpress() {
     echo -e "\n==> Instalando wordpress :\n"
     cd ${SITES_FOLDER}
 
-    if [[ -d "$SITE" ]]; then
+    if [[ ! -f "$SITE/web/wp-config.php" ]]; then
 
         cd ${CONF_SITE_FOLDER}
 
