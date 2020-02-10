@@ -33,9 +33,9 @@ echo -e "\n==============================================================\n=====
 
 # check installation type
 [[ $2 ]] && INSTALL=$2 || echo -e "
-==>      1) Drupal
-==>      2) Druparcheky con composer (druparcheky)
 ==>      0) Ninguna, sólo vhost
+==>      1) Druparcheky con composer (druparcheky)
+==>      2) Wordpress
 ==> borrar) escribe <borrar> para borrar esta instalacion\n" && read_install_type
 
 echo -e "\n==============================================================\n==============================================================\n\n"
@@ -224,13 +224,13 @@ function install_selector() {
         echo -e "Paso 3 ==> Ejecutando tipo de instalacion...."
 
         case ${INSTALL} in
-        1 | drupal)
-            install_drupal
-            ;;
-        2 | drupal-composer)
+        # 1 | drupal)
+        #     install_drupal
+        #     ;;
+        1 | drupal | drupal-composer)
             time install_druparcheky_core_composer_project
             ;;
-        3 | wp | wordpress)
+        2 | wp | wordpress)
             time install_wordpress
             ;;
         0)
