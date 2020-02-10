@@ -68,8 +68,6 @@ function newfolder() {
 
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
-        ls -la
-        read
     fi
     echo -e "=============================================================="
 
