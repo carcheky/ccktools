@@ -206,6 +206,8 @@ install_wordpress() {
 
         wp config create --dbname=$SITE --dbuser=root --dbpass=root
 
+        echo "define('FS_METHOD','direct');"  >> wp-config.php
+
         mysql -uroot -proot -e "create database $SITE"
 
         wp core install --url=$SITE.local --title=$SITE --admin_user=admin --admin_password=admin --admin_email=info@$SITE.test
