@@ -68,6 +68,8 @@ function newfolder() {
 
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
+        ls -la
+        read
     fi
     echo -e "=============================================================="
 
@@ -195,13 +197,11 @@ function install_druparcheky_core_composer_project() {
 install_wordpress() {
     echo -e "\n==> Instalando wordpress :\n"
     cd ${SITES_FOLDER}
-    rm -fr $SITE
 
-    if [[ ! -d "$SITE" ]]; then
+    if [[ -d "$SITE" ]]; then
 
         cd ${CONF_SITE_FOLDER}
-        rm -fr web
-        
+
         wp core download --path=web --locale=es_ES
 
         cd ${CONF_SITE_FOLDER}/web
@@ -258,7 +258,7 @@ function install_selector() {
 function finalmessage() {
     echo -e "\n\n==============================================================\n==============================================================\n"
     echo -e "\n==> add 127.0.0.1 ${SITE} to hosts file & flush dns\n (recommended http://www.abelhadigital.com/hostsman/)"
-    echo -e "\n==> http://${SITE}.local/user\n"
+    echo -e "\n==> http://${SITE}.local\n"
     echo -e "\n\n==============================================================\n==============================================================\n"
 }
 
