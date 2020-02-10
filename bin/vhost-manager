@@ -193,8 +193,7 @@ function install_druparcheky_core_composer_project() {
 
 # install_wordpress
 install_wordpress() {
-
-    echo -e "\n==> Instalando Drupal [druparcheky_core_composer_project] :\n"
+    echo -e "\n==> Instalando wordpress :\n"
     cd ${SITES_FOLDER}
     rm -fr $SITE
 
@@ -211,6 +210,7 @@ install_wordpress() {
         mysql -uroot -proot -e "create database $SITE"
 
         wp core install --url=$SITE.local --title=$SITE --admin_user=admin --admin_password=admin --admin_email=info@$SITE.test
+
     else
         echo -e "==> Existe una isntalacion activa, borrala manualmente para usar este script"
     fi
@@ -233,7 +233,7 @@ function install_selector() {
         2 | wp | wordpress)
             time install_wordpress
             ;;
-        0)
+        0 | vhost)
             echo -e "Ninguna, solo vhost"
             echo "hola ${SITE}" >>/mnt/c/wsl/sites/${SITE}/web/index.html
             ;;
