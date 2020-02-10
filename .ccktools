@@ -39,5 +39,7 @@ if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
 fi
 
 if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
+  autoload bashcompinit
+  bashcompinit
   source $HOME/ccktools/wp-completion.bash
 fi
