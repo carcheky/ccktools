@@ -200,7 +200,8 @@ install_wordpress() {
     if [[ ! -d "$SITE" ]]; then
 
         cd ${CONF_SITE_FOLDER}
-
+        rm -fr web
+        
         wp core download --path=web --locale=es_ES
 
         cd ${CONF_SITE_FOLDER}/web
