@@ -10,3 +10,5 @@ config/.ccktools_custom
 bin/test
 .ccktools_custom
 desktop.ini
+
+bash-backup
