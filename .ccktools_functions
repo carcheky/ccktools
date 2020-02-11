@@ -159,4 +159,3 @@ lamp_laucher() {
 	fi
 }
 
-alias codex="/mnt/c/Users/cmartinezv/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe"
