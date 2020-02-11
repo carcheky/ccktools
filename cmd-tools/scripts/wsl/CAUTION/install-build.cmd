@@ -14,21 +14,20 @@ echo "Importando Backup WslServer, espera..."
 @echo off
 wsl --import WslServer %APPDATA%\WslServer %SYSTEMDRIVE%\wsl\Wsl_Backups\BUILD-WslServer-backup-DISTRO.tar.gz
 
-sleep 1
-
+ping 127.0.0.1 -n 6 > nul
 @echo on
 echo "Estableciendo WslServer por defecto, espera..."
 @echo off
 wsl -s WslServer
 
-sleep 15
+ping 127.0.0.1 -n 6 > nul
+
 @echo on
 echo "seleccionando usuario..."
 @echo off
 powershell C:\wsl\user\ccktools\cmd-tools\scripts\wsl\CAUTION\set-default-user.ps1
 
-sleep 5
-
+ping 127.0.0.1 -n 6 > nul
 :exit
 exit
 ::popd
