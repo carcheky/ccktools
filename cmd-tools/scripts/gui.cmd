@@ -45,6 +45,10 @@ GOTO :1
 :12
   start C:\wsl\user\ccktools\cmd-tools\scripts\wsl\fix-bin.cmd
   GOTO :GUI
+:13
+  wscript.exe "C:\wsl\user\ccktools\cmd-tools\scripts\invisible.vbs" "C:\wsl\user\ccktools\cmd-tools\scripts\gui-backupgui.cmd"
+  GOTO :GUI
+GOTO :1
 
 GOTO :EOF
 -->
@@ -183,11 +187,12 @@ GOTO :EOF
     <button class="edit" onclick="closeHTA(11);" title="edit ccktools">cckedit</button>
     <button class="update" onclick="closeHTA(9);" title="actualiza el programita">update</button>
     <button class="fix-bin" onclick="closeHTA(12);" title="actualiza el programita">fix-bin</button>
-    <button class="backup" onclick="closeHTA(5);" title="copia de seguridad de tu servidor">backup</button>
-    <button class="build" onclick="closeHTA(10);"
-      title="Exporta la distribución linux sin bases de datos para importar en otro pc">build</button>
+    <button class="backup" onclick="closeHTA(13);" title="copia de seguridad de tu servidor">bk-menu</button>
   </div>
-
+<!--
+    <button class="backup" onclick="closeHTA(5);" title="copia de seguridad de tu servidor">backup</button>
+    <button class="build" onclick="closeHTA(10);" title="Exporta la distribución linux sin bases de datos para importar en otro pc">build</button>
+-->
   <div class="separador"></div>
   <div class="separador"></div>
   <div class="exit_buttons">
