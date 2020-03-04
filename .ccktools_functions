@@ -66,6 +66,12 @@ crequire() {
 			composer require drupal/${var} --no-update
 		done
 		composer update --with-dependencies
+
+		for var in "$@"; do
+			en ${var}
+		done
+
+		draim
 	else
 		echo "falta nombre"
 	fi
@@ -157,4 +163,3 @@ lamp_laucher() {
 		lamp start
 	fi
 }
-
