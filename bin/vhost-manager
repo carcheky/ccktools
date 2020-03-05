@@ -159,8 +159,8 @@ function install_druparcheky_core_composer_project() {
         sudo chmod -R 777 .
         sudo chown -R user:user .
 
-        cd ${CONF_SITE_FOLDER}/web/themes/custom/druparcheky_theme
-        bash generate-subtheme.sh $SITE
+        # cd ${CONF_SITE_FOLDER}/web/themes/custom/druparcheky_theme
+        # bash generate-subtheme.sh $SITE
 
         # cd ${CONF_SITE_FOLDER}
         # echo "borrando druparcheky_theme..."
@@ -172,13 +172,12 @@ function install_druparcheky_core_composer_project() {
         # rm .gitignore .gitmodules
 
         cd ${CONF_SITE_FOLDER}/web
-
         # drush si minimal --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
         drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y --locale=es
 
-        echo "inicializando git..."
-        cp example.gitignore .gitignore
-        git init
+        # echo "inicializando git..."
+        # cp example.gitignore .gitignore
+        # git init
 
         sudo chmod -R 777 .
         drush fp
@@ -206,7 +205,7 @@ install_wordpress() {
 
         wp config create --dbname=$SITE --dbuser=root --dbpass=root
 
-        echo "define('FS_METHOD','direct');"  >> wp-config.php
+        echo "define('FS_METHOD','direct');" >>wp-config.php
 
         mysql -uroot -proot -e "create database $SITE"
 
