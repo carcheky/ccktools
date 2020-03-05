@@ -14,7 +14,7 @@ GOTO :1
 :2
   start C:\wsl\user\ccktools\cmd-tools\scripts\lamp\lamp-start.cmd
   start C:\wsl\user\ccktools\cmd-tools\scripts\windows\TDFR.exe
-  GOTO :GUI
+  GOTO :1
 :3
   start C:\wsl\user\ccktools\cmd-tools\scripts\lamp\lamp-stop.cmd
   GOTO :GUI
