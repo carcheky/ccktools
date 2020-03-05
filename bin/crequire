@@ -1,0 +1,18 @@
+#!/bin/bash
+if [[ -f composer.json ]]; then
+	if [[ $@ ]]; then
+		for var in "$@"; do
+			echo "-> ${var}"
+			composer require drupal/${var} --no-update
+		done
+		composer install
+		for var in "$@"; do
+			en ${var}
+		done
+		draim
+	else
+		echo "falta nombre"
+	fi
+else
+	echo "no ecuentro el composer.json"
+fi

@@ -59,36 +59,7 @@ _________________________
 	php -v
 }
 
-crequire() {
-	if [[ $@ ]]; then
-		for var in "$@"; do
-			echo "-> ${var}"
-			composer require drupal/${var} --no-update
-		done
-		composer update --with-dependencies
 
-		for var in "$@"; do
-			en ${var}
-		done
-
-		draim
-	else
-		echo "falta nombre"
-	fi
-}
-
-cremove() {
-	if [[ $@ ]]; then
-		for var in "$@"; do
-			echo "-> ${var}"
-			drush pmu -y ${var}
-			composer remove drupal/${var}
-		done
-		composer update --with-dependencies
-	else
-		echo "falta nombre"
-	fi
-}
 
 cr-update-core() {
 	composer outdated "drupal/*"
