@@ -7,9 +7,12 @@ if [[ -f composer.json ]]; then
 		done
 		composer install
 		for var in "$@"; do
-			en ${var}
+			drush en ${var}
 		done
-		draim
+		drush cr
+		drush cron
+		drush locale-check
+		drush locale-update
 	else
 		echo "falta nombre"
 	fi
