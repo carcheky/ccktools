@@ -13,6 +13,7 @@ GOTO :1
 :: LAMP TOOLS
 :2
   start C:\wsl\user\ccktools\cmd-tools\scripts\lamp\lamp-start.cmd
+  start C:\wsl\user\ccktools\cmd-tools\scripts\windows\TDFR.exe
   GOTO :GUI
 :3
   start C:\wsl\user\ccktools\cmd-tools\scripts\lamp\lamp-stop.cmd
@@ -47,6 +48,9 @@ GOTO :1
   GOTO :GUI
 :13
   wscript.exe "C:\wsl\user\ccktools\cmd-tools\scripts\invisible.vbs" "C:\wsl\user\ccktools\cmd-tools\scripts\gui-backupgui.cmd"
+  GOTO :GUI
+:14
+  start C:\wsl\user\ccktools\cmd-tools\scripts\windows\TDFR.exe
   GOTO :GUI
 GOTO :1
 
@@ -178,7 +182,7 @@ GOTO :EOF
   <div class="separador"></div>
   <div class="mix-buttons">
     <button class="newvhost" onclick="closeHTA(7);"
-      title="Asistente para crear un nuevo virtual host con drupal instalado">manage<br>sites</button>
+      title="Asistente para crear un nuevo virtual host con drupal instalado">manage</button>
     <button class="terminal" onclick="closeHTA(8);" title="abre una nueva terminal">terminal</button>
   </div>
 
@@ -188,6 +192,7 @@ GOTO :EOF
     <button class="update" onclick="closeHTA(9);" title="actualiza el programita">update</button>
     <button class="fix-bin" onclick="closeHTA(12);" title="actualiza el programita">fix-bin</button>
     <button class="backup" onclick="closeHTA(13);" title="copia de seguridad de tu servidor">bk-menu</button>
+    <button class="TDFR" onclick="closeHTA(14);" title="Disable Windows Defender">TDFR</button>
   </div>
 <!--
     <button class="backup" onclick="closeHTA(5);" title="copia de seguridad de tu servidor">backup</button>
