@@ -17,8 +17,6 @@ goto() {
 gosi() {
 	if [[ $1 ]]; then
 		cd /mnt/c/wsl/sites/$1*
-		cd docroot 2>/dev/null
-		cd web 2>/dev/null
 	else
 		cd /mnt/c/wsl/sites
 	fi
