@@ -3,17 +3,8 @@ if [[ -f composer.json ]]; then
 	if [[ $@ ]]; then
 		for var in "$@"; do
 			echo "-> ${var}"
-			# composer require drupal/${var} --no-update
 			composer require drupal/${var} --with-dependencies
 		done
-		# composer update --with-dependencies
-		# for var in "$@"; do
-		# 	drush en ${var}
-		# done
-		# drush cr
-		# drush cron
-		# drush locale-check
-		# drush locale-update
 	else
 		echo "falta nombre del modulo"
 	fi
