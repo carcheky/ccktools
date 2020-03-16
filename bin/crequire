@@ -3,7 +3,7 @@ if [[ -f composer.json ]]; then
 	if [[ $@ ]]; then
 		for var in "$@"; do
 			echo "-> ${var}"
-			composer require drupal/${var} --with-dependencies
+			composer require drupal/${var}
 		done
 	else
 		echo "falta nombre del modulo"
