@@ -9,7 +9,7 @@ if [[ -f composer.json ]]; then
 			echo "-> ${var}"
 			composer remove drupal/${var} --no-update
 		done
-		composer install
+		composer update --with-dependencies
 		drush cr
 		drush cron
 		drush locale-check

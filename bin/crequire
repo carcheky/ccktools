@@ -5,7 +5,7 @@ if [[ -f composer.json ]]; then
 			echo "-> ${var}"
 			composer require drupal/${var} --no-update
 		done
-		composer install
+		composer update --with-dependencies
 		for var in "$@"; do
 			drush en ${var}
 		done
