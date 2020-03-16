@@ -7,10 +7,12 @@ if [[ -f composer.json ]]; then
 		# done
 		for var in "$@"; do
 			echo "-> ${var}"
-			composer remove drupal/${var} --no-update
+			composer remove drupal/${var} --with-dependencies
+
+			# composer remove drupal/${var} --no-update
 		done
-		composer update --with-dependencies
-		drush cr
+		# composer update --with-dependencies
+		# drush cr
 		# drush cron
 		# drush locale-check
 		# drush locale-update
