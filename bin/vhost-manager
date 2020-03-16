@@ -93,6 +93,19 @@ function newvhost() {
     RewriteOptions inherit
     CustomLog ${WSL_FOLDER}/log/${SITE}/${SITE}.log combined
 </VirtualHost>
+
+
+<IfModule mod_ssl.c>
+	<VirtualHost *:443>
+		DocumentRoot /mnt/c/wsl/sites/${SITE}/web
+	    ServerName ${SITE}.local
+		SSLEngine on
+		SSLCertificateFile	/mnt/c/wsl/server/certs/localhost.crt
+		SSLCertificateKeyFile /mnt/c/wsl/server/certs/localhost.key
+		ErrorLog ${APACHE_LOG_DIR}/error.log
+	    CustomLog /mnt/c/wsl/log/${SITE}/${SITE}-ssl.log combined
+	</VirtualHost>
+</IfModule>
             " | sudo tee --append ${CONF_SITES_AVAILABLE}
             sudo a2ensite ${SITE}.conf
             sudo service apache2 reload
