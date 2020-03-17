@@ -35,6 +35,7 @@ phpchanger() {
 	echo "
 _________________________
 ==> disabling mods"
+	sudo a2dismod php7.1
 	sudo a2dismod php7.2
 	sudo a2dismod php7.3
 	sudo a2dismod php7.4
