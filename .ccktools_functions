@@ -32,6 +32,18 @@ goth() {
 }
 
 phpchanger() {
+
+sudo apt install -y php$1-fpm
+sudo apt install -y libapache2-mod-php$1
+sudo apt install -y php$1
+sudo apt install -y php$1-curl
+sudo apt install -y php$1-gd
+sudo apt install -y php$1-mbstring
+sudo apt install -y php$1-mysql
+sudo apt install -y php$1-xml
+sudo apt install -y php$1-zip
+sudo apt install -y php$1-common
+
 	echo "
 _________________________
 ==> disabling mods"
