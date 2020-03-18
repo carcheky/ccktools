@@ -19,7 +19,7 @@ git remote -v;"
 
 # DRUSH ALIAS
 alias ccron='drush cr && drush cron'
-alias drexport='drush sql-dump > database.sql -v'
+alias drexport='drush cex -y ; drush sql-dump > database.sql -v'
 alias drimport='drush sql-drop -y; drush sql-cli < database.sql -v'
 # alias drws='clear; drush ws --tail --full; drws'
 alias draim='drush locale-check && drush locale-update;'
