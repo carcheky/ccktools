@@ -1,12 +1,12 @@
 #!/bin/bash
 
-drexport() {
-    drush cex -y
-    databasename=database
-    if [ $1 ]; then
-        databasename=database-$1
-    fi
-    drush sql-cli -y >$databasename.sql
-}
+# drexport() {
+drush cex -y
+databasename=database
+if [ $1 ]; then
+    databasename=database-$1
+fi
+drush sql-dump -y >$databasename.sql
+# }
 
-drexport
+# drexport
