@@ -186,6 +186,7 @@ function install_druparcheky_core_composer_project() {
 
         " >>${CONF_SITE_FOLDER}/web/sites/default/settings.php
         mkdir -p ${CONF_SITE_FOLDER}/web/sites/default/private
+        mkdir -p ${CONF_SITE_FOLDER}/config/sync
         echo "terminado"
     else
         echo -e "==> Existe una isntalacion activa, borrala manualmente para usar este script"
