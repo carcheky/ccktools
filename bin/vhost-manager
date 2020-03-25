@@ -109,7 +109,6 @@ function newvhost() {
             " | sudo tee --append ${CONF_SITES_AVAILABLE}
             sudo a2ensite ${SITE}.conf
             sudo service apache2 reload
-            sudo service apache2 restart
         fi
         echo -e "=============================================================="
     fi
