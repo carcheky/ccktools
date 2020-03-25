@@ -92,6 +92,11 @@ function newvhost() {
     RewriteEngine On
     RewriteOptions inherit
     CustomLog ${WSL_FOLDER}/server/log/${SITE}/${SITE}.log combined
+    <Directory /mnt/c/wsl/sites/${SITE}>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
 </VirtualHost>
 
 
