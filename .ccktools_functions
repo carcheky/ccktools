@@ -32,6 +32,7 @@ goth() {
 }
 
 phpchanger() {
+	echo "cambiando php, puede tardar un poco, espere..."
 	sudo add-apt-repository ppa:ondrej/php -y >/dev/null
 	sudo apt update >/dev/null
 	# sudo apt install -y php$1-fpm
