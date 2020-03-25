@@ -25,27 +25,22 @@ if [[ -d "$HOME/.config/composer/vendor/bin" ]]; then
   export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 fi
 
-
 # Include Drush bash customizations.
-if [ -f "$HOME/.drush/drush.bashrc" ] ; then
+if [ -f "$HOME/.drush/drush.bashrc" ]; then
   source $HOME/.drush/drush.bashrc
 fi
 
-
 # Include Drush completion.
 
-if [ -f "$HOME/.drush/drush.complete.sh" ] ; then
+if [ -f "$HOME/.drush/drush.complete.sh" ]; then
   source $HOME/.drush/drush.complete.sh
 fi
-
 
 # # Include Drush prompt customizations.
 
 # if [ -f "$HOME/.drush/drush.prompt.sh" ] ; then
 #   source $HOME/.drush/drush.prompt.sh
 # fi
-
-
 
 if [ -f "$HOME/ccktools/.ccktools_aliases" ]; then
   source $HOME/ccktools/.ccktools_aliases
@@ -63,4 +58,14 @@ if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
   autoload bashcompinit
   bashcompinit
   source $HOME/ccktools/wp-completion.bash
+fi
+
+if [ -f "$HOME/.ssh" ]; then
+  eval $(ssh-agent -s)
+
+  for possiblekey in ${HOME}/.ssh/*; do
+    if grep -q PRIVATE "$possiblekey"; then
+      ssh-add "$possiblekey"
+    fi
+  done
 fi
