@@ -64,7 +64,7 @@ function newfolder() {
         echo -e "Paso 1 ==> NO existe la ruta, creandola..."
         mkdir -p ${CONF_SITE_FOLDER}
         mkdir -p ${CONF_SITE_FOLDER}/web
-        mkdir ${WSL_FOLDER}/log/${SITE} -p
+        mkdir ${WSL_FOLDER}/server/log/${SITE} -p
 
         sudo chmod -R 777 ${CONF_SITE_FOLDER}
         sudo chown -R user:user ${CONF_SITE_FOLDER}
