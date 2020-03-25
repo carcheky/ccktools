@@ -33,10 +33,10 @@ goth() {
 
 phpchanger() {
 	echo "cambiando php, puede tardar un poco, espere..."
-	sudo add-apt-repository ppa:ondrej/php -y >/dev/null && echo "añadiendo repo... 1/3"
-	sudo apt update >/dev/null && echo "actualizando repos... 2/3"
+	sudo add-apt-repository ppa:ondrej/php -y >/dev/null && echo "==> añadiendo repo... 1/3"
+	sudo apt update >/dev/null && echo "==> actualizando repos... 2/3"
 	# sudo apt install -y php$1-fpm
-	sudo apt install -y libapache2-mod-php$1 >/dev/null && echo "instalando php... 3/3"
+	sudo apt install -y libapache2-mod-php$1 >/dev/null && echo "==> instalando php... 3/3"
 	sudo systemctl restart apache2 >/dev/null
 	sudo apt install -y libapache2-mod-php$1 php$1 php$1-curl php$1-gd php$1-mbstring php$1-mysql php$1-xml php$1-zip php$1-common >/dev/null
 
