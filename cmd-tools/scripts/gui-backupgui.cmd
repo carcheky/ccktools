@@ -181,7 +181,7 @@ GOTO :EOF
     <div class="separador"></div>
   <div class="separador"></div>
   <div class="another-mix-buttons">
-    <button class="backup" onclick="closeHTA(13);" title="install">install</button>
+    <button class="backup" onclick="closeHTA(13);" title="install">install build</button>
   </div>
 
   <div class="separador"></div>
