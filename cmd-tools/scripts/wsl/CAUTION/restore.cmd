@@ -12,7 +12,7 @@ if exist %TARGET_DIR% rmdir /s /q %TARGET_DIR%
 @echo on
 echo "Importando Backup WslServer, espera..."
 @echo off
-wsl --import WslServer %APPDATA%\WslServer %SYSTEMDRIVE%\wsl\Wsl_Backups\WslServer-backup-DISTRO.tar.gz
+wsl --import WslServer %APPDATA%\WslServer %SYSTEMDRIVE%\wsl\backups\wsl\WslServer-backup-DISTRO.tar.gz
 
 sleep 1
 
