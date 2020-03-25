@@ -75,4 +75,4 @@ AcceptFilter https none
         $settings['file_chmod_file'] = 0664;
 
 
-        " >>${CONF_SITE_FOLDER}/web/sites/default/settings.php
+        " >> web/sites/default/settings.php
