@@ -221,7 +221,7 @@ install_wordpress() {
         wp core install --url=$SITE.local --title=$SITE --admin_user=admin --admin_password=admin --admin_email=info@$SITE.test
 
     else
-        echo -e "==> Existe una isntalacion activa, borrala manualmente para usar este script"
+        echo -e "==> Existe una instalación activa, bórrala manualmente para usar este script"
     fi
 
     echo -e "=============================================================="
@@ -251,11 +251,11 @@ function install_selector() {
             echo -e "\n==============================================================\n"
             mysqladmin -hlocalhost -uroot -proot drop ${SITE}
             echo -e "==============================================================\n"
-            echo "borrando instalacion ${SITE}"
+            echo "borrando instalación ${SITE}"
             sudo rm -fr /etc/apache2/sites-*/${SITE}.conf /mnt/c/wsl/sites/${SITE} /mnt/c/wsl/server/log/sites/${SITE}
             ;;
         *)
-            echo -e "opcion incorrecta, instalamos solo vhost"
+            echo -e "opción incorrecta, instalamos solo vhost"
             ;;
         esac
     fi
@@ -265,14 +265,14 @@ function install_selector() {
 # final message
 function finalmessage() {
     echo -e "\n\n==============================================================\n==============================================================\n"
-    echo -e "\n==> add 127.0.0.1 ${SITE} to hosts file & flush dns\n (recommended http://www.abelhadigital.com/hostsman/)"
+    echo -e "\n==> añade 127.0.0.1 ${SITE}.local a los hosts de su equipo & flush dns"
+    echo -e "\n==> (software recomendado http://www.abelhadigital.com/hostsman/)"
     echo -e "\n==> http://${SITE}.local\n"
     echo -e "\n\n==============================================================\n==============================================================\n"
 }
 
 # add to hosts
 function add_to_hosts() {
-    # echo 0.0.0.0 websitename.com >> %WINDIR%\System32\Drivers\Etc\Hosts
     runas /user:Administrator
 }
 
@@ -285,6 +285,4 @@ function add_to_hosts() {
 install_selector
 [[ ${INSTALL} == "borrar" ]] && echo "" || finalmessage
 
-$lamp restart
-
-# ~/bin/wsl-notify "${SITE} vhost operation finished"
+$lamp restart 1>/dev/null
