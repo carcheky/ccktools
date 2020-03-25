@@ -70,6 +70,7 @@ win_userprofile_dir="${win_userprofile#*:}"
 userprofile="${userprofile_mount}${win_userprofile_dir//\\//}"
 
 if [ -d /mnt/c/$userprofile/.ssh/ ]; then
+  mkdir -p ~/.ssh/ >/dev/null
   for possiblekey in /mnt/c/$userprofile/.ssh/*; do
     if grep -q PRIVATE "$possiblekey"; then
       cp "$possiblekey" ~/.ssh/
