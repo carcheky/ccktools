@@ -64,7 +64,8 @@ _________________________
 ==> restarting apache"
 	sudo service apache2 restart >/dev/null
 	php -v
-
+	echo "
+_________________________"
 	superchargephp
 }
 
