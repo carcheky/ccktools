@@ -7,7 +7,7 @@ ls -la /etc/apache2/sites-enabled
 # [!] && true || false
 
 # drush="sudo /home/user/.config/composer/vendor/bin/drush"
-composer="/usr/bin/composer"
+composer=$(which composer)
 lamp="/home/user/bin/lamp"
 
 # ask for var
