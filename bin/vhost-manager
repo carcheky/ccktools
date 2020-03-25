@@ -156,46 +156,36 @@ function install_druparcheky_core_composer_project() {
     rm -fr $SITE
 
     if [[ ! -d "$SITE" ]]; then
-        git clone https://github.com/carcheky/druparcheky-core-composer-project.git $SITE
+        git clone https://github.com/carcheky/druparcheky_core_composer_project.git $SITE
 
         cd $SITE
-        git submodule init
-        git submodule update
         mv *.code-workspace $SITE.code-workspace
 
         cd ${CONF_SITE_FOLDER}
 
-        # composer require drupal/admin_toolbar drupal/backup_migrate drupal/ctools drupal/devel drupal/pathauto drupal/module_filter drupal/imce drupal/config_devel --no-update
-
-        $composer update --with-dependencies
+        $composer i
 
         sudo chmod -R 777 .
         sudo chown -R user:user .
 
-        # cd ${CONF_SITE_FOLDER}/web/themes/custom/druparcheky_theme
-        # bash generate-subtheme.sh $SITE
-
-        # cd ${CONF_SITE_FOLDER}
-        # echo "borrando druparcheky_theme..."
-        # sudo rm -fr ${CONF_SITE_FOLDER}/web/themes/custom/druparcheky_theme
-
-        # cd ${CONF_SITE_FOLDER}
-        # echo "borrando carpetas .git..."
-        # find ./ -name .git -type d -exec rm -fr {} \;
-        # rm .gitignore .gitmodules
-
         cd ${CONF_SITE_FOLDER}/web
-        # drush si minimal --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y
+
         drush si druparcheky --db-url=mysql://root:root@localhost/${SITE} --account-name=admin --account-mail=admin@${SITE}.test --account-pass=admin --site-name=${SITE} --site-mail=${SITE}@${SITE}.test -y --locale=es
 
-        # echo "inicializando git..."
-        # cp example.gitignore .gitignore
-        # git init
-
         sudo chmod -R 777 .
-        drush fp
 
-        echo "terminado, haga el primer commit"
+        echo "
+
+        $settings['config_sync_directory'] = '../config/sync';
+        $settings['file_private_path'] = 'sites/default/private';
+        $settings['file_public_path'] = 'sites/default/files';
+        $settings['file_temp_path'] = '/tmp';
+        $settings['file_chmod_directory'] = 0775;
+        $settings['file_chmod_file'] = 0664;
+
+
+        " >>${CONF_SITE_FOLDER}/web/sites/default/settings.php
+        echo "terminado"
     else
         echo -e "==> Existe una isntalacion activa, borrala manualmente para usar este script"
     fi
