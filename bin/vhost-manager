@@ -248,7 +248,7 @@ function install_selector() {
             mysqladmin -hlocalhost -uroot -proot drop ${SITE}
             echo -e "==============================================================\n"
             echo "borrando instalacion ${SITE}"
-            sudo rm -fr /etc/apache2/sites-*/${SITE}.conf /mnt/c/wsl/sites/${SITE}
+            sudo rm -fr /etc/apache2/sites-*/${SITE}.conf /mnt/c/wsl/sites/${SITE} /mnt/c/wsl/server/log/sites/${SITE}
             ;;
         *)
             echo -e "opcion incorrecta, instalamos solo vhost"
