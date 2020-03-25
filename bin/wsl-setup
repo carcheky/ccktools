@@ -22,6 +22,8 @@ wsl_stop() {
   echo "==> la consola va a cerrarse"
   read a
   sudo killall -r '.*'
+
+  cmd.exe /C "start C:\wsl\user\ccktools\cmd-tools\scripts\wsl\terminate.cmd"
 }
 
 wsl_update() {
