@@ -25,18 +25,18 @@ read_install_type() {
 }
 echo -e "\n\n==============================================================\n==============================================================\n"
 
-# check vhost name
-[[ $1 ]] && SITE=$1 || read_site
-# [[ $1 ]] && SITE=$1 || echo "Escribe el nombre del sitio:" && until ${SITE} do read SITE done;
-
 echo -e "\n==============================================================\n=============================================================="
 
 # check installation type
-[[ $2 ]] && INSTALL=$2 || echo -e "
+[[ $1 ]] && INSTALL=$1 || echo -e "
 ==>      0) Ninguna, sólo vhost
 ==>      1) Druparcheky con composer (druparcheky)
 ==>      2) Wordpress
 ==> borrar) escribe <borrar> para borrar esta instalacion\n" && read_install_type
+
+# check vhost name
+[[ $2 ]] && SITE=$2 || read_site
+# [[ $2 ]] && SITE=$2 || echo "Escribe el nombre del sitio:" && until ${SITE} do read SITE done;
 
 echo -e "\n==============================================================\n==============================================================\n\n"
 
