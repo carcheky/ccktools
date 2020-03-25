@@ -8,7 +8,7 @@ ls -la /etc/apache2/sites-enabled
 
 # drush="sudo /home/user/.config/composer/vendor/bin/drush"
 composer=$(which composer)
-lamp="/home/user/bin/lamp"
+lamp=$(which lamp)
 
 # ask for var
 read_site() {
