@@ -73,7 +73,9 @@ if [ -d /mnt/c/$userprofile/.ssh/ ]; then
   for possiblekey in /mnt/c/$userprofile/.ssh/*; do
     if grep -q PRIVATE "$possiblekey"; then
       cp "$possiblekey" ~/.ssh/
+      cp "$possiblekey".pub ~/.ssh/
     fi
+
   done
 fi
 
