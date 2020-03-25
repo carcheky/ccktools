@@ -157,7 +157,7 @@ function install_drupal() {
 function install_druparcheky_core_composer_project() {
     echo -e "\n==> Instalando Drupal [druparcheky_core_composer_project] :\n"
     cd ${SITES_FOLDER}
-    rm -fr $SITE
+    rm -fr $CONF_SITE_FOLDER
 
     if [[ ! -d "$SITE" ]]; then
         git clone https://github.com/carcheky/druparcheky_core_composer_project.git $SITE
@@ -165,7 +165,7 @@ function install_druparcheky_core_composer_project() {
         cd $SITE
         mv *.code-workspace $SITE.code-workspace
         cd ${CONF_SITE_FOLDER}
-        rm -fr .git
+        # rm -fr .git
 
         $composer install
 
