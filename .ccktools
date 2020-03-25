@@ -60,17 +60,25 @@ if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
   source $HOME/ccktools/wp-completion.bash
 fi
 
-if [ -f "$HOME/.ssh" ]; then
+if [ -d /mnt/c/Users/**/.ssh/ ]; then
+  for possiblekey in /mnt/c/Users/**/.ssh/*; do
+    echo $(pwd)
+    if grep -q PRIVATE "$possiblekey"; then
+      cp "$possiblekey" ~/.ssh/
+    fi
+  done
+fi
+
+if [ -d ~/.ssh ]; then
   chmod 700 ~/.ssh
   chmod 600 ~/.ssh/*
   chmod 644 ~/.ssh/*.pub
 
   eval $(ssh-agent -s)
 
-  for possiblekey in ${HOME}/.ssh/*; do
+  for possiblekey in ~/.ssh/*; do
     if grep -q PRIVATE "$possiblekey"; then
       ssh-add "$possiblekey"
-      echo "ssh $possiblekey ready"
     fi
   done
 fi
