@@ -33,16 +33,16 @@ goth() {
 
 phpchanger() {
 	echo "cambiando php, puede tardar un poco, espere..."
-	echo "==> añadiendo repo... 1/3" &&
+	echo "==> añadiendo repo..." &&
 		the_ppa="ondrej/php"
 
 	if ! grep -q "^deb .*$the_ppa" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
 		sudo add-apt-repository ppa:ondrej/php -y >/dev/null
+		echo "==> actualizando repos..." && sudo apt update >/dev/null
 	fi
 
-	echo "==> actualizando repos... 2/3" && sudo apt update >/dev/null
 	# sudo apt install -y php$1-fpm
-	echo "==> instalando php... 3/3" && sudo apt install -y libapache2-mod-php$1 >/dev/null
+	echo "==> instalando php..." && sudo apt install -y libapache2-mod-php$1 >/dev/null
 	sudo systemctl restart apache2 >/dev/null
 	sudo apt install -y libapache2-mod-php$1 php$1 php$1-curl php$1-gd php$1-mbstring php$1-mysql php$1-xml php$1-zip php$1-common >/dev/null
 
@@ -96,7 +96,7 @@ superchargephp() {
 	sudo find /etc/php/ -name php.ini -exec sed -i 's/max_execution_time = 30/max_execution_time = 300 #/g' {} \;
 	sudo find /etc/php/ -name php.ini -exec sed -i 's/max_input_time = 60/max_input_time = 600 #/g' {} \;
 	sudo find /etc/php/ -name php.ini -exec sed -i 's/;date.timezone =/date.timezone = Europe\/Madrid/g' {} \;
-	lamp restart
+	sudo service apache2 restart >/dev/null
 	echo Hecho
 }
 
