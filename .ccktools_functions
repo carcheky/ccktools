@@ -43,26 +43,26 @@ phpchanger() {
 	echo "
 _________________________
 ==> disabling mods"
-	sudo a2dismod php7.1
-	sudo a2dismod php7.2
-	sudo a2dismod php7.3
-	sudo a2dismod php7.4
+	sudo a2dismod php7.1 >/dev/null
+	sudo a2dismod php7.2 >/dev/null
+	sudo a2dismod php7.3 >/dev/null
+	sudo a2dismod php7.4 >/dev/null
 	echo "
 _________________________
 ==> disabling mpm"
-	sudo a2dismod mpm_prefork
-	sudo a2dismod mpm_worker
-	sudo a2dismod mpm_event
-	sudo a2dismod mpm_prefork
+	sudo a2dismod mpm_prefork >/dev/null
+	sudo a2dismod mpm_worker >/dev/null
+	sudo a2dismod mpm_event >/dev/null
+	sudo a2dismod mpm_prefork >/dev/null
 	echo "
 _________________________
 ==> enabling $1"
-	sudo a2enmod php$1
-	sudo update-alternatives --set php /usr/bin/php$1
+	sudo a2enmod php$1 >/dev/null
+	sudo update-alternatives --set php /usr/bin/php$1 >/dev/null
 	echo "
 _________________________
 ==> restarting apache"
-	sudo service apache2 restart
+	sudo service apache2 restart >/dev/null
 	php -v
 
 	superchargephp
