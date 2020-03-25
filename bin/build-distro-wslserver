@@ -10,6 +10,7 @@ export_ddbb() {
   sudo rm -fr /tmp/*
   sudo rm -fr /home/user/.composer/cache/*
   sudo rm -fr /home/user/.cache/*
+  bleachbit --list | grep -E . | xargs sudo bleachbit -c
 }
 
 import_ddbb() {
