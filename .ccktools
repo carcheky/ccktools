@@ -60,7 +60,7 @@ if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
   source $HOME/ccktools/wp-completion.bash
 fi
 
-if [ -d /mnt/c/Users/**/.ssh/ ]; then
+if [ -d /mnt/c/Users/*/.ssh/ ]; then
   for possiblekey in /mnt/c/Users/**/.ssh/*; do
     echo $(pwd)
     if grep -q PRIVATE "$possiblekey"; then
