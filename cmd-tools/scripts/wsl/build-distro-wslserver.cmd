@@ -21,6 +21,9 @@ echo "Restaurando BBDD, espera..."
 wsl --distribution WslServer --user user /home/user/ccktools/bin/lamp start
 wsl --distribution WslServer --user user /home/user/ccktools/bin/build-distro-wslserver import
 wsl --terminate WslServer
+
+
+pause
 :exit
 exit
 ::popd
