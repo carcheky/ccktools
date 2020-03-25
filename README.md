@@ -61,4 +61,18 @@ AcceptFilter https none
 
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
 ```
-a
+
+
+
+
+        echo "
+
+        $settings['config_sync_directory'] = '../config/sync';
+        $settings['file_private_path'] = 'sites/default/private';
+        $settings['file_public_path'] = 'sites/default/files';
+        $settings['file_temp_path'] = '/tmp';
+        $settings['file_chmod_directory'] = 0775;
+        $settings['file_chmod_file'] = 0664;
+
+
+        " >>${CONF_SITE_FOLDER}/web/sites/default/settings.php
