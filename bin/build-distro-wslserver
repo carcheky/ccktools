@@ -9,7 +9,8 @@ export_ddbb() {
   sudo apt-get autoremove -y >/dev/null
   sudo rm -fr /tmp/* >/dev/null
   sudo rm -fr /home/user/.composer/cache/* >/dev/null
-  sudo rm -fr /home/user/.cache/* >/dev/null
+  sudo rm -fr /home/user/.cache >/dev/null
+  sudo rm -fr /home/user/.vscode-server >/dev/null
   bleachbit --list | grep -E . | xargs sudo bleachbit -c
 }
 
