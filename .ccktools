@@ -61,6 +61,10 @@ if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
 fi
 
 if [ -f "$HOME/.ssh" ]; then
+  chmod 700 ~/.ssh
+  chmod 600 ~/.ssh/*
+  chmod 644 ~/.ssh/*.pub
+
   eval $(ssh-agent -s)
 
   for possiblekey in ${HOME}/.ssh/*; do
