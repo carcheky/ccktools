@@ -186,7 +186,6 @@ install_wordpress() {
 # install_selector
 function install_selector() {
     if [ ${INSTALL} ]; then
-        echo -e "==> Ejecutando tipo de instalacion...."
 
         case ${INSTALL} in
         # 1 | drupal)
@@ -203,7 +202,6 @@ function install_selector() {
             echo "hola ${SITE}" >>/mnt/c/wsl/sites/${SITE}/web/index.html
             ;;
         borrar)
-            echo -e "\n==============================================================\n==> borrando la base de datos ${SITE}\n"
             mysql --login-path=local -e "drop database ${SITE}" >/dev/null
             echo -e "\n==============================================================\n==> borrando instalación ${SITE}"
             sudo rm -fr /etc/apache2/sites-*/${SITE}.conf /mnt/c/wsl/sites/${SITE} /mnt/c/wsl/server/log/sites/${SITE}
@@ -232,6 +230,9 @@ function add_to_hosts() {
 
 #print options
 
+echo -e ""
+echo -e ""
+echo -e "=============================================================="
 echo -e "=============================================================="
 echo -e " __          __  _  _____                          "
 echo -e " \ \        / / | |/ ____|                         "
@@ -251,3 +252,5 @@ install_selector
 finalmessage
 $lamp restart 1>/dev/null
 echo -e "\n==============================================================\n=============================================================="
+echo -e ""
+echo -e ""
