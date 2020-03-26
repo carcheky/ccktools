@@ -23,9 +23,6 @@ read_install_type() {
         read INSTALL
     done
 }
-echo -e "\n\n==============================================================\n==============================================================\n"
-
-echo -e "\n==============================================================\n=============================================================="
 
 # check installation type
 [[ $1 ]] && INSTALL=$1 || echo -e "
@@ -38,8 +35,6 @@ echo -e "\n==============================================================\n=====
 [[ $2 ]] && SITE=$2 || read_site
 # [[ $2 ]] && SITE=$2 || echo "Escribe el nombre del sitio:" && until ${SITE} do read SITE done;
 
-echo -e "\n==============================================================\n==============================================================\n\n"
-
 # set vars
 WSL_FOLDER="/mnt/c/wsl"
 SITES_FOLDER="/mnt/c/wsl/sites"
@@ -47,23 +42,16 @@ CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
 CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
 CONF_SITE_FOLDER="${SITES_FOLDER}/${SITE}"
 
-#print options
-echo -e "\n\n==============================================================\n==============================================================\n"
-[[ $SITE ]] && echo -e "==> SITE: $SITE"
-[[ $INSTALL ]] && echo -e "\n==> INSTALL: $INSTALL"
-echo -e "\n==============================================================\n==============================================================\n\n"
-
 #FUNCTIONS
 
 # create folder
 function newfolder() {
-    echo -e "\n\n==============================================================\n=============================================================="
     [[ ${INSTALL} == "drupal" ]] && return
     [[ ${INSTALL} == "borrar" ]] && return
     if [[ -d ${CONF_SITE_FOLDER} ]]; then
-        echo -e "Paso 1 ==> Existe la ruta, continuando."
+        echo -e "==> Existe la ruta, continuando."
     else
-        echo -e "Paso 1 ==> NO existe la ruta, creandola..."
+        echo -e "==> NO existe la ruta, creandola..."
         mkdir -p ${CONF_SITE_FOLDER}
         mkdir -p ${CONF_SITE_FOLDER}/web
         mkdir ${WSL_FOLDER}/server/log/${SITE} -p
@@ -81,9 +69,9 @@ function newvhost() {
     if [[ $SITE ]]; then #comprueba si existe la ruta
 
         if [ -f ${CONF_SITES_AVAILABLE} ]; then
-            echo -e "Paso 2 ==> Existe la configuracion \n${CONF_SITES_AVAILABLE}, continuando."
+            echo -e "==> Existe la configuración \n${CONF_SITES_AVAILABLE}, continuando."
         else
-            echo -e "Paso 2 ==> NO existe la configuracion \n${CONF_SITES_AVAILABLE}, \n==>creandola..."
+            echo -e "==> NO existe la configuración \n${CONF_SITES_AVAILABLE}, \n==> creándola..."
             sudo rm ${CONF_SITES_AVAILABLE} 2>/dev/null
             sudo touch ${CONF_SITES_AVAILABLE} 2>/dev/null
 
@@ -232,7 +220,7 @@ install_wordpress() {
 # install_selector
 function install_selector() {
     if [ ${INSTALL} ]; then
-        echo -e "Paso 3 ==> Ejecutando tipo de instalacion...."
+        echo -e "==> Ejecutando tipo de instalacion...."
 
         case ${INSTALL} in
         # 1 | drupal)
@@ -249,11 +237,9 @@ function install_selector() {
             echo "hola ${SITE}" >>/mnt/c/wsl/sites/${SITE}/web/index.html
             ;;
         borrar)
-            echo -e "\n==============================================================\n\nQuieres borrar la base de datos ${SITE} [y/N]"
-            echo -e "\n==============================================================\n"
-            mysqladmin -hlocalhost -uroot -proot drop ${SITE}
-            echo -e "==============================================================\n"
-            echo "borrando instalación ${SITE}"
+            echo -e "\n==============================================================\n==> Quieres borrar la base de datos ${SITE}? \n"
+            mysqladmin -hlocalhost -uroot -proot drop ${SITE} 2>/dev/null
+            echo -e "\n==============================================================\n==> borrando instalación ${SITE}"
             sudo rm -fr /etc/apache2/sites-*/${SITE}.conf /mnt/c/wsl/sites/${SITE} /mnt/c/wsl/server/log/sites/${SITE}
             ;;
         *)
@@ -261,17 +247,14 @@ function install_selector() {
             ;;
         esac
     fi
-    echo -e "=============================================================="
 }
 
 # final message
 function finalmessage() {
     [[ ${INSTALL} == "borrar" ]] && return
-    echo -e "\n\n==============================================================\n==============================================================\n"
     echo -e "\n==> añade 127.0.0.1 ${SITE}.local a los hosts de su equipo & flush dns"
     echo -e "\n==> (software recomendado http://www.abelhadigital.com/hostsman/)"
     echo -e "\n==> http://${SITE}.local\n"
-    echo -e "\n\n==============================================================\n==============================================================\n"
 }
 
 # add to hosts
@@ -281,9 +264,16 @@ function add_to_hosts() {
 
 # LOGIC
 
-$lamp restart 1>/dev/null
+#print options
+echo -e "\n==============================================================\n=============================================================="
+[[ $SITE ]] && echo -e "==> SITE:    $SITE"
+[[ $INSTALL ]] && echo -e "==> INSTALL: $INSTALL"
+echo -e "=============================================================="
+
+$lamp start 1>/dev/null
 newfolder
 newvhost
 install_selector
 finalmessage
 $lamp restart 1>/dev/null
+echo -e "\n==============================================================\n=============================================================="
