@@ -210,6 +210,7 @@ function install_selector() {
         borrar)
             mysql --login-path=local -e "drop database ${SITE}" >/dev/null
             echo -e "\n==============================================================\n==> borrando instalación ${SITE}"
+            sudo chmod -R 777 /mnt/c/wsl/sites/${SITE}
             sudo rm -fr /etc/apache2/sites-*/${SITE}.conf
             sudo rm -fr /mnt/c/wsl/sites/${SITE}
             sudo rm -fr /mnt/c/wsl/server/log/${SITE}
