@@ -16,7 +16,6 @@ export_ddbb() {
   sudo rm -fr /home/user/.wget-hsts >/dev/null
   sudo rm -fr /home/user/.ssh >/dev/null
   sudo rm -fr /root/.vscode-server >/dev/null
-  sudo bleachbit --list | grep -E . | xargs sudo bleachbit -c
   bleachbit -l | grep -v system.free_disk_space | xargs sudo bleachbit -c
   sudo du -hs / --exclude /mnt
 }
