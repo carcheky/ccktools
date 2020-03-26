@@ -102,9 +102,9 @@ function newvhost() {
 		CustomLog /mnt/c/wsl/server/log/${SITE}/${SITE}-ssl.log combined
 	</VirtualHost>
 </IfModule>
-	        " | sudo tee --append ${CONF_SITES_AVAILABLE}
-            sudo a2ensite ${SITE}.conf
-            sudo service apache2 reload
+	        " | sudo tee --append ${CONF_SITES_AVAILABLE} 1>/dev/null
+            sudo a2ensite ${SITE}.conf 1>/dev/null
+            sudo service apache2 reload 1>/dev/null
         fi
         echo -e "=============================================================="
     fi
@@ -206,7 +206,7 @@ install_wordpress() {
 
         echo "define('FS_METHOD','direct');" >>wp-config.php
 
-        mysql -uroot -proot -e "create database $SITE"
+        mysql --login-path=local -e "create database ${SITE}"
 
         wp core install --url=$SITE.local --title=$SITE --admin_user=admin --admin_password=admin --admin_email=info@$SITE.test
 
@@ -237,8 +237,8 @@ function install_selector() {
             echo "hola ${SITE}" >>/mnt/c/wsl/sites/${SITE}/web/index.html
             ;;
         borrar)
-            echo -e "\n==============================================================\n==> Quieres borrar la base de datos ${SITE}? \n"
-            mysqladmin -hlocalhost -uroot -proot drop ${SITE} 2>/dev/null
+            echo -e "\n==============================================================\n==> Quieres borrar la base de datos ${SITE}? [y/N]\n"
+            mysql --login-path=local -e "drop database ${SITE}" >/dev/null
             echo -e "\n==============================================================\n==> borrando instalación ${SITE}"
             sudo rm -fr /etc/apache2/sites-*/${SITE}.conf /mnt/c/wsl/sites/${SITE} /mnt/c/wsl/server/log/sites/${SITE}
             ;;
