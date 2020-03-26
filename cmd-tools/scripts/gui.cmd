@@ -13,7 +13,6 @@ GOTO :1
 :: LAMP TOOLS
 :2
   start C:\wsl\user\ccktools\cmd-tools\scripts\lamp\lamp-start.cmd
-  start C:\wsl\Q\ToggleDefender.exe
   GOTO :1
 :3
   start C:\wsl\user\ccktools\cmd-tools\scripts\lamp\lamp-stop.cmd
