@@ -203,6 +203,8 @@ function install_selector() {
             ;;
         0 | vhost)
             echo -e "Ninguna, solo vhost"
+            newfolder
+            newvhost
             echo "hola ${SITE}" >>/mnt/c/wsl/sites/${SITE}/web/index.html
             ;;
         borrar)
