@@ -46,8 +46,10 @@ CONF_SITE_FOLDER="${SITES_FOLDER}/${SITE}"
 
 # create folder
 function newfolder() {
-    [[ ${INSTALL} == "drupal" ]] && return
     [[ ${INSTALL} == "borrar" ]] && return
+    mysql --login-path=local -e "create database ${SITE}"
+    [[ ${INSTALL} == "drupal" ]] && return
+
     if [[ -d ${CONF_SITE_FOLDER} ]]; then
         echo -e "==> Existe la ruta, continuando."
     else
@@ -205,8 +207,6 @@ install_wordpress() {
         wp config create --dbname=$SITE --dbuser=root --dbpass=root
 
         echo "define('FS_METHOD','direct');" >>wp-config.php
-
-        mysql --login-path=local -e "create database ${SITE}"
 
         wp core install --url=$SITE.local --title=$SITE --admin_user=admin --admin_password=admin --admin_email=info@$SITE.test
 
