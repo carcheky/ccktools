@@ -123,7 +123,7 @@ function install_druparcheky_core_composer_project() {
         cd $CONF_SITE_FOLDER
         mv *.code-workspace $SITE.code-workspace
         cd ${CONF_SITE_FOLDER}
-        # rm -fr .git
+        rm -fr .git
 
         $composer install
 
