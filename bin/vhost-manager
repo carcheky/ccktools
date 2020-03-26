@@ -210,7 +210,9 @@ function install_selector() {
         borrar)
             mysql --login-path=local -e "drop database ${SITE}" >/dev/null
             echo -e "\n==============================================================\n==> borrando instalación ${SITE}"
-            sudo rm -fr /etc/apache2/sites-*/${SITE}.conf /mnt/c/wsl/sites/${SITE} /mnt/c/wsl/server/log/sites/${SITE}
+            sudo rm -fr /etc/apache2/sites-*/${SITE}.conf
+            sudo rm -fr /mnt/c/wsl/sites/${SITE}
+            sudo rm -fr /mnt/c/wsl/server/log/${SITE}
             ;;
         *)
             echo -e "opción incorrecta, instalamos solo vhost"
