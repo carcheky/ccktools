@@ -104,7 +104,11 @@ function newvhost() {
 	</VirtualHost>
 </IfModule>
 	        " | sudo tee --append ${CONF_SITES_AVAILABLE} 1>/dev/null
+
             sudo chmod -R 777 /mnt/c/wsl/server/log/
+            sudo chown -R user:user /mnt/c/wsl/server/log/
+            sudo chmod -R 777 /etc/apache2/sites-*
+            sudo chown -R user:user /etc/apache2/sites-*
             sudo a2ensite ${SITE}.conf 1>/dev/null
             sudo service apache2 reload 1>/dev/null
         fi
@@ -211,9 +215,22 @@ function install_selector() {
             mysql --login-path=local -e "drop database ${SITE}" >/dev/null
             echo -e "\n==============================================================\n==> borrando instalación ${SITE}"
             sudo chmod -R 777 /mnt/c/wsl/sites/${SITE}
-            sudo rm -fr /etc/apache2/sites-*/${SITE}.conf
+            sudo chown -R user:user /mnt/c/wsl/sites/${SITE}
+
+            sudo chmod -R 777 /etc/apache2/sites-*
+            sudo chown -R user:user /etc/apache2/sites-*
+
+            echo "sudo a2dissite ${SITE}.conf"
+            sudo a2dissite ${SITE}.conf
+            echo "borrando /etc/apache2/sites-enabled/${SITE}.conf"
+            sudo rm -fr /etc/apache2/sites-enabled/${SITE}.conf
+            echo "borrando /etc/apache2/sites-avaivable/${SITE}.conf"
+            sudo rm -fr /etc/apache2/sites-avaivable/${SITE}.conf
+            echo "borrando /mnt/c/wsl/sites/${SITE}"
             sudo rm -fr /mnt/c/wsl/sites/${SITE}
+            echo "borrando /mnt/c/wsl/server/log/${SITE}"
             sudo rm -fr /mnt/c/wsl/server/log/${SITE}
+            ls -la
             ;;
         *)
             echo -e "opción incorrecta, instalamos solo vhost"
@@ -253,7 +270,7 @@ echo -e "=============================================================="
 [[ $SITE ]] && echo -e "==> SITE:    $SITE"
 [[ $INSTALL ]] && echo -e "==> INSTALL: $INSTALL"
 echo -e "=============================================================="
-
+cd /mnt/c/wsl/sites
 $lamp start 1>/dev/null
 install_selector
 finalmessage
