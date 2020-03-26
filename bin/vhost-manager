@@ -77,32 +77,32 @@ function newvhost() {
 
             sudo echo "
 <VirtualHost *:80 *:8888>
-    ServerName ${SITE}.local
-    ServerAdmin webmaster@${SITE}.local
-    DocumentRoot ${CONF_SITE_FOLDER}/web
-    RewriteEngine On
-    RewriteOptions inherit
-    CustomLog ${WSL_FOLDER}/server/log/${SITE}/${SITE}.log combined
-    <Directory /mnt/c/wsl/sites/${SITE}>
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-    </Directory>
+	ServerName ${SITE}.local
+	ServerAdmin webmaster@${SITE}.local
+	DocumentRoot ${CONF_SITE_FOLDER}/web
+	RewriteEngine On
+	RewriteOptions inherit
+	CustomLog ${WSL_FOLDER}/server/log/${SITE}/${SITE}.log combined
+	<Directory /mnt/c/wsl/sites/${SITE}>
+		Options Indexes FollowSymLinks
+		AllowOverride All
+		Require all granted
+	</Directory>
 </VirtualHost>
 
 
 <IfModule mod_ssl.c>
 	<VirtualHost *:443>
 		DocumentRoot /mnt/c/wsl/sites/${SITE}/web
-	    ServerName ${SITE}.local
+		ServerName ${SITE}.local
 		SSLEngine on
-		SSLCertificateFile	/mnt/c/wsl/server/certs/localhost.crt
+		SSLCertificateFile /mnt/c/wsl/server/certs/localhost.crt
 		SSLCertificateKeyFile /mnt/c/wsl/server/certs/localhost.key
 		ErrorLog ${APACHE_LOG_DIR}/error.log
-	    CustomLog /mnt/c/wsl/server/log/${SITE}/${SITE}-ssl.log combined
+		CustomLog /mnt/c/wsl/server/log/${SITE}/${SITE}-ssl.log combined
 	</VirtualHost>
 </IfModule>
-            " | sudo tee --append ${CONF_SITES_AVAILABLE}
+	        " | sudo tee --append ${CONF_SITES_AVAILABLE}
             sudo a2ensite ${SITE}.conf
             sudo service apache2 reload
         fi
@@ -265,6 +265,14 @@ function add_to_hosts() {
 # LOGIC
 
 #print options
+
+echo -e "\n==============================================================\n=============================================================="
+echo -e " __          __  _  _____                          "
+echo -e " \ \        / / | |/ ____|                         "
+echo -e "  \ \  /\  / /__| | (___   ___ _ ____   _____ _ __ "
+echo -e "   \ \/  \/ / __| |\___ \ / _ \ '__\ \ / / _ \ '__|"
+echo -e "    \  /\  /\__ \ |____) |  __/ |   \ V /  __/ |   "
+echo -e "     \/  \/ |___/_|_____/ \___|_|    \_/ \___|_|   "
 echo -e "\n==============================================================\n=============================================================="
 [[ $SITE ]] && echo -e "==> SITE:    $SITE"
 [[ $INSTALL ]] && echo -e "==> INSTALL: $INSTALL"
