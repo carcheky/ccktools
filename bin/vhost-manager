@@ -48,7 +48,6 @@ CONF_SITE_FOLDER="${SITES_FOLDER}/${SITE}"
 function newfolder() {
     [[ ${INSTALL} == "borrar" ]] && return
     mysql --login-path=local -e "create database ${SITE} character set UTF8MB4"
-    [[ ${INSTALL} == "drupal" ]] && return
 
     if [[ -d ${CONF_SITE_FOLDER} ]]; then
         echo -e "==> Existe la ruta, continuando."
@@ -119,6 +118,9 @@ function install_druparcheky_core_composer_project() {
     cd ${SITES_FOLDER}
 
     if [[ ! -d "$CONF_SITE_FOLDER" ]]; then
+        newfolder
+        newvhost
+        rm -fr $CONF_SITE_FOLDER
         git clone https://github.com/carcheky/druparcheky_core_composer_project.git $SITE
 
         cd $CONF_SITE_FOLDER
@@ -162,7 +164,8 @@ function install_druparcheky_core_composer_project() {
 install_wordpress() {
     echo -e "\n==> Instalando wordpress :\n"
     cd ${SITES_FOLDER}
-
+    newfolder
+    newvhost
     if [[ ! -f "$SITE/web/wp-config.php" ]]; then
 
         cd ${CONF_SITE_FOLDER}
@@ -247,8 +250,6 @@ echo -e "=============================================================="
 echo -e "=============================================================="
 
 $lamp start 1>/dev/null
-newfolder
-newvhost
 install_selector
 finalmessage
 $lamp restart 1>/dev/null
