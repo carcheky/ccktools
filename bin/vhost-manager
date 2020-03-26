@@ -47,7 +47,7 @@ CONF_SITE_FOLDER="${SITES_FOLDER}/${SITE}"
 # create folder
 function newfolder() {
     [[ ${INSTALL} == "borrar" ]] && return
-    mysql --login-path=local -e "create database ${SITE}"
+    mysql --login-path=local -e "create database ${SITE} character set UTF8MB4"
     [[ ${INSTALL} == "drupal" ]] && return
 
     if [[ -d ${CONF_SITE_FOLDER} ]]; then
