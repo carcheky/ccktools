@@ -13,6 +13,8 @@ export_ddbb() {
   sudo rm -fr /home/user/.drush/cache/* >/dev/null
   sudo rm -fr /home/user/.vscode-server >/dev/null
   sudo rm -fr /home/user/.zcompdum* >/dev/null
+  sudo rm -fr /home/user/.sudo_as* >/dev/null
+  sudo rm -fr /home/user/.shell.pre* >/dev/null
   sudo rm -fr /home/user/.*history >/dev/null
   sudo rm -fr /home/user/.wp-cli/cache >/dev/null
   sudo rm -fr /home/user/.wget-hsts >/dev/null
