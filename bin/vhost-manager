@@ -100,11 +100,12 @@ function newvhost() {
 		SSLEngine on
 		SSLCertificateFile /mnt/c/wsl/server/certs/localhost.crt
 		SSLCertificateKeyFile /mnt/c/wsl/server/certs/localhost.key
-		ErrorLog ${APACHE_LOG_DIR}/error.log
+		ErrorLog ${WSL_FOLDER}/server/log/${SITE}/${SITE}-error-ssl.log
 		CustomLog /mnt/c/wsl/server/log/${SITE}/${SITE}-ssl.log combined
 	</VirtualHost>
 </IfModule>
 	        " | sudo tee --append ${CONF_SITES_AVAILABLE} 1>/dev/null
+            sudo chmod -R 777 /mnt/c/wsl/server/log/
             sudo a2ensite ${SITE}.conf 1>/dev/null
             sudo service apache2 reload 1>/dev/null
         fi
