@@ -2,14 +2,6 @@
 pushd "%~dp0"
 
 @echo on
-echo "Desistalando WslServer anterior, espera..."
-@echo off
-
-set TARGET_DIR=%APPDATA%\WslServer
-wsl --unregister WslServer
-if exist %TARGET_DIR% rmdir /s /q %TARGET_DIR%
-
-@echo on
 echo "Importando Backup WslServer, espera..."
 @echo off
 wsl --import WslServer %APPDATA%\WslServer %SYSTEMDRIVE%\wsl\backups\wsl\WslServer-backup-DISTRO.tar.gz
