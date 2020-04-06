@@ -4,18 +4,14 @@
 alias ll="ls -la"
 alias mountdesadrupal="sudo mount -t drvfs '\\\\desadrupal\\html' /desadrupal; sudo mount -t drvfs '\\\\desadrupal8\\html' /desadrupal8"
 
+# use GIT from windows:
+alias git=git.exe
 # WINDOWS ALIAS
 alias explorer="explorer.exe"
 alias cmd="cmd.exe"
 alias cmdrun="cmd.exe /C"
 
 # SERVER ALIAS
-alias wsl-powerup-php="sudo find /etc/php/ -name php.ini -exec sed -i 's/post_max_size = 8M/post_max_size = 8G/g' {} \; sudo find /etc/php/ -name php.ini -exec sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' {} \; sudo find /etc/php/ -name php.ini -exec sed -i 's/memory_limit = 128M/memory_limit = 2G/g' {} \;"
-alias change-repo="cd; git config --global user.name \"carcheky\"; git config --global user.email \"carcheky@gmail.com\";
-ssh-keygen -t rsa -b 4096 -C \"carcheky@gmail.com\";
-cd ~/ccktools;
-git remote set-url origin git@github.com:carcheky/ccktools.git;
-git remote -v;"
 
 # DRUSH ALIAS
 alias ccron='drush cr && drush cron'

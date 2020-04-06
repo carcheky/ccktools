@@ -25,6 +25,10 @@ if [[ -d "$HOME/.config/composer/vendor/bin" ]]; then
   export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 fi
 
+if [[ -d "$HOME/.config/composer/vendor/drush/drush/drush" ]]; then
+  export DRUSH_LAUNCHER_FALLBACK=$HOME/.config/composer/vendor/drush/drush/drush
+fi
+
 # Include Drush bash customizations.
 if [ -f "$HOME/.drush/drush.bashrc" ]; then
   source $HOME/.drush/drush.bashrc
@@ -93,5 +97,3 @@ if [ -d ~/.ssh ]; then
     fi
   done
 fi
-
-gosi

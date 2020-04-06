@@ -3,16 +3,17 @@
 clear
 echo "=> vaciando cache..."
 drush cr
-clear
-echo "=> ejecutando cron..."
-drush cron
+#clear
+#echo "=> ejecutando cron..."
+#drush cron
 clear
 echo "=> Vaciando mensajes anteriores del registro..."
 drush watchdog-delete all -y 2>/dev/null
 clear
 echo "=> Viendo mensajes del registro..."
-drush watchdog-show --tail --extended
-clear
-echo "=> esperando 25 segundos..."
-sleep 25
-bash ~/ccktools/bin/drws
+curl -s discapnet2020.local >/dev/null
+drush watchdog-show  --full 
+#clear
+#echo "=> esperando 25 segundos..."
+#sleep 25
+#bash ~/ccktools/bin/drws
