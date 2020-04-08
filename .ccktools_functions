@@ -37,38 +37,39 @@ phpchanger() {
 		the_ppa="ondrej/php"
 
 	if ! grep -q "^deb .*$the_ppa" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
-		sudo add-apt-repository ppa:ondrej/php -y >/dev/null
-		echo "==> actualizando repos..." && sudo apt update >/dev/null
+		sudo add-apt-repository ppa:ondrej/php -y &>/dev/null
+		echo "==> actualizando repos..." && sudo apt update &>/dev/null
 	fi
 
 	echo "==> instalando php..."
-	sudo apt install -y composer libapache2-mod-php$1 php$1 php$1-curl php$1-gd php$1-mbstring php$1-mysql php$1-xml php$1-zip php$1-common php$1-json php$1-phar php$1-iconv php$1-readline php$1-opcache >/dev/null
+	sudo apt install -y composer libapache2-mod-php$1 php$1 php$1-curl php$1-gd php$1-mbstring php$1-mysql php$1-xml php$1-zip php$1-common php$1-json php$1-phar php$1-iconv php$1-readline php$1-opcache &>/dev/null
 
-	sudo systemctl restart apache2 >/dev/null
+	sudo systemctl restart apache2 &>/dev/null
 
 	echo "
 _________________________
 ==> disabling mods"
-	sudo a2dismod php7.1 >/dev/null
-	sudo a2dismod php7.2 >/dev/null
-	sudo a2dismod php7.3 >/dev/null
-	sudo a2dismod php7.4 >/dev/null
+	sudo a2dismod php5.6 &>/dev/null
+	sudo a2dismod php7.1 &>/dev/null
+	sudo a2dismod php7.2 &>/dev/null
+	sudo a2dismod php7.3 &>/dev/null
+	sudo a2dismod php7.4 &>/dev/null
 	echo "
 _________________________
 ==> disabling mpm"
-	sudo a2dismod mpm_prefork >/dev/null
-	sudo a2dismod mpm_worker >/dev/null
-	sudo a2dismod mpm_event >/dev/null
-	sudo a2dismod mpm_prefork >/dev/null
+	sudo a2dismod mpm_prefork &>/dev/null
+	sudo a2dismod mpm_worker &>/dev/null
+	sudo a2dismod mpm_event &>/dev/null
+	sudo a2dismod mpm_prefork &>/dev/null
 	echo "
 _________________________
 ==> enabling $1"
-	sudo a2enmod php$1 >/dev/null
-	sudo update-alternatives --set php /usr/bin/php$1 >/dev/null
+	sudo a2enmod php$1 &>/dev/null
+	sudo update-alternatives --set php /usr/bin/php$1 &>/dev/null
 	echo "
 _________________________
 ==> restarting apache"
-	sudo service apache2 restart >/dev/null
+	sudo service apache2 restart &>/dev/null
 	php -v
 	echo "
 _________________________"
@@ -97,7 +98,7 @@ superchargephp() {
 	sudo find /etc/php/ -regex ".*\.\(ini\)" -exec sed -i 's/max_execution_time = 30/max_execution_time = 300 #/g' {} \;
 	sudo find /etc/php/ -regex ".*\.\(ini\)" -exec sed -i 's/max_input_time = 60/max_input_time = 600 #/g' {} \;
 	sudo find /etc/php/ -regex ".*\.\(ini\)" -exec sed -i 's/;date.timezone =/date.timezone = Europe\/Madrid/g' {} \;
-	sudo service apache2 restart >/dev/null
+	sudo service apache2 restart &>/dev/null
 	echo Hecho
 }
 
