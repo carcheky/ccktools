@@ -31,8 +31,45 @@ goth() {
 	fi
 }
 
+php-remove() {
+	echo "- disabling mods"
+	lamp start &>/dev/null
+	sudo a2dismod php5.6 &>/dev/null
+	sudo a2dismod php7.1 &>/dev/null
+	sudo a2dismod php7.2 &>/dev/null
+	sudo a2dismod php7.3 &>/dev/null
+	sudo a2dismod php7.4 &>/dev/null
+	sudo a2dismod php7.5 &>/dev/null
+	# sudo a2dismod mpm_prefork &>/dev/null
+	# sudo a2dismod mpm_worker &>/dev/null
+	# sudo a2dismod mpm_event &>/dev/null
+	# sudo a2dismod mpm_prefork &>/dev/null
+	lamp stop &>/dev/null
+
+	echo "- removing php"
+	# sudo apt -y purge 'apache2' &>/dev/null
+	sudo apt -y purge 'php*' &>/dev/null
+	sudo apt -y autoremove &>/dev/null
+	sudo apt -y autoclean &>/dev/null
+	sudo apt -y clean &>/dev/null
+	lamp start &>/dev/null
+}
+
+php-install-fpm() {
+	php-remove
+	echo "- installing php fpm"
+	# sudo apt -y install apache2
+	sudo apt -y install php7.3 php7.3-fpm php7.3-mysql libapache2-mod-fcgid php7.3-mbstring php7.3-cgi php7.3-zip php$1-curl
+	# php7.3-json php7.3-phar php7.3-iconv php7.3-readline php7.3-opcache php7.3-xml php7.3-gd php7.3-common    libapache2-mod-php7.3
+	sudo a2enmod actions fcgid alias proxy_fcgi rewrite php7.3-fcgi proxy proxy_fcgi
+	sudo a2enconf php7.3-fpm
+
+	lamp restart
+}
+
 phpchanger() {
 	echo "cambiando php, puede tardar un poco, espere..."
+	php-remove
 	echo "==> añadiendo repo..."
 
 	the_ppa="ondrej/php"
@@ -42,7 +79,7 @@ phpchanger() {
 	fi
 
 	echo "==> instalando php..."
-	sudo apt install -y composer libapache2-mod-php$1 php$1 php$1-curl php$1-gd php$1-mbstring php$1-mysql php$1-xml php$1-zip php$1-common php$1-json php$1-phar php$1-iconv php$1-readline php$1-opcache &>/dev/null
+	sudo apt install -y composer php$1 php$1-curl php$1-gd php$1-mbstring php$1-mysql php$1-xml php$1-zip php$1-common php$1-json php$1-phar php$1-iconv php$1-readline php$1-opcache libapache2-mod-php$1 &>/dev/null
 
 	sudo systemctl restart apache2 &>/dev/null
 
@@ -77,7 +114,7 @@ _________________________
 	php -v
 	echo "
 _________________________"
-	superchargephp
+	# superchargephp
 }
 
 cr-update-core() {
@@ -94,14 +131,14 @@ cr-update() {
 }
 
 superchargephp() {
-	sudo find /etc/php/ -regex ".*\.\(ini\)"
-	sudo find /etc/php/ -regex ".*\.\(ini\)" -exec sed -i 's/post_max_size = 8M/post_max_size = 8G/g' {} \;
-	sudo find /etc/php/ -regex ".*\.\(ini\)" -exec sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2G/g' {} \;
-	sudo find /etc/php/ -regex ".*\.\(ini\)" -exec sed -i 's/memory_limit = 128M/memory_limit = 2G/g' {} \;
-	sudo find /etc/php/ -regex ".*\.\(ini\)" -exec sed -i 's/memory_limit = -1/memory_limit = 2G/g' {} \;
-	sudo find /etc/php/ -regex ".*\.\(ini\)" -exec sed -i 's/max_execution_time = 30/max_execution_time = 300 #/g' {} \;
-	sudo find /etc/php/ -regex ".*\.\(ini\)" -exec sed -i 's/max_input_time = 60/max_input_time = 600 #/g' {} \;
-	sudo find /etc/php/ -regex ".*\.\(ini\)" -exec sed -i 's/;date.timezone =/date.timezone = Europe\/Madrid/g' {} \;
+	# sudo find /etc/php/ -regex ".php\.\(ini\)"
+	sudo find /etc/php/ -name php.ini
+	sudo find /etc/php/ -name php.ini -exec sed -i 's/8M/8G/g' {} \;
+	sudo find /etc/php/ -name php.ini -exec sed -i 's/2M/2G/g' {} \;
+	sudo find /etc/php/ -name php.ini -exec sed -i 's/128M/2G/g' {} \;
+	sudo find /etc/php/ -name php.ini -exec sed -i 's/max_execution_time = 30/max_execution_time = 300 #/g' {} \;
+	sudo find /etc/php/ -name php.ini -exec sed -i 's/max_input_time = 60/max_input_time = 600 #/g' {} \;
+	sudo find /etc/php/ -name php.ini -exec sed -i 's/;date.timezone =/date.timezone = Europe\/Madrid/g' {} \;
 	sudo service apache2 restart &>/dev/null
 	echo Hecho
 }
