@@ -33,9 +33,9 @@ goth() {
 
 phpchanger() {
 	echo "cambiando php, puede tardar un poco, espere..."
-	echo "==> añadiendo repo..." &&
-		the_ppa="ondrej/php"
+	echo "==> añadiendo repo..."
 
+	the_ppa="ondrej/php"
 	if ! grep -q "^deb .*$the_ppa" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
 		sudo add-apt-repository ppa:ondrej/php -y &>/dev/null
 		echo "==> actualizando repos..." && sudo apt update &>/dev/null
@@ -46,6 +46,9 @@ phpchanger() {
 
 	sudo systemctl restart apache2 &>/dev/null
 
+	if [[ ! -f "/etc/php/$1/apache2/php.ini" ]]; then
+		cp /etc/php/$1/cli/php.ini /etc/php/$1/apache2/php.ini
+	fi
 	echo "
 _________________________
 ==> disabling mods"
@@ -54,6 +57,7 @@ _________________________
 	sudo a2dismod php7.2 &>/dev/null
 	sudo a2dismod php7.3 &>/dev/null
 	sudo a2dismod php7.4 &>/dev/null
+	sudo a2dismod php7.5 &>/dev/null
 	echo "
 _________________________
 ==> disabling mpm"
