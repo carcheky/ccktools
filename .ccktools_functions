@@ -32,7 +32,7 @@ goth() {
 }
 
 php-remove() {
-	echo "- disabling mods"
+	echo "==> disabling mods"
 	lamp start &>/dev/null
 	sudo a2dismod php5.6 &>/dev/null
 	sudo a2dismod php7.1 &>/dev/null
@@ -46,7 +46,7 @@ php-remove() {
 	# sudo a2dismod mpm_prefork &>/dev/null
 	lamp stop &>/dev/null
 
-	echo "- removing php"
+	echo "==> removing php"
 	# sudo apt -y purge 'apache2' &>/dev/null
 	sudo apt -y purge 'php*' &>/dev/null
 	sudo apt -y autoremove &>/dev/null
@@ -57,7 +57,7 @@ php-remove() {
 
 php-install-fpm() {
 	php-remove
-	echo "- installing php fpm"
+	echo "==> installing php fpm"
 	# sudo apt -y install apache2
 	sudo apt -y install php7.3 php7.3-fpm php7.3-mysql libapache2-mod-fcgid php7.3-mbstring php7.3-cgi php7.3-zip php$1-curl
 	# php7.3-json php7.3-phar php7.3-iconv php7.3-readline php7.3-opcache php7.3-xml php7.3-gd php7.3-common    libapache2-mod-php7.3
@@ -68,7 +68,7 @@ php-install-fpm() {
 }
 
 phpchanger() {
-	echo "cambiando php, puede tardar un poco, espere..."
+	echo "==> Cambiando php, puede tardar un poco, espere..."
 	php-remove
 	echo "==> añadiendo repo..."
 
