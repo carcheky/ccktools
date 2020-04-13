@@ -97,3 +97,4 @@ if [ -d ~/.ssh ]; then
     fi
   done
 fi
+sudo /etc/init.d/cron start &>/dev/null
