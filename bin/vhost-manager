@@ -212,25 +212,25 @@ function install_selector() {
             echo "hola ${SITE}" >>/mnt/c/wsl/sites/${SITE}/web/index.html
             ;;
         borrar)
-            mysql --login-path=local -e "drop database ${SITE}" >/dev/null
-            echo -e "\n==============================================================\n==> borrando instalación ${SITE}"
-            sudo chmod -R 777 /mnt/c/wsl/sites/${SITE}
-            sudo chown -R user:user /mnt/c/wsl/sites/${SITE}
+            echo -e "\n==============================================================\n\n==> borrando instalación ${SITE}"
+            echo "- borrando base de datos"
+            mysql --login-path=local -e "drop database ${SITE}" &>/dev/null
+            sudo chmod -R 777 /mnt/c/wsl/sites/${SITE} &>/dev/null
+            sudo chown -R user:user /mnt/c/wsl/sites/${SITE} &>/dev/null
 
-            sudo chmod -R 777 /etc/apache2/sites-*
-            sudo chown -R user:user /etc/apache2/sites-*
+            sudo chmod -R 777 /etc/apache2/sites-* &>/dev/null
+            sudo chown -R user:user /etc/apache2/sites-* &>/dev/null
 
-            echo "sudo a2dissite ${SITE}.conf"
-            sudo a2dissite ${SITE}.conf
-            echo "borrando /etc/apache2/sites-enabled/${SITE}.conf"
-            sudo rm /etc/apache2/sites-enabled/${SITE}.conf
-            echo "borrando /etc/apache2/sites-available/${SITE}.conf"
-            sudo rm /etc/apache2/sites-available/${SITE}.conf
-            echo "borrando /mnt/c/wsl/sites/${SITE}"
-            sudo rm -fr /mnt/c/wsl/sites/${SITE}
-            echo "borrando /mnt/c/wsl/server/log/${SITE}"
-            sudo rm -fr /mnt/c/wsl/server/log/${SITE}
-            ls -la
+            echo "- borrando sitio"
+            sudo a2dissite ${SITE}.conf &>/dev/null
+            echo "- borrando /etc/apache2/sites-enabled/${SITE}.conf"
+            sudo rm /etc/apache2/sites-enabled/${SITE}.conf &>/dev/null
+            echo "- borrando /etc/apache2/sites-available/${SITE}.conf"
+            sudo rm /etc/apache2/sites-available/${SITE}.conf &>/dev/null
+            echo "- borrando /mnt/c/wsl/sites/${SITE}"
+            sudo rm -fr /mnt/c/wsl/sites/${SITE} &>/dev/null
+            echo "- borrando /mnt/c/wsl/server/log/${SITE}"
+            sudo rm -fr /mnt/c/wsl/server/log/${SITE} &>/dev/null
             ;;
         *)
             echo -e "opción incorrecta, instalamos solo vhost"
@@ -274,6 +274,8 @@ cd /mnt/c/wsl/sites
 $lamp start 1>/dev/null
 install_selector
 finalmessage
+echo -e "\n=============================================================="
+echo -e " \n==> reiniciando lamp"
 $lamp restart 1>/dev/null
 echo -e "\n==============================================================\n=============================================================="
 echo -e ""
