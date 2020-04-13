@@ -223,9 +223,9 @@ function install_selector() {
             echo "sudo a2dissite ${SITE}.conf"
             sudo a2dissite ${SITE}.conf
             echo "borrando /etc/apache2/sites-enabled/${SITE}.conf"
-            sudo rm -fr /etc/apache2/sites-enabled/${SITE}.conf
-            echo "borrando /etc/apache2/sites-avaivable/${SITE}.conf"
-            sudo rm -fr /etc/apache2/sites-avaivable/${SITE}.conf
+            sudo rm /etc/apache2/sites-enabled/${SITE}.conf
+            echo "borrando /etc/apache2/sites-available/${SITE}.conf"
+            sudo rm /etc/apache2/sites-available/${SITE}.conf
             echo "borrando /mnt/c/wsl/sites/${SITE}"
             sudo rm -fr /mnt/c/wsl/sites/${SITE}
             echo "borrando /mnt/c/wsl/server/log/${SITE}"
