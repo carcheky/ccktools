@@ -89,11 +89,11 @@ if [ -d ~/.ssh ]; then
   chmod 600 ~/.ssh/*
   chmod 644 ~/.ssh/*.pub
 
-  eval $(ssh-agent -s)
+  eval $(ssh-agent -s) &>/dev/null
 
   for possiblekey in ~/.ssh/*; do
     if grep -q PRIVATE "$possiblekey"; then
-      ssh-add "$possiblekey"
+      ssh-add "$possiblekey" &>/dev/null
     fi
   done
 fi
