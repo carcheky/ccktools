@@ -34,5 +34,3 @@ alias pmu='drush pmu -y'
 # alias docker-compose=docker-compose.exe
 alias bashrc='source ~/ccktools/.ccktools'
 alias zshconfig="vim ~/.zshrc"
-alias codex="/mnt/c/Users/cmartinezv/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe"
-alias codexx="/mnt/c/Users/carcheky/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe"

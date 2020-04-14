@@ -69,7 +69,6 @@ php-install-fpm() {
 
 phpchanger() {
 	echo "==> Cambiando php, puede tardar un poco, espere..."
-	php-remove
 	echo "==> añadiendo repo..."
 
 	the_ppa="ondrej/php"
