@@ -15,7 +15,7 @@ wsl --distribution WslServer --user user /home/user/ccktools/bin/build-distro-ws
 wsl --terminate WslServer
 
 echo "Compilando, espera..."
-wsl --export WslServer %SYSTEMDRIVE%\wsl\backups\wsl\BUILD-WslServer-backup-DISTRO-%today%.tar.gz
+wsl --export WslServer %SYSTEMDRIVE%\wsl\backups\wsl\BUILD-WslServer-DISTRO-%today%.tar.gz
 
 echo "Restaurando BBDD, espera..."
 wsl --distribution WslServer --user user /home/user/ccktools/bin/lamp start
