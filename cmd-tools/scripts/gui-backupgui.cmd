@@ -74,7 +74,7 @@ GOTO :EOF
   <TITLE>WslServer Manager</TITLE>
   <SCRIPT language="JavaScript">
     window.resizeTo(220, 400);
-    WindowLeft = (window.screen.availWidth - 220);
+    WindowLeft = (window.screen.availWidth - window.screen.availWidth );
     WindowTop = (window.screen.availHeight - 400);
     window.moveTo(WindowLeft, WindowTop);
 
