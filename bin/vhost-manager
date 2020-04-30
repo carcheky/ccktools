@@ -38,7 +38,7 @@ read_install_type() {
 # set vars
 WSL_FOLDER="/mnt/c/wsl"
 SITES_FOLDER="/mnt/c/wsl/sites"
-CONF_SITES_AVAILABLE="/etc/apache2/sites-available/${SITE}.conf"
+CONF_SITES_AVAILABLE="/mnt/c/wsl/server/apache2/sites-available/${SITE}.conf"
 CONF_SITES_ENABLED="/etc/apache2/sites-enabled/${SITE}.conf"
 CONF_SITE_FOLDER="${SITES_FOLDER}/${SITE}"
 
@@ -105,11 +105,10 @@ function newvhost() {
 </IfModule>
 	        " | sudo tee --append ${CONF_SITES_AVAILABLE} 1>/dev/null
 
-            sudo chmod -R 777 /mnt/c/wsl/server/log/
-            sudo chown -R user:user /mnt/c/wsl/server/log/
-            sudo chmod -R 777 /etc/apache2/sites-*
-            sudo chown -R user:user /etc/apache2/sites-*
+            sudo chmod -R 777 /mnt/c/wsl/server/
+            sudo chown -R user:user /mnt/c/wsl/server/
             sudo a2ensite ${SITE}.conf 1>/dev/null
+            sudo ln -S ${CONF_SITES_AVAILABLE} /etc/apache2/site-enabled/${SITE}.conf
             sudo service apache2 reload 1>/dev/null
         fi
         echo -e "=============================================================="
@@ -225,8 +224,8 @@ function install_selector() {
             sudo a2dissite ${SITE}.conf &>/dev/null
             echo "- borrando /etc/apache2/sites-enabled/${SITE}.conf"
             sudo rm /etc/apache2/sites-enabled/${SITE}.conf &>/dev/null
-            echo "- borrando /etc/apache2/sites-available/${SITE}.conf"
-            sudo rm /etc/apache2/sites-available/${SITE}.conf &>/dev/null
+            echo "- borrando /mnt/c/wsl/server/apache2/sites-available/${SITE}.conf"
+            sudo rm /mnt/c/wsl/server/apache2/sites-available/${SITE}.conf &>/dev/null
             echo "- borrando /mnt/c/wsl/sites/${SITE}"
             sudo rm -fr /mnt/c/wsl/sites/${SITE} &>/dev/null
             echo "- borrando /mnt/c/wsl/server/log/${SITE}"
