@@ -97,8 +97,8 @@ function newvhost() {
 		DocumentRoot /mnt/c/wsl/sites/${SITE}/web
 		ServerName ${SITE}.local
 		SSLEngine on
-		SSLCertificateFile /mnt/c/wsl/server/certs/localhost.crt
-		SSLCertificateKeyFile /mnt/c/wsl/server/certs/localhost.key
+		SSLCertificateFile	/etc/ssl/certs/ssl-cert-snakeoil.pem
+		SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
 		ErrorLog ${WSL_FOLDER}/server/log/${SITE}/${SITE}-error-ssl.log
 		CustomLog /mnt/c/wsl/server/log/${SITE}/${SITE}-ssl.log combined
 	</VirtualHost>
