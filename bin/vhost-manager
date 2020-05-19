@@ -77,29 +77,30 @@ function newvhost() {
             sudo touch ${CONF_SITES_AVAILABLE} 2>/dev/null
 
             sudo echo "
-<VirtualHost *:80 *:8888>
-	ServerName ${SITE}.local
-	ServerAdmin webmaster@${SITE}.local
-	DocumentRoot ${CONF_SITE_FOLDER}/web
-	RewriteEngine On
-	RewriteOptions inherit
-	CustomLog ${WSL_FOLDER}/server/log/${SITE}/${SITE}.log combined
-	<Directory /mnt/c/wsl/sites/${SITE}>
-		Options Indexes FollowSymLinks
-		AllowOverride All
-		Require all granted
-	</Directory>
+<VirtualHost *:80>
+    Servername ${SITE}.local
+	Redirect permanent / https://${SITE}.local/
 </VirtualHost>
-
 
 <IfModule mod_ssl.c>
 	<VirtualHost *:443>
+        Servername ${SITE}.local
+
+        # files
 		DocumentRoot /mnt/c/wsl/sites/${SITE}/web
-		ServerName ${SITE}.local
-		SSLEngine on
+		<Directory /mnt/c/wsl/sites/${SITE}>
+			Options Indexes FollowSymLinks
+			AllowOverride All
+			Require all granted
+		</Directory>
+
+        # ssl
+        SSLEngine on
 		SSLCertificateFile /mnt/c/wsl/server/certificados/_wildcard.local.pem
 		SSLCertificateKeyFile /mnt/c/wsl/server/certificados/_wildcard.local-key.pem
-		ErrorLog ${WSL_FOLDER}/server/log/${SITE}/${SITE}-error-ssl.log
+
+        # logs
+    	ErrorLog /mnt/c/wsl/server/log/${SITE}/${SITE}-error-ssl.log
 		CustomLog /mnt/c/wsl/server/log/${SITE}/${SITE}-ssl.log combined
 	</VirtualHost>
 </IfModule>

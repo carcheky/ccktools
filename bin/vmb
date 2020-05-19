@@ -1,0 +1,138 @@
+#!/bin/bash
+
+# VARS
+# [] && false || true
+# [!] && true || false
+
+# Nombre del sitio
+[[ $1 ]] && SITE=$1 || (
+    echo "SITE NAME: " &
+    read SITE
+)
+
+# Tipo de instalación
+[[ $2 ]] && INSTALL=$2 || (
+    echo "INSTALL_TYPE:" &
+    read INSTALL
+)
+
+# set vars
+WSL_FOLDER="/mnt/c/wsl"
+ALL_SITES_FOLDER="${WSL_FOLDER}/sites"
+SITE_FOLDER="${ALL_SITES_FOLDER}/${SITE}"
+SITE_VHOST="/mnt/c/wsl/server/apache2/sites-available/${SITE}.conf"
+SITE_VHOST_LOG="/mnt/c/wsl/server/log/${SITE}"
+
+echo "
+Sitio $SITE;
+Instalación ${INSTALL};
+
+SITE_FOLDER: ${SITE_FOLDER}
+SITE_VHOST: ${SITE_VHOST}
+SITE_VHOST_LOG: ${SITE_VHOST_LOG}
+"
+
+vmb_delete_vhost() {
+    echo -e "\n==============================================================\n\n==> borrando instalación ${SITE}"
+
+    echo "- borrando base de datos"
+    mysql --login-path=local -e "drop database ${SITE}"
+
+    echo "- borrando sitio"
+    sudo a2dissite ${SITE}.conf
+    service apache2 reload
+
+    sudo rm -fr ${SITE_FOLDER}
+    sudo rm -fr ${SITE_VHOST}
+    sudo rm -fr ${SITE_VHOST_LOG}
+}
+
+vmb_create_vhost() {
+    echo -e "\n==============================================================\n\n==> creando instalación ${SITE}"
+
+    echo "- creando base de datos"
+    mysql --login-path=local -e "create database ${SITE}"
+
+    if [ ! -d ${SITE_FOLDER} ]; then
+        echo "- creando ${SITE_FOLDER}"
+        mkdir -p ${SITE_FOLDER}/web
+        echo "hola ${SITE}" >>${SITE_FOLDER}/web/index.html
+    fi
+
+    if [ ! -f ${SITE_VHOST} ]; then
+        echo "- creando ${SITE_VHOST}"
+        sudo echo "
+<VirtualHost *:80>
+    Servername ${SITE}.local
+	Redirect permanent / https://${SITE}.local/
+</VirtualHost>
+
+<IfModule mod_ssl.c>
+	<VirtualHost *:443>
+        Servername ${SITE}.local
+
+        # files
+		DocumentRoot  ${SITE_FOLDER}/web
+		<Directory  ${SITE_FOLDER}>
+			Options Indexes FollowSymLinks
+			AllowOverride All
+			Require all granted
+		</Directory>
+
+        # ssl
+        SSLEngine on
+		SSLCertificateFile /mnt/c/wsl/server/certificados/_wildcard.local.pem
+		SSLCertificateKeyFile /mnt/c/wsl/server/certificados/_wildcard.local-key.pem
+
+        # logs
+    	ErrorLog ${SITE_VHOST_LOG}/${SITE}-error-ssl.log
+		CustomLog ${SITE_VHOST_LOG}/${SITE}-ssl.log combined
+	</VirtualHost>
+</IfModule>
+	        " >>${SITE_VHOST}
+    fi
+
+    if [ ! -d ${SITE_VHOST_LOG} ]; then
+        echo "- creando ${SITE_VHOST_LOG}"
+        mkdir -p ${SITE_VHOST_LOG}
+    fi
+
+    sudo a2ensite ${SITE}.conf
+    service apache2 reload
+
+    echo "
+
+visita https://${SITE}.local?vaciandocache=$RANDOM o http://${SITE}.local?vaciandocache=$RANDOM
+
+"
+}
+
+vmb_install_drupal() {
+    cd ${ALL_SITES_FOLDER}
+    sudo rm -fr ${SITE_FOLDER}
+    composer create-project carcheky/druparcheky-recommended-project ${SITE}
+}
+
+# install_selector
+function install_selector() {
+    if [ ${INSTALL} ]; then
+
+        case ${INSTALL} in
+        vhost)
+            time vmb_create_vhost
+            ;;
+        drupal)
+            time vmb_create_vhost
+            time vmb_install_drupal
+            ;;
+        borrar)
+            time vmb_delete_vhost
+            ;;
+        *)
+            echo -e "opción incorrecta"
+            ;;
+        esac
+    fi
+}
+install_selector
+# lamp restart

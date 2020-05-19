@@ -3,9 +3,11 @@
 # GENERIC ALIAS
 alias ll="ls -la"
 alias mountdesadrupal="sudo mount -t drvfs '\\\\desadrupal\\html' /desadrupal; sudo mount -t drvfs '\\\\desadrupal8\\html' /desadrupal8"
-
+alias code='/mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe'
 # use GIT from windows:
-alias git=git.exe
+# alias git="/mnt/c/Program\ Files/Git/cmd/git.exe"
+alias git="git.exe"
+
 # WINDOWS ALIAS
 alias explorer="explorer.exe"
 alias cmd="cmd.exe"
