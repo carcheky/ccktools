@@ -87,9 +87,10 @@ vmb_create_vhost() {
     echo "
     =>  https://${SITE}.local?vaciandocache=$RANDOM
     =>  http://${SITE}.local?vaciandocache=$RANDOM
-    =>  db:         ${SITE}
-    =>  dbuser:     root
-    =>  dbpassword: root"
+    =>  SITE_FOLDER:        ${SITE_FOLDER}
+    =>  DB:         ${SITE}
+    =>  DBUSER:     root
+    =>  DBPASSWORD: root"
 }
 
 vmb_install_drupal() {
@@ -97,7 +98,7 @@ vmb_install_drupal() {
     sudo rm -fr ${SITE_FOLDER}
     composer create-project carcheky/druparcheky-recommended-project ${SITE}
     cd ${SITE_FOLDER}
-    dr si --db-url=mysql://root:root@127.0.0.1:3306/${SITE}
+    ./vendor/drush/drush si --db-url=mysql://root:root@127.0.0.1:3306/${SITE}
 }
 
 # install_selector
