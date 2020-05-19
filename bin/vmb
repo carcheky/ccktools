@@ -46,6 +46,7 @@ vmb_create_vhost() {
         sudo echo "
             <VirtualHost *:80>
                 Servername ${SITE}.local
+                DocumentRoot  ${SITE_FOLDER}/web
                 Redirect permanent / https://${SITE}.local/
             </VirtualHost>
 
