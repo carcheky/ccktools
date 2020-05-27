@@ -84,13 +84,14 @@ vmb_create_vhost() {
     service apache2 reload &>/dev/null
 
     lamp restart &>/dev/null
+    echo "127.0.0.1 ${SITE}.local" >>${WSL_HOSTS}
     echo "
-    =>  https://${SITE}.local?vaciandocache=$RANDOM
-    =>  http://${SITE}.local?vaciandocache=$RANDOM
-    =>  SITE_FOLDER:        ${SITE_FOLDER}
-    =>  DB:         ${SITE}
-    =>  DBUSER:     root
-    =>  DBPASSWORD: root"
+    =>  URL:            https://${SITE}.local?vaciandocache=$RANDOM
+    =>  URL:            http://${SITE}.local?vaciandocache=$RANDOM
+    =>  SITE_FOLDER:    ${SITE_FOLDER}
+    =>  DB:             ${SITE}
+    =>  DBUSER:         root
+    =>  DBPASSWORD:     root"
 }
 
 vmb_install_drupal() {
@@ -135,6 +136,7 @@ function install_selector() {
 
 # set vars
 WSL_FOLDER="/mnt/c/wsl"
+WSL_HOSTS="${WSL_FOLDER}/server/hosts/wsl-hosts.txt"
 ALL_SITES_FOLDER="${WSL_FOLDER}/sites"
 SITE_FOLDER="${ALL_SITES_FOLDER}/${SITE}"
 SITE_VHOST="${WSL_FOLDER}/server/apache2/sites-available/${SITE}.conf"

@@ -3,8 +3,8 @@
 # CUSTOM CONFIGS
 
 # CUSTOM ZSH CONFIGS
-local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT='${ret_status} %{$fg[cyan]%}%2~%{$reset_color%} '
+# local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+# PROMPT='${ret_status} %{$fg[cyan]%}%2~%{$reset_color%} '
 # PROMPT='${ret_status} %{$fg[cyan]%}%2~%{$reset_color%} $(git_prompt_info)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
@@ -14,9 +14,9 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 
 # LOAD SOURCES
 
-if [[ -d "/home/linuxbrew/.linuxbrew/bin" ]]; then
-  export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-fi
+# if [[ -d "/home/linuxbrew/.linuxbrew/bin" ]]; then
+#   export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+# fi
 
 if [[ -d "$HOME/bin" ]]; then
   export PATH="$HOME/bin:$PATH"
@@ -61,12 +61,9 @@ fi
 
 if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
   source $HOME/ccktools/.ccktools_custom
-fi
-
-if [ -f "$HOME/ccktools/.ccktools_custom" ]; then
-  autoload bashcompinit
-  bashcompinit
-  source $HOME/ccktools/wp-completion.bash
+  # autoload bashcompinit
+  # bashcompinit
+  # source $HOME/ccktools/wp-completion.bash
 fi
 
 win_userprofile="$(cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null)"
