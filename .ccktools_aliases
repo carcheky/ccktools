@@ -36,3 +36,8 @@ alias pmu='drush pmu -y'
 # alias docker-compose=docker-compose.exe
 alias bashrc='source ~/ccktools/.ccktools'
 alias zshconfig="vim ~/.zshrc"
+
+# composer ALIAS
+alias cu='composer udpate'
+alias cud='composer udpate --with-dependencies'
+alias ci='composer install'
