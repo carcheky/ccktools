@@ -39,5 +39,5 @@ alias zshconfig="vim ~/.zshrc"
 
 # composer ALIAS
 alias cu='composer update'
-alias cud='composer udpate --with-dependencies'
+alias cud='composer update --with-dependencies'
 alias ci='composer install'
