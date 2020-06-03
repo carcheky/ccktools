@@ -38,6 +38,6 @@ alias bashrc='source ~/ccktools/.ccktools'
 alias zshconfig="vim ~/.zshrc"
 
 # composer ALIAS
-alias cu='composer udpate'
+alias cu='composer update'
 alias cud='composer udpate --with-dependencies'
 alias ci='composer install'
